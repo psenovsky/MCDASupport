@@ -1,0 +1,29 @@
+"0","covid_plot <- dataCR %>%"
+"0","  group_by(kraj, datum) %>%"
+"0","  summarize(nemocniKraj = sum(aktivniNemocni))"
+"2","`summarise()` has grouped output by 'kraj'. You can override using the `.groups` argument.
+"
+"0","fig <- plot_ly(data = covid_plot, "
+"0","               x = ~datum,"
+"0","               y = ~nemocniKraj, "
+"0","               mode = 'lines',"
+"0","               type = ""scatter"","
+"0","               color = ~kraj) %>%"
+"0","        layout("
+"0","          title = ""Počty nemocných v CŘ podle krajů (s aktivní nemocí)"","
+"0","          xaxis = list(title = ""časová osa""),"
+"0","          yaxis = list(title = ""počet nemocných""),"
+"0","          legend)"
+"0","fig"
+"2","Warning: n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+"
+"2","Warning: n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+"
+"2","Warning: n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+"
+"2","Warning: n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+"

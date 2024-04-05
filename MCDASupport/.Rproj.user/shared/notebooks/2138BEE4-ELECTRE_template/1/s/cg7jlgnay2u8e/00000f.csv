@@ -1,0 +1,10 @@
+"0","if(length(setdiff(c(""MCDASupport""), rownames(installed.packages()))) == 1){
+  print(""nenainstalováno"")
+}else{
+  print(""nainstalováno"")
+}
+"
+"1","[1]"
+"1"," ""nainstalováno"""
+"1","
+"

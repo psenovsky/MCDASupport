@@ -1,0 +1,4 @@
+"0","t2 <- fp_pracoviste2 %>%"
+"0","  filter(soucast == ""FBI"") %>%"
+"0","  pivot_wider(names_from = year, values_from = vazene_citace)"
+"0","t2"

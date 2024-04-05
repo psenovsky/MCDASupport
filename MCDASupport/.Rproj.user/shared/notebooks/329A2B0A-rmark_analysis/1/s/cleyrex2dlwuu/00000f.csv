@@ -1,0 +1,28 @@
+"0","covid_plot <- covid_join %>%"
+"0","  filter(country %in% c(""US"", ""Italy"", ""United Kingdom"", ""Spain"",""Czechia"", ""Poland"", ""Sweden"", ""Germany"","
+"0","                        ""Izrael"", ""Slovakia"", ""Hungary"")) %>%"
+"0","  group_by(country)"
+"0","fig <- plot_ly(data = covid_plot, "
+"0","               x = ~date,"
+"0","               y = ~vakciny_prc_pop/2, "
+"0","               mode = 'lines',"
+"0","               type = ""scatter"","
+"0","               color = ~country) %>%"
+"0","        layout("
+"0","          title = ""Cesta k imunitě"","
+"0","          xaxis = list(title = ""čas""),"
+"0","          yaxis = list(title = ""procento očkovaných""),"
+"0","          legend = list(x = 0.1, y = 0.9))"
+"0","fig"
+"2","Warning: n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+"
+"2","Warning: n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+"
+"2","Warning: n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+"
+"2","Warning: n too large, allowed maximum for palette Set2 is 8
+Returning the palette you asked for with that many colors
+"

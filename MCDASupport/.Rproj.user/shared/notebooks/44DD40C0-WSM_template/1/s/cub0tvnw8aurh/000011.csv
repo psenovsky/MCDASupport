@@ -1,0 +1,5 @@
+"0","normPM2 <- normPM"
+"0","normPM2$price <- normPM$price * 0.6 + 40 # worst value = 40 %"
+"0","normPM2$battery <- normPM$battery * 0.25 + 75 # worst value = 75 %"
+"0","normPM2$weight <- normPM$weight * 0.3 + 70 # worst value = 70 %"
+"0","kable(normPM2, caption = 'Rescaled normalized perwormance matrix')"

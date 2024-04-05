@@ -1,0 +1,100 @@
+"0","library('MCDASupport')"
+"2","Loading required package: igraph
+"
+"2","
+Attaching package: ‘igraph’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+"
+"2","The following object is masked from ‘package:base’:
+
+    union
+
+"
+"2","Loading required package: diagram
+"
+"2","Loading required package: shape
+"
+"2","Loading required package: dplyr
+"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:igraph’:
+
+    as_data_frame, groups, union
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"2","Loading required package: tidyr
+"
+"2","
+Attaching package: ‘tidyr’
+
+"
+"2","The following object is masked from ‘package:igraph’:
+
+    crossing
+
+"
+"2","Loading required package: plotly
+"
+"2","Loading required package: ggplot2
+"
+"2","
+Attaching package: ‘plotly’
+
+"
+"2","The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+"
+"2","The following object is masked from ‘package:igraph’:
+
+    groups
+
+"
+"2","The following object is masked from ‘package:stats’:
+
+    filter
+
+"
+"2","The following object is masked from ‘package:graphics’:
+
+    layout
+
+"
+"2","Loading required package: visNetwork
+"
+"0","library('knitr')"
+"0","library('plotly')"
+"0",""
+"0","# rozhodovací problém"
+"0","PM <- cbind("
+"0","  c(103000,101300,156400,267400,49900,103600,103000,170100,279700,405000),"
+"0","  c(171.3,205.3,221.7,230.7,122.6,205.1,178.0,226.0,233.8,265.0),"
+"0","  c(7.65,7.90,7.90,10.50,8.30,8.20,7.20,9.10,10.90,10.30),"
+"0","  c(352,203,391,419,120,265,419,419,359,265),"
+"0","  c(11.6,8.4,8.4,8.6,23.7,8.1,11.4,8.1,7.8,6.0),"
+"0","  c(88.0,78.3,81.5,64.7,74.1,81.7,77.6,74.7,75.5,74.7),"
+"0","  c(69.7,73.4,69.0,65.6,76.4,73.6,66.2,71.7,70.9,72.0))"
+"0","rownames(PM) <- c(""CBX16"",""P205G"",""P405M"",""P605S"","
+"0","  ""R4GTL"",""RCLIO"",""R21TS"",""R21TU"",""R25BA"",""ALPIN"")"
+"0","colnames(PM) <- c(""Prix"",""Vmax"",""C120"",""Coff"",""Acce"",""Frei"",""Brui"")"
+"0","minmaxcriteria <-c(""min"",""max"",""min"",""max"",""min"",""min"",""min"")"
+"0","w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)"

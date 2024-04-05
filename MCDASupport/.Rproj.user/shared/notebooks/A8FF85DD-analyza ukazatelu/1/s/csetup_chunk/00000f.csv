@@ -1,0 +1,6 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0",""
+"0","# knihovny"
+"0","library(""stringr"") # zpracování textu ""str_*"" funkce"
+"0","library(""dplyr"")   # podpora oprátoru roury a pokročilé manipulace s dataframe"
+"0","library(""plotly"")  # vykreslování grafů"

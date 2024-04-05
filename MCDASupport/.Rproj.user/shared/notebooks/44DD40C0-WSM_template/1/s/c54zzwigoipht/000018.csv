@@ -1,0 +1,5 @@
+"0","normPM <- PM"
+"0","normPM$weight <- norm_minmax(PM$weight, minmax = 'min') * 100"
+"0","normPM$battery <- norm_minmax(PM$battery) * 100 #minmax is implicitly 'max'"
+"0","normPM$price <- norm_minmax(PM$price, minmax = 'min') * 100"
+"0","kable(normPM, caption = 'Normalized performance matrix')"

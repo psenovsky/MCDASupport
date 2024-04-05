@@ -1,0 +1,512 @@
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1S_sensitivity(PM, w, Q, P, V, minmaxcriteria)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+Q <- c(25,16,0,12,10) #Indifference thresholds
+P <- c(50,24,1,24,20) #Preference thresholds
+V <- c(100,60,2,48,90) #Veto thresholds
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1S_sensitivity(PM, w, Q, P, V, minmaxcriteria)
+paste(P, sep = ', ')
+paste(P, sep = ",")
+paste(P, collapse = ",")
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+Q <- c(25,16,0,12,10) #Indifference thresholds
+P <- c(50,24,1,24,20) #Preference thresholds
+V <- c(100,60,2,48,90) #Veto thresholds
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1S_sensitivity(PM, w, Q, P, V, minmaxcriteria)
+View(t)
+View(t)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+Q <- c(25,16,0,12,10) #Indifference thresholds
+P <- c(50,24,1,24,20) #Preference thresholds
+V <- c(100,60,2,48,90) #Veto thresholds
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1S_sensitivity(PM, w, Q, P, V, minmaxcriteria)
+View(t)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+Q <- c(25,16,0,12,10) #Indifference thresholds
+P <- c(50,24,1,24,20) #Preference thresholds
+V <- c(100,60,2,48,90) #Veto thresholds
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1S_sensitivity(PM, w, Q, P, V, minmaxcriteria)
+View(t)
+library(MCDASupport)
+build_manual()
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(1,1,1,1,1) #weights
+concordance <- c(0.9, 1, 0.01, 0.95)
+discordance <- c(0, 0.1, 0.01, 0.05)
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria, concordance, discordance)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(1,1,1,1,1) #weights
+concordance <- c(0.9, 1, 0.01, 0.95)
+discordance <- c(0, 0.1, 0.01, 0.05)
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria, concordance, discordance)
+PM <- cbind(
+c(103000,101300,156400,267400,49900,103600,103000,170100,279700,405000),
+c(171.3,205.3,221.7,230.7,122.6,205.1,178.0,226.0,233.8,265.0),
+c(7.65,7.90,7.90,10.50,8.30,8.20,7.20,9.10,10.90,10.30),
+c(352,203,391,419,120,265,419,419,359,265),
+c(11.6,8.4,8.4,8.6,23.7,8.1,11.4,8.1,7.8,6.0),
+c(88.0,78.3,81.5,64.7,74.1,81.7,77.6,74.7,75.5,74.7),
+c(69.7,73.4,69.0,65.6,76.4,73.6,66.2,71.7,70.9,72.0))
+rownames(PM) <- c("CBX16","P205G","P405M","P605S","R4GTL",
+"RCLIO","R21TS","R21TU","R25BA","ALPIN")
+colnames(PM) <- c("Prix","Vmax","C120","Coff","Acce","Frei","Brui")
+minmaxcriteria <-c("min","max","min","max","min","min","min")
+w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+c(103000,101300,156400,267400,49900,103600,103000,170100,279700,405000),
+c(171.3,205.3,221.7,230.7,122.6,205.1,178.0,226.0,233.8,265.0),
+c(7.65,7.90,7.90,10.50,8.30,8.20,7.20,9.10,10.90,10.30),
+c(352,203,391,419,120,265,419,419,359,265),
+c(11.6,8.4,8.4,8.6,23.7,8.1,11.4,8.1,7.8,6.0),
+c(88.0,78.3,81.5,64.7,74.1,81.7,77.6,74.7,75.5,74.7),
+c(69.7,73.4,69.0,65.6,76.4,73.6,66.2,71.7,70.9,72.0))
+rownames(PM) <- c("CBX16","P205G","P405M","P605S","R4GTL",
+"RCLIO","R21TS","R21TU","R25BA","ALPIN")
+colnames(PM) <- c("Prix","Vmax","C120","Coff","Acce","Frei","Brui")
+minmaxcriteria <-c("min","max","min","max","min","min","min")
+w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+c(103000,101300,156400,267400,49900,103600,103000,170100,279700,405000),
+c(171.3,205.3,221.7,230.7,122.6,205.1,178.0,226.0,233.8,265.0),
+c(7.65,7.90,7.90,10.50,8.30,8.20,7.20,9.10,10.90,10.30),
+c(352,203,391,419,120,265,419,419,359,265),
+c(11.6,8.4,8.4,8.6,23.7,8.1,11.4,8.1,7.8,6.0),
+c(88.0,78.3,81.5,64.7,74.1,81.7,77.6,74.7,75.5,74.7),
+c(69.7,73.4,69.0,65.6,76.4,73.6,66.2,71.7,70.9,72.0))
+rownames(PM) <- c("CBX16","P205G","P405M","P605S","R4GTL",
+"RCLIO","R21TS","R21TU","R25BA","ALPIN")
+colnames(PM) <- c("Prix","Vmax","C120","Coff","Acce","Frei","Brui")
+minmaxcriteria <-c("min","max","min","max","min","min","min")
+w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+View(t)
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1S_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+PM <- cbind(
+c(-14,129,-10,44,-14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+View(PM)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+View(PM)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+PM <- cbind(
+c(103000,101300,156400,267400,49900,103600,103000,170100,279700,405000),
+c(171.3,205.3,221.7,230.7,122.6,205.1,178.0,226.0,233.8,265.0),
+c(7.65,7.90,7.90,10.50,8.30,8.20,7.20,9.10,10.90,10.30),
+c(352,203,391,419,120,265,419,419,359,265),
+c(11.6,8.4,8.4,8.6,23.7,8.1,11.4,8.1,7.8,6.0),
+c(88.0,78.3,81.5,64.7,74.1,81.7,77.6,74.7,75.5,74.7),
+c(69.7,73.4,69.0,65.6,76.4,73.6,66.2,71.7,70.9,72.0))
+rownames(PM) <- c("CBX16","P205G","P405M","P605S","R4GTL",
+"RCLIO","R21TS","R21TU","R25BA","ALPIN")
+colnames(PM) <- c("Prix","Vmax","C120","Coff","Acce","Frei","Brui")
+minmaxcriteria <-c("min","max","min","max","min","min","min")
+w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+View(t)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(0.2,0.2,0.2,0.2,0.2) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+View(t)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+View(t)
+t$neexistuje
+t <- NULL
+t$neexistuje
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+PM <- cbind(
+#c(-14,129,-10,44,-14),
+c(14,129,10,44,14),
+c(90,100,50,90,100),
+c(0,0,0,0,0),
+c(40,0,10,5,20),
+c(100,0,100,20,40)
+)
+rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
+colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
+minmaxcriteria <- 'max'
+w <- c(1,1,1,1,1) #weights
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+View(t)
+t <- Electre_1(PM, w, minmaxcriteria, 0.8, 0.1)
+View(t)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+t$GraphResult
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+df <- data.frame(id = c(1, 2, 3), label = c("Node 1", "Node 2", "Node 3"))
+visNetwork(nodes = df)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+df <- data.frame(id = 1:5, label = c('pr1', 'pr2', 'pr3', 'pr4', 'pr5') )
+visNetwork(nodes = df)
+out <- visNetwork(nodes = df) %>%
+visIgraphLayout(layout = "layout_in_circle")
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+t$GraphResult
+t <- Electre_1_sensitivity(PM, w, minmaxcriteria,
+concordance_threshold = c(0.75, 0.85, 0.01, 0.8),
+discordance_threshold = c(0.05, 0.15, 0.01, 0.1))
+View(t)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+library(MCDASupport)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+t$Kernel
+names(t$Kernel)
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+!('a' %in% c('a', 'b', 'c'))
+library(MCDASupport)
+knitr::opts_chunk$set(echo = TRUE)
+t <- Electre_1(PM, w, minmaxcriteria,
+concordance_threshold = 0.8,
+discordance_threshold = 0.1)
+View(t)
+t$GraphResult

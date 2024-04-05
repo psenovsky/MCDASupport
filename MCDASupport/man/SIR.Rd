@@ -1,0 +1,97 @@
+\name{SIR}
+\alias{SIR}
+\title{SIR : Superiority and inferiority ranking (SIR) method}
+\description{
+  SIR stands for Superiority and inferiority ranking (SIR) method.The method is interesting as it is computationwise closely related to PROMETHEE and TOPSIS methods. Similarly to them it computes preference based on flows.
+
+  The flows are computed based on S and I (superiority and inferiority) matrixes. Based on transformation of preference P(A, A2) from natural units to 0-1 according to 6 function (in same way as PROMETHEE computes them). S and I matrixes are defined:
+
+\mjsdeqn{S_j(A_i) = \sum_{k=1}^m P_j(A_i, A_k) = \sum_{k=1}^m f_j(g_j(A_i) - g_j(A_k))}
+
+and
+
+\mjsdeqn{I_j(A_i) = \sum_{k=1}^m P_j(A_k, A_i) = \sum_{k=1}^m f_j(g_j(A_k) - g_j(A_i))}
+
+Where m is the number of alternatives, fj is transformed value using function d.
+
+Results in S and I matrixes need to be agregated.The method supports two agregation methods SIR-SAW or SIR-TOPSIS.
+
+For SIR-SAW:
+
+\mjsdeqn{SFlow(A_i) = \sum_{j=1}^n w_jS_j(A_i)}
+
+\mjsdeqn{IFlow(A_i) = \sum_{j=1}^n w_jI_j(A_i)}
+
+SIR-TOPSIS on the other hand uses computation of ideal and antiideal solution and computes S- and I- flows from it. See TOPSIS documentation for details.
+
+This approach is used separately for both S and I matrixes. For computation of ideal and anti-ideal solution min and max functions are switched.
+
+Directly from these flow complete rankings can be derived, or simple aggregation of them as net flow (diference between S and I flows) and relative flow as a closeness to addition of the S and I flows.
+}
+\usage{
+SIR(PM, w, d, minmax = 'max', indifferenceTreshold = NULL,
+  prefferenceThreshold = NULL, intermediateThreshold = NULL,
+  SAW = TRUE, VERBOSE = FALSE)
+}
+
+\arguments{
+  \item{PM}{Matrix or data frame containing the performance table. Each row corresponds to an alternative, and each column to a criterion. only numeric values expercted. Rows and columns are expected to be named.}
+  \item{d}{vector, specifies type of function used to compute preferences. Need to be set for each criterion. Possible values are: 'default', 'U-shape', 'V-shape', 'level', 'linear', 'Gaussian'. Choice of function type will decide on what type of threshold (if any) is required for computation. Each criterion can use different preference function.}
+  \item{w}{vector containing the weights of the criteria. Values need to 0 <= wi <= 1, sum(wi) = 1}
+  \item{minmax}{value or vector of values 'min' or 'max' specifying optimization direction for the criterium}
+  \item{indifferenceTreshold}{vector containing indifference threshods for criteria. Not all types of performance functions require it. The parameter must be used if there is at least one criterion, for which it is required. Values for all other criteria should be 0 (and will not be used during computations). Only 'U-shape', 'level', 'linear' functions need this threshold.}
+  \item{prefferenceThreshold}{vector containing prefference threshods for criteria. Not all types of performance functions require it. The parameter must be used if there is at least one criterion, for which it is required. Values for all other criteria should be 0 (and will not be used during computations). Only 'V-shape', 'level', 'linear' functions need this threshold.}
+  \item{intermediateThreshold}{vector containing intermetiate thresholds for criteria. only Gaussian type performance functions rewuire this type of threshold. If prefference and indifference thresholds are present, the PROMETHEE function will try to 'gues' intermediate threshold as value right in the middle between these thresholds.}
+  \item{SAW}{implicit TRUE, if set TRUE will aggregate S and I matrixes using SIR-SAW method, otherwise it will use SIR-TOPSIS.}
+  \item{VERBOSE}{if set to TRUE it produces all the outputs in the console, otherwise the results are available only as values returned by function.}
+}
+
+\value{
+	The function returns a list structured as follows:
+	\item{superiorityFlow}{vector of the alternatives derived from S matrix}
+	\item{inferityFlow}{vector of the alternatives derived from I matrix}
+  \item{rankSFlow}{vector of alternatives with assigned ranks (is possible to directly derive from superiorityFlow)}
+  \item{rankIFlow}{vector of alternatives with assigned ranks (is possible to directly derive from inferiorityFlow)}
+  \item{partialRanking}{matrix providing partial order of alternatives with P-prefered, I-indifferent and R-incomparable values}
+  \item{netFlow}{differencce between superiority and inferiority flows}
+  \item{relativeFlow}{expresses closeness to addition of the S and I flows}
+  \item{flows}{matrix with all types of flows in one place}
+}
+
+\references{
+Papathanasiou, Jason, Ploskas, Nikolaos. Multiple Criteria Decision Aid Methods, Examples and Python Implementations. Springer, 173 p., ISBN 978-3-319-91648-4.
+}
+
+\author{Pavel Šenovský \email{pavel.senovsky@vsb.cz}}
+
+\examples{
+#Example from the book (see references)
+PM <- rbind(
+  c(8,7,2,1),
+  c(5,3,7,5),
+  c(7,5,6,4),
+  c(9,9,7,3),
+  c(11,10,3,7),
+  c(6,9,5,4)
+)
+rownames(PM) <- c('Site 1', 'Site 2', 'Site 3', 'Site 4', 'Site 5', 'Site 6')
+colnames(PM) <- c('Investment costs (million EUR)',
+  'Employment needs (hundred employees)', 'Social impact (1-7)',
+  'Environmental impact (1-7)')
+minmax <- 'max'
+w <- c(0.4, 0.3, 0.1, 0.2)
+shape <- c('linear', 'linear', 'linear', 'linear')
+q <- c(1, 1, 1, 1)
+p <- c(2,2,2,2)
+s <- c(0,0,0,0)
+result <- SIR(PM, w, shape, minmax, q, p, s, SAW=TRUE)
+}
+\keyword{ PROMETHEE }
+\keyword{ SIR }
+\keyword{ SIR-SAW }
+\keyword{ SIR-TOPSIS }
+\keyword{ TOPSIS }
+\keyword{ superiority flow }
+\keyword{ inferiority flow }
+\keyword{ net flow }
+\keyword{ relative flow }

@@ -1,0 +1,20 @@
+{
+    "dialog-state": {
+        "query": "c_z",
+        "path": "",
+        "regex": false,
+        "caseSensitive": false,
+        "wholeWord": false,
+        "filePatterns": [
+            "*.r",
+            "*.R"
+        ],
+        "useGitGrep": false,
+        "excludeGitIgnore": false,
+        "excludeFilePatterns": [],
+        "resultsCount": 47,
+        "errorCount": 0,
+        "replaceErrors": "",
+        "projectRelative": true
+    }
+}

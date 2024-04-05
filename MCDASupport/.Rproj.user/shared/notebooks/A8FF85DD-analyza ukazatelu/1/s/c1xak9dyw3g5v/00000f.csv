@@ -1,0 +1,2 @@
+"0","pRok <- SAP %>%"
+"0","  filter(rok == max(rok))"

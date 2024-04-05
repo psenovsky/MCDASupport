@@ -1,0 +1,21 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"2","Warning messages:
+"
+"2","1: replacing previous import ‘igraph::spectrum’ by ‘stats::spectrum’ when loading ‘MCDASupport’ 
+"
+"2","2: replacing previous import ‘igraph::decompose’ by ‘stats::decompose’ when loading ‘MCDASupport’ 
+"
+"2","3: replacing previous import ‘igraph::groups’ by ‘dplyr::groups’ when loading ‘MCDASupport’ 
+"
+"2","4: replacing previous import ‘stats::filter’ by ‘dplyr::filter’ when loading ‘MCDASupport’ 
+"
+"2","5: replacing previous import ‘igraph::union’ by ‘dplyr::union’ when loading ‘MCDASupport’ 
+"
+"2","6: replacing previous import ‘igraph::as_data_frame’ by ‘dplyr::as_data_frame’ when loading ‘MCDASupport’ 
+"
+"2","7: replacing previous import ‘stats::lag’ by ‘dplyr::lag’ when loading ‘MCDASupport’ 
+"
+"2","8: replacing previous import ‘igraph::crossing’ by ‘tidyr::crossing’ when loading ‘MCDASupport’ 
+"
+"2","9: replacing previous import ‘graphics::layout’ by ‘plotly::layout’ when loading ‘MCDASupport’ 
+"
