@@ -1,5 +1,0 @@
-"0","addColumn <- function(col, publikace) {  # přidat sloupec"
-"0","  publikace <- publikace %>% "
-"0","    add_column(!!col := NA)"
-"0","  return(publikace)"
-"0","}"

@@ -1,4 +1,0 @@
-"0","ockovani_plot = ockovani %>%"
-"0","  group_by(vakcina) %>%"
-"0","  summarise(preparát = sum(celkem_davek))"
-"0","kable(ockovani_plot, caption=""Vyočkované preparáty (ČR)"")"

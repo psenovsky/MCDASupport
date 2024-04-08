@@ -1,8 +1,0 @@
-"0","con = curl(""https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/hospitalizace.csv"")"
-"0","hospitalizace = read.csv(text = readLines(con))"
-"0","close(con)"
-"0","#hospitalizace = hospitalizace %>% rename(datum = X.U.FEFF.datum)"
-"0","hospitalizace$datum = as.Date(hospitalizace$datum)"
-"0","hospitalizace$pocet_hosp_7da = rollmean(hospitalizace$pocet_hosp, k = 7, fill = NA)"
-"0","hospitalizace$tezky_upv_ecmo_7da = rollmean(hospitalizace$tezky_upv_ecmo, k = 7, fill = NA)"
-"0","hospitalizace$stav_bez_priznaku_7da = rollmean(hospitalizace$stav_bez_priznaku, k = 7, fill = NA)"

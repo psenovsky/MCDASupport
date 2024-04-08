@@ -1,5 +1,0 @@
-"0","fp_pracoviste3A <- fp_pracoviste3 %>%
-  group_by(year, soucast, pracoviste) %>%
-  summarize(vazene_citace = sum(FP_vazeny))
-"
-"2","`summarise()` has grouped output by 'year', 'soucast'. You can override using the `.groups` argument."

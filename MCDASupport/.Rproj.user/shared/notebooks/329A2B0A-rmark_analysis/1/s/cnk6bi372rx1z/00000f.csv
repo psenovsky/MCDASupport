@@ -1,4 +1,0 @@
-"0","cesta = paste(croot, ""/PESv1.RData"", sep="""")"
-"0","load(cesta)"
-"0","cesta = paste(croot, ""/PESv2.RData"", sep="""")"
-"0","load(cesta)"

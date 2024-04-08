@@ -1,8 +1,0 @@
-"0","con = curl(""https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/testy-pcr-antigenni.csv"")"
-"0","test = read.csv(text = readLines(con), sep = "","")"
-"0","#%>% rename(datum = X.U.FEFF.datum)"
-"0","test$datum = as.Date(test$datum)"
-"0","test %<>%"
-"0","  filter(datum > '2020-07-31') %>%"
-"0","  arrange(datum)"
-"0","close(con)"

@@ -1,7 +1,0 @@
-"0","pub_FBI <- pub %>%"
-"0","  filter(FBI == 1 & rok == 2021) %>%"
-"0","  group_by(forma) %>%"
-"0","  summarise(pocetPub = sum(FBI)) %>%"
-"0","  mutate(procento = pocetPub / (pub_FBI_celkem/100))"
-"0","pub_FBI$procento <- round(pub_FBI$procento, 2)"
-"0","kable(pub_FBI, label = 'Články FBI - Jimp vs Jsc')"

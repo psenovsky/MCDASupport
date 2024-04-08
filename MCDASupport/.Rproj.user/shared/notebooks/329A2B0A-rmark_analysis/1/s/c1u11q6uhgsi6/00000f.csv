@@ -1,6 +1,0 @@
-"0","t <- covid_join %>% "
-"0","  group_by(country) %>%"
-"0","  filter(date == max(date) & death > 1000) %>%"
-"0","  select(country, confirmed, death, death_prc, death_100t) %>%"
-"0","  arrange(desc(death))"
-"0","kable(t, caption=""Státy s nevyšším počtem obětí"")"

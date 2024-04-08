@@ -1,3 +1,8 @@
 MCDASupport.Rcheck
 MCDASupport.Rcheck/*
 .DS_Store
+.RData
+.Rbuildingnore
+.Rhistory
+.Rproj.user
+.Rproj.user/*

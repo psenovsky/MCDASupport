@@ -1,5 +1,0 @@
-"0","normPM2 <- normPM"
-"0","normPM2$cena <- normPM$cena * 0.6 + 40 # nejhorší hodnota = 40 %"
-"0","normPM2$baterie <- normPM$baterie * 0.25 + 75 # nejhorší hodnota = 75 %"
-"0","normPM2$váha <- normPM$váha * 0.3 + 70 # nejhorší hodnota = 70 %"
-"0","kable(normPM2, caption = 'Škálovaná normalizovaná matice užitku')"

@@ -1,2 +1,0 @@
-"0","t <- Electre_2(PM, w, minmaxcriteria)"
-"0","kable(t$finalPreorderMatrix, label = 'Final preorder matrix')"

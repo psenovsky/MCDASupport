@@ -1,8 +1,0 @@
-"0","pub_VSB <- pub %>%"
-"0","  filter(rok == 2021) %>%"
-"0","  group_by(vydavatelství) %>%"
-"0","  summarise(pocetPub = n()) %>%"
-"0","  mutate(procento = pocetPub / (pocet_pub_VSB/100))"
-"0","pub_VSB$procento <- round(pub_VSB$procento, 2)"
-"0","pub_VSB <- pub_VSB[order(-pub_VSB$procento, pub_VSB$vydavatelství),]"
-"0","kable(pub_VSB, label = 'Články VŠB v roce 2021 podle vydavatele')"
