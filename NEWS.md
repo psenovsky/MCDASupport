@@ -1,3 +1,8 @@
+# MCDASupport v0.30 (Release data: TBD)
+
+* resolving some small issues with tracing of project's files in development repositories
+* added normalize function which aggregates all the norm_* function into one clean implementation
+
 # MCDASupport v0.29 (Release date: 2023-12-19)
 
 Main goal of version 0.29 is to go back to basics and look at the efficiency of the inner working of the functions. Since original implementation was inspired by classical programming languages, the functions relied extensively on the cycles to realize the computation. But R is optimized to different types of computations and provides alternative approaches to get same results but with highly efficient work with matrices instead.

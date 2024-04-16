@@ -1,3 +1,9 @@
+MCDASupport v0.30 (Release date: TBD)
+===================
+
+* resolving some small issues with tracing of project's files in development repositories
+* added normalize function which aggregates all the norm_* function into one clean implementation
+
 MCDASupport v0.29 (Release date: 2023-12-19)
 ===================
 
