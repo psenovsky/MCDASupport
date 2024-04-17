@@ -11,36 +11,38 @@
 Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VERBOSE = FALSE){
 
   # check consistency of parameters
-  Electre_1S_paramCheck(PM = PM, w = w, P = P, Q = Q, V = V, minmaxcriteria = minmaxcriteria, lambda = lambda)
+  Electre_1S_paramCheck(PM = PM, w = w, P = P, Q = Q, V = V,
+                        minmaxcriteria = minmaxcriteria, lambda = lambda)
 
   PM   <- util_pm_minmax(PM, minmaxcriteria) #validate minmax and invert scales if necessary
   ncri <- ncol(PM)  #no. of criteria
   nalt <- nrow(PM)  #no. of alternatives
   alt  <- rownames(PM)
-  cri  <- colnames(PM)
 
   #overall concordance index oci
   t <- Electre3_ConcordanceIndex(PM, P, Q, w)
   oci <- t$ConcordanceMatrix
 
   # discordance index of the criteria
-  # dj(ai,ak) = 0, if gj(ak) - gj(ai) < Vj (ai,ak) - qj (ai,ak) * ((1-c(a,b))/(1-c))
+  # dj(ai,ak) = 0, if gj(ak) - gj(ai) < Vj (ai,ak) - qj (ai,ak) * 
+  # ((1-c(a,b))/(1-c))
   # else dj(ai,ak) = 1
-  # dj <- list() # discordance index of the criteria
   w_sum <- 1
   di <- matrix(0, nalt, nalt)
   rownames(di) <- alt
   colnames(di) <- alt
   diag(di) <- 1
-  for(i in 1:nalt){
-    dj_ab <- matrix(0, nalt, nalt) # ???
+  for (i in 1:nalt) {
+    dj_ab <- matrix(0, nalt, nalt)
     rownames(dj_ab) <- alt
     colnames(dj_ab) <- alt
-    for(j in 1:ncri){
-      for(k in 1:ncri){
-        if(j != k){
-          if (w[k]/sum(w) != 0) w_sum = (w[k]/sum(w))
-          if (PM[j,k] - PM[i,k] >= (V[k] - Q[k]*((1 - oci[i,j] - (w_sum)) / (1 - lambda - (w_sum))))) di[i,j] = 1
+    for (j in 1:ncri) {
+      for (k in 1:ncri) {
+        if (j != k) {
+          if (w[k] / sum(w) != 0) w_sum <- (w[k] / sum(w))
+          if (PM[j, k] - PM[i, k] >= (V[k] - Q[k] * ((1 - oci[i, j] - (w_sum)) / (1 - lambda - (w_sum))))) {
+            di[i, j] <- 1
+          }
         }
       }
     }
@@ -50,9 +52,9 @@ Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VER
   cred <- matrix(0, nalt, nalt)
   rownames(cred) <- alt
   colnames(cred) <- alt
-  for(i in 1:nalt){
-    for(j in 1:nalt){
-      if (i != j && oci[i,j] >= lambda && di[i,j] == 0)  cred[i,j] = 1
+  for (i in 1:nalt) {
+    for (j in 1:nalt) {
+      if (i != j && oci[i, j] >= lambda && di[i, j] == 0) cred[i, j] <- 1
     }
   }
 
@@ -61,32 +63,30 @@ Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VER
 
   # establish kernel of the decision
   t <- ELECTRE1_Kernel(AM)
-  kernel <- t$kernel
-  dominated <- t$dominated
-  graph <- t$graph
 
   # output to screen
-  if(VERBOSE){
-    print('Concordance matrix')
+  if (VERBOSE) {
+    print("Concordance matrix")
     print(oci)
-    print('discordance matrix')
+    print("discordance matrix")
     print(di)
-    print('Credibility matrix')
+    print("Credibility matrix")
     print(AM)
-    print('kernel')
-    print(kernel)
-    print('Dominated alternatives')
-    print(dominated)
-    print('Warning - experimental implementation, do not use in production environment')
+    print("kernel")
+    print(t$kernel)
+    print("Dominated alternatives")
+    print(t$dominated)
+    print("Warning - experimental implementation,
+    do not use in production environment")
   }
 
   out <- list(
     ConcordanceMatrix = oci,
     DiscordanceIndex = di,
     CredibilityIndex = AM,
-    Kernel = kernel,
-    Dominated = dominated,
-    graph = graph
+    Kernel = t$kernel,
+    Dominated = t$dominated,
+    graph = t$graph
   )
   return(out)
 }
