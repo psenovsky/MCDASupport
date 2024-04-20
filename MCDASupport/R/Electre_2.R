@@ -149,7 +149,7 @@ Electre_2 <- function(PM, w,
   # invert the direction of the strong and weak outranking graphs GF, and Gf,
   # the ranks obtained from the inverted graphs using the direct procedure
   # is adjusted as follows:
-  # 'inverse procedure' rank (r2(a»=1+(the number of ranks) (r'2(a)max) 
+  # 'inverse procedure' rank (r2(a»=1+(the number of ranks) (r'2(a)max)
   # -'direct procedure' ranking (r'2(a))
   rank_D   <- rev(ranking(t(AM_strong), t(AM_weak), alt)) #2nd total preorder V2
   #final partial pre-order
@@ -169,13 +169,13 @@ Electre_2 <- function(PM, w,
         # pre-orders, but is preferred to b in the other, then a precedes
         # b in the final pre-order
         if ((r1_a == r2_a && r1_d > r2_d) || (r1_a > r2_a && r1_d == r2_d)) {
-          pref[i,j] <- 1
+          pref[i, j] <- 1
         }
         # if a is preferred to b in the first complete pre-order, but b is
         # preferred to a in the second, then the two options are incomparable
         # in the final pre-order.
         if ((r1_a > r2_a && r1_d < r2_d) || (r1_a < r2_a && r1_d > r2_d)) {
-          incompar[i,j] <- 1
+          incompar[i, j] <- 1
         }
       }
     }
