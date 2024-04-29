@@ -12,7 +12,7 @@
 #                         function type
 PROMETHEE_I <- function(PM, preferenceFunction, w, minmax = 'max',
                         indifferenceTreshold = NULL, prefferenceThreshold = NULL,
-                      intermediateThreshold = NULL, VERBOSE = FALSE) {
+                        intermediateThreshold = NULL, VERBOSE = FALSE) {
 
   #params consistency check centralized in generalized PROMETHEE function
   nalt <- nrow(PM)  #no. of alternatives
