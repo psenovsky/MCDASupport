@@ -31,17 +31,12 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
   indifTypesVector <- rep(FALSE, times = ncri)
   prefTypes <- c("V-shape", "level", "linear")
   prefTypesVector <- rep(FALSE, times = ncri)
-  if (!(is.vector(preferenceFunction))) {
-    stop("preferenceFunction must be a vector")
+  if (!all(preferenceFunction %in% fTypes)) {
+    stop("preferenceFunction must contain only supported types of functions: 
+         default, U-shape, V-shape, level, linear, Gaussian")
   }
-  for (i in 1:ncri) { #check for consistency of preference function
-    if (!(preferenceFunction[i] %in% fTypes)) {
-      stop("unsupported type of preference function used only: default,
-           U-shape, V-shape, level, linear, Gaussian supported.")
-    }
-    if (preferenceFunction[i] %in% indifTypes) indifTypesVector[i] <- TRUE
-    if (preferenceFunction[i] %in% prefTypes) prefTypesVector[i] <- TRUE
-  }
+  indifTypesVector <- indifTypesVector | (preferenceFunction %in% indifTypes)
+  prefTypesVector <- prefTypesVector | (preferenceFunction %in% prefTypes)
   if (TRUE %in% indifTypesVector) {
     # indifference threshold required, check its consistency
     if (!is.vector(qj, mode = "numeric")) {
@@ -52,12 +47,8 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
            of criteria (set value to 0 for criteria with preference function
            that does not require this parameter).")
     }
-    for (i in 1:ncri) {
-      if (indifTypesVector[i] && qj[i] < 0) {
-        msg <- cat("indifference threshold for criterion ", i,
-                   " set < 0, only non negative values accepted.")
-        stop(msg)
-      }
+    if (any(qj < 0)) {
+      stop("indif. threshold for criterion only non negative values accepted.")
     }
   }
   if (TRUE %in% prefTypesVector) {
@@ -70,12 +61,8 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
            of criteria (set value to 0 for criteria with preference function
            that does not require this parameter).")
     }
-    for (i in 1:ncri) {
-      if (prefTypesVector[i] && pj[i] < 0) {
-        msg <- cat("prefference threshold for criterion ", i,
-                   " set < 0, only non negative values accepted.")
-        stop(msg)
-      }
+    if (any(pj < 0)) {
+      stop("pref. threshold for criterion only non negative values accepted.")
     }
   }
   if ("Gaussian" %in% preferenceFunction) {
@@ -92,7 +79,7 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
              thresholds due to its inconsistencies)")
       }
       sj <- (pj + qj) / 2
-      if (length(sj[sj < 0]) > 0) {
+      if (any(sj < 0)) {
         stop("intermediate threshold required (failed to derive it form other
              thresholds due to its inconsistencies)")
       }
