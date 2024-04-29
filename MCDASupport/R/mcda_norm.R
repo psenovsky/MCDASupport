@@ -8,11 +8,11 @@
 #   method - normalization method used
 mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
   # validate inputs
-  if (minmax != "max" && minmax != "min") {
-    stop("minmax parameter expected to be max or min.")
+  t <- c("min", "max")
+  if (!minmax %in% t) stop("minmax parameter expected to be max or min.")
+  if (!is.vector(tonorm, mode = "numeric")) {
+    stop("tonorm paramerer expected to be numeric vector.")
   }
-  if (!is.vector(tonorm)) stop("tonorm paramerer expected to be vector.")
-  if (!is.numeric(tonorm)) stop("tonorm expected to be numeric vector.")
   nmethods <- c("LaiHwang",
                 "linear aggregation",
                 "logarithm",
@@ -103,7 +103,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
   }
 
   # normalize to best value
-  norm_tobest <- function(tonorm){
+  norm_tobest <- function(tonorm) {
     maximum <- max(tonorm)
     if (maximum == 0) {
       stop("Maximal value in the vector is 0, 
