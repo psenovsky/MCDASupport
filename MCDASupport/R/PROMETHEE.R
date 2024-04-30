@@ -15,89 +15,13 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
                       intermediateThreshold = NULL) {
   ## check validity of the objects manipulated by the current function
   # with < 2 criteria or 2 alternatives, there is no MCDA problem
-  if (is.null(dim(PM))) stop("less than 2 criteria or 2 alternatives")
-  if (!(is.matrix(PM) || (is.data.frame(PM)))) {
-    stop("wrong performance matrix, should be a matrix or a data frame")
-  }
-  if (!is.numeric(unlist(PM))) {
-    stop("Only numeric values in performance matrix expected")
-  }
-  ncri <- ncol(PM)  #no. of criteria
-  qj   <- indifferenceTreshold
-  pj   <- prefferenceThreshold
-  sj   <- intermediateThreshold
-  fTypes <- c("default", "U-shape", "V-shape", "level", "linear", "Gaussian")
-  indifTypes <- c("U-shape", "level", "linear")
-  indifTypesVector <- rep(FALSE, times = ncri)
-  prefTypes <- c("V-shape", "level", "linear")
-  prefTypesVector <- rep(FALSE, times = ncri)
-  if (!all(preferenceFunction %in% fTypes)) {
-    stop("preferenceFunction must contain only supported types of functions: 
-         default, U-shape, V-shape, level, linear, Gaussian")
-  }
-  indifTypesVector <- indifTypesVector | (preferenceFunction %in% indifTypes)
-  prefTypesVector <- prefTypesVector | (preferenceFunction %in% prefTypes)
-  if (TRUE %in% indifTypesVector) {
-    # indifference threshold required, check its consistency
-    if (!is.vector(qj, mode = "numeric")) {
-      stop("indifferenceTreshold must be a numeric vector")
-    }
-    if (length(qj) != ncri) {
-      stop("number of elements in indifferenceTreshold must be equal to number
-           of criteria (set value to 0 for criteria with preference function
-           that does not require this parameter).")
-    }
-    if (any(qj < 0)) {
-      stop("indif. threshold for criterion only non negative values accepted.")
-    }
-  }
-  if (TRUE %in% prefTypesVector) {
-    # prefference threshold required, check its consistency
-    if (!is.vector(pj, mode = "numeric")) {
-      stop("prefferenceThreshold must be a numeric vector")
-    }
-    if (length(pj) != ncri) {
-      stop("number of elements in prefference threshold must be equal to number
-           of criteria (set value to 0 for criteria with preference function
-           that does not require this parameter).")
-    }
-    if (any(pj < 0)) {
-      stop("pref. threshold for criterion only non negative values accepted.")
-    }
-  }
-  if ("Gaussian" %in% preferenceFunction) {
-    # Gaussian type of prefference function check intermediate threshold
-    # for consistency
-    if (is.null(sj) && is.null(pj) && is.null(qj)) {
-      stop("intermediate threshold required (and not possible to derive from
-           indiference and prefference thresholds).")
-    }
-    if (is.null(sj)) { # try to derive sj from other thresholds
-      if (!is.numeric(pj) || !is.numeric(qj) || length(pj) != ncri ||
-            length(qj) != ncri) {
-        stop("intermediate threshold required (failed to derive it form other
-             thresholds due to its inconsistencies)")
-      }
-      sj <- (pj + qj) / 2
-      if (any(sj < 0)) {
-        stop("intermediate threshold required (failed to derive it form other
-             thresholds due to its inconsistencies)")
-      }
-    }
-  }
-  if (!is.numeric(w) || length(w) != ncri) {
-    stop("weights not set for all criteria.")
-  }
-
-  #clean-up (remove variables used only for consistency check)
-  fTypes     <- NULL
-  indifTypes <- NULL
-  prefTypes  <- NULL
-  indifTypesVector <- NULL
-  prefTypesVector  <- NULL
+  t <- promethee_param_check(PM, preferenceFunction, w, indifferenceTreshold, prefferenceThreshold,
+                      intermediateThreshold)
+  if (!t) stop("Error checking parameters")
   ## End of checking the validity of the "inputs"
 
   nalt <- nrow(PM)  #no. of alternatives
+  ncri <- ncol(PM)
   alt  <- rownames(PM) #list of alternatives
   cri  <- colnames(PM) #list of criteria
 
