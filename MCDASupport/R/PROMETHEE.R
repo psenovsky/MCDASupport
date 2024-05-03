@@ -24,7 +24,9 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
   ncri <- ncol(PM)
   alt  <- rownames(PM) #list of alternatives
   cri  <- colnames(PM) #list of criteria
-
+  qj   <- indifferenceTreshold
+  pj   <- prefferenceThreshold
+  sj   <- intermediateThreshold
   #pairwaise comparison (validated)
   DK <- lapply(1:ncri, function(k) {
     DKf <- outer(1:nalt, 1:nalt, Vectorize(function(i, j) PM[i, k] - PM[j, k]))
