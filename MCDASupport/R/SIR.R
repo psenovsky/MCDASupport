@@ -18,7 +18,7 @@ SIR <- function(PM, w, d, minmax = "max", indifferenceTreshold = NULL, prefferen
   # with < 2 criteria or 2 alternatives, there is no MCDA problem
   PM <- util_pm_minmax(PM, minmax) #validate minmax and invert scales if neccessary
   t <- promethee_param_check(PM, preferenceFunction, w, indifferenceTreshold, prefferenceThreshold,
-                      intermediateThreshold)
+                             intermediateThreshold)
   if (!t) stop("Error checking parameters")
   ## End of checking the validity of the "inputs"
 
@@ -132,12 +132,12 @@ SIR <- function(PM, w, d, minmax = "max", indifferenceTreshold = NULL, prefferen
     if (i == j) {
       return(0) #no meaning evaluation alternative with itself
     } else if ((rankSFlow[alt[i]] < rankSFlow[alt[j]] && rankIFlow[alt[i]] < rankIFlow[alt[j]]) ||
-             (rankSFlow[alt[i]] < rankSFlow[alt[j]] && rankIFlow[alt[i]] == rankIFlow[alt[j]]) ||
-             (rankSFlow[alt[i]] == rankSFlow[alt[j]] && rankIFlow[alt[i]] < rankIFlow[alt[j]])){
+               (rankSFlow[alt[i]] < rankSFlow[alt[j]] && rankIFlow[alt[i]] == rankIFlow[alt[j]]) ||
+               (rankSFlow[alt[i]] == rankSFlow[alt[j]] && rankIFlow[alt[i]] < rankIFlow[alt[j]])) {
       return("P") #preference
-    }else if(rankSFlow[alt[i]] == rankSFlow[alt[j]] && rankIFlow[alt[i]] == rankIFlow[alt[j]]){
+    }else if(rankSFlow[alt[i]] == rankSFlow[alt[j]] && rankIFlow[alt[i]] == rankIFlow[alt[j]]) {
       return("I") #indifference
-    }else if(rankSFlow[alt[i]] < rankSFlow[alt[j]] && rankIFlow[alt[i]] > rankIFlow[alt[j]]){
+    }else if(rankSFlow[alt[i]] < rankSFlow[alt[j]] && rankIFlow[alt[i]] > rankIFlow[alt[j]]) {
       return("R") #incomparable
     }
   }))

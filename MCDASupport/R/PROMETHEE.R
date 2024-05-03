@@ -16,7 +16,7 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
   ## check validity of the objects manipulated by the current function
   # with < 2 criteria or 2 alternatives, there is no MCDA problem
   t <- promethee_param_check(PM, preferenceFunction, w, indifferenceTreshold, prefferenceThreshold,
-                      intermediateThreshold)
+                             intermediateThreshold)
   if (!t) stop("Error checking parameters")
   ## End of checking the validity of the "inputs"
 
