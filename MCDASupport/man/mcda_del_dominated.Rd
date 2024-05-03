@@ -4,11 +4,11 @@
 \description{Deletes dominated alternatives from preference matrix (should such alternatives exist in the matrix) and return the result.}
 
 \usage{
-  mcda_del_dominated(M, minmaxcriteria, digits)
+  mcda_del_dominated(m, minmaxcriteria = "max", digits = 2)
 }
 
 \arguments{
-  \item{M}{Normalized performance matrix - criteria in columns and alternatives in rows. Expected, that all criteria are to be maximized.}
+  \item{m}{Normalized performance matrix - criteria in columns and alternatives in rows. Expected, that all criteria are to be maximized.}
   \item{minmaxcriteria}{either value (min or max) or vector providing guidance for orientation of the criteria in preference matrix. If parameter provides only single max or min value, the function will presume usige of this orientation for all criteria. Default value is 'max'.}
   \item{digits}{number of digits the resulting matrix cells should be rounded to. Default value is 2 (round to 2 digits).}
 }

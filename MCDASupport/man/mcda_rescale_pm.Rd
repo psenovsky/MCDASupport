@@ -4,11 +4,11 @@
 \description{Rescales performance matrix resulting in matrix wich all criteria in same scale. Only works with numeric values.}
 
 \usage{
-  mcda_rescale_pm(M)
+  mcda_rescale_pm(m)
 }
 
 \arguments{
-  \item{M}{Performance matrix - criteria in columns and alternatives in rows. Expected, that all criteria are to be maximized and are expressed as numbers.}
+  \item{m}{Performance matrix - criteria in columns and alternatives in rows. Expected, that all criteria are to be maximized and are expressed as numbers.}
 }
 
 \value{

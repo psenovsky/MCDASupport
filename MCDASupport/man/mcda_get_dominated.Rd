@@ -6,11 +6,11 @@
 Function returns matrix m to m with 1 identifying alternative being dominated.}
 
 \usage{
-  mcda_get_dominated(M, minmaxcriteria = 'max')
+  mcda_get_dominated(m, minmaxcriteria = 'max')
 }
 
 \arguments{
-  \item{M}{Normalized performance matrix - criteria in columns and alternatives in rows.}
+  \item{m}{Normalized performance matrix - criteria in columns and alternatives in rows.}
   \item{minmaxcriteria}{either value (min or max) or vector providing guidance for orientation of the criteria in preference matrix. If parameter provides only single max or min value, the function will presume usige of this orientation for all criteria.}
 }
 
