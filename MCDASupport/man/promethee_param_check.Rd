@@ -9,7 +9,7 @@
   If some problem with the parameters is detected, the function stops to execute with the error message on the reason.
 }
 \usage{
-promethee_param_check(PM, preference_function, w, indifference_treshold = NULL,
+promethee_param_check(pm, preference_function, w, indifference_treshold = NULL,
 prefference_threshold = NULL, intermediate_threshold = NULL)
 }
 

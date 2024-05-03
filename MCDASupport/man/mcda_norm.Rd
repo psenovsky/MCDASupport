@@ -143,7 +143,7 @@ Normalized values z are computed:
 }
 
 \usage{
-  normalize(tonorm, minmax = "max", method = "minmax")
+  mcda_norm(tonorm, minmax = "max", method = "minmax")
 }
 
 \arguments{
