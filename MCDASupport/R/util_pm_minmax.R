@@ -11,5 +11,6 @@ util_pm_minmax <- function(PM, minmaxcriteria = "max") {
       }
     }
   }
+  PM <- as.data.frame(PM)
   return(PM)
 }
