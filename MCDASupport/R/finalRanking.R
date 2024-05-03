@@ -14,10 +14,11 @@ finalRanking <- function(alt, rank_P) {
   }
 
   nalt <- length(alt)
+  nalt_zeros <- rep(0, times = nalt)
   final_ranking <- data.frame(alternative = alt,
-                              sum_outrank = rep(0, times = nalt),
-                              ranking = rep(0, times = nalt),
-                              stringsAsFactors = FALSE)
+                              sum_outrank = nalt_zeros,
+                              ranking = nalt_zeros)
+  final_ranking$stringsAsFactors <- FALSE
   for (i in 1:nalt) { #sum_outrank
     seq <- rank_P[final_ranking[i, 1], ]
     final_ranking[i, 2] <- compte("P+", seq)
@@ -25,7 +26,7 @@ finalRanking <- function(alt, rank_P) {
   final_ranking <- final_ranking[order(-final_ranking[, 2],
                                        final_ranking[, 1]), ]
   j <- 1
-  for (i in 1:nalt - 1) { #ranking
+  for (i in 1:(nalt - 1)) { #ranking
     if (i == 1) {
       if (rank_P[final_ranking[i, 1], final_ranking[i + 1, 1]] == "P+") {
         final_ranking[i, 3] <- j
