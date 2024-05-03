@@ -3,7 +3,7 @@
 # parameters
 #   PM - performance matrix (alternatives in rows, criteria in columns)
 #   w - weights
-#   d - preference function array
+#   d - preference function vector
 #   minmax - min/max value or vector of mixed values for criteria orientation
 #   indifferenceTreshold list of indifference thresholds
 #   prefferenceThreshold list of prefference thresholds
@@ -17,15 +17,18 @@ SIR <- function(PM, w, d, minmax = "max", indifferenceTreshold = NULL, prefferen
   ## check validity of the objects manipulated by the current function
   # with < 2 criteria or 2 alternatives, there is no MCDA problem
   PM <- util_pm_minmax(PM, minmax) #validate minmax and invert scales if neccessary
-  t <- promethee_param_check(PM, preferenceFunction, w, indifferenceTreshold, prefferenceThreshold,
-                             intermediateThreshold)
-  if (!t) stop("Error checking parameters")
+  preferenceFunction <- d
+  t <- promethee_param_check(PM, preferenceFunction, w, indifferenceTreshold,
+                             prefferenceThreshold, intermediateThreshold)
   ## End of checking the validity of the "inputs"
 
   nalt <- nrow(PM)  #no. of alternatives
   ncri <- ncol(PM)
   alt  <- rownames(PM)
   cri  <- colnames(PM)
+  qj   <- indifferenceTreshold
+  pj   <- prefferenceThreshold
+  sj   <- t
 
   #pairwaise comparison
   DK <- lapply(1:ncri, function(k) {

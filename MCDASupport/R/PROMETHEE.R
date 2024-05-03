@@ -17,7 +17,6 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
   # with < 2 criteria or 2 alternatives, there is no MCDA problem
   t <- promethee_param_check(PM, preferenceFunction, w, indifferenceTreshold, prefferenceThreshold,
                              intermediateThreshold)
-  if (!t) stop("Error checking parameters")
   ## End of checking the validity of the "inputs"
 
   nalt <- nrow(PM)  #no. of alternatives
@@ -26,7 +25,8 @@ PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, pr
   cri  <- colnames(PM) #list of criteria
   qj   <- indifferenceTreshold
   pj   <- prefferenceThreshold
-  sj   <- intermediateThreshold
+  sj   <- t
+  
   #pairwaise comparison (validated)
   DK <- lapply(1:ncri, function(k) {
     DKf <- outer(1:nalt, 1:nalt, Vectorize(function(i, j) PM[i, k] - PM[j, k]))

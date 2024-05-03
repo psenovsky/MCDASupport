@@ -26,6 +26,7 @@ promethee_param_check <- function(pm, preference_function, w,
   qj   <- indifference_treshold
   pj   <- prefference_threshold
   sj   <- intermediate_threshold
+  gf   <- FALSE
   f_types <- c("default", "U-shape", "V-shape", "level", "linear", "Gaussian")
   indif_types <- c("U-shape", "level", "linear")
   indif_types_vector <- rep(FALSE, times = ncri)
@@ -67,6 +68,7 @@ promethee_param_check <- function(pm, preference_function, w,
     }
   }
   if ("Gaussian" %in% preference_function) {
+    gf <- TRUE
     # Gaussian type of prefference function check intermediate threshold
     # for consistency
     if (is.null(sj) && is.null(pj) && is.null(qj)) {
@@ -97,5 +99,5 @@ promethee_param_check <- function(pm, preference_function, w,
   indif_types_vector <- NULL
   pref_types_vector  <- NULL
 
-  return(TRUE)
+  return(sj)
 }

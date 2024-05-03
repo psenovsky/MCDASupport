@@ -2,7 +2,7 @@
 \alias{promethee_param_check}
 \title{promethee_param_check : internal function to check parameters for PROMETHEE and SIR functions}
 \description{
-  Performs parameter checking for PREMETHEE and SIR functions.
+  Performs parameter checking for PREMETHEE and SIR functions. While checking it also evaluates value of the intermediate threshold if not set as a parameter, based on other two thresholds. The computed value of the threshold is then returned.
 
   This function is intended for package's internal use only.
 
@@ -23,7 +23,7 @@ prefferenceThreshold = NULL, intermediateThreshold = NULL)
 }
 
 \value{
-	The function returns TRUE if no error in parameter checking logic is detected.
+	The function returns recomputed value of intermediate threshold if no error in parameter checking logic is detected.
 }
 
 \references{
