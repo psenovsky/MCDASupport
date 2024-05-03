@@ -77,7 +77,7 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
   #   returns - fuzzy decision matrix or the fuzzy weights of the criteria
   cal <- function(dict, M, n) {
     f <- list()
-    for (i in seq_len(M)) {
+    for (i in 1:nrow(M)) {
       c <- list()
       for (z in 1:3) {
         x <- 0
