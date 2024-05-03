@@ -17,7 +17,7 @@ TOPSIS <- function(PM, w, minmax = "max", VERBOSE = FALSE) {
   }
   PM <- util_pm_minmax(PM, minmax) #validate minmax and invert scales if neccessary
   PM <- as.data.frame(PM)
-  if (!(is.vector(w, mode = "numerix"))) {
+  if (!(is.vector(w, mode = "numeric"))) {
     stop("criteria weights should be a vector")
   }
   if (ncol(PM) != length(w)) {
