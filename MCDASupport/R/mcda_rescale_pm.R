@@ -1,17 +1,18 @@
 # function rescales the performance matrix
 # parameters:
 #   M - performance matrix
-mcda_rescale_pm <- function(M) {
-
+mcda_rescale_pm <- function(m) {
   #parameter validity check
-  if (!(is.matrix(M) || (is.data.frame(M)))) stop('wrong performance matrix, should be a matrix or a data frame')
-  if (ncol(M) < 2 || nrow(M) < 2) stop('less than 2 criteria or 2 alternatives')
-  i <- sapply(M, is.numeric)
-  if (length(i[i %in% F]) > 0) stop('Performance matrix must be numeric')
+  if (!(is.matrix(m) || (is.data.frame(m)))) {
+    stop("wrong performance matrix, should be a matrix or a data frame")
+  }
+  if (ncol(m) < 2 || nrow(m) < 2) stop("less than 2 criteria or 2 alternatives")
+  i <- sapply(m, is.numeric)
+  if (length(i[i %in% FALSE]) > 0) stop("Performance matrix must be numeric")
 
-  colMaxs <- function(M) apply(M, 2, max, na.rm = T)
-  colMins <- function(M) apply(M, 2, min, na.rm = T)
-  M <- sweep(M, 2, colMins(M), FUN = "-")
-  M <- sweep(M, 2, colMaxs(M) - colMins(M), FUN = "/")
-  return(M)
+  col_maxs <- function(m) apply(m, 2, max, na.rm = TRUE)
+  col_mins <- function(m) apply(m, 2, min, na.rm = TRUE)
+  m <- sweep(m, 2, col_mins(m), FUN = "-")
+  m <- sweep(m, 2, col_maxs(m) - col_mins(m), FUN = "/")
+  return(m)
 }
