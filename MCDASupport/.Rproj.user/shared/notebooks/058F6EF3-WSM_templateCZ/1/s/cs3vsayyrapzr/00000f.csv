@@ -1,5 +1,0 @@
-"0","normPM <- PM"
-"0","normPM$váha <- norm_minmax(PM$váha, minmax = 'min') * 100"
-"0","normPM$baterie <- norm_minmax(PM$baterie) * 100 #minmax is implicitly 'max'"
-"0","normPM$cena <- norm_minmax(PM$cena, minmax = 'min') * 100"
-"0","kable(normPM, caption = 'Normalizovaná matice užitku')"

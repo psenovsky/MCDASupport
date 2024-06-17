@@ -1,8 +1,0 @@
-"0","con = curl(""https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/ockovani.csv"")"
-"0","ockovani = read.csv(text = readLines(con))"
-"0","close(con)"
-"0","#ockovani = ockovani %>% rename(datum = X.U.FEFF.datum)"
-"0","ockovani$datum = as.Date(ockovani$datum)"
-"0","ockovani %<>%"
-"0","  select(-id) %>%"
-"0","  mutate(booster = celkem_davek - prvnich_davek - druhych_davek)"
