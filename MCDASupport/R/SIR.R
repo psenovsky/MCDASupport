@@ -43,109 +43,72 @@ SIR <- function(PM, w, d, minmax = "max", indifferenceTreshold = NULL, prefferen
   Pj <- preferenceDegree(nalt, ncri, DK, d, qj, pj, sj, alt, cri)
 
   #superiority (Si) and inferiority (Ii) index
-  Si <- sapply(1:ncri, function(i) rowSums(Pj[[i]]))
-  Ii <- sapply(1:ncri, function(i) colSums(Pj[[i]]))
-  rownames(Si) <- alt
-  rownames(Ii) <- alt
-  colnames(Si) <- cri
-  colnames(Ii) <- cri
+  si <- sapply(1:ncri, function(i) rowSums(Pj[[i]]))
+  ii <- sapply(1:ncri, function(i) colSums(Pj[[i]]))
+  rownames(si) <- alt
+  rownames(ii) <- alt
+  colnames(si) <- cri
+  colnames(ii) <- cri
 
   #S-flow a I-flow
   if (SAW) {
     #SIR SAW agregation method
-    Sflow <- rowSums(sweep(Si, MARGIN = 2, w, `*`))
-    Iflow <- rowSums(sweep(Ii, MARGIN = 2, w, `*`))
+    s_flow <- rowSums(sweep(si, MARGIN = 2, w, `*`))
+    i_flow <- rowSums(sweep(ii, MARGIN = 2, w, `*`))
   } else {
     #SIR TOPSIS agregation method
     # as oposed to TOPSIS the procedure works separately with Si and Ii
     # matrixes to derive S and I flow
-    # Determination of the Ideal (A_ideal) and Anti-ideal (A_anti) Solutions
-    # (validated), as max or minimums in the criteria
-    Si <- as.data.frame(Si)
-    Ii <- as.data.frame(Ii)
-    A_ideal <- Si %>%
-      group_by() %>%
-      summarise(across(1:ncri, max)) %>%
-      unlist()
-    A_anti <- Si %>%
-      group_by() %>%
-      summarise(across(1:ncri, min)) %>%
-      unlist()
-    names(A_ideal) <- cri
-    names(A_anti) <- cri
+    # Determination of the Ideal (A_ideal) and Anti-ideal (A_anti) Solutions,
+    # as max or minimums in the criteria
+    si <- as.data.frame(si)
+    ii <- as.data.frame(ii)
+    t <- topsis_ideal(si)
+    s_flow <- t$closenes
 
-    #Step 4. Calculation of the Separation Measures (distance from ideal/anti ideal solution) (validated TOPSIS)
-    D_ideal <- sqrt(sapply(1:nalt, function(i) sum((Si[i, ] - A_ideal)^2)))
-    D_anti <- sqrt(sapply(1:nalt, function(i) sum((Si[i, ] - A_anti)^2)))
-    names(D_ideal) <- alt
-    names(D_anti) <- alt
-    
-    # Step 5. Calculation of the Relative Closeness to the Ideal Solution 
-    # (validated TOPSIS)
-    Sflow <- D_anti / (D_anti + D_ideal) #always 0-1, the closer to 1, the better
-
-    # Determination of the Ideal (A_ideal) and Anti-ideal (A_anti) Solutions
-    # (validated TOPSIS), as max or minimums in the criteria
+    # Determination of the Ideal (A_ideal) and Anti-ideal (A_anti) Solutions,
+    # as max or minimums in the criteria
     # note that for Ii max and min are switched - min for ideal and max for
     # anti ideal solution
-    A_ideal <- Ii %>%
-      group_by() %>%
-      summarise(across(1:ncri, min)) %>%
-      unlist()
-    A_anti <- Ii %>%
-      group_by() %>%
-      summarise(across(1:ncri, max)) %>%
-      unlist()
-    names(A_ideal) <- cri
-    names(A_anti) <- cri
-
-    # Step 4. Calculation of the Separation Measures (distance from ideal/anti
-    # ideal solution) (validated TOPSIS)
-    D_ideal <- sqrt(sapply(1:nalt, function(i) sum((Ii[i, ] - A_ideal)^2)))
-    D_anti <- sqrt(sapply(1:nalt, function(i) sum((Ii[i, ] - A_anti)^2)))
-    names(D_ideal) <- alt
-    names(D_anti) <- alt
-
-    # Step 5. Calculation of the Relative Closeness to the Ideal Solution
-    # (validated TOPSIS)
-    Iflow <- D_anti / (D_anti + D_ideal) #always 0-1, the closer to 1, the better
+    t <- topsis_ideal(ii, inferiority = TRUE)
+    i_flow <- t$closenes
   }
 
   # first and second complete ranking (according to S and I flows)
-  netFlow <- Sflow - Iflow
-  relativeFlow <- Sflow / (Sflow + Iflow)
-  flows <- cbind(Sflow, Iflow, netFlow, relativeFlow)
+  net_flow <- s_flow - i_flow
+  relative_flow <- s_flow / (s_flow + i_flow)
+  flows <- cbind(s_flow, i_flow, net_flow, relative_flow)
   rownames(flows) <- alt
   colnames(flows) <- c("S-flow", "I-flow", "n-flow", "r-flow")
-  names(Sflow) <- alt
-  names(Iflow) <- alt
-  names(netFlow) <- alt
-  names(relativeFlow) <- alt
-  Sflow <- sort(Sflow, decreasing = TRUE)
-  Iflow <- sort(Iflow, decreasing = FALSE)
-  netFlow <- sort(netFlow, decreasing = TRUE)
-  relativeFlow <- sort(relativeFlow, decreasing = TRUE)
-  rankSFlow <- cumsum(c(1, diff(Sflow) != 0))
-  rankIFlow <- cumsum(c(1, diff(Iflow) != 0))
-  names(rankSFlow) <- names(Sflow)
-  names(rankIFlow) <- names(Iflow)
+  names(s_flow) <- alt
+  names(i_flow) <- alt
+  names(net_flow) <- alt
+  names(relative_flow) <- alt
+  s_flow <- sort(s_flow, decreasing = TRUE)
+  i_flow <- sort(i_flow, decreasing = FALSE)
+  net_flow <- sort(net_flow, decreasing = TRUE)
+  relative_flow <- sort(relative_flow, decreasing = TRUE)
+  rank_s_flow <- cumsum(c(1, diff(s_flow) != 0))
+  rank_i_flow <- cumsum(c(1, diff(i_flow) != 0))
+  names(rank_s_flow) <- names(s_flow)
+  names(rank_i_flow) <- names(i_flow)
 
   # partial ranking
-  partialRanking <- outer(1:nalt, 1:nalt, Vectorize(function(i, j) {
+  partial_ranking <- outer(1:nalt, 1:nalt, Vectorize(function(i, j) {
     if (i == j) {
       return(0) #no meaning evaluation alternative with itself
-    } else if ((rankSFlow[alt[i]] < rankSFlow[alt[j]] && rankIFlow[alt[i]] < rankIFlow[alt[j]]) ||
-               (rankSFlow[alt[i]] < rankSFlow[alt[j]] && rankIFlow[alt[i]] == rankIFlow[alt[j]]) ||
-               (rankSFlow[alt[i]] == rankSFlow[alt[j]] && rankIFlow[alt[i]] < rankIFlow[alt[j]])) {
+    } else if ((rank_s_flow[alt[i]] < rank_s_flow[alt[j]] && rank_i_flow[alt[i]] < rank_i_flow[alt[j]]) ||
+               (rank_s_flow[alt[i]] < rank_s_flow[alt[j]] && rank_i_flow[alt[i]] == rank_i_flow[alt[j]]) ||
+               (rank_s_flow[alt[i]] == rank_s_flow[alt[j]] && rank_i_flow[alt[i]] < rank_i_flow[alt[j]])) {
       return("P") #preference
-    }else if(rankSFlow[alt[i]] == rankSFlow[alt[j]] && rankIFlow[alt[i]] == rankIFlow[alt[j]]) {
+    } else if (rank_s_flow[alt[i]] == rank_s_flow[alt[j]] && rank_i_flow[alt[i]] == rank_i_flow[alt[j]]) {
       return("I") #indifference
-    }else if(rankSFlow[alt[i]] < rankSFlow[alt[j]] && rankIFlow[alt[i]] > rankIFlow[alt[j]]) {
+    }else if (rank_s_flow[alt[i]] < rank_s_flow[alt[j]] && rank_i_flow[alt[i]] > rank_i_flow[alt[j]]) {
       return("R") #incomparable
     }
   }))
-  rownames(partialRanking) <- alt
-  colnames(partialRanking) <- alt
+  rownames(partial_ranking) <- alt
+  colnames(partial_ranking) <- alt
 
   if (VERBOSE) {
     print("Flows in the solution")
@@ -153,13 +116,13 @@ SIR <- function(PM, w, d, minmax = "max", indifferenceTreshold = NULL, prefferen
   }
 
   out <- list(
-    superiorityFlow = Sflow,
-    inferiorityFlow = Iflow,
-    rankSFlow = rankSFlow,
-    rankIFlow = rankIFlow,
-    partialRanking = partialRanking,
-    netFlow = netFlow,
-    relativeFlow = relativeFlow,
+    superiorityFlow = s_flow,
+    inferiorityFlow = i_flow,
+    rankSFlow = rank_s_flow,
+    rankIFlow = rank_i_flow,
+    partialRanking = partial_ranking,
+    netFlow = net_flow,
+    relativeFlow = relative_flow,
     flows = flows
   )
   return(out)

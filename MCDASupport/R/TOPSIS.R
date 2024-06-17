@@ -25,7 +25,6 @@ TOPSIS <- function(PM, w, minmax = "max", VERBOSE = FALSE) {
   }
   ## End of checking the validity of the "inputs"
 
-  nalt <- nrow(PM)  #no. of alternatives
   ncri <- ncol(PM)  #no. of criteria
   alt  <- rownames(PM)
   cri  <- colnames(PM)
@@ -36,39 +35,15 @@ TOPSIS <- function(PM, w, minmax = "max", VERBOSE = FALSE) {
   rownames(r) <- alt
 
   # Step 2. Calculation of the Weighted Normalized Decision Matrix (v)
-  # (validated)
   v <- sweep(r, MARGIN = 2, w, `*`)
   colnames(v) <- cri
   rownames(v) <- alt
   v <- as.data.frame(v)
 
-  # Step 3. Determination of the Ideal (A_ideal) and Anti-ideal (A_anti)
-  # solutions (validated), as max or minimums in the criteria)
-  A_ideal <- v %>%
-    group_by() %>%
-    summarise(across(1:ncri, max)) %>%
-    unlist()
-  A_anti <- v %>%
-    group_by() %>%
-    summarise(across(1:ncri, min)) %>%
-    unlist()
-  names(A_ideal) <- cri
-  names(A_anti) <- cri
-
-  # Step 4. Calculation of the Separation Measures (distance from ideal/anti
-  # ideal solution) (validated)
-  D_ideal <- sqrt(sapply(1:nalt, function(i) sum((v[i, ] - A_ideal)^2)))
-  D_anti <- sqrt(sapply(1:nalt, function(i) sum((v[i, ] - A_anti)^2)))
-  names(D_ideal) <- alt
-  names(D_anti) <- alt
-
-  # Step 5. Calculation of the Relative Closeness to the Ideal Solution
-  # (validated)
-  C <- D_anti / (D_anti + D_ideal) #always 0-1, the closer to 1, the better
-  names(C) <- alt
-
+  # steps 3 - 5 in topsis_ideal
+  top_i <- topsis_ideal(v)
   #Step 6. order by C
-  orderedC <- sort(C, decreasing = TRUE)
+  ordered_c <- sort(top_i$closenes, decreasing = TRUE)
 
   #print results
   if (VERBOSE) {
@@ -77,25 +52,25 @@ TOPSIS <- function(PM, w, minmax = "max", VERBOSE = FALSE) {
     print("weighted normalized performance matrix")
     print(v)
     print("Positive ideal soluation A*")
-    print(A_ideal)
+    print(top_i$a_ideal)
     print("Anti-ideal solution A-")
-    print(A_anti)
+    print(top_i$a_anti)
     print("Closenes to ideal variant")
-    print(D_ideal)
+    print(top_i$d_ideal)
     print("Closeness to anti-ideal variant")
-    print(D_anti)
+    print(top_i$d_anti)
     print("Relative closeness of the alternatives to ideal solution")
-    print(orderedC)
+    print(ordered_c)
   }
 
   out <- list(
-    C = orderedC,
+    C = ordered_c,
     normPM = r,
     weightPM = v,
-    A_ideal = A_ideal,
-    A_anti = A_anti,
-    D_ideal = D_ideal,
-    D_anti = D_anti
+    A_ideal = top_i$a_ideal,
+    A_anti = top_i$a_anti,
+    D_ideal = top_i$d_ideal,
+    D_anti = top_i$d_anti
   )
   return(out)
 }
