@@ -1,4 +1,4 @@
-# Project Title
+# MCDASupport R Package
 
  MCDASupport R package aims to give the educators tool in their hands to both demonstrate the usage of modern multiple criteria decision analysis and explore inner working of them, its quirks and limitations in the code and mathematical apparatus in accompanying documentation. Apart from MCDA methods it supports also various normalization methods and EWM method for criteria weight estimation.
  
@@ -120,6 +120,24 @@ See function's documentation for information on mathematics and theories methods
 
 ## Version History
 
+### MCDASupport v0.30 (Release date: 2024-06-17)
+
+The main topic of version 0.30 is to further optimize the code and also make it more readable. As result there are changes in almast all functions.
+
+* resolving some small issues with tracing of project's files in development repositories
+* added normalize function which aggregates all the norm_* function into one clean implementation
+* optimization of Electre_1_sensitivity - cyclomatic complexity reduced from 28 to 18
+* optimization of Electre_1 and ELECTRE1_kernel
+* better compliance with linting tools for Electre_1S_paramCheck, Electre_1S_sensitivity and Electre_1S
+* optimization in Electre_2* functions
+* error corrected in Electre_2_sensitivity, was not doing sensitivity check for d+ (d+ was same as d-)
+* optimization in Electre_3* functions
+* optimization in Electre_4* functions
+* Electre_TRI_sensitivity - optimizations and veto thresholds sensitivity was reported wrongly
+* FuzzyTOPSIS optimized
+* optimization of PROMETHEE function
+* refactored parameter check code for PROMETHEE and SIR into separate function
+
 ### MCDASupport v0.29 (Release date: 2023-12-19)
 
 Main goal of version 0.29 is to go back to basics and look at the efficiency of the inner working of the functions. Since original implementation was inspired by classical programming languages, the functions relied extensively on the cycles to realize the computation. But R is optimized to different types of computations and provides alternative approaches to get same results but with highly efficient work with matrices instead.
@@ -163,10 +181,6 @@ other changes:
 * corrected small error in Electre_TRI, which prevented function to properly VERBOSE all info
 * Added documentation for some (primarily) internal function of packages, which have been introduced in version 0.27 of the package.
 * corrected documentation for EWM method (VERBOSE parameter was missing in usage section)
-
-### MCDASupport v0.28 (Release date: 2023-10-13)
-
-In this version of the package support for Entropy weights method has been added (EWM function).
 
 ### Full version history
 
