@@ -48,7 +48,8 @@ FuzzyVIKOR <- function(PM, dictionaryPM, w, dictionaryW, alt, v = NULL,
           if (dict[i, j] < dict[i - 1, j]) {
             stop(paste("Inconsistency in dict. ", msg,
                        " detected on [line, row]: [", i, ",", j,
-                       "], rows are expected to go from lowest value to highest."))
+                       "], rows are expected to go from lowest value",
+                       " to highest."))
           }
         }
       }
@@ -106,7 +107,7 @@ FuzzyVIKOR <- function(PM, dictionaryPM, w, dictionaryW, alt, v = NULL,
   defuzz_m <- function(fn) {
     t <- (-fn[, 1] * fn[, 2] + fn[, 3] * fn[, 4] + 1 / 3 * (fn[, 4] - fn[, 3])^2
           - 1 / 3 * (fn[, 2] - fn[, 1])^2) / (-fn[, 1] - fn[, 2] + fn[, 3]
-          + fn[, 4])
+                                              + fn[, 4])
     return(t)
   }
 
