@@ -17,13 +17,13 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
   # function to check consistency of matrix againts dictionary of values
   #
   # parameters
-  #   M - matrix to be checked
+  #   m - matrix to be checked
   #   dict - dictionary to check matrix against
   #   msg - message to guide user on what is being examined i.e. PM,
   #         weight matrix, etc.
   #   returns - TRUE if everything is OK, otherwise stops the computation
   #             (at first problem)
-  fuzzyConsistency <- function(M, dict, msg = NULL) {
+  fuzzy_consistency <- function(m, dict, msg = NULL) {
     # check consistency of dictionary (needed to also check consistency
     # of M later)
     if (ncol(dict) != 3) {
@@ -44,23 +44,24 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
           if (dict[i, j] < dict[i - 1, j]) {
             stop(paste("Inconsistency in dict. ", msg,
                        " detected on [line, row]: [", i, ",", j,
-                       "], rows are expected to go from lowest value to highest."))
+                       "], rows are expected to go from lowest ",
+                       "value to highest."))
           }
         }
       }
     } # end check consistency of dictionary
-    dictNames <- rownames(dict) #list of variables values used in dictionary
+    dict_names <- rownames(dict) #list of variables values used in dictionary
     # check consistency of matrix M
-    if (!(is.matrix(M) || (is.data.frame(M)))) {
+    if (!(is.matrix(m) || (is.data.frame(m)))) {
       stop(paste("Problem with definition of matrix, ", msg,
                  ": not matrix or dataframe."))
     }
     #check whether the M uses only fuzzy numbers from dictionary
-    tM <- unlist(M)
-    for (j in seq_along(tM)) { #check for consistency of preference function
-      if (!(tM[j] %in% dictNames)) {
+    t_m <- unlist(m)
+    for (j in seq_along(t_m)) { #check for consistency of preference function
+      if (!(t_m[j] %in% dict_names)) {
         stop(paste("Dictionary ", msg, " uses value not in the dictionary (",
-                   tM[j], ")"))
+                   t_m[j], ")"))
       }
     }
     return(TRUE) # every check passed, return TRUE
@@ -72,17 +73,17 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
   # parameters
   #   dict - dictionary with the linguistic variables for criteria weights
   #          (or the linguistic variables for the ratings)
-  #   M - matrix with criteria weights (or the ratings)
+  #   m - matrix with criteria weights (or the ratings)
   #   n - number of the decision makers
   #   returns - fuzzy decision matrix or the fuzzy weights of the criteria
-  cal <- function(dict, M, n) {
+  cal <- function(dict, m, n) {
     f <- list()
-    for (i in 1:nrow(M)) {
+    for (i in 1:nrow(m)) {
       c <- list()
       for (z in 1:3) {
         x <- 0
         for (j in 1:n) {
-          x <- x + dict[M[i, j], z]
+          x <- x + dict[m[i, j], z]
         }
         c[[length(c) + 1]] <- round(x / n, 3)
       }
@@ -90,7 +91,7 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
     }
     t <- do.call(rbind.data.frame, f)
     colnames(t) <- c("fn1", "fn2", "fn3") #def. fuzzy number
-    rownames(t) <- rownames(M) #works fine for w, but line does nothing for PM
+    rownames(t) <- rownames(m) #works fine for w, but line does nothing for PM
     return(t)
   }
 
@@ -101,9 +102,9 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
   #   n - the number of criteria
   #   m - the number of the alternatives
   #   returns fuzzy normalized decision matrix
-  fndm <- function(FDM, n, m) {
-    x <- max(FDM[, 2:3])
-    f <- round(FDM / x, 3)
+  fndm <- function(fdm, n, m) {
+    x <- max(fdm[, 2:3])
+    f <- round(fdm / x, 3)
     colnames(f) <- c("fn1", "fn2", "fn3") #triangular fuzzy number
     return(f)
   }
@@ -116,14 +117,14 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
   #   n - number of criteria
   #   m - number of alternatives
   #   returns fuzzy weighted normalized decision matrix
-  weighted_fndm <- function(FNDM, w, n, m) {
+  weighted_fndm <- function(fndm, w, n, m) {
     w2 <- NULL
     for (i in 1:n) {
       t <- matrix(rep(w[i, ], times = m), ncol = 3, byrow = TRUE)
       w2 <- rbind(w2, t)
     }
     w2 <- as.numeric(w2)
-    f <- FNDM * w2
+    f <- fndm * w2
     colnames(f) <- c("fn1", "fn2", "fn3")
     return(f)
   }
@@ -138,50 +139,34 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
     return(t)
   }
 
-  # Determine the fuzzy positive ideal solution (FPIS)
+  # Determine the fuzzy positive ideal solution (FPIS) or
+  # fuzzy negative ideal solution (FNIS)
   #
   # parameters
-  #   FWNDM is the fuzzy weighted normalized decision matrix
+  #   fwndm is the fuzzy weighted normalized decision matrix
   #   n is the number of criteria
   #   m is the number of the alternatives
   #   returns ideal solution of each criterion
-  func_dist_fpis <- function(FWNDM, n, m) {
-    fpis <- matrix(data = 1, nrow = 3, ncol = 1)
+  func_dist <- function(fwndm, n, m, mode = "FPIS") {
+    if (mode == "FPIS") {
+      pis <- matrix(data = 1, nrow = 3, ncol = 1)
+    } else if (mode == "FNIS") {
+      pis <- matrix(data = 0, nrow = 3, ncol = 1)
+    } else {
+      stop(paste("unexpected mode in func_dist: ", mode))
+    }
     dist_pis <- rep(0, times = m)
     for (i in 1:m) { # iterate alternatives
       for (j in 1:n) { # iterate criteria
         if (j == 1) {
-          t <- distance(FWNDM[i, ], fpis)
+          t <- distance(fwndm[i, ], pis)
         } else {
-          t <- distance(FWNDM[i + (j - 1) * m, ], fpis)
+          t <- distance(fwndm[i + (j - 1) * m, ], pis)
         }
         dist_pis[i] <- dist_pis[i] + t
       }
     }
     return(as.numeric(dist_pis))
-  }
-
-  # Determine the fuzzy negative ideal solution (FNIS)
-  #
-  # parameters
-  #   FWNDM is the fuzzy weighted normalized decision matrix
-  #   n is the number of criteria
-  #   m is the number of the alternatives
-  #   returns anti-ideal solution of each criterion
-  func_dist_fnis <- function(FWNDM, n, m) {
-    fnis <- matrix(data = 0, nrow = 3, ncol = 1)
-    dist_nis <- rep(0, times = m)
-    for (i in 1:m) { # iterate alternatives
-      for (j in 1:n) { # iterate criteria
-        if (j == 1) {
-          t <- distance(FWNDM[i, ], fnis)
-        } else {
-          t <- distance(FWNDM[i + (j - 1) * m, ], fnis)
-        }
-        dist_nis[i] <- dist_nis[i] + t
-      }
-    }
-    return(as.numeric(dist_nis))
   }
 
   ## check validity of the objects manipulated by the current function
@@ -197,10 +182,10 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
   if (nalt != length(alt)) {
     stop("No. of alternatives in alt param != no. of alternatives in PM")
   }
-  if (!fuzzyConsistency(PM, dictionaryPM, "PM")) {
+  if (!fuzzy_consistency(PM, dictionaryPM, "PM")) {
     stop("Error when checking consistency of fuzzy numbers in PM")
   }
-  if (!fuzzyConsistency(w, dictionaryW, "weights")) {
+  if (!fuzzy_consistency(w, dictionaryW, "weights")) {
     stop("Error when checking consistency of fuzzy numbers in weights matrix")
   }
   ## End of checking the validity of the "inputs"
@@ -211,12 +196,12 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
   fuzzy_norm_decision_matrix <- fndm(fuzzy_decision_matrix, ncri, nalt)
   # weighted fuzzy norm decision matrix: wfndm
   wfndm <- weighted_fndm(fuzzy_norm_decision_matrix, fuzzy_weights, ncri, nalt)
-  a_plus <- func_dist_fpis(wfndm, ncri, nalt)
+  a_plus <- func_dist(wfndm, ncri, nalt, mode = "FPIS")
   names(a_plus) <- alt
-  a_minus <- func_dist_fnis(wfndm, ncri, nalt)
+  a_minus <- func_dist(wfndm, ncri, nalt, mode = "FNIS")
   names(a_minus) <- alt
-  CC <- a_minus / (a_plus + a_minus)
-  names(CC) <- alt
+  cc <- a_minus / (a_plus + a_minus)
+  names(cc) <- alt
 
   if (VERBOSE) {
     print("fuzzy weights")
@@ -230,7 +215,7 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
     print("a-")
     print(a_minus)
     print("Alternatives sorted by closeness coeficient")
-    print(sort(CC, decreasing = TRUE))
+    print(sort(cc, decreasing = TRUE))
   }
 
   out <- list(
@@ -240,7 +225,7 @@ FuzzyTOPSIS <- function(PM, dictionaryPM, w, dictionaryW, alt, VERBOSE = FALSE) 
     wfndm = wfndm,
     a_plus = a_plus,
     a_minus = a_minus,
-    CC = CC
+    CC = cc
   )
   return(out)
 }
