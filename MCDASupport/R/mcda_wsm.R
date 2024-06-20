@@ -3,7 +3,7 @@
 # Finds the alternatives that are dominated by others using weighted sum method
 #
 # Arguments:
-#   M - normalized decision matrix with alternatives in rows, criteria 
+#   M - normalized decision matrix with alternatives in rows, criteria
 #       in columns and higher numbers are better
 #   w - numeric vector of weights for the criteria
 #   minmaxcriteria - either 'min' or 'max' value or a vector of these values
@@ -33,34 +33,33 @@ mcda_wsm <- function(M, w, minmaxcriteria = "max", VERBOSE = FALSE) {
   }
   # end of parameter check
 
-  PM <- util_pm_minmax(M, minmaxcriteria)
-  weightedPM <- as.data.frame(sweep(PM, 2, w, "*"))
-  weightedSum <- rowSums(weightedPM)
-  weightedSumPrc <- weightedSum / (max(weightedSum)/100)
-  ResultTable <- weightedPM
-  ResultTable$weightedSum <- weightedSum
-  ResultTable$weightedSumPrc <- weightedSumPrc
-  weightedSumPrc <- sort(weightedSumPrc, decreasing = TRUE)
-  scoreM <- plot.scoreM(weightedPM)
+  pm <- util_pm_minmax(M, minmaxcriteria)
+  weighted_pm <- as.data.frame(sweep(pm, 2, w, "*"))
+  weighted_sum <- rowSums(weighted_pm)
+  weighted_sum_prc <- weighted_sum / (max(weighted_sum) / 100)
+  result_table <- weighted_pm
+  result_table$weighted_sum <- weighted_sum
+  result_table$weighted_sum_prc <- weighted_sum_prc
+  weighted_sum_prc <- sort(weighted_sum_prc, decreasing = TRUE)
+  scoreM <- plot.scoreM(weighted_pm)
 
   if (VERBOSE) {
     print("performance matrix")
-    print(PM)
+    print(pm)
     print("weighted performance matrix")
-    print(weightedPM)
+    print(weighted_pm)
     print("percentages of weighted sums")
-    print(weightedSumPrc)
+    print(weighted_sum_prc)
     print("result table")
-    print(ResultTable)
+    print(result_table)
     scoreM
   }
 
-  out <- list(
-    "performanceMatrix" = PM,
-    "weightedPM" = weightedPM,
-    "weightedSum" = weightedSum,
-    "weightedSumPrc" = weightedSumPrc,
-    "resultTable" = ResultTable,
-    "scoreM" = scoreM)
+  out <- list("performanceMatrix" = pm,
+              "weightedPM" = weighted_pm,
+              "weightedSum" = weighted_sum,
+              "weightedSumPrc" = weighted_sum_prc,
+              "resultTable" = result_table,
+              "scoreM" = scoreM)
   return(out)
 }
