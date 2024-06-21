@@ -11,15 +11,22 @@ Electre_1_sensitivity <- function(PM, w,
                                   concordance_threshold,
                                   discordance_threshold) {
   # validate parameters
-  if (!(is.vector(concordance_threshold, mode = "numeric")) || !(is.vector(discordance_threshold, mode = "numeric"))) { # nolint: line_length_linter.
+  if (!(is.matrix(PM) || (is.data.frame(PM)))) {
+    stop("wrong performance matrix, should be a matrix or a data frame")
+  }
+  if (!(is.vector(concordance_threshold, mode = "numeric")) ||
+        !(is.vector(discordance_threshold, mode = "numeric"))) {
     stop("thresholds expect numeric vectors only")
   }
-  if (length(concordance_threshold) != 4 || length(discordance_threshold) != 4) { # nolint: line_length_linter.
+  if (length(concordance_threshold) != 4 ||
+        length(discordance_threshold) != 4) {
     stop("thresholds need to have 4 elements")
   }
-  if (concordance_threshold[1] >= concordance_threshold[2] || discordance_threshold[1] >= discordance_threshold[2]) { # nolint: line_length_linter.
+  if (concordance_threshold[1] >= concordance_threshold[2] ||
+        discordance_threshold[1] >= discordance_threshold[2]) {
     stop("thresholds: from must be < then to")
   }
+  # end of validation
 
   alt <- rownames(PM)
 
@@ -51,7 +58,7 @@ Electre_1_sensitivity <- function(PM, w,
   for (ct in c_t2) {
     t <- Electre_1(PM = PM, w = w, minmaxcriteria = minmaxcriteria,
                    concordance_threshold = ct, discordance_threshold = d_def,
-                   VERBOSE = FALSE)
+                   VERBOSE = FALSE, test = FALSE)
     df <- rbind(df, df_row(t$Kernel, alt, "C", ct))
   }
   # discordance threshold sensitivity, dt must be < c_def
@@ -59,7 +66,7 @@ Electre_1_sensitivity <- function(PM, w,
   for (dt in d_t2) {
     t <- Electre_1(PM = PM, w = w, minmaxcriteria = minmaxcriteria,
                    concordance_threshold = c_def, discordance_threshold = dt,
-                   VERBOSE = FALSE)
+                   VERBOSE = FALSE, test = FALSE)
     df <- rbind(df, df_row(t$Kernel, alt, "D", dt))
   }
   colnames(df) <- c(alt, "sensitivity", "treshold value")
