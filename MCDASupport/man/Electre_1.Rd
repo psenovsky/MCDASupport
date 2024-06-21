@@ -56,7 +56,8 @@ Electre_1(PM,
 			minmaxcriteria,
 			concordance_threshold = 1,
 			discordance_threshold = 0,
-    VERBOSE = FALSE)
+    VERBOSE = FALSE,
+    test = TRUE)
 }
 
 \arguments{
@@ -66,6 +67,7 @@ Electre_1(PM,
   \item{concordance_threshold}{parameter defining concordance threshold . The default value is 1. The user can set a new value between 0 and 1}
   \item{discordance_threshold}{parameter defining discordance threshold . The default value is 0. The user can set a new value between 0 and 1.}
   \item{VERBOSE}{if set to TRUE it produces all the outputs in the console, otherwise the results are available only as values returned by function.}
+  \item{test}{TRUE by default to use build-in function's parameters tests, use FALSE to omit these tests - useful for sensitivity testing, when such test can become computationally expensive.}
 }
 
 \value{
@@ -75,8 +77,8 @@ Electre_1(PM,
 	\item{DiscordanceMatrix}{Discordance matrix is one of two working relations (concordance and discordance) which are subsequently used to construct the final dominance relation. The concept of discordance is complementary to the one of (concordance and represents the discomfort experienced in the choosing of alternative a above alternative b}
 	\item{PreferenceMatrix}{A matrix with computed preferences for the alternatives. Represents domination relation between the alternatives. Provides value 1 where for relation between alternatives where such domination exists}
 	\item{Kernel}{Kernel consist of subset of non-dominated alternatives}
-  \item{Dominated}{Identified clearly dominated alternatives.}
-  \item{GraphResult}{Visualization of the preference matrix using network graph. A -> B means, that A outranks B.}
+    \item{Dominated}{Identified clearly dominated alternatives.}
+    \item{GraphResult}{Visualization of the preference matrix using network graph. A -> B means, that A outranks B.}
 }
 
 \seealso{
