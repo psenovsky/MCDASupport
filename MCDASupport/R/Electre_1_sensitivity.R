@@ -4,8 +4,8 @@
 # parameters
 #   PM - performance matrix criteria in columns and alternatives in rows
 #   w  - weights
-#   concordance_threshold = c(from, to, step, default)
-#   discordance_threshold = c(from, to, step, default)
+#   concordance_threshold ...c(from, to, step, default)
+#   discordance_threshold ...c(from, to, step, default)
 Electre_1_sensitivity <- function(PM, w,
                                   minmaxcriteria = "max",
                                   concordance_threshold,
@@ -38,22 +38,28 @@ Electre_1_sensitivity <- function(PM, w,
     return(t)
   }
 
-  c_t <- seq(from = concordance_threshold[1], to = concordance_threshold[2], by = concordance_threshold[3])
+  c_t <- seq(from = concordance_threshold[1], to = concordance_threshold[2],
+             by = concordance_threshold[3])
   c_def <- concordance_threshold[4]
-  d_t <- seq(from = discordance_threshold[1], to = discordance_threshold[2], by = discordance_threshold[3])
+  d_t <- seq(from = discordance_threshold[1], to = discordance_threshold[2],
+             by = discordance_threshold[3])
   d_def <- discordance_threshold[4]
   df <- data.frame()
 
   # sensitivity of concordance threshold, c_t must be > d_def
   c_t2 <- c_t[c_t > d_def]
   for (ct in c_t2) {
-    t <- Electre_1(PM = PM, w = w, minmaxcriteria = minmaxcriteria, concordance_threshold = ct, discordance_threshold = d_def, VERBOSE = FALSE)
+    t <- Electre_1(PM = PM, w = w, minmaxcriteria = minmaxcriteria,
+                   concordance_threshold = ct, discordance_threshold = d_def,
+                   VERBOSE = FALSE)
     df <- rbind(df, df_row(t$Kernel, alt, "C", ct))
   }
   # discordance threshold sensitivity, dt must be < c_def
   d_t2 <- c_t[d_t < c_def]
   for (dt in d_t2) {
-    t <- Electre_1(PM = PM, w = w, minmaxcriteria = minmaxcriteria, concordance_threshold = c_def, discordance_threshold = dt, VERBOSE = FALSE)
+    t <- Electre_1(PM = PM, w = w, minmaxcriteria = minmaxcriteria,
+                   concordance_threshold = c_def, discordance_threshold = dt,
+                   VERBOSE = FALSE)
     df <- rbind(df, df_row(t$Kernel, alt, "D", dt))
   }
   colnames(df) <- c(alt, "sensitivity", "treshold value")
