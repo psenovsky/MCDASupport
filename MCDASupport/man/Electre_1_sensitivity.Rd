@@ -4,7 +4,7 @@
 Electre_1_sensitivity: function for performing sensitivity analysis for Electre 1 method
 }
 \description{
-Performs basic sensitivity analysis of the decision problem solution to changes in concordance (C) and discordance (D) thresholds.
+Performs basic sensitivity analysis of the decision problem solution to changes in concordance and discordance thresholds.
 }
 \usage{
 Electre_1_sensitivity(PM, w,
@@ -21,7 +21,11 @@ Electre_1_sensitivity(PM, w,
 }
 
 \value{
-returns dataframe: alternative 1, aplternative 2, ..., alternative n, threshold (C or D), value of threshold, where n is number of alternatives. Value of other threshold is not listed as it is = to default threshold value.
+returns list:
+    \item{concordace}{ dataframe: alternative 1 .. n (always 0/1, 1 if alternative is in kernel), concordance threshold value. }
+    \item{discordace}{ dataframe: alternative 1 .. n (always 0/1, 1 if alternative is in kernel), discordance threshold value. }
+    \item{concordance_vis}{ graph visualizing participation of the alternatives in the kernel based on concordance threshold }
+    \item{discordance_vis}{ graph visualizing participation of the alternatives in the kernel based on discordance threshold }
 }
 \author{Pavel Šenovský \email{pavel.senovsky@vsb.cz}}
 
