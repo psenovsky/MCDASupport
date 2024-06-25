@@ -31,6 +31,7 @@ Electre_1_sensitivity <- function(PM, w,
   alt <- rownames(PM)
 
   # internal function to prepare row of the dataframe
+  # works for sensitivity testing of single threshold
   df_row <- function(kernel, alt, val) {
     nalt <- length(alt)
     t <- rep(0, times = nalt + 1)
@@ -43,6 +44,24 @@ Electre_1_sensitivity <- function(PM, w,
     t[nalt + 1] <- val
     return(t)
   }
+
+  # internal function to prepare row for dataframe
+  # works for sensitivity testing accrost both thresholds
+  df_row_2d <- function(kernel, alt, c_val, d_val) {
+    nalt <- length(alt)
+    t <- rep(0, times = nalt + 1)
+    for (k in kernel) {
+      if (k %in% alt) {
+        pos <- which(alt == k)
+        t[pos] <- 1
+      }
+    }
+    t[nalt + 1] <- c_val
+    t[nalt + 2] <- d_val
+    return(t)
+  }
+
+  # end of service functions
 
   c_t <- seq(from = concordance_threshold[1], to = concordance_threshold[2],
              by = concordance_threshold[3])
@@ -61,6 +80,7 @@ Electre_1_sensitivity <- function(PM, w,
     df <- rbind(df, df_row(t$Kernel, alt, ct))
   }
   c_t_df <- df
+
   # discordance threshold sensitivity, dt must be < c_def
   d_t2 <- c_t[d_t < c_def]
   df <- data.frame()
@@ -77,9 +97,30 @@ Electre_1_sensitivity <- function(PM, w,
   d_vis <- plot.threshold(d_t_df, title = "Kernel - discordance sensitivity",
                           y_label = "discordance threshold")
 
+  # hyperspace of all combinations of possible concordance and discordance
+  # thresholds
+  lct <- length(c_t)
+  ldt <- length(d_t)
+  df <- data.frame()
+  for (i in 1:lct) {
+    for (j in 1:ldt) {
+      if (d_t[j] >= c_t[i]) break
+      t <- Electre_1(PM = PM, w = w, minmaxcriteria = minmaxcriteria,
+                     concordance_threshold = c_t[i],
+                     discordance_threshold = d_t[j],
+                     VERBOSE = FALSE, test = FALSE)
+      df <- rbind(df, df_row_2d(t$Kernel, alt, c_t[i], d_t[j]))
+    }
+  }
+  t_2d <- df
+  colnames(t_2d) <- c(alt, "concordance", "discordance")
+  t_2d_vis <- plot.threshold.3d(t_2d, title = "Kernel - thres. sensitivity")
+
   t <- list(concordace_kernel = c_t_df,
             concordance_vis = c_vis,
             discordance_kernel = d_t_df,
-            discordance_vis = d_vis)
+            discordance_vis = d_vis,
+            thresholds = t_2d,
+            thresholds_vis = t_2d_vis)
   return(t)
 }
