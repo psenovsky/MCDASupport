@@ -8,25 +8,22 @@
 #   minmaxcriteria - vector with identification of direction of the criteria
 #   lambda         - cut-off criterion
 #   VERBOSE        - output results to the console?
-Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VERBOSE = FALSE){
+Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VERBOSE = FALSE) {
 
   # check consistency of parameters
   Electre_1S_paramCheck(PM = PM, w = w, P = P, Q = Q, V = V,
                         minmaxcriteria = minmaxcriteria, lambda = lambda)
-
-  PM   <- util_pm_minmax(PM, minmaxcriteria) #validate minmax and invert scales if necessary
-  ncri <- ncol(PM)  #no. of criteria
-  nalt <- nrow(PM)  #no. of alternatives
-  alt  <- rownames(PM)
+  #validate minmax and invert scales if necessary
+  pm   <- util_pm_minmax(PM, minmaxcriteria)
+  ncri <- ncol(pm)  #no. of criteria
+  nalt <- nrow(pm)  #no. of alternatives
+  alt  <- rownames(pm)
 
   #overall concordance index oci
-  t <- Electre3_ConcordanceIndex(PM, P, Q, w)
+  t <- Electre3_ConcordanceIndex(pm, P, Q, w)
   oci <- t$ConcordanceMatrix
 
   # discordance index of the criteria
-  # dj(ai,ak) = 0, if gj(ak) - gj(ai) < Vj (ai,ak) - qj (ai,ak) * 
-  # ((1-c(a,b))/(1-c))
-  # else dj(ai,ak) = 1
   w_sum <- 1
   di <- matrix(0, nalt, nalt)
   rownames(di) <- alt
@@ -40,7 +37,7 @@ Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VER
       for (k in 1:ncri) {
         if (j != k) {
           if (w[k] / sum(w) != 0) w_sum <- (w[k] / sum(w))
-          if (PM[j, k] - PM[i, k] >= (V[k] - Q[k] * ((1 - oci[i, j] - (w_sum)) / (1 - lambda - (w_sum))))) {
+          if (pm[j, k] - pm[i, k] >= (V[k] - Q[k] * ((1 - oci[i, j] - (w_sum)) / (1 - lambda - (w_sum))))) {
             di[i, j] <- 1
           }
         }
@@ -58,11 +55,11 @@ Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VER
     }
   }
 
-  G  <- simplify(graph_from_adjacency_matrix(cred)) #remove loops
-  AM <- Graph2AdjancancyMatrix(G, alt)
+  g  <- simplify(graph_from_adjacency_matrix(cred)) #remove loops
+  am <- Graph2AdjancancyMatrix(g, alt)
 
   # establish kernel of the decision
-  t <- ELECTRE1_Kernel(AM)
+  t <- ELECTRE1_Kernel(am)
 
   # output to screen
   if (VERBOSE) {
@@ -71,7 +68,7 @@ Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VER
     print("discordance matrix")
     print(di)
     print("Credibility matrix")
-    print(AM)
+    print(am)
     print("kernel")
     print(t$kernel)
     print("Dominated alternatives")
@@ -83,7 +80,7 @@ Electre_1S <- function(PM, w, Q, P, V, minmaxcriteria = 'max', lambda = 0.5, VER
   out <- list(
     ConcordanceMatrix = oci,
     DiscordanceIndex = di,
-    CredibilityIndex = AM,
+    CredibilityIndex = am,
     Kernel = t$kernel,
     Dominated = t$dominated,
     graph = t$graph
