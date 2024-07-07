@@ -1,6 +1,4 @@
 exportPattern("^[[:alpha:]]+")
-export(Electre_1S)
-export(Electre_1S_sensitivity)
 export(Electre_2)
 export(Electre_2_sensitivity)
 export(Electre_3)
