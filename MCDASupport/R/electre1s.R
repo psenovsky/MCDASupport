@@ -176,8 +176,21 @@ electre1s <- R6Class("electre1s",
     initialize = function(pm, w, q, p, v, minmaxcriteria = "max",
                           lambda = 0.5, test = TRUE) {
       if (test) { # validate inputs
-        Electre_1S_paramCheck(PM = pm, w = w, P = p, Q = q, V = v,
-                              minmaxcriteria = minmaxcriteria, lambda = lambda)
+        Electre_4_paramCheck(PM = pm, P = p, Q = q, V = v,
+                             minmaxcriteria = minmaxcriteria)
+        ncri <- ncol(pm)  #no. of criteria
+        if (!is.vector(w, mode = "numeric")) {
+          stop("criteriaWeights should be a numeric vector")
+        }
+        if (ncri != length(w)) {
+          stop("length of criteriaWeights should be checked")
+        }
+        if (!is.null(lambda) && !is.numeric(lambda)) {
+          stop("if lambda is set, it must be numeric value")
+        }
+        if (lambda < 0.5 || lambda > 1) {
+          stop("Lambda value must be in interval <0.5;1>")
+        }
       }
       self$pm_orig <- pm
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
