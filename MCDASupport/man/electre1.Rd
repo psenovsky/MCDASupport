@@ -110,7 +110,7 @@ rownames(PM) <- c("CBX16","P205G","P405M","P605S","R4GTL",
 colnames(PM) <- c("Prix","Vmax","C120","Coff","Acce","Frei","Brui")
 minmaxcriteria <-c("min","max","min","max","min","min","min")
 w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)
-M <- electre$new(PM, w, minmaxcriteria, concordance_threshold = 0.8,
+M <- electre1$new(PM, w, minmaxcriteria, concordance_threshold = 0.8,
   discordance_threshold = 0.1)
 }
 \references{
@@ -230,7 +230,7 @@ rownames(PM) <- c("CBX16","P205G","P405M","P605S","R4GTL",
 colnames(PM) <- c("Prix","Vmax","C120","Coff","Acce","Frei","Brui")
 minmaxcriteria <-c("min","max","min","max","min","min","min")
 w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)
-M <- electre$new(PM, w, minmaxcriteria, concordance_threshold = 0.8,
+M <- electre1$new(PM, w, minmaxcriteria, concordance_threshold = 0.8,
   discordance_threshold = 0.1)
 }
 \if{html}{\out{</div>}}

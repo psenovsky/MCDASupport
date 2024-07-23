@@ -175,7 +175,7 @@ electre1 <- R6Class("electre1",
     #' colnames(PM) <- c("Prix","Vmax","C120","Coff","Acce","Frei","Brui")
     #' minmaxcriteria <-c("min","max","min","max","min","min","min")
     #' w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)
-    #' M <- electre$new(PM, w, minmaxcriteria, concordance_threshold = 0.8,
+    #' M <- electre1$new(PM, w, minmaxcriteria, concordance_threshold = 0.8,
     #'   discordance_threshold = 0.1)
     initialize = function(pm, w,
                           minmaxcriteria = "max",
