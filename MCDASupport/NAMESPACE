@@ -28,6 +28,7 @@ export(plot.scoreM)
 export(plot.threshold)
 export(plot.threshold.3d)
 export(summary.electre1)
+export(vector_compare)
 
 S3method(summary,electre1)
 S3method(summary,electre1s)

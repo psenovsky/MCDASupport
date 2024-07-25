@@ -552,7 +552,7 @@ electre2 <- R6Class("electre2",
                           c_minus = c_minus[i],
                           c_zero = self$c_zero, c_plus = self$c_plus,
                           d_minus = self$d_minus, d_plus = self$d_plus)
-        if (!private$sens_compare(t$finalPreorder, self$finalPreorder)) {
+        if (!vector_compare(t$finalPreorder, self$finalPreorder)) {
           if (i != 1) return(c_minus[i - 1])
           return(c_minus[i])
         }
@@ -574,7 +574,7 @@ electre2 <- R6Class("electre2",
                           c_minus = self$c_minus,
                           c_zero = c_zero[i], c_plus = self$c_plus,
                           d_minus = self$d_minus, d_plus = self$d_plus)
-        if (!private$sens_compare(t$finalPreorder, self$finalPreorder)) {
+        if (!vector_compare(t$finalPreorder, self$finalPreorder)) {
           if (i != 1) return(c_zero[i - 1])
           return(c_zero[i])
         }
@@ -596,7 +596,7 @@ electre2 <- R6Class("electre2",
                           c_minus = self$c_minus,
                           c_zero = self$c_zero, c_plus = c_plus[i],
                           d_minus = self$d_minus, d_plus = self$d_plus)
-        if (!private$sens_compare(t$finalPreorder, self$finalPreorder)) {
+        if (!vector_compare(t$finalPreorder, self$finalPreorder)) {
           if (i != 1) return(c_plus[i - 1])
           return(c_plus[i])
         }
@@ -618,7 +618,7 @@ electre2 <- R6Class("electre2",
                           c_minus = self$c_minus,
                           c_zero = self$c_zero, c_plus = self$c_plus,
                           d_minus = d_minus[i], d_plus = self$d_plus)
-        if (!private$sens_compare(t$finalPreorder, self$finalPreorder)) {
+        if (!vector_compare(t$finalPreorder, self$finalPreorder)) {
           if (i != 1) return(d_minus[i - 1])
           return(d_minus[i])
         }
@@ -640,27 +640,12 @@ electre2 <- R6Class("electre2",
                           c_minus = self$c_minus,
                           c_zero = self$c_zero, c_plus = self$c_plus,
                           d_minus = self$d_minus, d_plus = d_plus[i])
-        if (!private$sens_compare(t$finalPreorder, self$finalPreorder)) {
+        if (!vector_compare(t$finalPreorder, self$finalPreorder)) {
           if (i != 1) return(d_plus[i - 1])
           return(d_plus[i])
         }
       }
       return("insens.")
-    },
-
-    # @description
-    # comparest two vectors element wise
-    #
-    # @param vector1 first vector to compare
-    # @param vector2 second vector to compare
-    #
-    # @returns TRUE if all elements of the vector are same, otherwise
-    # returns FALSE
-    sens_compare = function(vector1, vector2) {
-      for (i in seq_along(vector1)) {
-        if (vector1[i] != vector2[i]) return(FALSE)
-      }
-      return(TRUE)
     }
   )
 )
