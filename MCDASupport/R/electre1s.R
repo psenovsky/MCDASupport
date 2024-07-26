@@ -300,7 +300,7 @@ electre1s <- R6Class("electre1s",
     #'
     #' For the thresholds following equation holds
     #'
-    #' \mjsdeqn{0 \le q \le p \le v
+    #' \mjsdeqn{0 \le q \le p \le v}
     #'
     #' The veto threshold is problematic, as there is no theoretical upper
     #'  bound for it. The computation provisionaly takes v + 10 % as upper

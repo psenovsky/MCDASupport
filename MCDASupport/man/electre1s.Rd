@@ -286,7 +286,23 @@ basic information on the model and its kernel. Will also list
 \if{html}{\out{<a id="method-electre1s-sensitivity"></a>}}
 \if{latex}{\out{\hypertarget{method-electre1s-sensitivity}{}}}
 \subsection{Method \code{sensitivity()}}{
+performs sensitivity analysis of the provided solution. It takes present
+ solution as a starting point and then changes the used thresholds.
 
+The testing is complicated by the fact, that we are working with three
+ separate thresholds preference (p), indifference (q) and veto (v), all
+ of these are specified separately for each criterium.
+
+For the thresholds following equation holds
+
+\mjsdeqn{0 \le q \le p \le v}
+
+The veto threshold is problematic, as there is no theoretical upper
+ bound for it. The computation provisionaly takes v + 10 % as upper
+ bound.
+
+Which allows us to derive array of parameters to check the sensitivity
+ of provided solution.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electre1s$sensitivity(step = 0.01)}\if{html}{\out{</div>}}
 }
