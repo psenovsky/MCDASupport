@@ -181,7 +181,13 @@ Default value 0.5.}
 
 \item{\code{secondTotalPreorder}}{second total preorder}
 
+\item{\code{finalPreorderMatrix}}{final preorder matrix}
+
 \item{\code{incomparableAlternatives}}{matrix of incomparable alternatives}
+
+\item{\code{graphResult}}{visualization of final preorder matrix}
+
+\item{\code{finalPreorder}}{final preorder vector}
 
 \item{\code{finalPreorderSorted}}{sorted final preoder vector of alternatives}
 }

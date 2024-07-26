@@ -167,16 +167,16 @@ electre2 <- R6Class("electre2",
     #' @field secondTotalPreorder second total preorder
     secondTotalPreorder = NULL,
 
-    #' @finalPreorderMatrix final preorder matrix
+    #' @field finalPreorderMatrix final preorder matrix
     finalPreorderMatrix = NULL,
 
     #' @field incomparableAlternatives matrix of incomparable alternatives
     incomparableAlternatives = NULL,
 
-    #' @graphResult visualization of final preorder matrix
+    #' @field graphResult visualization of final preorder matrix
     graphResult = NULL,
 
-    #' @finalPreorder final preorder vector
+    #' @field finalPreorder final preorder vector
     finalPreorder = NULL,
 
     #' @field finalPreorderSorted sorted final preoder vector of alternatives
