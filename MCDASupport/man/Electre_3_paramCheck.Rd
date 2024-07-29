@@ -43,6 +43,10 @@ Checks parameters for ELECTRE 3 method used by \code{\link{electre3}} R6
 
 When no problem with the parameters is detected, it just ends without
  returning any value, allowing the calling function using it to continue.
+
+Note that as the Electre 3 method has lot of checks same as Electre 4 method
+ that function uses also \code{\link{Electre_4_paramCheck}} for these common
+ validity checks.
 }
 \examples{
 PM <- cbind(
@@ -54,7 +58,7 @@ PM <- cbind(
 )
 rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
 colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
-minmaxcriteria <- 'max'
+minmaxcriteria <- "max"
 Q <- c(25,16,0,12,10) #Indifference thresholds
 P <- c(50,24,1,24,20) #Preference thresholds
 V <- c(100,60,2,48,90) #Veto thresholds
@@ -66,5 +70,6 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }
 \keyword{ELECTRE}
 \keyword{III}
+\keyword{IV}
 \keyword{parameter}
 \keyword{validity}

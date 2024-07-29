@@ -9,6 +9,10 @@
 #' When no problem with the parameters is detected, it just ends without
 #'  returning any value, allowing the calling function using it to continue.
 #'
+#' Note that as the Electre 3 method has lot of checks same as Electre 4 method
+#'  that function uses also \code{\link{Electre_4_paramCheck}} for these common
+#'  validity checks.
+#'
 #' @param pm performance of the alternatives in criteria. Alternatives are in
 #'  rows, criteria in columns.
 #' @param w weights of the criteria in decision problem
@@ -25,6 +29,7 @@
 #'
 #' @keywords parameter validity
 #' @keywords ELECTRE III
+#' @keywords ELECTRE IV
 #'
 #' @examples
 #' PM <- cbind(
@@ -36,7 +41,7 @@
 #' )
 #' rownames(PM) <- c("Project1","Project2","Project3","Project4","Project5")
 #' colnames(PM) <- c( "CR1","CR2","CR3","CR4","CR5")
-#' minmaxcriteria <- 'max'
+#' minmaxcriteria <- "max"
 #' Q <- c(25,16,0,12,10) #Indifference thresholds
 #' P <- c(50,24,1,24,20) #Preference thresholds
 #' V <- c(100,60,2,48,90) #Veto thresholds
@@ -48,7 +53,7 @@ Electre_3_paramCheck <- function(pm, w, p, q, v, minmaxcriteria = "max",
   # use shared checks for the method (Electre 4 uses subset of Electre 3
   # parameters)
   # only values checked - computationally the methods are different
-  Electre_4_paramCheck(PM = pm, P = p, Q = q, V = v,
+  Electre_4_paramCheck(pm = pm, p = p, q = q, v = v,
                        minmaxcriteria = minmaxcriteria)
 
   # specific checks for Electre 3

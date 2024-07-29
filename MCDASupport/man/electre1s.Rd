@@ -14,7 +14,7 @@ Method for supporting multicriteria decision making used to identify so
 Method does not provide ranking of the alternatives.
 
 Computationally the method can be seen as a hybrid of ELECTRE III
- (\code{\link{Electre_3}}) and I \code{\link{electre1}} methods. From
+ (\code{\link{electre3}}) and I \code{\link{electre1}} methods. From
  ELECTRE III it takes concordance matrix computation as it works with fuzzy
  defined preference (P), indifference (Q) and veto (V) thresholds. From
  ELECTRE I it takes procedure to identify kernel of the solution.

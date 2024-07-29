@@ -11,7 +11,7 @@
 #' Method does not provide ranking of the alternatives.
 #'
 #' Computationally the method can be seen as a hybrid of ELECTRE III
-#'  (\code{\link{Electre_3}}) and I \code{\link{electre1}} methods. From
+#'  (\code{\link{electre3}}) and I \code{\link{electre1}} methods. From
 #'  ELECTRE III it takes concordance matrix computation as it works with fuzzy
 #'  defined preference (P), indifference (Q) and veto (V) thresholds. From
 #'  ELECTRE I it takes procedure to identify kernel of the solution.
@@ -143,6 +143,7 @@ electre1s <- R6Class("electre1s",
 
     #' @description
     #' public constructor, creates electre1s object.
+    #'
     #' @param pm Performance matrix
     #' @param w weight vector
     #' @param q vector of indifference thresholds
@@ -157,6 +158,7 @@ electre1s <- R6Class("electre1s",
     #' @param test Boolean value specifying whether the consistency tests in
     #'  the constructor should be used. FALSE value is usually used during
     #'  sensitivity testing.
+    #'
     #' @examples
     #' PM <- cbind(
     #'   c(-14,129,-10,44,-14),
@@ -176,7 +178,7 @@ electre1s <- R6Class("electre1s",
     initialize = function(pm, w, q, p, v, minmaxcriteria = "max",
                           lambda = 0.5, test = TRUE) {
       if (test) { # validate inputs
-        Electre_4_paramCheck(PM = pm, P = p, Q = q, V = v,
+        Electre_4_paramCheck(pm = pm, p = p, q = q, v = v,
                              minmaxcriteria = minmaxcriteria)
         ncri <- ncol(pm)  #no. of criteria
         if (!is.vector(w, mode = "numeric")) {
