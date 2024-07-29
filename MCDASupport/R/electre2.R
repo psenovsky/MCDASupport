@@ -1,4 +1,4 @@
-#' electre2 : ELECTRE II method used to solve multiple criteria decision making
+#' ELECTRE II method used to solve multiple criteria decision making
 #'
 #' @description
 #' The acronym ELECTRE stands for: ELimination Et Choix Traduisant la REalite
@@ -26,7 +26,7 @@
 #'  additions to produce ranking, the computation starts with computing
 #'  concordance \code{\link{ELECTRE_ConcordanceMatrix}} and discordance
 #'  \code{\link{ELECTRE_DiscordanceMatrix}} matrixes. See
-#'  \code{\link{Electre_1}} documentation for mathematical aparatus.
+#'  \code{\link{electre1}} documentation for mathematical aparatus.
 #'
 #' Based on concordance and discordance matrixes and comparing its values with
 #'  the thresholds, we can establish strong \mjseqn{dom_s} or weak
@@ -102,6 +102,7 @@
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
 #' @keywords ELECTRE II
+#' @keywords ELECTRE I
 #' @keywords strong outranking
 #' @keywords weak outranking
 #' @keywords concordance matrix

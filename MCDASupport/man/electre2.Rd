@@ -2,7 +2,7 @@
 % Please edit documentation in R/electre2.R
 \name{electre2}
 \alias{electre2}
-\title{electre2 : ELECTRE II method used to solve multiple criteria decision making}
+\title{ELECTRE II method used to solve multiple criteria decision making}
 \description{
 The acronym ELECTRE stands for: ELimination Et Choix Traduisant la REalite
  (ELimination and Choice Expressing REality). ELECTRE II method is then
@@ -29,7 +29,7 @@ Considering that the ELECTRE II method is based on ELECTRE I method with
  additions to produce ranking, the computation starts with computing
  concordance \code{\link{ELECTRE_ConcordanceMatrix}} and discordance
  \code{\link{ELECTRE_DiscordanceMatrix}} matrixes. See
- \code{\link{Electre_1}} documentation for mathematical aparatus.
+ \code{\link{electre1}} documentation for mathematical aparatus.
 
 Based on concordance and discordance matrixes and comparing its values with
  the thresholds, we can establish strong \mjseqn{dom_s} or weak
@@ -127,6 +127,7 @@ Prombo, M. Package OutrankingTools, CRAN: 2015, available from:
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }
 \keyword{ELECTRE}
+\keyword{I}
 \keyword{II}
 \keyword{concordance}
 \keyword{discordance}
