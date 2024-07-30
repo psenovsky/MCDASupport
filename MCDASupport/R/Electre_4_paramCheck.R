@@ -26,6 +26,7 @@
 #' @keywords ELECTRE III
 #' @keywords ELECTRE IV
 #' @keywords ELECTRE 1s
+#' @keywords ELECTRE TRI
 #'
 #' @examples
 #' PM <- cbind(
