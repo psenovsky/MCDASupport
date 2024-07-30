@@ -137,10 +137,8 @@ electre4 <- R6Class("electre4",
     #' t <- electre4:new(PM, P, Q, V, minmaxcriteria)
     initialize = function(pm, p, q, v, minmaxcriteria = "max") {
       # check validity of the objects manipulated by the current function
-      if (test) {
-        Electre_4_paramCheck(pm = pm, p = p, q = q, v = v,
-                             minmaxcriteria = minmaxcriteria)
-      }
+      Electre_4_paramCheck(pm = pm, p = p, q = q, v = v,
+                           minmaxcriteria = minmaxcriteria)
       self$pm_orig <- pm
       #validate minmax and invert scales if necessary
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
@@ -293,6 +291,9 @@ electre4 <- R6Class("electre4",
     #'  in the criterium j (max(pm[j])). If no change in result is detected,
     #'  value "insens." is inserted into dataframe.
     #'
+    #' Note that the computational part is very similar to Electre III method
+    #'  and thus is realized using \code{\link{sensitivity_e34}} function.
+    #'
     #' @param steps how many steps should sensitivity testing take. Interval
     #'  for testing will be split to steps segments. The higher number of steps
     #'  the smaller the step will be, the more granular the testing will be.
@@ -302,114 +303,8 @@ electre4 <- R6Class("electre4",
     #' returns dataframes sens_p, sens_q and sens_v with sensitivity limit for
     #'  the criteria
     sensitivity = function(steps = 100) {
-      ncri <- ncol(self$pm)
-      cri <- colnames(self$pm)
-      sens_p <- data.frame(matrix(0, nrow = ncri, ncol = 4))
-      colnames(sens_p) <- c("criterium", "from", "default", "to")
-      sens_q <- sens_p
-      sens_v <- sens_p
-      for (i in 1:ncri) {
-        sens_p[i, 1] <- cri[i]
-        sens_p[i, 3] <- self$p[i]
-        sens_q[i, 1] <- cri[i]
-        sens_q[i, 3] <- self$q[i]
-        sens_v[i, 1] <- cri[i]
-        sens_v[i, 3] <- self$v[i]
-        m_i <- max(self$pm[, i])
-        hyp_p0 <- rev(seq(from = self$q[i], to = self$p[i],
-                          by = (self$p[i] - self$q[i]) / steps))
-        step <- (self$v[i] - self$p[i]) / steps
-        hyp_p1 <- seq(from = self$p[i], to = (self$v[i] - step), by = step)
-        hyp_v0 <- rev(seq(from = self$p[i] + step, to = self$v[i], by = step))
-        hyp_v1 <- seq(from = self$v[i], to = m_i,
-                      by = (m_i - self$v[i]) / steps)
-        hyp_q0 <- rev(seq(from = 0, to = self$q[i], by = self$q[i] / steps))
-        hyp_q1 <- seq(from = self$q[i], to = self$p[i],
-                      by = (self$p[i] - self$q[i]) / steps)
-        sens_p[i, 2] <- private$sens_p(hyp_p0, i)
-        sens_p[i, 4] <- private$sens_p(hyp_p1, i)
-        sens_q[i, 2] <- private$sens_q(hyp_q0, i)
-        sens_q[i, 4] <- private$sens_q(hyp_q1, i)
-        sens_v[i, 2] <- private$sens_v(hyp_v0, i)
-        sens_v[i, 4] <- private$sens_v(hyp_v1, i)
-      }
-      t <- list(
-        sens_p = sens_p,
-        sens_q = sens_q,
-        sens_v = sens_v
-      )
+      t <- sensitivity_e34(self, steps)
       return(t)
-    }
-  ),
-
-  private = list(
-    # @description
-    # sensitivity testing for preference threshold
-    #
-    # @param p preference threshold value to be tested for sensitivity
-    # @param j criterium being tested
-    #
-    # @return
-    # value of preference threshold at which provided solution for the decision
-    # problem changes. If no change detected returns insens.
-    sens_p = function(p, j) {
-      p2 <- self$p
-      for (i in seq_along(p)) {
-        p2[j] <- p[i]
-        t <- electre4$new(self$pm_orig, p2, self$q, self$v,
-                          self$minmaxcriteria)
-        if (!vector_compare(t$finalPreorder, self$finalPreorder)) {
-          if (i != 1) return(p[i - 1])
-          return(p[i])
-        }
-      }
-      return("insens.")
-    },
-
-    # @description
-    # sensitivity testing for indifference threshold
-    #
-    # @param q indifference threshold value to be tested for sensitivity
-    # @param j criterium being tested
-    #
-    # @return
-    # value of indifference threshold at which provided solution for the
-    #  decision problem changes. If no change detected returns insens.
-    sens_q = function(q, j) {
-      q2 <- self$q
-      for (i in seq_along(q)) {
-        q2[j] <- q[i]
-        t <- electre4$new(self$pm_orig, self$p, q2,
-                          self$v, self$minmaxcriteria)
-        if (!vector_compare(t$finalPreorder, self$finalPreorder)) {
-          if (i != 1) return(q[i - 1])
-          return(q[i])
-        }
-      }
-      return("insens.")
-    },
-
-    # @description
-    # sensitivity testing for veto threshold
-    #
-    # @param q veto threshold value to be tested for sensitivity
-    # @param j criterium being tested
-    #
-    # @return
-    # value of veto threshold at which provided solution for the
-    #  decision problem changes. If no change detected returns insens.
-    sens_v = function(v, j) {
-      v2 <- self$v
-      for (i in seq_along(v)) {
-        v2[j] <- v[i]
-        t <- electre4$new(self$pm_orig, self$p, self$q, v2,
-                          self$minmaxcriteria)
-        if (!vector_compare(t$finalPreorder, self$finalPreorder)) {
-          if (i != 1) return(v[i - 1])
-          return(v[i])
-        }
-      }
-      return("insens.")
     }
   )
 )

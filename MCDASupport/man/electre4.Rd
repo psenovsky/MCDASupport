@@ -215,9 +215,8 @@ basic information on the model including ranking.
 \if{html}{\out{<a id="method-electre4-sensitivity"></a>}}
 \if{latex}{\out{\hypertarget{method-electre4-sensitivity}{}}}
 \subsection{Method \code{sensitivity()}}{
-sensitivity analysis for ELECTRE IV (see \code{\link{lectre3}} object
- documentation) is performed on values of preference (p), indefference
- (q) and veto (v) thresholds.
+sensitivity analysis for ELECTRE IV object is performed on values of
+ preference (p), indefference (q) and veto (v) thresholds.
 
 Since the thresholds (all of them) are specfied separately for each
  criterion, their sensitivity needs to be also evaluated seprately.
@@ -234,6 +233,9 @@ Sensitivity is tested from default value (the value used to produce
  result) going down to 0 for from column and up to maximal performance
  in the criterium j (max(pm[j])). If no change in result is detected,
  value "insens." is inserted into dataframe.
+
+Note that the computational part is very similar to Electre III method
+ and thus is realized using \code{\link{sensitivity_e34}} function.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electre4$sensitivity(steps = 100)}\if{html}{\out{</div>}}
 }

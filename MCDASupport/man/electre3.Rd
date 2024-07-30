@@ -362,6 +362,9 @@ Sensitivity is tested from default value (the value used to produce
  result) going down to 0 for from column and up to maximal performance
  in the criterium j (max(pm[j])). If no change in result is detected,
  value "insens." is inserted into dataframe.
+
+Note that the computational part is very similar to Electre IV method
+ and thus is realized using \code{\link{sensitivity_e34}} function.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electre3$sensitivity(steps = 100)}\if{html}{\out{</div>}}
 }
