@@ -21,7 +21,7 @@ Electre_TRI <- function(PM, profiles, profiles_names,
                         VERBOSE = FALSE) {
 
   ## input data consistency check
-  Electre_4_paramCheck(PM = PM, Q = Q, P = P, V = V,
+  Electre_4_paramCheck(pm = PM, q = Q, p = P, v = V,
                        minmaxcriteria = minmaxcriteria)
   PM   <- util_pm_minmax(PM, minmaxcriteria) #validate minmax and invert scales if necessary
   ncri <- ncol(PM)  #no. of criteria

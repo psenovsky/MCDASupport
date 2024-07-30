@@ -8,8 +8,8 @@
 #' When no problem with the parameters is detected, it just ends without
 #'  returning any value, allowing the calling function using it to continue.
 #'
-# The function is also used by \code{\link{Electre_3_paramCheck}} and
-#'  \code{\link{electre1s}}.
+#' The function is also used by \code{\link{Electre_3_paramCheck}},
+#'  \code{\link{electre1s}} and \code{\link{electre_TRI}}.
 #'
 #' @param pm performance of the alternatives in criteria. Alternatives are in
 #'  rows, criteria in columns.

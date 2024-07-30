@@ -22,7 +22,7 @@ Electre_TRI_sensitivity <- function(PM, profiles, profiles_names,
 
 
   # check validity of parametrs specific for sensitivity analysis
-  Electre_4_paramCheck(PM = PM, Q = Q, P = P, V = V,
+  Electre_4_paramCheck(pm = PM, q = Q, q = P, q = V,
                        minmaxcriteria = minmaxcriteria)
   if (!is.vector(w, mode = "numeric")) {
     stop("criteria weights should be a numeric vector")

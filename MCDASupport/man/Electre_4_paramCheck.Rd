@@ -28,7 +28,8 @@ Checks parameters for ELECTRE 4 method (see \code{\link{Electre_4}}).
 When no problem with the parameters is detected, it just ends without
  returning any value, allowing the calling function using it to continue.
 
- \code{\link{electre1s}}.
+The function is also used by \code{\link{Electre_3_paramCheck}},
+ \code{\link{electre1s}} and \code{\link{electre_TRI}}.
 }
 \examples{
 PM <- cbind(
