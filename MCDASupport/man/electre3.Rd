@@ -344,9 +344,8 @@ basic information on the model including ranking.
 \if{html}{\out{<a id="method-electre3-sensitivity"></a>}}
 \if{latex}{\out{\hypertarget{method-electre3-sensitivity}{}}}
 \subsection{Method \code{sensitivity()}}{
-sensitivity analysis for ELECTRE III (see \code{\link{lectre3}} object
- documentation) is performed on values of preference (p), indefference
- (q) and veto (v) thresholds.
+sensitivity analysis for ELECTRE III object documentation) is performed
+ on values of preference (p), indefference (q) and veto (v) thresholds.
 
 Since the thresholds (all of them) are specfied separately for each
  criterion, their sensitivity needs to be also evaluated seprately.

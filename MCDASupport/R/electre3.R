@@ -386,9 +386,8 @@ electre3 <- R6Class("electre3",
     },
 
     #' @description
-    #' sensitivity analysis for ELECTRE III (see \code{\link{lectre3}} object
-    #'  documentation) is performed on values of preference (p), indefference
-    #'  (q) and veto (v) thresholds.
+    #' sensitivity analysis for ELECTRE III object documentation) is performed
+    #'  on values of preference (p), indefference (q) and veto (v) thresholds.
     #'
     #' Since the thresholds (all of them) are specfied separately for each
     #'  criterion, their sensitivity needs to be also evaluated seprately.
