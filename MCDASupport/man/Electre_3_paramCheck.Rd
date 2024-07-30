@@ -2,8 +2,7 @@
 % Please edit documentation in R/Electre_3_paramCheck.R
 \name{Electre_3_paramCheck}
 \alias{Electre_3_paramCheck}
-\title{Electre_3_paramCheck: function for checking of the parameters for the
- Electre 3 method}
+\title{function for checking of the parameters for the Electre 3 method}
 \usage{
 Electre_3_paramCheck(
   pm,

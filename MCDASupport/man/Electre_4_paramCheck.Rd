@@ -54,5 +54,6 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \keyword{ELECTRE}
 \keyword{III}
 \keyword{IV}
+\keyword{TRI}
 \keyword{parameter}
 \keyword{validity}

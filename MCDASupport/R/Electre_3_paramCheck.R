@@ -1,5 +1,4 @@
-#' Electre_3_paramCheck: function for checking of the parameters for the
-#'  Electre 3 method
+#' function for checking of the parameters for the Electre 3 method
 #'
 #' @description
 #' Checks parameters for ELECTRE 3 method used by \code{\link{electre3}} R6
