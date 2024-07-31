@@ -66,6 +66,10 @@
 #' @keywords ELECTRE I
 #' @keywords ELECTRE II
 #' @keywords concordance matrix
+#'
+#' @seealso \code{\link{electre1}}
+#' @seealso \code{\link{electre2}}
+#' @seealso \code{\link{ELECTRE_DiscordanceMatrix}}
 ELECTRE_ConcordanceMatrix <- function(pm, w) {
 
   # with < 2 criteria or alternatives, there is no MCDA problem

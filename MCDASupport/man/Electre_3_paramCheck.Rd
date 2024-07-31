@@ -64,6 +64,9 @@ V <- c(100,60,2,48,90) #Veto thresholds
 w <- c(1,1,1,1,1) #weights
 Electre_3_paramCheck(PM, w, P, Q, V, minmaxcriteria)
 }
+\seealso{
+\code{\link{electre3}}
+}
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }

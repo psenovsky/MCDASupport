@@ -26,9 +26,10 @@
 #' @keywords ELECTRE IV
 #' @keywords descending distillation
 #' @keywords pre-order
-#Descending distillation algorithm used in Electre 3 and 4 methods
-# parameters:
-#   sm   - confidence matrix
+#'
+#' @seealso \code{\link{Electre_asc_dist}}
+#' @seealso \code{\link{electre3}}
+#' @seealso \code{\link{electre4}}
 Electre_desc_dist <- function(sm) {
   distilationdesc <- list()
   alt <- rownames(sm)

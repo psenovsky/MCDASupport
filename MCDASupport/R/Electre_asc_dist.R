@@ -23,6 +23,10 @@
 #'
 #' @keywords ELECTRE III
 #' @keywords ELECTRE IV
+#'
+#' @seealso \code{\link{Electre_desc_dist}}
+#' @seealso \code{\link{electre3}}
+#' @seealso \code{\link{electre4}}
 Electre_asc_dist <- function(sm) {
   distilationasc <- list()
   alt <- rownames(sm)

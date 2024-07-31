@@ -24,6 +24,13 @@ The algorithm is used in \code{\link{electre3}} and
 Meyer, P. at al. MCDA package. GitHub: 2021, available from:
  \url{https://github.com/paterijk/MCDA/blob/master/}
 }
+\seealso{
+\code{\link{Electre_asc_dist}}
+
+\code{\link{electre3}}
+
+\code{\link{electre4}}
+}
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }

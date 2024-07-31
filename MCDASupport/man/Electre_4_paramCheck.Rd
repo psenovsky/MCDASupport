@@ -47,6 +47,11 @@ P <- c(50,24,1,24,20) #Preference thresholds
 V <- c(100,60,2,48,90) #Veto thresholds
 Electre_4_paramCheck(PM, P, Q, V, minmaxcriteria)
 }
+\seealso{
+\code{\link{electre3}}
+
+\code{\link{electre4}}
+}
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }

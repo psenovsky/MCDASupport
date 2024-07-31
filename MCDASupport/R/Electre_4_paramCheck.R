@@ -28,6 +28,9 @@
 #' @keywords ELECTRE 1s
 #' @keywords ELECTRE TRI
 #'
+#' @seealso \code{\link{electre3}}
+#' @seealso \code{\link{electre4}}
+#'
 #' @examples
 #' PM <- cbind(
 #'   c(-14,129,-10,44,-14),

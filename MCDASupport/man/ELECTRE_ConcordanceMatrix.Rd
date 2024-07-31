@@ -71,6 +71,13 @@ Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
  Methods and Applications in Engineering and Infrastructure investment.
  Springer 2000, 208 p., ISBN 978-1-4757-5057-7
 }
+\seealso{
+\code{\link{electre1}}
+
+\code{\link{electre2}}
+
+\code{\link{ELECTRE_DiscordanceMatrix}}
+}
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }
