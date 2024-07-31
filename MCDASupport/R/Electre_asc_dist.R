@@ -1,7 +1,28 @@
-# Descending distillation algorithm used in Electre 3 and 4 methods
-#
-# parameters:
-#   sm   - confidence matrix
+#' algorithm for ascending distilation
+#'
+#' @description
+#' Algorithm to establish partial preorder by the means of ascending
+#'  distilation. Preorder is achieved by distilling alternatives using
+#'  progresively lower cut-off thresholds.
+#'
+#' This aproach is complementary to descending distilation process which
+#'  creates second pre-order.
+#'
+#' The algorithm is used in Electre III (\code{\link{electre3}}) and Electre IV
+#'  (\code{\link{electre4}}) methods.
+#'
+#' @param sm confidence matrix
+#'
+#' @return list of alternatives in ranks from worst-to best.
+#'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#'
+#' @references 
+#' Meyer, P. at al. MCDA package. GitHub: 2021, available from:
+#'  \url{https://github.com/paterijk/MCDA/blob/master/}
+#'
+#' @keywords ELECTRE III
+#' @keywords ELECTRE IV
 Electre_asc_dist <- function(sm) {
   distilationasc <- list()
   alt <- rownames(sm)
