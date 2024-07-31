@@ -1,19 +1,84 @@
-#Concordance matrix
-#C(a,b) = (1/W) * SUM{for all j: g_j(a)>=g_j(b)}(w_j),
-# where W = SUM{from j=1 to n}w_j
-ELECTRE_ConcordanceMatrix <- function(PM, w) {
+#'  function used compute concordance matrix in Electre family of methods
+#'
+#' @description
+#' \loadmathjax
+#' Internal method for computing concordance matrix for ELECTRE I
+#'  (\code{\link{electre1}}) and ELECTRE II (\code{\link{electre2}}) methods.
+#'  Concordance matrix is one of two perspectives ELECTRE methods use to derive
+#'  preference for the alternatives, the other being Discordance matrix.
+#'
+#' Concordancce matrix (index) measures strength of the statement that
+#'  alternative a outranks alternative b, while discordance matrix (index)
+#'  together with discordance threshold (exceeding this threshold) can prevent
+#'  such outranking.
+#'
+#' Code is inspired by pyDecisions package.
+#'
+#' Computationally concoradce matrix C(a,b) is defined as:
+#'
+#' \mjsdeqn{C(a,b) = \frac{1}{W} \sum_{\forall j: g_j(a) \ge g_j(b)}w_j}
+#'
+#' where
+#'
+#' \mjsdeqn{W = \sum_{j=1}^{n}w_j}
+#'
+#' Where a, b ... are alternatives to be compared, \mjseqn{g_j(x)} ...
+#'  performance of alternative x in criterium j, \mjseqn{w_j} ... weight of
+#'  criterium j.
+#'
+#' @param pm matrix or data frame containing the performance table. Each row
+#'  corresponds to an alternative, and each column to a criterion. only numeric
+#'  values expercted. Rows and columns are expected to be named and criteria
+#'  are expected to be maximized (you can use function
+#'  \code{\link{util_pm_minmax}} to do that)
+#' @param w vector containing the weights of the criteria
+#'
+#' @return computed concordancce matrix
+#'
+#' @references
+#' Balamurali, M.: pyDecisions - A Python Library of management decision making
+#'  techniques. Avilable on-line from
+#'  \url{https://github.com/Valdecy/pyDecisions}
+#'
+#' Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
+#'  Methods and Applications in Engineering and Infrastructure investment.
+#'  Springer 2000, 208 p., ISBN 978-1-4757-5057-7
+#'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#'
+#' @examples
+#' PM <- cbind(
+#'   c(103000,101300,156400,267400,49900,103600,103000,170100,279700,405000),
+#'   c(171.3,205.3,221.7,230.7,122.6,205.1,178.0,226.0,233.8,265.0),
+#'   c(7.65,7.90,7.90,10.50,8.30,8.20,7.20,9.10,10.90,10.30),
+#'   c(352,203,391,419,120,265,419,419,359,265),
+#'   c(11.6,8.4,8.4,8.6,23.7,8.1,11.4,8.1,7.8,6.0),
+#'   c(88.0,78.3,81.5,64.7,74.1,81.7,77.6,74.7,75.5,74.7),
+#'   c(69.7,73.4,69.0,65.6,76.4,73.6,66.2,71.7,70.9,72.0))
+#' rownames(PM) <- c("CBX16","P205G","P405M","P605S",
+#'   "R4GTL","RCLIO","R21TS","R21TU","R25BA","ALPIN")
+#' colnames(PM) <- c("Prix","Vmax","C120","Coff","Acce","Frei","Brui")
+#' minmaxcriteria <-c("min","max","min","max","min","min","min")
+#' w <- c(0.3,0.1,0.3,0.2,0.1,0.2,0.1)
+#' PMmax <- util_pm_minmax(PM, minmaxcriteria)
+#' cm <- ELECTRE_ConcordanceMatrix(PMmax, w)
+#'
+#' @keywords ELECTRE I
+#' @keywords ELECTRE II
+#' @keywords concordance matrix
+ELECTRE_ConcordanceMatrix <- function(pm, w) {
 
   # with < 2 criteria or alternatives, there is no MCDA problem
-  if (is.null(dim(PM))) stop("less than 2 criteria or 2 alternatives")
-  if (!(is.matrix(PM) || (is.data.frame(PM)))) {
+  if (is.null(dim(pm))) stop("less than 2 criteria or 2 alternatives")
+  if (!(is.matrix(pm) || (is.data.frame(pm)))) {
     stop("wrong performance matrix, should be a matrix or a data frame")
   }
   if (!(is.vector(w, mode = "numeric"))) {
     stop("criteria weights should be a numeric vector")
   }
-  nalt <- nrow(PM)  #no. of alternatives
-  ncri <- ncol(PM)  #no. of criteria
-  alt  <- rownames(PM)
+  nalt <- nrow(pm)  #no. of alternatives
+  ncri <- ncol(pm)  #no. of criteria
+  alt  <- rownames(pm)
   if (ncri != length(w)) {
     stop("number of weights must be same as number of criteria")
   }
@@ -26,7 +91,7 @@ ELECTRE_ConcordanceMatrix <- function(PM, w) {
   for (i in 1:nalt) {
     for (j in 1:nalt) {
       if (i != j) {
-        cm[i, j] <- sum(ifelse(PM[i, ] >= PM[j, ], w, 0))
+        cm[i, j] <- sum(ifelse(pm[i, ] >= pm[j, ], w, 0))
       }
     }
   }
