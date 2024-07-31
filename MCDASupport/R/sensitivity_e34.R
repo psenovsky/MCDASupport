@@ -59,13 +59,10 @@ sensitivity_e34 <- function(object, steps = 100) {
     p2 <- e$p
     for (i in seq_along(p)) {
       p2[j] <- p[i]
-      if (model == "electre4") {
-        t <- electre4$new(e$pm_orig, p2, e$q, e$v, e$minmaxcriteria)
-      } else if (model == "electre3") {
-        t <- electre3$new(e$pm_orig, e$w, p2, e$q, e$v, e$minmaxcriteria)
-      } else {
-        stop("unsupported model")
-      }
+      t <- switch(model,
+                  "electre4" = electre4$new(e$pm_orig, p2, e$q, e$v, e$minmaxcriteria),
+                  "electre3" = electre3$new(e$pm_orig, e$w, p2, e$q, e$v, e$minmaxcriteria),
+                  stop("unsupported model"))
       if (!vector_compare(t$finalPreorder, e$finalPreorder)) {
         if (i != 1) return(p[i - 1])
         return(p[i])
@@ -87,13 +84,10 @@ sensitivity_e34 <- function(object, steps = 100) {
     q2 <- e$q
     for (i in seq_along(q)) {
       q2[j] <- q[i]
-      if (model == "electre4") {
-        t <- electre4$new(e$pm_orig, e$p, q2, e$v, e$minmaxcriteria)
-      } else if (model == "electre3") {
-        t <- electre3$new(e$pm_orig, e$w, e$p, q2, e$v, e$minmaxcriteria)
-      } else {
-        stop("unsupported model")
-      }
+      t <- switch(model,
+                  "electre4" = electre4$new(e$pm_orig, e$p, q2, e$v, e$minmaxcriteria),
+                  "electre3" = electre3$new(e$pm_orig, e$w, e$p, q2, e$v, e$minmaxcriteria),
+                  stop("unsupported model"))
       if (!vector_compare(t$finalPreorder, e$finalPreorder)) {
         if (i != 1) return(q[i - 1])
         return(q[i])
@@ -115,13 +109,10 @@ sensitivity_e34 <- function(object, steps = 100) {
     v2 <- e$v
     for (i in seq_along(v)) {
       v2[j] <- v[i]
-      if (model == "electre4") {
-        t <- electre4$new(e$pm_orig, e$p, e$q, v2, e$minmaxcriteria)
-      } else if (model == "electre3") {
-        t <- electre3$new(e$pm_orig, e$w, e$p, e$q, v2, e$minmaxcriteria)
-      } else {
-        stop("unsupported model")
-      }
+      t <- switch(model,
+                  "electre4" = electre4$new(e$pm_orig, e$p, e$q, v2, e$minmaxcriteria),
+                  "electre3" = electre3$new(e$pm_orig, e$w, e$p, e$q, v2, e$minmaxcriteria),
+                  stop("unsupported model"))
       if (!vector_compare(t$finalPreorder, e$finalPreorder)) {
         if (i != 1) return(v[i - 1])
         return(v[i])
