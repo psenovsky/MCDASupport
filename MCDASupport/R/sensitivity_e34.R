@@ -51,6 +51,9 @@ sensitivity_e34 <- function(object, steps = 100) {
   #
   # @param p preference threshold value to be tested for sensitivity
   # @param j criterium being tested
+  # @param e model object to be tested (currently only electre3 and electre4
+  #  are supported)
+  # @param model identification of method which should be used for testing
   #
   # @return
   # value of preference threshold at which provided solution for the decision
@@ -76,6 +79,9 @@ sensitivity_e34 <- function(object, steps = 100) {
   #
   # @param q indifference threshold value to be tested for sensitivity
   # @param j criterium being tested
+  # @param e model object to be tested (currently only electre3 and electre4
+  #  are supported)
+  # @param model identification of method which should be used for testing
   #
   # @return
   # value of indifference threshold at which provided solution for the
@@ -101,6 +107,9 @@ sensitivity_e34 <- function(object, steps = 100) {
   #
   # @param q veto threshold value to be tested for sensitivity
   # @param j criterium being tested
+  # @param e model object to be tested (currently only electre3 and electre4
+  #  are supported)
+  # @param model identification of method which should be used for testing
   #
   # @return
   # value of veto threshold at which provided solution for the
