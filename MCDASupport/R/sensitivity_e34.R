@@ -125,6 +125,9 @@ sensitivity_e34 <- function(object, steps = 100) {
   model <- class(e)
   models <- c("electre3", "electre4")
   if (!(model[1] %in% models)) stop("unsupporter model")
+  if (!is.numeric(steps) || steps < 0) {
+    stop("Steps parameter must be numeber greater then 0.")
+  }
   ncri <- ncol(e$pm)
   cri <- colnames(e$pm)
   sens_p <- data.frame(matrix(0, nrow = ncri, ncol = 4))
