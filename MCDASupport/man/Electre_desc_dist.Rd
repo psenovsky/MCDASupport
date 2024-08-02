@@ -9,6 +9,9 @@ Electre_desc_dist(sm)
 \arguments{
 \item{sm}{confidence matrix}
 }
+\value{
+list of alternatives in ranks from worst to best.
+}
 \description{
 Algorithm to establish partial preorder by the means of descending
  distilation. Preorder is achieved by distilling alternatives using

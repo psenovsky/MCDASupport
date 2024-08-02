@@ -13,7 +13,7 @@
 #'
 #' @param sm confidence matrix
 #'
-#' @returm list of alternatives in ranks from worst to best.
+#' @return list of alternatives in ranks from worst to best.
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
