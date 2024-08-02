@@ -156,6 +156,13 @@ sensitivity_e34 <- function(object, steps = 100) {
     step <- (e$v[i] - e$p[i]) / steps
     hyp_p1 <- seq(from = e$p[i], to = (e$v[i] - step), by = step)
     hyp_v0 <- rev(seq(from = e$p[i] + step, to = e$v[i], by = step))
+    if (e$v[i] >= m_i) {
+      hyp_v1 <- seq(from = e$v[i], to = 2 * e$v[i],
+                    by = e$v[i] / steps)
+    } else {
+      hyp_v1 <- seq(from = e$v[i], to = m_i,
+                    by = (m_i - e$v[i]) / steps)
+    }
     hyp_v1 <- seq(from = e$v[i], to = m_i,
                   by = (m_i - e$v[i]) / steps)
     hyp_q0 <- rev(seq(from = 0, to = e$q[i], by = e$q[i] / steps))
