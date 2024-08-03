@@ -1,9 +1,33 @@
-# final ranking for Electre 3 a 4 methods
-# parameters:
-#   alt - alternatives
-#   rank_P - pre-rank matrix
-#
-# returns final_ranking and final ranking unsorted
+#' computes final ranking based on pre-order matrix
+#'
+#' @description
+#' Takes pre-order matrix as computed by ELECTRE III (\link{electre3}) and
+#'  ELECTRE IV (\link{electre4}) and computes final ranking from it.
+#'
+#' @param alt vector of alternatives (its names)
+#' @param rank_P pre-order matrix
+#'
+#' @return
+#' returns data frame with final ranking in sorted and unsorted form:
+#' \itemize{
+#'   \item final_ranking - final ranking of the alternatives in sorted form
+#'   \item finalRankingUnsorted - final ranking of the alternatives in unsorted
+#'  form (useful for sensitivity analyses)
+#' }
+#'
+#' @references
+#' Meyer, P. at al. MCDA package. GitHub: 2021, available from:
+#'  \url{https://github.com/paterijk/MCDA/blob/master/}
+#'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#'
+#' @keywords ELECTRE IV
+#' @keywords ELECTRE III
+#' @keywords ELECTRE methods
+#' @keywords final ranking
+#'
+#' @seealso \link{electre3}
+#' @seealso \link{electre4}
 finalRanking <- function(alt, rank_P) {
 
   compte <- function(symbole, seq) {
