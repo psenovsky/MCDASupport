@@ -2,7 +2,7 @@
 \alias{plot.threshold.3d}
 \title{plot.threshold.3d : Function to plot alternatives participation kernel when changing concordance both discordance thresholds}
 \description{
-    Plot visualized participation of the alternatives on the kernel in \code{\link{Electre_1}} function.
+    Plot visualized participation of the alternatives on the kernel in \code{\link{electre1}} function.
 
     Alternatives are organized on z axis. X represents concordance and z axis represents discordance threshold. Visually each alternative has its own row which allows us to explore how the participation in kernel changes in 3D.
 

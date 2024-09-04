@@ -1,7 +1,7 @@
 #' function for checking of the parameters fothe Electre 4 method
 #'
 #' @description
-#' Checks parameters for ELECTRE 4 method (see \code{\link{Electre_4}}).
+#' Checks parameters for ELECTRE 4 method (see \code{\link{electre4}}).
 #'  It should stop processing of the inputs early when problem with
 #'  parameters is detected by producing error message into the console.
 #'
@@ -9,7 +9,7 @@
 #'  returning any value, allowing the calling function using it to continue.
 #'
 #' The function is also used by \code{\link{Electre_3_paramCheck}},
-#'  \code{\link{electre1s}} and \code{\link{electre_TRI}}.
+#'  \code{\link{electre1s}} and \code{\link{electretri}}.
 #'
 #' @param pm performance of the alternatives in criteria. Alternatives are in
 #'  rows, criteria in columns.

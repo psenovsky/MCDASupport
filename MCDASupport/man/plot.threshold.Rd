@@ -2,7 +2,7 @@
 \alias{plot.threshold}
 \title{plot.threshold : Function to plot alternatives participation kernel when changing concordance or discordance threshold}
 \description{
-    Plot visualized participation of the alternatives on the kernel in \code{\link{Electre_1}} function.
+    Plot visualized participation of the alternatives on the kernel in \code{\link{electre1}} function.
 
     Alternatives are organized on x axis. Visually each alternative has its own column to explore the participation. Participation is by point in the graph. If the alternative at given threshold does not participate, the point will not be rendered in the graph.
 

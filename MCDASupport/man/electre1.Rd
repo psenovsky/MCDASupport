@@ -15,7 +15,7 @@ kernel of the decision - the alternatives, which cannot be eleminated from
 decision making as obviously inferior, thus simplifying the decision
 problem. This is a core concept for variety of the methods in ELECTRE
 family, so much so, that the kernel computation procedure is also used
-in \code{\link{Electre_2}} and \code{\link{Electre_1S}} methods, so much
+in \code{\link{electre2}} and \code{\link{electre1s}} methods, so much
 so that the procedure was separated into \code{\link{ELECTRE1_Kernel}}
 function to be utilized by all these methods.
 

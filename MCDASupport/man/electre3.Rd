@@ -104,7 +104,7 @@ Otherwise the alternatives are incomparable: aRb, leading to
 
 This information is directly usable for final ranking derivation.
 
-Please note, that ELECTRE IV (see \code{\link{Electre_4}}) uses same
+Please note, that ELECTRE IV (see \code{\link{electre4}}) uses same
  procedure for rank derivation, but does not use weights.
 }
 \examples{

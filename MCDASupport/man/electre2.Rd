@@ -311,11 +311,11 @@ basic information on the model including ranking.
 \if{html}{\out{<a id="method-electre2-sensitivity"></a>}}
 \if{latex}{\out{\hypertarget{method-electre2-sensitivity}{}}}
 \subsection{Method \code{sensitivity()}}{
-sensitivity analysis for ELECTRE II (see \code{\link{lectre2}} object
- documentation) is performed on values of concordance and discordance
- thresholds. Since these thresholds are defined as fuzzy numbers, the
- analysis is performed on five parameters c-, c0 and c+ for concordance
- thresholds, d- and d+ for discordance threshold.
+sensitivity analysis for ELECTRE II is performed on values of
+ concordance and discordance thresholds. Since these thresholds are
+ defined as fuzzy numbers, the analysis is performed on five parameters
+ c-, c0 and c+ for concordance thresholds, d- and d+ for discordance
+ threshold.
 
 Analysis always explores changes of a single parametr, while all other
  are held static (non changing).
