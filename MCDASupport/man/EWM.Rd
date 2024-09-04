@@ -95,3 +95,9 @@ Kumar, Raman; Bilga, Paramjit Singh Singh, Sehijpal. Multi objective
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }
+\keyword{@keywords}
+\keyword{EWM}
+\keyword{Entropy}
+\keyword{Method}
+\keyword{Weight}
+\keyword{weight}

@@ -84,9 +84,9 @@
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
-#' @keyword EWM
-#' @keyword Entropy Weight Method
-#' @keyword weight
+#' @keywords EWM
+#' @keywords Entropy Weight Method
+#' @keywords weight
 EWM <- function(PM, minmaxcriteria = "max", VERBOSE = FALSE) {
 
   ## check validity of the objects manipulated by the current function
