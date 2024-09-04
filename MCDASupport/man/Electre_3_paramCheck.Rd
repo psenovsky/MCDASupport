@@ -28,12 +28,12 @@ for each criterium)}
 
 \item{v}{vector of veto thresholds}
 
+\item{minmaxcriteria}{vector of optimization direction (min/max) for the
+criteria}
+
 \item{alpha}{first discrimination threshold (0.3 by default)}
 
 \item{beta}{second discrimination threshold (0.15 by default)}
-
-\item{minmaxcriterie}{vector of optimization direction (min/max) for the
-criteria}
 }
 \description{
 Checks parameters for ELECTRE 3 method used by \code{\link{electre3}} R6

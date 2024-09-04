@@ -19,7 +19,7 @@
 #'  for each criterium)
 #' @param q vector of indiference thresholds
 #' @param v vector of veto thresholds
-#' @param minmaxcriterie vector of optimization direction (min/max) for the
+#' @param minmaxcriteria vector of optimization direction (min/max) for the
 #'  criteria
 #' @param alpha first discrimination threshold (0.3 by default)
 #' @param beta second discrimination threshold (0.15 by default)
