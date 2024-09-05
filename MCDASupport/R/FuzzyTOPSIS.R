@@ -232,10 +232,13 @@ fuzzytopsis <- R6Class("fuzzytopsis",
     summary = function() {
       nalt <- length(self$alt)
       ncri <- nrow(self$w)
-      cat(paste0("Fuzzy TOPSIS:\n processed ", nalt, " alternatives in ", ncri,
-                 " criteria\n\n", "Fuzzy decision matrix:\n", self$wfndm))
-      print(self$wfndm, pretty = TRUE)
-      cat(paste0(" \nOrder of the alternatives:\n", self$cc))
+      cat(paste0("Fuzzy TOPSIS processed ", nalt, " alternatives in ", ncri,
+                 " criteria\n\n", "a+:\n"))
+      print(self$a_plus, pretty = TRUE)
+      cat(paste("\na-:\n"))
+      print(self$a_minus, pretty = TRUE)
+      cat(paste("\nAlternatives sorted by closeness coef.:\n"))
+      print(self$cc, pretty = TRUE)
     }
   ),
   private = list(
