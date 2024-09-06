@@ -227,7 +227,7 @@ fuzzyvikor <- R6Class("fuzzyvikor",
     #' summary of the Fuzzy VIKOR method resutls.
     #' @return basic information on the model including ranking.
     summary = function() {
-      cat(paste("S metric\n"))
+      cat(paste0("Fuzzy VIKOR\nS metric\n"))
       print(self$S, pretty = TRUE)
       cat(paste("\nR metric\n"))
       print(self$R, pretty = TRUE)
