@@ -1,15 +1,27 @@
-# preference degree is being computed in PROMETHEE and SIR functions
-#
-# parameters:
-#   - nalt - number of alternatives
-#   - ncri - number of criteria
-#   - DK - result of paiweise comparison
-#   - d - type of function (default, U-shape, V-shape, level)
-#   - qj - indifference threshold
-#   - pj - preference threshold
-#   - sj - intermediate threshold
-#   - alt - vector of alternative's names
-#   - cri - vestor of criteria's names
+#' computes preference degree for SIR and PROMETHEE functions
+#'
+#' @description
+#' The function is being used in \code{\link{SIR}} and
+#'  \code{\link{PROMETHEE}} functions to compute preferencee degree.
+#'  degree is then further used by these methods to derive its
+#'  recommendations.
+#'
+#' @param nalt number of alternatives
+#' @param ncri number of criteria
+#' @param DK result of paiweise comparison
+#' @param d type of function (default, U-shape, V-shape, level), vector - sets
+#'  the type for every criterion
+#' @param qj indifference threshold vector
+#' @param pj preference threshold vector
+#' @param sj ntermediate threshold vector
+#' @param alt vector of alternative's names
+#' @param cri vector of criteria's names
+#'
+#' @return preference degree matrix
+#'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#'
+#' @keywords preference degree SIR PROMETHEE
 preferenceDegree <- function(nalt, ncri, DK, d, qj, pj, sj, alt, cri) {
   Pj <- lapply(1:ncri, function(k) {
     DKf <- DK[[k]]
