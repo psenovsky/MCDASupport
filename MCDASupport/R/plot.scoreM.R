@@ -13,7 +13,7 @@
 #' @param x weighted preference matrix - values in matrix used to descibe
 #'  strength of the relation.
 #'
-#' @retrun stocked bar chart of criteria contributions to overal performance
+#' @return stocked bar chart of criteria contributions to overal performance
 #' of the alternative
 #'
 #' @references

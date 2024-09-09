@@ -11,6 +11,10 @@
 \item{x}{weighted preference matrix - values in matrix used to descibe
 strength of the relation.}
 }
+\value{
+stocked bar chart of criteria contributions to overal performance
+of the alternative
+}
 \description{
 Takes weighted preference matrix and uses it to plot stacked bar chart
  describing how the criteria (forming the stocks in graph) contribute to the
