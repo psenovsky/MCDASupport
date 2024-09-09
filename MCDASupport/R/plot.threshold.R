@@ -1,10 +1,30 @@
-# function to visualize alternatives kernel participation
-#
-# parameters
-#   df ... dataframe with alternatives (boolean values for kernel participation)
-#          and threshold with actual shreshold being used for computation.
-#   title - main heading of the graph
-#   y_label - label for the Y axis of the graph
+#' Function to plot alternatives participation kernel when changing concordance
+#'  or discordance threshold
+#'
+#' @description
+#' Plot visualized participation of the alternatives on the kernel in
+#'  \code{\link{electre1}} function.
+#'
+#' Alternatives are organized on x axis. Visually each alternative has its own
+#'  column to explore the participation. Participation is by point in the
+#'  graph. If the alternative at given threshold does not participate, the
+#'  point will not be rendered in the graph.
+#'
+#' The graph is ploting only one threshold at the time: either concordance or
+#'  discordance threshold.
+#'
+#' @param df dataframe with alternatives and threshold
+#' @param title main title of the graph
+#' @param y_label label of the y axis, usually concordance or discordance
+#'  threshold, default value threshold
+#'
+#' @return plot of alternatives participation kernel when changing concordance
+#'  or discordance threshold
+#'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#'
+#' @keywords kernel plot concordance discordance threshold sensitivity electre1
+#' @keywords electre2
 plot.threshold <- function(df, title = "Kernel participation",
                            y_label = "threshold") {
   plot_data <- df %>%
