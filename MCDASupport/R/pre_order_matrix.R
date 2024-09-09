@@ -1,8 +1,32 @@
-# compute pre-order matrix for Electre 3 and 4 methods
-# parameters:
-#   rank_D - descending distillation ranking
-#   rank_A - ascending distillation ranking
-#   alt    - all alternatives
+#' function to create preorder matrix
+#'
+#' @description
+#' Function takes outputs of descending and ascending distilation pre-order and
+#'  created pre-order matrix describing outranking relation between the
+#'  alternatives.
+#'
+#' The relation can be P+ (a outranks b), P- (b outranks a), I (indifference)
+#'  and R (incomparable). Information from preorder matrix can be utilized to
+#'  create adjancancy matrix and construct final ranking.
+#'
+#' This function is being utilized by \link{electre3} and \link{electre4}.
+#'
+#' @param rank_D descending distilation ranking in the form of ordered dataframe
+#' @param rank_A ascending distilation ranking in the form of ordered dataframe
+#' @param alt vector of alternatives names
+#'
+#' @return pre-order matrix
+#'
+#' @references
+#' Meyer, P. at al. MCDA package. GitHub: 2021, available from:
+#'  \url{https://github.com/paterijk/MCDA/blob/master/}
+#'
+#' Prombo, M. Package OutrankingTools, CRAN: 2015, available from:
+#'  \url{https://cran.r-project.org/web/packages/OutrankingTools/}
+#'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#'
+#' @keywords electre3 electre4 pre-order matrix
 pre_order_matrix <- function(rank_D, rank_A, alt) {
   nalt <- length(alt)
   po_string <- matrix("-", nalt, nalt)
