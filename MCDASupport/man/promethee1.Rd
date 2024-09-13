@@ -78,8 +78,9 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \item{\code{w}}{weights vector}
 
 \item{\code{minmax}}{vector of min/max (set direction of optimization for
- criteria)
- @field i_threshold indefference threshold vector}
+criteria)}
+
+\item{\code{i_threshold}}{indefference threshold vector}
 
 \item{\code{p_threshold}}{prefference threshold vector}
 
@@ -95,10 +96,11 @@ other alternatives}
 preferences of the alternatives across the criteria}
 
 \item{\code{preferenceDegreeUnw}}{list of matrixes with unweighted preferences,
- separate matrix for each criterion
- @field pairweiseComparison list of matrixes measuring nominal
- differences in alternatives performance in criterions. Separate
- matrixes are constructed for each criterion.}
+separate matrix for each criterion}
+
+\item{\code{pairweiseComparison}}{list of matrixes measuring nominal
+differences in alternatives performance in criterions. Separate
+matrixes are constructed for each criterion.}
 
 \item{\code{preferenceMatrix}}{preference matrix with specified P+ (a prefered
 to b), P- (b prefered to a), I (indifferent) and R (incomparable) for

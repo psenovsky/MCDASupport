@@ -52,7 +52,7 @@ promethee1 <- R6Class("promethee1",
     #'  criteria)
     minmax = NULL,
 
-    #' @field i_threshold indefference threshold vector
+    #' @field i_threshold indefference threshold vector
     i_threshold = NULL,
 
     #' @field p_threshold prefference threshold vector
@@ -77,7 +77,7 @@ promethee1 <- R6Class("promethee1",
     #'  separate matrix for each criterion
     preferenceDegreeUnw = NULL,
 
-    #' @field pairweiseComparison list of matrixes measuring nominal
+    #' @field pairweiseComparison list of matrixes measuring nominal
     #'  differences in alternatives performance in criterions. Separate
     #'  matrixes are constructed for each criterion.
     pairweiseComparison = NULL,
