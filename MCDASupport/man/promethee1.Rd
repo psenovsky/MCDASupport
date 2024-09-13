@@ -51,8 +51,8 @@ rownames(PM) <- c('A1', 'A2', 'A3', 'A4', 'A5', 'A6')
 minmax <- 'max'
 shape <- c('U-shape', 'V-shape', 'linear', 'level', 'default',
            'Gaussian')
-q <- c(10, 0, 450, 50, 0, 0) #indifference threshold
-p <- c(0, 30, 50, 10, 0, 0) #prefference threshold
+p <- c(10, 0, 450, 50, 0, 0) #indifference threshold
+q <- c(0, 30, 50, 10, 0, 0) #prefference threshold
 s <- c(0,0,0,0,0,5) #intermediate threshold
 w <- c(0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1665)
 result <- promethee1$new(PM, shape, w, minmax, q, p, s)
@@ -196,8 +196,8 @@ rownames(PM) <- c('A1', 'A2', 'A3', 'A4', 'A5', 'A6')
 minmax <- 'max'
 shape <- c('U-shape', 'V-shape', 'linear', 'level', 'default',
            'Gaussian')
-q <- c(10, 0, 450, 50, 0, 0) #indifference threshold
-p <- c(0, 30, 50, 10, 0, 0) #prefference threshold
+p <- c(10, 0, 450, 50, 0, 0) #indifference threshold
+q <- c(0, 30, 50, 10, 0, 0) #prefference threshold
 s <- c(0,0,0,0,0,5) #intermediate threshold
 w <- c(0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1665)
 result <- promethee1$new(PM, shape, w, minmax, q, p, s)
