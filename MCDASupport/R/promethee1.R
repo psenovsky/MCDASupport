@@ -344,7 +344,7 @@ promethee1 <- R6Class("promethee1",
             t <- seq(from = self$i_threshold[i], to = self$im_threshold[i],
                      by = (self$im_threshold[i] - self$i_threshold[i]) / step)
             hyp_im0 <- rev(t)
-            s <- (p_threshold[i] - im_threshold[i]) / step
+            s <- (self$p_threshold[i] - self$im_threshold[i]) / step
             hyp_im1 <- seq(from = self$im_threshold[i],
                            to = self$p_threshold - s, by = s)
           } else { # im only
