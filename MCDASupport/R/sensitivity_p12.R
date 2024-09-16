@@ -40,10 +40,10 @@
 #'  presumes, that if positive and negative flows remain same, so does the
 #'  final ranking. That means that sensitivity of both methods is tested
 #'  through optic of the PROMETHEE I method. If above mentioned presumption
-#'  would not hold, the PROMETHEE II would need to be tested based on either
-#'  net flow or from it derived ranking.
+#'  would not hold, the PROMETHEE II (or III) would need to be tested based
+#'  on either net flow or from it derived ranking.
 #'
-#' @param object PROMETHEE I or II model we want to test sensitivity for
+#' @param object PROMETHEE I, II or III model we want to test sensitivity for
 #' @param step number of steps to divide threshold testing interval (default:
 #'  100)
 #'
@@ -74,6 +74,9 @@ sensitivity_p12 <- function(object, step = 100) {
         "promethee2" = promethee2$new(e$pm_orig, e$pref_function, e$w,
                                       e$minmax, e$i_threshold, p2,
                                       e$im_threshold),
+        "promethee3" = promethee3$new(e$pm_orig, e$pref_function, e$w,
+                                      e$minmax, e$i_threshold, p2,
+                                      e$im_threshold),
         stop("unsupported model")
       )
       if (!vector_compare(t$positiveFlow, e$positiveFlow) ||
@@ -91,7 +94,7 @@ sensitivity_p12 <- function(object, step = 100) {
   # @param indiff vector of indifference threshold values to be tested for
   #  sensitivity
   # @param j criterium being tested
-  # @param e PROMETHEE I or II object
+  # @param e PROMETHEE I, II or II object
   # @param model model class name
   #
   # @return
@@ -106,6 +109,9 @@ sensitivity_p12 <- function(object, step = 100) {
                                       e$minmax, indiff2, e$p_threshold,
                                       e$im_threshold),
         "promethee2" = promethee2$new(e$pm_orig, e$pref_function, e$w,
+                                      e$minmax, indiff2, e$p_threshold,
+                                      e$im_threshold),
+        "promethee3" = promethee3$new(e$pm_orig, e$pref_function, e$w,
                                       e$minmax, indiff2, e$p_threshold,
                                       e$im_threshold),
         stop("unsupported model")
@@ -125,13 +131,13 @@ sensitivity_p12 <- function(object, step = 100) {
   # @param im vector of intermediate threshold values to be tested for
   #  sensitivity
   # @param j criterium being tested
-  # @param e PROMETHEE I or II object
+  # @param e PROMETHEE I, II or III object
   # @param model model class name
   #
   # @return
   # value of intermediate threshold at which provided solution for the
   # decision problem changes. If no change detected returns insens.
-  sens_im2 = function(im, j, e, model) {
+  sens_im2 <- function(im, j, e, model) {
     im2 <- e$im_threshold
     for (i in seq_along(im)) {
       im2[j] <- im[i]
@@ -141,7 +147,11 @@ sensitivity_p12 <- function(object, step = 100) {
                           im2),
         "promethee2" = promethee2$new(e$pm_orig, e$pref_function, e$w,
                           e$minmax, e$i_threshold, e$p_threshold,
-                          im2)
+                          im2),
+        "promethee3" = promethee3$new(e$pm_orig, e$pref_function, e$w,
+                          e$minmax, e$i_threshold, e$p_threshold,
+                          im2),
+        stop("unsupported model")
       )
       if (!vector_compare(t$positiveFlow, e$positiveFlow) ||
             !vector_compare(t$negativeFlow, e$negativeFlow)) {
@@ -155,7 +165,7 @@ sensitivity_p12 <- function(object, step = 100) {
 
   # check validity of parameters
   model <- class(object)
-  models <- c("promethee1", "promethee2")
+  models <- c("promethee1", "promethee2", "promethee3")
   if (!(model[1] %in% models)) stop("unsupporter model")
   if (!is.numeric(step) || step < 0) {
     stop("step parameter mus be positive number")

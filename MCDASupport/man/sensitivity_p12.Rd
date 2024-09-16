@@ -8,7 +8,7 @@
 sensitivity_p12(object, step = 100)
 }
 \arguments{
-\item{object}{PROMETHEE I or II model we want to test sensitivity for}
+\item{object}{PROMETHEE I, II or III model we want to test sensitivity for}
 
 \item{step}{number of steps to divide threshold testing interval (default:
 100)}
@@ -56,6 +56,6 @@ Also note that right now the sensitivity testing for PROMETHEE I and II
  presumes, that if positive and negative flows remain same, so does the
  final ranking. That means that sensitivity of both methods is tested
  through optic of the PROMETHEE I method. If above mentioned presumption
- would not hold, the PROMETHEE II would need to be tested based on either
- net flow or from it derived ranking.
+ would not hold, the PROMETHEE II (or III) would need to be tested based
+ on either net flow or from it derived ranking.
 }
