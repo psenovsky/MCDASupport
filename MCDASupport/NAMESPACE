@@ -26,6 +26,7 @@ S3method(summary,fuzzyvikor)
 S3method(summary,promethee1)
 S3method(summary,promethee2)
 S3method(summary,promethee3)
+S3method(summary,sir)
 S3method(summary,wsm)
 
 import(graphics)
