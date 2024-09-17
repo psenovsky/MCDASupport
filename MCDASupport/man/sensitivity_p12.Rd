@@ -8,7 +8,8 @@
 sensitivity_p12(object, step = 100)
 }
 \arguments{
-\item{object}{PROMETHEE I, II or III model we want to test sensitivity for}
+\item{object}{PROMETHEE I, II, III or SIR model we want to test sensitivity
+for}
 
 \item{step}{number of steps to divide threshold testing interval (default:
 100)}
@@ -52,10 +53,16 @@ Gaussian function uses intermediate threshold only, but if preference
 
 Function is intended for internal use only
 
-Also note that right now the sensitivity testing for PROMETHEE I and II
+Also note that right now the sensitivity testing for the various models
  presumes, that if positive and negative flows remain same, so does the
  final ranking. That means that sensitivity of both methods is tested
  through optic of the PROMETHEE I method. If above mentioned presumption
  would not hold, the PROMETHEE II (or III) would need to be tested based
  on either net flow or from it derived ranking.
 }
+\keyword{PROMETHEE,}
+\keyword{SIR}
+\keyword{promethee1,}
+\keyword{promethee2}
+\keyword{promethee3}
+\keyword{sensitivity}
