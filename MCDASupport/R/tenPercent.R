@@ -1,7 +1,19 @@
-# returns sequence of from -10 % of x to +10 % of x by 1 %
-#
-# param
-#   x ... numeric value
+#' function for creating a sequence +/- 10\% of valaue
+#'
+#' @description
+#' Function returns sequence +/- 10 \% of given number by 1 \%. The function is
+#'  used by sensitivity analysis functions in version 0.30 of the package.
+#'
+#' For newer versions of the package the function is depreciated and will be
+#'  eventualy removed.
+#'
+#' @param x a number for which the sequence should be generated
+#'
+#' @return vector of numbers +/- 10 \% of x by 1 \%.
+#'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#'
+#' @keywords sensitivity
 tenPercent <- function(x) {
   if (!is.numeric(x)) {
     stop("Numeric value as base for percentage computation expected")
