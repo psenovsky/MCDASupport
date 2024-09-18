@@ -1,15 +1,15 @@
 Package: MCDASupport
 Type: Package
 Title: Support functions for solving Multiple-criteria Decision-making Problems
-Version: 0.30
-Date: 2024-04-15
+Version: 0.31
+Date: 2024-09-20
 Author: Pavel Šenovský pavel.senovsky@vsb.cz [aut, cre]
 Maintainer: Pavel Šenovský <pavel.senovsky@vsb.cz>
 Description: Functions to process ''outranking'' using various methods existing in the literature.
-Depends: igraph, diagram, dplyr, tidyr, stats, graphics, plotly, visNetwork
+Depends: igraph, diagram, dplyr, tidyr, stats, graphics, plotly, visNetwork, R6
 License: GPL (>= 3)
 NeedsCompilation: no
 Encoding: UTF-8
 Imports: mathjaxr
 RdMacros: mathjaxr
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.2
