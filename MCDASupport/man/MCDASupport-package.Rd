@@ -1,5 +1,4 @@
 \name{MCDASupport-package}
-\alias{MCDASupport-package-package}
 \alias{MCDASupport-package}
 \docType{package}
 \title{Functions for Solving Multiple-criteria Decision-making Problems}
