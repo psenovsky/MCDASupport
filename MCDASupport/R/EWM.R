@@ -53,11 +53,11 @@
 #' @return
 #' list:
 #' \itemize{
-#'   \item{normalizedPM}{normalized performance matrix (with all criteria
-#'  transformed to maximalize direction)}
-#'   \item{probabilityCriteria}{probability of criteria to occur}
-#'   \item{degreeDivergence}{degree of divergence}
-#'   \item{entropyWeight}{weights derived by EWM method for the criteria}
+#'   \item normalizedPM - normalized performance matrix (with all criteria
+#'  transformed to maximalize direction)
+#'   \item probabilityCriteria - probability of criteria to occur
+#'   \item degreeDivergence - degree of divergence
+#'   \item entropyWeight - weights derived by EWM method for the criteria
 #' }
 #'
 #' @references
