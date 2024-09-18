@@ -1,4 +1,44 @@
-# MCDASupport v0.30 (Release data: TBD)
+# MCDASupport v0.31 (Release date: 2024-09-20)
+
+The v0.31 presents probably largest ammount of changes between the the versions. During its development over 100 commits were pushed into the repository and basically whole code-base of the package changed. Main goal of the changes was:
+
+* to implement models in form of R6 class, which improves readability of code
+* and also allows to implement S3 functions for summary of objects, well at least the models have implemented support of this function.
+* sensitivity analysis is also redone to more properly test possible ranges for various thresholds
+* as part of changes the documentation switched to Roxygen documentation, making the documentation available directly from the code.
+
+More detailed list of changes for the vesion:
+* refactored common code for SIR and TOPSIS into topsis_ideal function
+* some refactoring in FuzzyTOPSIS function
+* added plot.threshold.3d and plot.threshold functions to visualize senzitivity, paradoxically new approach to computation using R6 classes makes no use of these. Possibly these functions will be removed in future versions (or never leave the development branch)
+* refactored Electre_1 and Electre_1_sensitivity into single universally usable R6 class. This approach will be used as model for other methods. 
+    * as side effect the summary function for the model object is now supported. 
+    * and sensitivity of the solution is computed (in past intervals for parametr testing had to be set manually)
+    * please note that this change is API breaking
+* refactored Electre_1S and Electre_1s_sensitivity into single R6 class (similarly to implementation of the Electre_1) - implementation should be still considered as experimental and bugy. As a side effect Electre_1s_paramCheck is no longer needed.
+* refactored Electre_2 and Electre_2_sensitivity into single R6 class
+* refactored sens_compare function from electre2 class into separate function vector_compare. Intention is to use it in all classes for detecting changes in the model solution.
+* corrected error in documentation of electre1s::sensitivity function, which prevented the documentation for the function to be rendered
+* corrected error for 3 fields in electre2 to render their documentation
+* refactored Electre_3 and Electre_3_sensitivity into new R6 class
+* refactored Electre_4 and Electre_4_sensitivity into R6 electre4 class
+* refactored common parts of Electre III and IV sensitivity testing into sensitivity_e34 function.
+* refactored Electre_TRI and Electre_TRI_sensitivity into R6 electretri R6 class
+* refactored FuzzyTOPSIS into R6 fuzzytopsis class
+* Fuzzy VIKOR
+    * refactored FuzzyVIKOR into R6 fuzzyvikor class
+    * corrected error in result computation - in R metric the S metric was provided (the overal solution was correct)
+* mcda_wsm refactored into wsm R6 class
+* rewriten function. Now it better checks the thresholds depending on used preference function. Also improved consistency check for weights.
+* refactored PROMETHEE_I and PROMETHEE_I_sensitivity into single R6 class
+* refactored PROMETHEE_II and PROMETHEE_II_sensitivity into single R6 class
+* refactored shared code for sensitivity testing for PROMETHEE I and II into separate private function
+* refactored PROMETHEE_III function into promethee3, including implementing summary function and sensitivity testing.
+* refactored SIR function, including implementing summary function and sensitivity testing for SIR-TOPSIS.
+* refactored TOPSIS into R6 class
+* refactored VIKOR into R6 class. Also corrected error of method not properly showing R-metric (provided S-metric instead). The problem was in broadcasting R-metric only, the computation and overal results were correct.
+
+# MCDASupport v0.30 (Release date: 2024-06-17)
 
 The main topic of version 0.30 is to further optimize the code and also make it more readable. As result there are changes in almast all functions.
 
