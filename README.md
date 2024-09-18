@@ -73,7 +73,7 @@ You can use following R code to install package and its dependencies
 packages <- c("mathjaxr", "graphics", "igraph", "diagram", "stats", "dplyr", "visNetwork", "plotly", "tidyr")
 install.packages(setdiff(packages, rownames(installed.packages())))  
 # adjust name of the file to version you are installing
-install.packages("MCDASupport_0.29.tar.gz", repos=NULL, type="source")  
+install.packages("MCDASupport_0.21.tar.gz", repos=NULL, type="source")  
 ```
 ### Executing program
 
@@ -100,7 +100,7 @@ Q <- c(25,16,0,12,10) # Indifference thresholds
 P <- c(50,24,1,24,20) # Preference thresholds
 V <- c(100,60,2,48,90) # Veto thresholds
 # compute the problem using the method of choice
-result <- Electre_4(PM, P, Q, V, minmaxcriteria)
+result <- electre4$new(PM, P, Q, V, minmaxcriteria)
 result$graph # outranking in graphical form
 result$final_ranking # final ranking of alternatives
 ```
@@ -114,11 +114,51 @@ TBD
 
 The project started as a fork of Outranking Tools package by M. Prombo. Original package is no longer maintained (since 2014) and is available only from CRAN archives at https://cran.r-project.org/src/contrib/Archive/OutrankingTools/. 
 
-Outranking tools had implementations of  Electre I - III methods, which have been reimplemented in MCDASupport using Prombo's code with some updates. These updates, as well as all other methods been implemented by Pavel Šenovský (pavel.senovsky@vsb.cz). Who is also current the maintainer of the package.
+Outranking tools had implementations of  Electre I - III methods, which have been reimplemented in MCDASupport using Prombo's code with lots of changes. These updates, as well as all other methods been implemented by Pavel Šenovský (pavel.senovsky@vsb.cz). Who is also current the maintainer of the package.
 
 See function's documentation for information on mathematics and theories methods in this package has been based on.
 
 ## Version History
+
+### MCDASupport v0.31 (Release date: 2024-09-20)
+
+The v0.31 presents probably largest ammount of changes between the the versions. During its development over 100 commits were pushed into the repository and basically whole code-base of the package changed. Main goal of the changes was:
+
+* to implement models in form of R6 class, which improves readability of code
+* and also allows to implement S3 functions for summary of objects, well at least the models have implemented support of this function.
+* sensitivity analysis is also redone to more properly test possible ranges for various thresholds
+* as part of changes the documentation switched to Roxygen documentation, making the documentation available directly from the code.
+
+More detailed list of changes for the vesion:
+* refactored common code for SIR and TOPSIS into topsis_ideal function
+* some refactoring in FuzzyTOPSIS function
+* added plot.threshold.3d and plot.threshold functions to visualize senzitivity, paradoxically new approach to computation using R6 classes makes no use of these. Possibly these functions will be removed in future versions (or never leave the development branch)
+* refactored Electre_1 and Electre_1_sensitivity into single universally usable R6 class. This approach will be used as model for other methods. 
+    * as side effect the summary function for the model object is now supported. 
+    * and sensitivity of the solution is computed (in past intervals for parametr testing had to be set manually)
+    * please note that this change is API breaking
+* refactored Electre_1S and Electre_1s_sensitivity into single R6 class (similarly to implementation of the Electre_1) - implementation should be still considered as experimental and bugy. As a side effect Electre_1s_paramCheck is no longer needed.
+* refactored Electre_2 and Electre_2_sensitivity into single R6 class
+* refactored sens_compare function from electre2 class into separate function vector_compare. Intention is to use it in all classes for detecting changes in the model solution.
+* corrected error in documentation of electre1s::sensitivity function, which prevented the documentation for the function to be rendered
+* corrected error for 3 fields in electre2 to render their documentation
+* refactored Electre_3 and Electre_3_sensitivity into new R6 class
+* refactored Electre_4 and Electre_4_sensitivity into R6 electre4 class
+* refactored common parts of Electre III and IV sensitivity testing into sensitivity_e34 function.
+* refactored Electre_TRI and Electre_TRI_sensitivity into R6 electretri R6 class
+* refactored FuzzyTOPSIS into R6 fuzzytopsis class
+* Fuzzy VIKOR
+    * refactored FuzzyVIKOR into R6 fuzzyvikor class
+    * corrected error in result computation - in R metric the S metric was provided (the overal solution was correct)
+* mcda_wsm refactored into wsm R6 class
+* rewriten function. Now it better checks the thresholds depending on used preference function. Also improved consistency check for weights.
+* refactored PROMETHEE_I and PROMETHEE_I_sensitivity into single R6 class
+* refactored PROMETHEE_II and PROMETHEE_II_sensitivity into single R6 class
+* refactored shared code for sensitivity testing for PROMETHEE I and II into separate private function
+* refactored PROMETHEE_III function into promethee3, including implementing summary function and sensitivity testing.
+* refactored SIR function, including implementing summary function and sensitivity testing for SIR-TOPSIS.
+* refactored TOPSIS into R6 class
+* refactored VIKOR into R6 class. Also corrected error of method not properly showing R-metric (provided S-metric instead). The problem was in broadcasting R-metric only, the computation and overal results were correct.
 
 ### MCDASupport v0.30 (Release date: 2024-06-17)
 
@@ -137,50 +177,6 @@ The main topic of version 0.30 is to further optimize the code and also make it 
 * FuzzyTOPSIS optimized
 * optimization of PROMETHEE function
 * refactored parameter check code for PROMETHEE and SIR into separate function
-
-### MCDASupport v0.29 (Release date: 2023-12-19)
-
-Main goal of version 0.29 is to go back to basics and look at the efficiency of the inner working of the functions. Since original implementation was inspired by classical programming languages, the functions relied extensively on the cycles to realize the computation. But R is optimized to different types of computations and provides alternative approaches to get same results but with highly efficient work with matrices instead.
-
-Such efficiency is desirable as it will speed computation especially for more advanced sensitivity analyses, which should be implemented in the future. It slould also improves readability of the code by significantly simplifying it.
-
-The optimizations have been applied to:
-
-* ELECTRE I for aSb iff C(a,b) >= c_thres and D(a,b) <= d_thres
-* also removed one nested cycle in ELECTRE_ConcordanceMatrix, which has impact on ELECTRE I, II and some other methods in ELECTRE family
-* similarly ELECTRE discordance matrix computation has been slightly refactored
-* ELECTRE 2
-* ELECTRE 3 - only small improvement in the way of initializing empty (zero) matrices, and in computation of concordance matrix
-* ELECTRE 4 - again only small improvements in matrices initialization and also inside computation cycles, but nothing revolutionary to see there.
-* ELECTRE TRI - some basic simplifications
-* FuzzyVIKOR - optimized agg_fuzzy_value and best_worst_fij functions
-* mcda_get_dominated - optimized domination relation identification
-* small optimizations in pre_order_matrix function
-* optimized significantly preference matrix (comparison) generation in PROMETHEE_I function
-* mcda_wsm - optimized weight application to the preference matrix
-* PROMETHEE (general function utilized in PROMETHEE family of functions) imroved efficiency of pairwise comparison and also optimized criteria flows computation
-* PROMETHEE II simplified ranking algorithm and preference matrix computation
-* PROMETHEE III simplified computation of x and y limit (netFlow +/- standard error of netFlow), also improved preference matrix generation
-* SIR
-  - improved efficiency of pairwise comparisons
-  - for TOPSIS variant of Calculation of the Separation Measures improvements have been made (for both Si and Ii)
-  - also partial ranking computation has been improved
-* preferenceDegree - improved efficiency of computation. The function is being used by PROMETHEE and SIR
-* TOPSIS - improved efficiency of normalization step a Calculation of the Separation Measures used from SIR (as it uses TOPSIS procedure as one option to compute flows)
-
-other changes:
-
-* FuzzyTOPSIS - VERBOSE mode is now more verbose, originally only printed closeness coefficients for alternatives.
-* mcda_get_dominated - adjusted values returned by function now returns list with adjacency matrix representing domination relation and also returns
-* adjusted mcda_del_dominated to work with changed return values of mcda_get_dominated
-* mcda_wsm - the VERBOSE regime provided too little information, its more talkative now
-* corrected error in pre_order_matrix function in ascension ranking
-* adjusted readability of PROMETHEE_I preference matrix, now specifies P+ for aPb and P- for bPa
-* refactored preference degree computation used in PROMETHEE and SIR functions to separate function
-* corrected small error in EWM, which prevented function to properly VERBOSE all info
-* corrected small error in Electre_TRI, which prevented function to properly VERBOSE all info
-* Added documentation for some (primarily) internal function of packages, which have been introduced in version 0.27 of the package.
-* corrected documentation for EWM method (VERBOSE parameter was missing in usage section)
 
 ### Full version history
 
