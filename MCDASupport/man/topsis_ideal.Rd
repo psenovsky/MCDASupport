@@ -27,9 +27,9 @@ Returns list with following structure:
 Function to compute ideal and antiideal solution to normalized perfomance
  matrix.
 
-The function is utilized by \code{\link{SIR}} and \link{TOPSIS} methods for
+The function is utilized by \link{sir} and \link{topsis} methods for
  this purpose. It incorporates steps 3 - 5 of the TOPSIS computation.
- Consult \link{TOPSIS} function's documentation for implementation details.
+ Consult \link{topsis} function's documentation for implementation details.
 }
 \references{
 ALAOUI, Mohamed El. Fuzzy TOPSIS: Logic, Approaches, and Case Studies. Boca

@@ -1,7 +1,7 @@
 #' internal function to check parameters for PROMETHEE and SIR functions
 #'
 #' @description
-#' Performs parameter checking for \link{PROMETHEE} and \link{SIR} functions.
+#' Performs parameter checking for \link{PROMETHEE} and \link{sir} functions.
 #'  It especially focuses on preference, indifference and intermediate
 #'  thresholds as these various preference functions deal with these in
 #'  different way.

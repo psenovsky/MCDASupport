@@ -12,7 +12,7 @@
 #' FuzzyVIKOR uses trapezoidal fuzzy number for computation purposes. Other
 #'  then using fuzzy number for computation, the results are basically the
 #'  same: S, R and Q, which can be used to compute compromise solution. Look
-#'  in the VIKOR function (see \code{\link{VIKOR}}) description to better
+#'  in the VIKOR function (see \link{vikor}) description to better
 #'  understand the computation proces (or the source code).
 #'
 #' At present time FuzzyVIKOR function does not have implemented establishment

@@ -14,10 +14,10 @@ Method uses general \link{PROMETHEE} function and computes comparison states
 
 The computation starts with computing positive and negative flows using
  PROMETHEE function. This function is being used in PROMETHEE I, II and III
- methods (see \code{\link{PROMETHEE_II}}, \code{\link{PROMETHEE_III}}).
+ methods (see \link{promethee2}, \link{promethee3}).
 
 Since the flow computation is shared among the PROMETHEE family methods, it
- is implemented as separate function in \code{\link{PROMETHEE}}. Refer to
+ is implemented as separate function in \link{PROMETHEE}. Refer to
  the function documentation for details on computation of flows.
 
 Flows are then used to derive some preferences in alternatives. For example

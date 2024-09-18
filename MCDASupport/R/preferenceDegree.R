@@ -1,8 +1,8 @@
 #' computes preference degree for SIR and PROMETHEE functions
 #'
 #' @description
-#' The function is being used in \code{\link{SIR}} and
-#'  \code{\link{PROMETHEE}} functions to compute preferencee degree.
+#' The function is being used in \link{sir} and
+#'  \link{PROMETHEE} functions to compute preferencee degree.
 #'  degree is then further used by these methods to derive its
 #'  recommendations.
 #'

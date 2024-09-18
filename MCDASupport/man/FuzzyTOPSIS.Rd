@@ -23,7 +23,7 @@ Criterium CC is then directly usable to rank alternatives. CC is always in
  variant.
 
 The approach described above is same as for TOPSIS method
- (see \code{\link{TOPSIS}}), thou in case of FuzzyTOPSIS triangular fuzzy
+ (see \link{topsis}), thou in case of FuzzyTOPSIS triangular fuzzy
  numbers are used to describe the values in both criteria weights and
  performance matrix.
 
