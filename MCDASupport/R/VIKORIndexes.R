@@ -1,12 +1,41 @@
-# Function computes values of S_i and R_i
-#
-# parameters
-#   car is the array with the performances (crisp alternative ratings),
-#   bw_perf is the array with the best and worst performances, and differences
-#           between them
-#   cw is the criteria min/max array
-#   v - weight for strategy of majority of the criteria (0-1)
-#   return values of S_i (s) and R_i (r)
+#' subroutine to compute S & R index in VIKOR and FuzzyVIKOR methods
+#'
+#' @description
+#' The acronym VIKOR stands for: VlseKriterijumska Optimizacija I Kompromisno
+#'  Resenje, in Serbian multicriteria optimization and compromise solution.
+#'
+#' The method presents generalized solution for computation of S and R indexes
+#'  using wights, performance matrix (crisp performance matrix if using fuzzy
+#'  numbers) and information on best and worst values in criteria.
+#'
+#' @param car array with the performances (crisp alternative ratings in fuzzy
+#'  variant). Alternatives are in rows, criteria in columns
+#' @param bw_pref matrix  with the best, worst performances and differences
+#'  between them. Has columns (best, worst, difference) and rows for criteria
+#' @param cw vector containing the weights of the criteria.
+#' @param v weight for strategy of majority of the criteria (0-1)
+#'
+#' @return
+#' The function returns a list structured as follows:
+#' \itemize{
+#'    \item S - ordered list of alternatives using S-metric
+#'    \item R -ordered list of alternatives using R-metric
+#'    \item Q - ordered list of alternatives using Q-metric
+#'    \item compromiseSolution - list of alternatives forming compromise
+#'  solution (based on Q, S, R metrics)
+#' }
+#'
+#' @references
+#' ALAOUI, Mohamed El. Fuzzy TOPSIS: Logic, Approaches, and Case Studies. Boca
+#'  Raton: CRC Press, 2021. 216 s. ISBN 978-0-367-76748-8.
+#'
+#' Papathanasiou, Jason, Ploskas, Nikolaos. Multiple Criteria Decision Aid
+#'  Methods, Examples and Python Implementations. Springer, 173 p., ISBN
+#'  978-3-319-91648-4.
+#'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#'
+#' @keywords VIKOR FuzzyVIKOR
 VIKORIndexes <- function(car, bw_perf, cw, v = NULL) {
   #validate params
   if (ncol(bw_perf) != 3) {
