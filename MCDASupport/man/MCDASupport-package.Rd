@@ -13,8 +13,8 @@ They main feature is to compare all feasible alternatives or actions by pair bui
 \tabular{ll}{
 Package: \tab MCDASupport\cr
 Type: \tab Package\cr
-Version: \tab 0.30\cr
-Date: \tab 2024-06-17\cr
+Version: \tab 0.31\cr
+Date: \tab 2024-09-20\cr
 License: \tab GPL (>= 3)\cr
 }
 
@@ -45,24 +45,52 @@ Authors of the package are not to be held liable for possible bad decision, you 
 
 \strong{Revision history}
 
-\strong{MCDASupport v0.30 (Release data: 2024-06-17)}
+\strong{MCDASupport v0.31 (Release data: 2024-09-20)}
 
-The main topic of version 0.30 is to further optimize the code and also make it more readable. As result there are changes in almast all functions.
+The v0.31 presents probably largest ammount of changes between the the versions. During its development over 100 commits were pushed into the repository and basically whole code-base of the package changed. Main goal of the changes was:
 
 \itemize{
-    \item resolving some small issues with tracing of project's files in development repositories
-    \item added normalize function which aggregates all the norm_* function into one clean implementation
-    \item optimization of Electre_1_sensitivity - cyclomatic complexity reduced from 28 to 18
-    \item optimization of Electre_1 and ELECTRE1_kernel
-    \item better compliance with linting tools for Electre_1S_paramCheck, Electre_1S_sensitivity and Electre_1S
-    \item optimization in Electre_2* functions
-    \item error corrected in Electre_2_sensitivity, was not doing sensitivity check for d+ (d+ was same as d-)
-    \item optimization in Electre_3* functions
-    \item optimization in Electre_4* functions
-    \item Electre_TRI_sensitivity - optimizations and veto thresholds sensitivity was reported wrongly
-    \item FuzzyTOPSIS optimized
-    \item optimization of PROMETHEE function
-    \item refactored parameter check code for PROMETHEE and SIR into separate function
+  \item to implement models in form of R6 class, which improves readability of code
+  \item and also allows to implement S3 functions for summary of objects, well at least the models have implemented support of this function.
+  \item sensitivity analysis is also redone to more properly test possible ranges for various thresholds
+  \item as part of changes the documentation switched to Roxygen documentation, making the documentation available directly from the code.
+}
+
+More detailed list of changes for the vesion:
+\itemize{
+  \item refactored common code for SIR and TOPSIS into topsis_ideal function
+  \item some refactoring in FuzzyTOPSIS function
+  \item added plot.threshold.3d and plot.threshold functions to visualize senzitivity, paradoxically new approach to computation using R6 classes makes no use of these. Possibly these functions will be removed in future versions (or never leave the development branch)
+  \item refactored Electre_1 and Electre_1_sensitivity into single universally usable R6 class. This approach will be used as model for other methods. 
+  \itemize{
+    \item as side effect the summary function for the model object is now supported. 
+    \item and sensitivity of the solution is computed (in past intervals for parametr testing had to be set manually)
+    \item please note that this change is API breaking
+  }
+  \item refactored Electre_1S and Electre_1s_sensitivity into single R6 class (similarly to implementation of the Electre_1) - implementation should be still considered as experimental and bugy. As a side effect Electre_1s_paramCheck is no longer needed.
+  \item refactored Electre_2 and Electre_2_sensitivity into single R6 class
+  \item refactored sens_compare function from electre2 class into separate function vector_compare. Intention is to use it in all classes for detecting changes in the model solution.
+  \item corrected error in documentation of electre1s::sensitivity function, which prevented the documentation for the function to be rendered
+  \item corrected error for 3 fields in electre2 to render their documentation
+  \item refactored Electre_3 and Electre_3_sensitivity into new R6 class
+  \item refactored Electre_4 and Electre_4_sensitivity into R6 electre4 class
+  \item refactored common parts of Electre III and IV sensitivity testing into sensitivity_e34 function.
+  \item refactored Electre_TRI and Electre_TRI_sensitivity into R6 electretri R6 class
+  \item refactored FuzzyTOPSIS into R6 fuzzytopsis class
+  \item Fuzzy VIKOR
+  \itemize{
+    \item refactored FuzzyVIKOR into R6 fuzzyvikor class
+    \item corrected error in result computation - in R metric the S metric was provided (the overal solution was correct)
+  }
+  \item mcda_wsm refactored into wsm R6 class
+  \item rewriten function. Now it better checks the thresholds depending on used preference function. Also improved consistency check for weights.
+  \item refactored PROMETHEE_I and PROMETHEE_I_sensitivity into single R6 class
+  \item refactored PROMETHEE_II and PROMETHEE_II_sensitivity into single R6 class
+  \item refactored shared code for sensitivity testing for PROMETHEE I and II into separate private function
+  \item refactored PROMETHEE_III function into promethee3, including implementing summary function and sensitivity testing.
+  \item refactored SIR function, including implementing summary function and sensitivity testing for SIR-TOPSIS.
+  \item refactored TOPSIS into R6 class
+  \item refactored VIKOR into R6 class. Also corrected error of method not properly showing R-metric (provided S-metric instead). The problem was in broadcasting R-metric only, the computation and overal results were correct.
 }
 
 For full history of the changes for the package, check NEWS.md on GitHub page of the project (\url{https://github.com/psenovsky/MCDASupport}).
