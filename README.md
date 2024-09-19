@@ -73,7 +73,7 @@ You can use following R code to install package and its dependencies
 packages <- c("mathjaxr", "graphics", "igraph", "diagram", "stats", "dplyr", "visNetwork", "plotly", "tidyr")
 install.packages(setdiff(packages, rownames(installed.packages())))  
 # adjust name of the file to version you are installing
-install.packages("MCDASupport_0.21.tar.gz", repos=NULL, type="source")  
+install.packages("MCDASupport_0.31.tar.gz", repos=NULL, type="source")  
 ```
 ### Executing program
 
