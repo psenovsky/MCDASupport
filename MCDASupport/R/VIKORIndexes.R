@@ -10,7 +10,7 @@
 #'
 #' @param car array with the performances (crisp alternative ratings in fuzzy
 #'  variant). Alternatives are in rows, criteria in columns
-#' @param bw_pref matrix  with the best, worst performances and differences
+#' @param bw_perf matrix  with the best, worst performances and differences
 #'  between them. Has columns (best, worst, difference) and rows for criteria
 #' @param cw vector containing the weights of the criteria.
 #' @param v weight for strategy of majority of the criteria (0-1)
