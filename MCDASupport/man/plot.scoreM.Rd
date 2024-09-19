@@ -5,7 +5,7 @@
 \title{Function to plot contribution of the criteria to overal performance of the
  alternatives.}
 \usage{
-\method{plot}{scoreM}(x, ...)
+\method{plot}{scoreM}(x)
 }
 \arguments{
 \item{x}{weighted preference matrix - values in matrix used to descibe

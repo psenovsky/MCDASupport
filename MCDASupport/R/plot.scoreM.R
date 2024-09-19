@@ -42,7 +42,7 @@
 #' plot.scoreM(preferences$weightedPM)
 #'
 #' @keywords WSM performance score MCDA
-plot.scoreM <- function(x, ...) {
+plot.scoreM <- function(x) {
   pm <- x
   #1. order the rows according to rowSums
   pm <- pm[order(rowSums(pm), decreasing = TRUE), ]
