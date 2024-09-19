@@ -5,13 +5,14 @@
 #'  1 where edge exists and 0 where it does not.
 #'
 #' @param G Graph which should be transformed
-#' @param sparse alternatives names
+#' @param alt alternatives names
+#'
 #' @return adjancancy matrix for the graph with 0/1 representing graph.
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
 #' @keywords graph adjancancy matrix
-Graph2AdjancancyMatrix <- function(G, alt){
+Graph2AdjancancyMatrix <- function(G, alt) {
   d <- as_adjacency_matrix(G, sparse = FALSE)
   t <- as.data.frame(d)
   if (ncol(t) != length(alt)) {

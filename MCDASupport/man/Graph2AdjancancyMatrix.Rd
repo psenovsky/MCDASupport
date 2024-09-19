@@ -9,7 +9,7 @@ Graph2AdjancancyMatrix(G, alt)
 \arguments{
 \item{G}{Graph which should be transformed}
 
-\item{sparse}{alternatives names}
+\item{alt}{alternatives names}
 }
 \value{
 adjancancy matrix for the graph with 0/1 representing graph.
