@@ -156,7 +156,7 @@ performs computation of WSM model based on class properties. Usually
 \if{html}{\out{<a id="method-wsm-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-wsm-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the Fuzzy VIKOR method resutls and outputs them
+prepares summary of the WSM method resutls and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{wsm$summary()}\if{html}{\out{</div>}}

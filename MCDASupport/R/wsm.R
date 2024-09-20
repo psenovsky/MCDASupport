@@ -113,7 +113,7 @@ wsm <- R6Class("wsm",
     },
 
     #' @description
-    #' prepares summary of the Fuzzy VIKOR method resutls and outputs them
+    #' prepares summary of the WSM method resutls and outputs them
     #'  to the console.
     summary = function() {
       cat(paste("WSM method results:\n"))
