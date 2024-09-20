@@ -128,7 +128,7 @@ saw <- R6Class("saw",
     #' performs computation of SAW model based on class properties. Usually
     #'  is not run manually as constructor calls this method automatically.
     compute = function() {
-      t <- wsm$new(self$pm, self$w, self$minmax)
+      t <- wsm$new(self$pm_orig, self$w, self$minmax)
       self$result_table <- t$result_table
       self$weighted_sum_prc <- t$weighted_sum_prc
       self$scoreM <- t$scoreM
