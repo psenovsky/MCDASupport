@@ -13,6 +13,7 @@ export(plot.threshold)
 export(plot.threshold.3d)
 export(vector_compare)
 
+S3method(summary,aras)
 S3method(summary,electre1)
 S3method(summary,electre1s)
 S3method(summary,electre2)
