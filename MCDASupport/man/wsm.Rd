@@ -56,6 +56,8 @@ t <- wsm$new(M, w)
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
+\item{\code{pm_orig}}{original (not normalized) performance matrix}
+
 \item{\code{pm}}{normalized performance matrix}
 
 \item{\code{w}}{vector of weights (there are no other limitations on weights)}

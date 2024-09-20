@@ -22,6 +22,10 @@
 #' @keywords WSM MCDA Weighted Sum Method
 wsm <- R6Class("wsm",
   public = list(
+
+    #' @field pm_orig original (not normalized) performance matrix
+    pm_orig = NULL,
+
     #' @field pm normalized performance matrix
     pm = NULL,
 
@@ -81,27 +85,8 @@ wsm <- R6Class("wsm",
     #' w = c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
     #' t <- wsm$new(M, w)
     initialize = function(pm, w, minmax = "max") {
-      #parameter validity check
-      ncrit <- ncol(pm)
-      if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-        stop("wrong performance matrix, should be a matrix or a data frame")
-      }
-      if (ncrit < 2 || nrow(pm) < 2) {
-        stop("less than 2 criteria or 2 alternatives")
-      }
-      if (!is.numeric(unlist(pm))) {
-        stop("Only numeric values in performance matrix expected")
-      }
-      if (!is.vector(w, mode = "numeric")) {
-        stop("weights should be a numeric vector")
-      }
-      if (length(w) != ncrit) {
-        stop("number of weights does not correspond to number of criteria being
-             used in preference matrix")
-      }
-      self$pm <- util_pm_minmax(pm, minmax)
-      # end of parameter check
-
+      self$pm_orig <- pm
+      self$pm <- param_check_wsm(pm, w, minmax)
       self$w <- w
       self$minmax <- minmax
       self$compute()
