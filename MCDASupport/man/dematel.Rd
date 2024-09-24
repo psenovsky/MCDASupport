@@ -16,10 +16,16 @@ same structure (order of criteria).}
 \value{
 returns list in following structure
 \itemize{
-  \item D - relevance - influence from
-  \item R - relevance - influence to
-  \item prominence
-  \item vector of weights for the criteria
+  \item tabularRasults - with structure
+  \itemize{
+    \item criteria - criteria names
+    \item D - relevance - influence from
+    \item R - relevance - influence to
+    \item d_plus_r - D + R
+    \item d_minus_r - D - R
+    \item weights - derived weights for the criteria
+  }
+  \item graph
 }
 }
 \description{
