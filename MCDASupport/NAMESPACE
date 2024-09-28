@@ -1,4 +1,5 @@
 exportPattern("^[[:alpha:]]+")
+export(binary_paiwise_comp)
 export(dematel)
 export(EWM)
 export(mcda_get_dominated)
