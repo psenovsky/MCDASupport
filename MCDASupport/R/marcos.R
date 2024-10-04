@@ -159,30 +159,7 @@ marcos <- R6Class("marcos",
     #' t <- marcos$new(PM, w, minmax)
     initialize = function(pm, w, minmax = "max") {
       # validation of the parameters
-      if (is.null(dim(pm))) stop("less than 2 criteria or 2 alternatives")
-      if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-        stop("wrong performance matrix, should be a matrix or a data frame")
-      }
-      if (!is.numeric(unlist(pm))) {
-        stop("Only numeric values in performance matrix expected")
-      }
-      if (!is.vector(w, mode = "numeric")) {
-        stop("criteria weights should be a vector")
-      }
-      ncri <- length(w)
-      if (ncri != ncol(pm)) {
-        stop("Number of criteria in weight vector and performance matrix must
-             be same")
-      }
-      if (any(!minmax %in% c("min", "max"))) {
-        stop("Minmax parameter supports only min/max values")
-      }
-      # check for single min or max value
-      if (private$check_string(minmax)) {
-        self$minmax <- rep(minmax, times = ncri)
-      } else {
-        self$minmax <- minmax
-      }
+      self$minmax <- param_check_marcos(pm, w, minmax)
       # end of validation
 
       self$pm <- pm
@@ -247,24 +224,5 @@ marcos <- R6Class("marcos",
       print(self$ranking, pretty = TRUE)
     }
 
-  ),
-  private = list(
-    # @description
-    # checks if the param is string or vector of strings
-    #
-    # @param param string or vector of strings to check
-    # @return TRUE if the param is single stringm otherwise returns FALSE
-    #
-    # @example
-    # check_string("hello")  # Returns TRUE
-    # check_string(c("hello", "world"))  # Returns FALSE
-    # check_string(123)  # Returns FALSE
-    check_string = function(param) {
-      if (is.character(param) && length(param) == 1) {
-        return(TRUE)  # It's a single string
-      } else {
-        return(FALSE)  # It's a vector of strings or not a string at all
-      }
-    }
   )
 )
