@@ -125,7 +125,6 @@ cradis <- R6Class("cradis",
       self$pm_orig <- pm
       self$pm <- as.data.frame(pm)
       self$w <- w
-      self$minmax <- minmax
       self$compute()
       self
     },
