@@ -6,12 +6,17 @@
 
 implemented MCDA methods:
 
-- WSM (Weighted Sum Method)
+- ARAS
+- CRADIS
+- CRITIC
 - ELECTRE (variants I, II, III, IV, 1S and TRI)
+- MARCOS
 - PROMETHEE (variants I, II and III)
-- TOPSIS
+- SAW
 - SIR
+- TOPSIS
 - VIKOR
+- WSM (Weighted Sum Method)
 
 TOPSIS, SIR and VIKOR are implemented for normal and fuzzy numbers.
 
@@ -30,7 +35,12 @@ For normalization package supports:
 - Zavadskas and Turskis normalization
 - Z-score
 
-For weight establishment the package supports EWM (Entropy Weight Method).
+For weight establishment the package supports:
+
+- binary pair-wise comparison
+- COPRAS
+- DEMATEL
+- EWM (Entropy Weight Method)
 
 The package has also some graphical capabilities to help visualizing network of outranking relations between the alternatives and tools to visualize changes in ranking due to changes in analysis parameters (sensitivity analysis).
 
@@ -120,6 +130,18 @@ See function's documentation for information on mathematics and theories methods
 
 ## Version History
 
+### MCDASupport v0.32 (Release date: 2024-10-07)
+
+* Refactored parameter validation from WSM into separate function to be utilized by other functions, such as SAW.
+* added implementation of SAW method
+* added implementation of ARAS method
+* added implementation of DEMATEL method for weight derivation
+* added implementation of MARCOS method
+* implemented binary pair-wise comparison for weight estionation
+* added implementation of CRADIS method
+* added implementation of CRITIC method for weight derivation
+* added implementation of COPRAS method
+
 ### MCDASupport v0.31 (Release date: 2024-09-20)
 
 The v0.31 presents probably largest ammount of changes between the the versions. During its development over 100 commits were pushed into the repository and basically whole code-base of the package changed. Main goal of the changes was:
@@ -159,24 +181,6 @@ More detailed list of changes for the vesion:
 * refactored SIR function, including implementing summary function and sensitivity testing for SIR-TOPSIS.
 * refactored TOPSIS into R6 class
 * refactored VIKOR into R6 class. Also corrected error of method not properly showing R-metric (provided S-metric instead). The problem was in broadcasting R-metric only, the computation and overal results were correct.
-
-### MCDASupport v0.30 (Release date: 2024-06-17)
-
-The main topic of version 0.30 is to further optimize the code and also make it more readable. As result there are changes in almast all functions.
-
-* resolving some small issues with tracing of project's files in development repositories
-* added normalize function which aggregates all the norm_* function into one clean implementation
-* optimization of Electre_1_sensitivity - cyclomatic complexity reduced from 28 to 18
-* optimization of Electre_1 and ELECTRE1_kernel
-* better compliance with linting tools for Electre_1S_paramCheck, Electre_1S_sensitivity and Electre_1S
-* optimization in Electre_2* functions
-* error corrected in Electre_2_sensitivity, was not doing sensitivity check for d+ (d+ was same as d-)
-* optimization in Electre_3* functions
-* optimization in Electre_4* functions
-* Electre_TRI_sensitivity - optimizations and veto thresholds sensitivity was reported wrongly
-* FuzzyTOPSIS optimized
-* optimization of PROMETHEE function
-* refactored parameter check code for PROMETHEE and SIR into separate function
 
 ### Full version history
 

@@ -1,3 +1,15 @@
+# MCDASupport v0.32 (Release date: TBD)
+
+* Refactored parameter validation from WSM into separate function to be utilized by other functions, such as SAW.
+* added implementation of SAW method
+* added implementation of ARAS method
+* added implementation of DEMATEL method for weight derivation
+* added implementation of MARCOS method
+* implemented binary pair-wise comparison for weight estionation
+* added implementation of CRADIS method
+* added implementation of CRITIC method for weight derivation
+* added implementation of COPRAS method
+
 # MCDASupport v0.31 (Release date: 2024-09-20)
 
 The v0.31 presents probably largest ammount of changes between the the versions. During its development over 100 commits were pushed into the repository and basically whole code-base of the package changed. Main goal of the changes was:
