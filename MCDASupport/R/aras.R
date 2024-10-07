@@ -83,7 +83,7 @@
 aras <- R6Class("aras",
   public = list(
 
-#' @field pm_orig original (not normalized) performance matrix
+    #' @field pm_orig original (not normalized) performance matrix
     pm_orig = NULL,
 
     #' @field pm normalized performance matrix
@@ -150,13 +150,15 @@ aras <- R6Class("aras",
     #' t <- wsm$new(M, w)
     initialize = function(pm, w, minmax = "max") {
       # validity check
+      ncri <- ncol(pm)
       self$pm_orig <- pm
-      self$pm <- param_check_wsm(pm, w, minmax)
-      if (round(sum(w), 4) != 1) {
-        stop("Sum of weights must be equal to 1. If you do not want to use this
-             constrain use wsm method instead.")
-      }
+      validation$validate_pm(pm)
+      validation$validate_w(w, ncri)
+      validation$validate_w_sum_eq_1(w)
+      validation$validate_minmax(minmax, ncri)
+      self$pm <- util_pm_minmax(pm, minmax)
       # end of validaty check
+
       self$w <- w
       self$minmax <- minmax
       self$compute()

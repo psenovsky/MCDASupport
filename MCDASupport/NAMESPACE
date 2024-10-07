@@ -14,6 +14,7 @@ export(plot.prefM)
 export(plot.scoreM)
 export(plot.threshold)
 export(plot.threshold.3d)
+export(validation)
 export(vector_compare)
 
 S3method(summary,aras)
