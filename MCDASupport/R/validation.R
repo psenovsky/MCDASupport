@@ -58,6 +58,55 @@ validation_env$validate_pm <- function(pm) {
   }
 }
 
+#' Validate, that the metrix has only 0/1 in it
+#'
+#' @description
+#' Check whether there are other elements then 0 or 1 in the matrix.
+#'
+#' @name validation$validate_pm_0_or_1
+#' @param pm performance matrix
+validation_env$validate_pm_0_or_1 <- function(pm) {
+  if (any(pm != 0 & pm != 1)) {
+    stop("preference matrix must have only value 0 or 1.")
+  }
+}
+
+#' Validates that to 1 in rows there is symetrical 0 in columns (and vice
+#'  versa)
+#'
+#' @description
+#' The preference matrix for binary preference comparison is symetrical if
+#'  a is found more important then b (represented by 1) then b must be less
+#'  important than a (represented by 0). This function checks that this is the
+#'  case
+#'
+#' @name validation$validate_pm_01_symetry
+#' @param pm performance matrix
+validation_env$validate_pm_01_symetry <- function(pm) {
+  n <- nrow(pm)
+  for (i in 1:(n - 1)) {
+    for (j in (i + 1):n) {
+      if ((pm[i, j] == 1 && pm[j, i] != 0) ||
+            (pm[i, j] == 0 && pm[j, i] != 1)) {
+        stop("detected inconsistency in stated preferences. If [i,j] == 1 then
+             [j,i] == 0 and vice-versa.")
+      }
+    }
+  }
+}
+
+
+#' Validate that the number of rows and columns is same
+#'
+#' @name validation$validate_pm_rows_columns_same
+#' @param pm performance matrix
+validation_env$validate_pm_rows_columns_same <- function(pm) {
+  if (ncol(pm) != nrow(pm)) {
+    stop("number of criteria in rows and colums of preference matrix must be
+         same.")
+  }
+}
+
 #' validate weight vector
 #'
 #' @description

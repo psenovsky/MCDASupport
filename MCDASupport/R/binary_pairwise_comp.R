@@ -45,45 +45,12 @@
 #' rownames(PM) <- colnames(PM) <- c("C1", "C2", "C4", "C5", "C6", "C8")
 #' t <- binary_paiwise_comp(PM)
 binary_paiwise_comp <- function(pm) {
-
-  # check consistency of pairwise comparison
-  #
-  # @description
-  # checks that if element of the matrix [i,j] == 0 then [j,i] == 1 and wice
-  #  versa.
-  #
-  # @param mat criteria preference matrix
-  # @return true if the preferences are consisten
-  check_consistency <- function(mat) {
-    n <- nrow(mat)
-    for (i in 1:(n - 1)) {
-      for (j in (i + 1):n) {
-        if ((mat[i, j] == 1 && mat[j, i] != 0) ||
-              (mat[i, j] == 0 && mat[j, i] != 1)) {
-          return(FALSE)
-        }
-      }
-    }
-    return(TRUE)
-  }
-
   # param validation
-  ncri <- ncol(pm)
-  if (ncri != nrow(pm)) {
-    stop("number of criteria in rows and colums of preference matrix must be
-         same.")
-  }
-  if (ncri < 2) {
-    stop("must have more than 2 criteria")
-  }
-  if (any(pm != 0 & pm != 1)) {
-    stop("preference matrix must have only value 0 or 1.")
-  }
+  validation$validate_pm(pm)
+  validation$validate_pm_rows_columns_same(pm)
+  validation$validate_pm_0_or_1(pm)
   diag(pm) <- 0
-  if (!check_consistency(pm)) {
-    stop("detected inconsistency in stated preferences. If [i,j] == 1 then
-         [j,i] == 0 and vice-versa.")
-  }
+  validation$validate_pm_01_symetry(pm)
   # end of validation
 
   rs <- rowSums(pm)
