@@ -73,19 +73,11 @@
 ELECTRE_ConcordanceMatrix <- function(pm, w) {
 
   # with < 2 criteria or alternatives, there is no MCDA problem
-  if (is.null(dim(pm))) stop("less than 2 criteria or 2 alternatives")
-  if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-    stop("wrong performance matrix, should be a matrix or a data frame")
-  }
-  if (!(is.vector(w, mode = "numeric"))) {
-    stop("criteria weights should be a numeric vector")
-  }
   nalt <- nrow(pm)  #no. of alternatives
   ncri <- ncol(pm)  #no. of criteria
   alt  <- rownames(pm)
-  if (ncri != length(w)) {
-    stop("number of weights must be same as number of criteria")
-  }
+  validation$validate_pm(pm)
+  validation$validate_w(w, ncri)
   ## End of checking the validity of the "inputs"
 
   # Concordance matrix
