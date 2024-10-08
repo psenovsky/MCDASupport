@@ -119,7 +119,10 @@ cradis <- R6Class("cradis",
     #' t <- cradis$new(PM, w, minmax)
     initialize = function(pm, w, minmax = "max") {
       # parameters validation
-      self$minmax <- param_check_marcos(pm, w, minmax)
+      ncri <- ncol(pm)
+      validation$validate_pm(pm)
+      validation$validate_w(w, ncri)
+      self$minmax <- validation$validate_minmax(minmax, ncri)
       # end of parameter validation
 
       self$pm_orig <- pm
