@@ -24,9 +24,10 @@ validation_env$validate_minmax <- function(minmax, ncri) {
   if (!is.numeric(ncri)) {
     stop("ncri parameter must be a number (number of criteria)")
   }
-  if (minmax == "min" || minmax == "max") {
+  l_minmax <- length(minmax)
+  if (l_minmax == 1 && (minmax == "min" || minmax == "max")) {
     return(rep(minmax, times = ncri))
-  } else if (length(minmax) != ncri) {
+  } else if (l_minmax != ncri) {
     stop("No. of criteria in ncri does not correspont to no. of it in minmax.")
   }
   return(minmax)

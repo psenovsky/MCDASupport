@@ -97,7 +97,10 @@ copras <- R6Class("copras",
     #' t <- copras$new(PM, w, minmax)
     initialize = function(pm, w, minmax = "max") {
       # parameters validation
-      self$minmax <- param_check_marcos(pm, w, minmax)
+      ncri <- ncol(pm)
+      validation$validate_pm(pm)
+      validation$validate_w(w, ncri)
+      self$minmax <- validation$validate_minmax(minmax, ncri)
       # end of parameter validation
 
       self$pm <- as.data.frame(pm)
