@@ -127,27 +127,11 @@
 #' @keywords DEMATEL
 dematel <- function(relations) {
 
-  # support functions
-
-  # @description
-  # checks the oppinion matrices to ensure, that they contain values 0-4 only.
-  #  If other values are found the script run will be halted with appropriate
-  #  error message.
-  #
-  # @param x matrix representing oppinion on infulence between the criteria by
-  #  problem domain expert
-  check_invalid_values <- function(x) {
-    if (any(!x %in% 0:4)) {
-      stop("Oppinion matrix contains invalid values, only {0, 1, 2, 3, 4} 
-           supported.")
-    }
-  }
-  # end of support functions
-
   # validation
   r_count <- nrow(relations[[1]])
   c_count <- ncol(relations[[1]])
   m_count <- length(relations)
+  v_val   <- 0:4
   if (is.null(m_count) || !is.numeric(m_count) || m_count == 0) {
     stop("DEMATEL requires at minimum 1 opinion matrix describing influence in
          criteria.")
@@ -161,7 +145,7 @@ dematel <- function(relations) {
       stop(msg)
     }
   }
-  lapply(relations, check_invalid_values)
+  lapply(relations, validation$validate_invalid_val, valid_val = v_val)
   # end of validation
 
   # step 1) average (direct relationship) matrix generation (adr)

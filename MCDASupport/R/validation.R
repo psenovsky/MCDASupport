@@ -1,5 +1,22 @@
 validation_env <- new.env()
 
+#' Validate that the matrix or dataframe has only valid values
+#'
+#' @description
+#' Vector of valid values must contain full set of valid values to check
+#'  against. If other value is detected the error will be generated and
+#'  computation run will be stoped.
+#'
+#' @name validation$validate_invalid_val
+#' @param m matrix or dataframe to check
+#' @param valid_val vector of valid values to check
+validation_env$validate_invalid_val <- function(m, valid_val) {
+  val1 <- paste(valid_val, collapse = ", ")
+  msg <- paste0("The matrix or dataframe has some invalid values, expected
+                only: {", val1, "}")
+  if (any(!m %in% valid_val)) stop(msg)
+}
+
 #' Validate min-max vector (internal use only)
 #'
 #' @description
