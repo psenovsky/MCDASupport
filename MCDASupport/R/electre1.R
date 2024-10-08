@@ -244,23 +244,20 @@ electre1 <- R6Class("electre1",
 
     #' @description
     #' summary of the ELECTRE I resutls.
-    #' @return basic information on the model and its kernel. Will also list
-    #'  dominated alternatives, if such were identified.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives
       ncri <- ncol(self$pm)
-      if (length(self$Dominated) > 0) {
-        dom <- paste(self$Dominated, ", ")
-        msg2 <- paste0("dominated alternatives: ", dom)
-      }else {
-        msg2 <- "no dominated alternatives detected"
-      }
+      msg2 <- ""
       kernel_string <- paste(self$Kernel, collapse = ", ")
-      msg <- cat(paste0("Electre 1: \n\n", "processed ", nalt,
-                        " alternatives in ", ncri, " criteria\n\n",
-                        "identified kernel of the solution: ", kernel_string,
-                        "\n\n", msg2))
-      return(msg)
+      cat("Electre 1: \n")
+      cat("processed ", nalt, " alternatives in ", ncri, " criteria\n\n")
+      cat("identified kernel of the solution: ", kernel_string, "\n\n")
+      if (length(self$Dominated) > 0) {
+        dom <- paste(self$Dominated, collapse = ", ")
+        cat("dominated alternatives: ", dom, "\n")
+      }else {
+        cat("no dominated alternatives detected\n")
+      }
     },
 
     #' @description
