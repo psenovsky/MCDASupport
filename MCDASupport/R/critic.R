@@ -71,23 +71,12 @@
 #' w <- critic(PM, minmax)
 critic <- function(pm, minmax = "max") {
   # check params
-  if (is.null(dim(pm))) stop("less than 2 criteria or 2 alternatives")
-  if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-    stop("wrong performance matrix, should be a matrix or a data frame")
-  }
-  if (!is.numeric(unlist(pm))) {
-    stop("Only numeric values in performance matrix expected")
-  }
   cri <- colnames(pm)
   ncri <- ncol(pm)
-  if (any(!minmax %in% c("min", "max"))) {
-    stop("Minmax parameter supports only min/max values")
-  }
-  # check for single min or max value
-  if (length(minmax) == 1) {
-    minmax <- rep(minmax, times = ncri)
-  }
+  validation$validate_pm(pm)
+  minmax <- validation$validate_minmax(minmax, ncri)
   pm <- as.data.frame(pm)
+  # end of check
 
   # normalize PM
   pm_norm <- pm
