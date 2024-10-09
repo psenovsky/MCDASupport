@@ -121,7 +121,7 @@ cradis <- R6Class("cradis",
       # parameters validation
       ncri <- ncol(pm)
       validation$validate_pm(pm)
-      validation$validate_w(w, ncri)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights")
       self$minmax <- validation$validate_minmax(minmax, ncri)
       # end of parameter validation
 

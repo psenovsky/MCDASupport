@@ -185,29 +185,6 @@ validation_env$validate_vector_progression <- function(vect) {
   }
 }
 
-
-#' validate weight vector
-#'
-#' @description
-#' Validates that the weights vector is numeric and number of elements in it
-#'  is equal to number of criteria.
-#'
-#' @name validation$validate_w
-#' @param w weight vector
-#' @param ncri number of criteria
-validation_env$validate_w <- function(w, ncri) {
-  if (!is.numeric(ncri)) {
-    stop("ncri parameter must be a number (number of criteria)")
-  }
-  if (!(is.vector(w, mode = "numeric"))) {
-    stop("Numeric values expected in the weight vector")
-  }
-  if (length(w) != ncri) {
-    stop("No. of elements in weight vector is expected to be same as no. of
-         criteria.")
-  }
-}
-
 #' Validate that sum of weights is equal to 1
 #'
 #' @name validation$validate_w_sum_eq_1

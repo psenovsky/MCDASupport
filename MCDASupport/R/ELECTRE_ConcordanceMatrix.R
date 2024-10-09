@@ -77,7 +77,7 @@ ELECTRE_ConcordanceMatrix <- function(pm, w) {
   ncri <- ncol(pm)  #no. of criteria
   alt  <- rownames(pm)
   validation$validate_pm(pm)
-  validation$validate_w(w, ncri)
+  validation$validate_no_elements_vs_cri(w, ncri, "weights")
   ## End of checking the validity of the "inputs"
 
   # Concordance matrix

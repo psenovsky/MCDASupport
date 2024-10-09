@@ -153,7 +153,7 @@ aras <- R6Class("aras",
       ncri <- ncol(pm)
       self$pm_orig <- pm
       validation$validate_pm(pm)
-      validation$validate_w(w, ncri)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights")
       validation$validate_w_sum_eq_1(w)
       validation$validate_minmax(minmax, ncri)
       self$pm <- util_pm_minmax(pm, minmax)
