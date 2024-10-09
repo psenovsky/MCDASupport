@@ -75,11 +75,8 @@
 ELECTRE_DiscordanceMatrix <- function(pm) {
 
   # with < 2 criteria or alternatives, there is no MCDA problem
-  if (is.null(dim(pm))) stop("less than 2 criteria or 2 alternatives")
-  if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-    stop("wrong performance matrix, should be a matrix or a data frame")
-  }
-  ## End of checking the validity of the "inputs"
+  validation$validate_pm(pm)
+  # End of checking the validity of the "inputs"
 
   nalt <- nrow(pm)  #no. of alternatives
   ncri <- ncol(pm)  #no. of criteria
