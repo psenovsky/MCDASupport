@@ -1,5 +1,26 @@
 validation_env <- new.env()
 
+#' Validate consistency of thresholds
+#'
+#' @name validation$validate_electre_pqv
+#' @param p preference threshold
+#' @param q indifference threshold
+#' @param v veto threshold
+#' @param cri vector of names for criteria
+validation_env$validate_electre_pqv <- function(p, q, v, cri) {
+  ncri <- length(cri)
+  validation_env$validate_no_elements_vs_cri(p, ncri, "Preference threshold")
+  validation_env$validate_no_elements_vs_cri(q, ncri, "Indifference threshold")
+  validation_env$validate_no_elements_vs_cri(v, ncri, "Veto threshold")
+  if (any(q < 0 | q > p | p >= v)) {
+    print("Problem with consistency of thresholds:")
+    print(paste0("  - Q < 0 for criteria:", cri[q < 0]))
+    print(paste0("  - Q > P for criteria:", cri[q > p]))
+    print(paste0("  - P >= V for criteria:", cri[p >= v]))
+    stop("correct the thresholds please")
+  }
+}
+
 #' Validate that the matrix or dataframe has only valid values
 #'
 #' @description
@@ -10,11 +31,11 @@ validation_env <- new.env()
 #' @name validation$validate_invalid_val
 #' @param m matrix or dataframe to check
 #' @param valid_val vector of valid values to check
-validation_env$validate_invalid_val <- function(m, valid_val) {
+#' @param msg Identification of what are we checking (i.e. performance matrix)
+validation_env$validate_invalid_val <- function(m, valid_val, msg) {
   val1 <- paste(valid_val, collapse = ", ")
-  msg <- paste0("The matrix or dataframe has some invalid values, expected
-                only: {", val1, "}")
-  if (any(!m %in% valid_val)) stop(msg)
+  msg2 <- paste(msg, "has some invalid values, expected only: {", val1, "}")
+  if (any(!m %in% valid_val)) stop(msg2)
 }
 
 #' Validate min-max vector (internal use only)
@@ -48,6 +69,28 @@ validation_env$validate_minmax <- function(minmax, ncri) {
     stop("No. of criteria in ncri does not correspont to no. of it in minmax.")
   }
   return(minmax)
+}
+
+#' Validates that the number of elements in the vector is same as number of
+#'  criteria
+#'
+#' @name validation$validate_no_elements_vs_cri
+#' @param vect vector to check
+#' @param ncri number of criteria
+#' @param msg identification of what are we checking to use in error message
+validation_env$validate_no_elements_vs_cri <- function(vect, ncri, msg) {
+  if (!is.vector(vect)) {
+    m <- paste(msg, " expected to be vector")
+    stop(m)
+  }
+  if (!is.numeric(ncri)) {
+    stop("number of criteria must be set as number")
+  }
+  if (length(vect) != ncri) {
+    m <- paste("Number of elements in ", msg, " does not correspont to number of
+               criteria")
+    stop(m)
+  }
 }
 
 #' Validate performance matrix (internal use only)
@@ -125,6 +168,37 @@ validation_env$validate_pm_rows_columns_same <- function(pm) {
   }
 }
 
+#' Validate that scalar is number
+#'
+#' @name validation$validate_scalar_numeric
+#' @param s the value to be checked
+#' @param msg identification of what failed to check (i.e. "Discrimination
+#'  threshold") must be a number.
+validation_env$validate_scalar_numeric <- function(s, msg) {
+  if (!is.numeric(s)) {
+    m <- paste(msg, " must be a number")
+    stop(m)
+  }
+}
+
+#' Validate the numeric progresion in provided vector
+#'
+#' @description
+#' Presumes that the elements in the vector are ordered ascending. This is
+#'  usefull for various threshold checks.
+#'
+#' @name validation$validate_vector_progression
+#' @param vect numeric vector with values to check
+validation_env$validate_vector_progression <- function(vect) {
+  if (!is.vector(vect, mode = "numeric")) {
+    stop("Expected provided parameter to be vector of numbers.")
+  }
+  if (!all(vect == sort(vect))) {
+    stop("Values of the provided vector are not sorted ascending.")
+  }
+}
+
+
 #' validate weight vector
 #'
 #' @description
@@ -138,7 +212,7 @@ validation_env$validate_w <- function(w, ncri) {
   if (!is.numeric(ncri)) {
     stop("ncri parameter must be a number (number of criteria)")
   }
-  if (!is.numeric(w)) {
+  if (!(is.vector(w, mode = "numeric"))) {
     stop("Numeric values expected in the weight vector")
   }
   if (length(w) != ncri) {

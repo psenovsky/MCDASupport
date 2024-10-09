@@ -145,7 +145,8 @@ dematel <- function(relations) {
       stop(msg)
     }
   }
-  lapply(relations, validation$validate_invalid_val, valid_val = v_val)
+  lapply(relations, validation$validate_invalid_val, valid_val = v_val,
+         msg = "Relations matrix")
   # end of validation
 
   # step 1) average (direct relationship) matrix generation (adr)
