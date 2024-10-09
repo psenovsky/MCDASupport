@@ -48,7 +48,7 @@ binary_paiwise_comp <- function(pm) {
   # param validation
   validation$validate_pm(pm)
   validation$validate_pm_rows_columns_same(pm)
-  validation$validate_pm_0_or_1(pm)
+  validation$validate_invalid_val(pm, c(0, 1), "Preference matrix")
   diag(pm) <- 0
   validation$validate_pm_01_symetry(pm)
   # end of validation
