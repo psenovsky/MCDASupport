@@ -168,6 +168,25 @@ validation_env$validate_scalar_numeric <- function(s, msg) {
   }
 }
 
+#' Validates that provided val is in <from;to> interval.
+#'
+#' @name validation$validate_value_in_interval
+#' @param val numeric value to check
+#' @param from lower bound of the interval to check
+#' @param to upper bound of interval to check
+#' @param msg identification of what we are checking
+validation_env$validate_value_in_interval <- function(val, from, to, msg) {
+  if (!is.numeric(val) || !is.numeric(from) || !is.numeric(to)) {
+    m <- paste("Provided ", msg, " and bounds of the interval need to be
+               numbers")
+    stop(m)
+  }
+  if (val < from || val > to) {
+    m <- paste("Provided ", msg, " is outside of supported interval")
+    stop(m)
+  }
+}
+
 #' Validate the numeric progresion in provided vector
 #'
 #' @description

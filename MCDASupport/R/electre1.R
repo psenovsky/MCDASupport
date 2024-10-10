@@ -158,9 +158,6 @@ electre1 <- R6Class("electre1",
     #' criteria are maximized or minimized.
     #' @param concordance_threshold concordance threshold (in interval <0; 1>)
     #' @param discordance_threshold discordance threshold (in interval <0; 1>)
-    #' @param test Boolean value specifying whether the consistency tests in
-    #'  the constructor should be used. FALSE value is usually used during
-    #'  sensitivity testing.
     #' @examples
     #' PM <- cbind(
     #'   c(103000,101300,156400,267400,49900,103600,103000,170100,279700,405000),
@@ -180,31 +177,13 @@ electre1 <- R6Class("electre1",
     initialize = function(pm, w,
                           minmaxcriteria = "max",
                           concordance_threshold = 1,
-                          discordance_threshold = 0,
-                          test = TRUE) {
+                          discordance_threshold = 0) {
       # test provided parameters
-      if (test) {
-        if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-          stop("wrong performance matrix, should be a matrix or a data frame")
-        }
-        if (!is.numeric(unlist(pm))) {
-          stop("Only numeric values in performance matrix expected")
-        }
-        if (!(is.vector(w, mode = "numeric"))) {
-          stop("criteriaWeights should be a numeric vector")
-        }
-        if (ncol(pm) != length(w)) {
-          stop("length of criteriaWeights should be checked")
-        }
-        if (!is.numeric(concordance_threshold) || concordance_threshold < 0
-            || concordance_threshold > 1) {
-          stop("Concordance threshold out of bounds")
-        }
-        if (!is.numeric(discordance_threshold) || discordance_threshold < 0
-            || discordance_threshold > 1) {
-          stop("Discordance threshold out of bounds")
-        }
-      }
+      ncri <- ncol(pm)
+      validation$validate_pm(pm)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights")
+      validation$validate_value_in_interval(concordance_threshold, 0, 1)
+      validation$validate_value_in_interval(discordance_threshold, 0, 1)
       # initialize class
       self$pm_orig <- pm
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
