@@ -182,8 +182,10 @@ electre1 <- R6Class("electre1",
       ncri <- ncol(pm)
       validation$validate_pm(pm)
       validation$validate_no_elements_vs_cri(w, ncri, "weights")
-      validation$validate_value_in_interval(concordance_threshold, 0, 1)
-      validation$validate_value_in_interval(discordance_threshold, 0, 1)
+      validation$validate_value_in_interval(concordance_threshold, 0, 1,
+                                            "Concordance matrix")
+      validation$validate_value_in_interval(discordance_threshold, 0, 1,
+                                            "Discordance threshold")
       # initialize class
       self$pm_orig <- pm
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
