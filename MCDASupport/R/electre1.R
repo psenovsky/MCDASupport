@@ -181,7 +181,7 @@ electre1 <- R6Class("electre1",
       # test provided parameters
       ncri <- ncol(pm)
       validation$validate_pm(pm)
-      validation$validate_no_elements_vs_cri(w, ncri, "weights")
+      validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
       validation$validate_value_in_interval(concordance_threshold, 0, 1,
                                             "Concordance matrix")
       validation$validate_value_in_interval(discordance_threshold, 0, 1,
