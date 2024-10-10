@@ -78,8 +78,15 @@ validation_env$validate_minmax <- function(minmax, ncri) {
 #' @param vect vector to check
 #' @param ncri number of criteria
 #' @param msg identification of what are we checking to use in error message
-validation_env$validate_no_elements_vs_cri <- function(vect, ncri, msg) {
-  if (!is.vector(vect)) {
+#' @param test_numeric set to TRUE to test vect as numeric vector
+validation_env$validate_no_elements_vs_cri <- function(vect, ncri, msg,
+                                                       test_numeric = FALSE) {
+  if (test_numeric) {
+    if (!is.vector(vect, mode = "numeric")) {
+      m <- paste(msg, " expected to be numeric vector")
+      stop(m)
+    }
+  } else if (!is.vector(vect)) {
     m <- paste(msg, " expected to be vector")
     stop(m)
   }

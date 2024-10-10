@@ -155,9 +155,6 @@ electre1s <- R6Class("electre1s",
     #' criteria are maximized or minimized.
     #' @param lambda lambda parameter defining concordance threshold. The
     #'  default value is 0.5, but the value can be in interval <0.5;1>.
-    #' @param test Boolean value specifying whether the consistency tests in
-    #'  the constructor should be used. FALSE value is usually used during
-    #'  sensitivity testing.
     #'
     #' @examples
     #' PM <- cbind(
@@ -176,24 +173,16 @@ electre1s <- R6Class("electre1s",
     #' w <- c(1,1,1,1,1) #weights
     #' e1s <- electre1s:new(PM, w, Q, P, V)
     initialize = function(pm, w, q, p, v, minmaxcriteria = "max",
-                          lambda = 0.5, test = TRUE) {
-      if (test) { # validate inputs
-        Electre_4_paramCheck(pm = pm, p = p, q = q, v = v,
-                             minmaxcriteria = minmaxcriteria)
-        ncri <- ncol(pm)  #no. of criteria
-        if (!is.vector(w, mode = "numeric")) {
-          stop("criteriaWeights should be a numeric vector")
-        }
-        if (ncri != length(w)) {
-          stop("length of criteriaWeights should be checked")
-        }
-        if (!is.null(lambda) && !is.numeric(lambda)) {
-          stop("if lambda is set, it must be numeric value")
-        }
-        if (lambda < 0.5 || lambda > 1) {
-          stop("Lambda value must be in interval <0.5;1>")
-        }
-      }
+                          lambda = 0.5) {
+      # validation of the inputs
+      ncri <- ncol(pm)  #no. of criteria
+      cri <- colnames(pm)
+      validation$validate_pm(pm)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
+      validation$validate_value_in_interval(lambda, 0.5, 1, "lambda")
+      validation$validate_electre_pqv(p, q, v, cri)
+      #end of validation
+
       self$pm_orig <- pm
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
       self$w <- w
@@ -270,26 +259,19 @@ electre1s <- R6Class("electre1s",
 
     #' @description
     #' summary of the ELECTRE IS resutls.
-    #' @return basic information on the model and its kernel. Will also list
-    #'  dominated alternatives, if such were identified.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives
       ncri <- ncol(self$pm)
-      msg2 <- " "
+      kernel_string <- paste(self$Kernel, collapse = ", ")
+      cat("Electre 1S:\nexperimental, do not use in production environment\n\n")
+      cat("processed ", nalt, " alternatives in ", ncri, " criteria\n\n")
+      cat("identified kernel of the solution: ", kernel_string, "\n\n")
       if (length(self$Dominated) > 0) {
         dom <- paste(self$Dominated, ", ")
-        msg2 <- paste0("dominated alternatives: ", dom)
+        cat("dominated alternatives: ", dom)
       }else {
-        msg2 <- "no dominated alternatives detected"
+        cat("no dominated alternatives detected")
       }
-      kernel_string <- paste(self$Kernel, collapse = ", ")
-      msg <- cat(paste0("Electre 1S: \n",
-                        "experimental, do not use in production environment\n\n",
-                        "processed ", nalt,
-                        " alternatives in ", ncri, " criteria\n\n",
-                        "identified kernel of the solution: ", kernel_string,
-                        "\n\n", msg2))
-      return(msg)
     },
 
     #' @description
