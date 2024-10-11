@@ -194,6 +194,30 @@ validation_env$validate_value_in_interval <- function(val, from, to, msg) {
   }
 }
 
+#' Validates tahl all values in the vactor are in specified bounds
+#'
+#' @name validation$validation_vector_in_interval
+#' @param vect numeric vector to check
+#' @param from lower bound of the checking interval
+#' @param to upper bound for the checking interval
+#' @param msg identification of object we are checking (i.e. indifference
+#'  threshold)
+validation_env$validation_vector_in_interval <- function(vect, from, to, msg) {
+  if (!is.numeric(from) || !is.numeric(to)) {
+    m <- paste("Provided ", msg, " and bounds of the interval need to be
+               numbers")
+    stop(m)
+  }
+  if (!is.vector(vect, mode = "numeric")) {
+    m <- paste("For", msg, " numeric vector expected.")
+    stop(m)
+  }
+  if (any(vect < from) || any(vect > to)) {
+    m <- paste(msg, " expected to be in interval {", from, "; ", to, "}")
+    stop(m)
+  }
+}
+
 #' Validate the numeric progresion in provided vector
 #'
 #' @description
@@ -208,6 +232,33 @@ validation_env$validate_vector_progression <- function(vect) {
   }
   if (!all(vect == sort(vect))) {
     stop("Values of the provided vector are not sorted ascending.")
+  }
+}
+
+#' Validate that vect1 < vect2 (element wise)
+#'
+#' @description
+#' Perform check by comparint elements in vect1 with vect2 to ensure that
+#'  every vect1_i < vect2_i, where i are the elements in the vector.
+#'
+#' This function is a variant of validate_vector_progression() function but it
+#'  works with 2 vectors instead of progression of scalars.
+#'
+#' The function is intended for validation consistency of various shresholds.
+#'
+#' @name validation$validate_vector_progression2
+#' @param vect1 first vector to compare (smaller)
+#' @param vect2 second vector to comapare (larger)
+#' @param msg string specifying what are we comparing
+validation_env$validate_vector_progression2 <- function(vect1, vect2, msg) {
+  if (!is.vector(vect1, mode = "numeric") ||
+        !is.vector(vect2, mode = "numeric")) {
+    m <- paste(msg, " expectes vectors to be numeric")
+    stop(m)
+  }
+  if (!all(vect1 <= vect2)) {
+    m <- paste("Not all elements of the ", msg, " are consistent.")
+    stop(m)
   }
 }
 

@@ -206,9 +206,6 @@ electre2 <- R6Class("electre2",
     #' Default value 0.25.
     #' @param d_plus first of two parameters defining discordance threshold.
     #'  Default value 0.5.
-    #' @param test Boolean value specifying whether the consistency tests in
-    #'  the constructor should be used. FALSE value is usually used during
-    #'  sensitivity testing.
     #' @examples
     #' PM <- cbind(
     #'  c(103000,101300,156400,267400,49900,103600,103000,170100,279700,405000),
@@ -227,35 +224,17 @@ electre2 <- R6Class("electre2",
     initialize = function(pm, w,
                           minmaxcriteria = "max",
                           c_minus = 0.65, c_zero = 0.75, c_plus = 0.85,
-                          d_minus = 0.25, d_plus = 0.5, test = TRUE) {
-      if (test) { # consistency chcecks
-        if (is.null(dim(pm))) stop("less than 2 criteria or 2 alternatives")
-        if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-          stop("wrong performanceMatrix, should be a matrix or a data frame")
-        }
-        if (!is.numeric(unlist(pm))) {
-          stop("Only numeric values in performance matrix expected")
-        }
-        if (!(is.vector(w, mode = "numeric"))) {
-          stop("criteriaWeights should be a numeric vector")
-        }
-        if (ncol(pm) != length(w)) {
-          stop("length of criteriaWeights should be checked")
-        }
-        t <- c(c_minus, c_zero, c_plus, d_minus, d_plus)
-        if (length(t[t > 1]) > 0 || length(t[t < 0]) > 0) {
-          stop("c & d thresholds need to be in <0;1>")
-        }
-        if (c_minus > c_zero) {
-          stop("Concordance level c- > c0 (must be c- <= c0)")
-        }
-        if (c_zero > c_plus) {
-          stop("Concordance level c0 > c+ (must be c0 <= c+)")
-        }
-        if (d_minus > d_plus) {
-          stop("Discordance level d- > d+ (must be d- <= d+)")
-        }
-      }
+                          d_minus = 0.25, d_plus = 0.5) {
+      # validate params
+      validation$validate_pm(pm)
+      ncri <- ncol(pm)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
+      thres <- c(d_minus, d_plus, c_minus, c_zero, c_plus)
+      validation$validation_vector_in_interval(thres, 0, 1,
+                                               "C-, C0, C+, D-, D+")
+      validation$validate_vector_progression(thres)
+      # end of param validation
+
       self$pm_orig <- pm
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
       self$w <- w
@@ -376,7 +355,6 @@ electre2 <- R6Class("electre2",
 
     #' @description
     #' summary of the ELECTRE II method resutls.
-    #' @return basic information on the model including ranking.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives
       ncri <- ncol(self$pm)
