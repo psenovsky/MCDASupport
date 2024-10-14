@@ -137,8 +137,12 @@ electre4 <- R6Class("electre4",
     #' t <- electre4:new(PM, P, Q, V, minmaxcriteria)
     initialize = function(pm, p, q, v, minmaxcriteria = "max") {
       # check validity of the objects manipulated by the current function
-      Electre_4_paramCheck(pm = pm, p = p, q = q, v = v,
-                           minmaxcriteria = minmaxcriteria)
+      ncri <- ncol(pm)
+      cri <- colnames(pm)
+      validation$validate_pm(pm)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
+      validation$validate_electre_pqv(p, q, v, cri)
+      minmaxcriteria <- validation$validate_minmax(minmaxcriteria, ncri)
       self$pm_orig <- pm
       #validate minmax and invert scales if necessary
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
