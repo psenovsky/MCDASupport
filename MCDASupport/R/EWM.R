@@ -89,12 +89,8 @@ EWM <- function(PM, minmaxcriteria = "max", VERBOSE = FALSE) {
 
   ## check validity of the objects manipulated by the current function
   # with < 2 criteria or alternatives, there is no MCDA problem
-  if (!(is.matrix(PM) || (is.data.frame(PM)))) {
-    stop("wrong performanceMatrix, should be a matrix or a data frame")
-  }
-  if (!is.numeric(unlist(PM))) {
-    stop("Only numeric values in performance matrix expected")
-  }
+  validation$validate_pm(PM)
+  minmaxcriteria <- validation$validate_minmax(minmaxcriteria, ncol(PM))
   PM <- util_pm_minmax(PM, minmaxcriteria) #validate minmax and invert scales if necessary
   nalt <- nrow(PM)
   ## End of checking the validity of the "inputs"
