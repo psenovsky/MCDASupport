@@ -269,7 +269,14 @@ electre3 <- R6Class("electre3",
                           alpha = 0.3, beta = 0.15) {
 
       # common consistency check (common with Electre_3_sensitivity function)
-      Electre_3_paramCheck(pm, w, p, q, v, minmaxcriteria, alpha, beta)
+      ncri <- ncol(pm)
+      cri <- colnames(pm)
+      validation$validate_pm(pm)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
+      validation$validate_electre_pqv(p, q, v, cri)
+      validation$validate_vector_progression(c(beta, alpha))
+      validation$validate_value_in_interval(alpha, 0, 1, "alpha")
+      validation$validate_value_in_interval(beta, 0, 1, "beta")
       self$pm_orig <- pm
       #validate minmax and invert scales if necessary
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
