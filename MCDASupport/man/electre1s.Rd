@@ -195,16 +195,7 @@ criterium)}
 \subsection{Method \code{new()}}{
 public constructor, creates electre1s object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{electre1s$new(
-  pm,
-  w,
-  q,
-  p,
-  v,
-  minmaxcriteria = "max",
-  lambda = 0.5,
-  test = TRUE
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{electre1s$new(pm, w, q, p, v, minmaxcriteria = "max", lambda = 0.5)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -227,10 +218,6 @@ criteria are maximized or minimized.}
 
 \item{\code{lambda}}{lambda parameter defining concordance threshold. The
 default value is 0.5, but the value can be in interval <0.5;1>.}
-
-\item{\code{test}}{Boolean value specifying whether the consistency tests in
-the constructor should be used. FALSE value is usually used during
-sensitivity testing.}
 }
 \if{html}{\out{</div>}}
 }
@@ -277,10 +264,6 @@ summary of the ELECTRE IS resutls.
 \if{html}{\out{<div class="r">}}\preformatted{electre1s$summary()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-basic information on the model and its kernel. Will also list
- dominated alternatives, if such were identified.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-electre1s-sensitivity"></a>}}

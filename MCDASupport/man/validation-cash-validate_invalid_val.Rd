@@ -7,6 +7,8 @@
 \item{m}{matrix or dataframe to check}
 
 \item{valid_val}{vector of valid values to check}
+
+\item{msg}{Identification of what are we checking (i.e. performance matrix)}
 }
 \description{
 Vector of valid values must contain full set of valid values to check

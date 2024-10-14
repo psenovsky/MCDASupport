@@ -188,8 +188,7 @@ public constructor, creates electre1 object.
   w,
   minmaxcriteria = "max",
   concordance_threshold = 1,
-  discordance_threshold = 0,
-  test = TRUE
+  discordance_threshold = 0
 )}\if{html}{\out{</div>}}
 }
 
@@ -208,10 +207,6 @@ criteria are maximized or minimized.}
 \item{\code{concordance_threshold}}{concordance threshold (in interval <0; 1>)}
 
 \item{\code{discordance_threshold}}{discordance threshold (in interval <0; 1>)}
-
-\item{\code{test}}{Boolean value specifying whether the consistency tests in
-the constructor should be used. FALSE value is usually used during
-sensitivity testing.}
 }
 \if{html}{\out{</div>}}
 }
@@ -258,10 +253,6 @@ summary of the ELECTRE I resutls.
 \if{html}{\out{<div class="r">}}\preformatted{electre1$summary()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-basic information on the model and its kernel. Will also list
- dominated alternatives, if such were identified.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-electre1-sensitivity"></a>}}

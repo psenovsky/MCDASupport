@@ -106,7 +106,6 @@
 #' @keywords preference modelling
 #'
 #' @seealso \code{\link{electre4}}
-#' @seealso \code{\link{Electre_4_paramCheck}}
 electretri <- R6Class("electretri",
   public = list(
     #' @field pm_orig original performance matrix as presented to class
@@ -219,9 +218,6 @@ electretri <- R6Class("electretri",
     #' creates instance of electretri class. First it validates provided input
     #'  parameters, next it computes the decision problem defined by these
     #'  parameters.
-    #'
-    #' Parameter checking part is identical with ELECTRE IV method, so it
-    #'  utilizes \code{\link{Electre_4_paramCheck}} function.
     #'
     #' @param pm performance matrix defined as matrix or data frame containing
     #'  the performance table. Each row corresponds to an alternative, and each

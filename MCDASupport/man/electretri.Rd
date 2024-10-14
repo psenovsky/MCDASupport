@@ -135,8 +135,6 @@ Shofade, Olanrewaju Joseph Soniran. Considering hierarchical structure of
 }
 \seealso{
 \code{\link{electre4}}
-
-\code{\link{Electre_4_paramCheck}}
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
@@ -253,9 +251,6 @@ public constructor of the class}
 creates instance of electretri class. First it validates provided input
  parameters, next it computes the decision problem defined by these
  parameters.
-
-Parameter checking part is identical with ELECTRE IV method, so it
- utilizes \code{\link{Electre_4_paramCheck}} function.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electretri$new(
   pm,

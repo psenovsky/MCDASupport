@@ -218,8 +218,7 @@ public constructor, creates electre2 object.
   c_zero = 0.75,
   c_plus = 0.85,
   d_minus = 0.25,
-  d_plus = 0.5,
-  test = TRUE
+  d_plus = 0.5
 )}\if{html}{\out{</div>}}
 }
 
@@ -254,10 +253,6 @@ Default value 0.25.}
 
 \item{\code{d_plus}}{first of two parameters defining discordance threshold.
 Default value 0.5.}
-
-\item{\code{test}}{Boolean value specifying whether the consistency tests in
-the constructor should be used. FALSE value is usually used during
-sensitivity testing.}
 }
 \if{html}{\out{</div>}}
 }
@@ -303,9 +298,6 @@ summary of the ELECTRE II method resutls.
 \if{html}{\out{<div class="r">}}\preformatted{electre2$summary()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-basic information on the model including ranking.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-electre2-sensitivity"></a>}}
