@@ -279,8 +279,13 @@ electretri <- R6Class("electretri",
     initialize = function(pm, profiles, profiles_names, w, q, p, v,
                           minmaxcriteria = "max", lambda = 0.75) {
       # common consistency check (common with Electre_3_sensitivity function)
-      Electre_4_paramCheck(pm = pm, q = q, p = p, v = v,
-                           minmaxcriteria = minmaxcriteria)
+      ncri <- ncol(pm)
+      cri <- colnames(pm)
+      validation$validate_pm(pm)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
+      validation$validate_electre_pqv(p, q, v, cri)
+      minmaxcriteria <- validation$validate_minmax(minmaxcriteria, ncri)
+      validation$validate_value_in_interval(lambda, 0, 1, "lambda")
       self$pm_orig <- pm
       #validate minmax and invert scales if necessary
       self$pm <- util_pm_minmax(pm, minmaxcriteria)
