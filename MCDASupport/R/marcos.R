@@ -159,7 +159,10 @@ marcos <- R6Class("marcos",
     #' t <- marcos$new(PM, w, minmax)
     initialize = function(pm, w, minmax = "max") {
       # validation of the parameters
-      self$minmax <- param_check_marcos(pm, w, minmax)
+      ncri <- ncol(pm)
+      validation$validate_pm(pm)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights")
+      self$minmax <- validation$validate_minmax(minmax, ncri)
       # end of validation
 
       self$pm <- pm
