@@ -155,26 +155,9 @@ fuzzyvikor <- R6Class("fuzzyvikor",
     initialize = function(pm, dictionary_pm, w, dictionary_w, alt, v = NULL) {
       ## check validity of the objects manipulated by the current function
       n <- ncol(pm) #no. of decision makers
+      validation$validate_pm_fuzzy(pm, dictionary_pm, w, dictionary_w, 4, alt)
       criteria <- rownames(w)
-      if (ncol(w) != n) {
-        stop("number of decission makers in w and PM is not same")
-      }
       ncri <- nrow(w)
-      if (nrow(pm) %% ncri != 0) {
-        stop("no. of rows in PM must == to no. cri * no. alt.")
-      }
-      nalt <- trunc(nrow(pm) / ncri)
-      if (nalt != length(alt)) {
-        stop("No. of alternatives in alt param does not corespond to 
-             no. of alternatives in PM")
-      }
-      if (!private$fuzzy_consistency(pm, dictionary_pm, "PM")) {
-        stop("Unknown error when checking consistency of fuzzy numbers in PM")
-      }
-      if (!private$fuzzy_consistency(w, dictionary_w, "weights")) {
-        stop("Unknown error when checking consistency of fuzzy numbers
-             in weights matrix")
-      }
       if (is.null(v)) {
         v <- (ncri + 1) / (2 * ncri)
       } else if (!is.numeric(v)) {
@@ -233,66 +216,10 @@ fuzzyvikor <- R6Class("fuzzyvikor",
       print(self$R, pretty = TRUE)
       cat(paste("\nQ metric\n"))
       print(self$Q, pretty = TRUE)
-      cat(paste("\nCompromise solution\n"))
-      print(unlist(self$compromiseSolution), pretty = TRUE)
+      cat("\nCompromise solution: ", unlist(self$compromiseSolution))
     }
   ),
   private = list(
-    # function to check consistency of matrix againts dictionary of values
-    #
-    # parameters
-    #   M - matrix to be checked
-    #   dict - dictionary to check matrix against
-    #   msg - message to guide user on what is being examined i.e. PM,
-    #         weight matrix, etc.
-    #   returns - TRUE if everything is OK, otherwise stops the computation
-    #             (at first problem)
-    fuzzy_consistency = function(m, dict, msg = NULL) {
-      # check consistency of dictionary (needed to also check consistency
-      # of M later)
-      if (ncol(dict) != 4) {
-        stop(paste("dictionary ", msg,
-                   " needs to be defined as trapezoid fuzzy number (4 columns)"))
-      }
-      if (!is.numeric(unlist(dict))) {
-        stop(paste("Only numeric values expected in ", msg))
-      }
-      # check consistency of dictionary - numbers are expected to grow from
-      # left to right and from top to bottom
-      for (i in seq_len(dict)) {
-        for (j in 2:4) {
-          if (dict[i, j - 1] > dict[i, j - 1]) {
-            stop(paste("Problem with dictionaryPM inconsistency in row ", i))
-          }
-        }
-        if (i > 1) { # top to bottom check
-          for (j in 1:4) {
-            if (dict[i, j] < dict[i - 1, j]) {
-              stop(paste("Inconsistency in dict. ", msg,
-                         " detected on [line, row]: [", i, ",", j,
-                         "], rows are expected to go from lowest value",
-                         " to highest."))
-            }
-          }
-        }
-      } # end check consistency of dictionary
-      dict_names <- rownames(dict) #list of variables values used in dictionary
-      # check consistency of matrix M
-      if (!(is.matrix(m) || (is.data.frame(m)))) {
-        stop(paste("Problem with definition of matrix, ", msg,
-                   ": not matrix or dataframe."))
-      }
-      #check whether the M uses only fuzzy numbers from dictionary
-      tm <- unlist(m)
-      for (j in seq_along(tm)) { #check for consistency of preference function
-        if (!(tm[j] %in% dict_names)) {
-          stop(paste("Dictionary ", msg, " uses value not in the dictionary (",
-                     tm[j], ")"))
-        }
-      }
-      return(TRUE) # every check passed, return TRUE
-    }, # end of fuzzyConsistency function
-
     # Convert the linguistic variables for the criteria weights or the ratings
     # into fuzzy weights and fuzzy decision matrix, respectively
     #
