@@ -21,6 +21,34 @@ validation_env$validate_electre_pqv <- function(p, q, v, cri) {
   }
 }
 
+
+#' function to check consistency of matrix againts dictionary of values
+#'
+#' @name validation$validate_fuzzy_consistency
+#' @param m matrix to be checked
+#' @param dict dictionary to check matrix against
+#' @param fn type of fuzzy number (i.e. 3 for triangular, 4 for trapeziodal)
+#' @param msg message to guide user on what is being examined i.e. PM,
+#'   weight matrix, etc.
+validation_env$validate_fuzzy_consistency = function(m, dict, fn = 3, msg = NULL) {
+  if (!is.numeric(fn)) {
+    stop("Fn param needs to be specified as number of numbers formung the fuzzy
+         number (i.e. 3 for triangular or 4 for trapeziodal fuzzy number.)")
+  }
+  if (ncol(dict) != fn) {
+    mes <- paste("dictionary ", msg,
+                 " needs to be defined as stringle fuzzy number (", fn,
+                 " columns)")
+    stop(mes)
+  }
+  if (!is.numeric(unlist(dict))) {
+    stop(paste("Only numeric values expected in dictionary of ", msg))
+  }
+  for (i in 1:nrow(dict)) {
+    validation_env$validate_vector_progression(dict[i, ])
+  }
+}
+
 #' Validate that the matrix or dataframe has only valid values
 #'
 #' @description
@@ -126,6 +154,31 @@ validation_env$validate_pm <- function(pm) {
   }
 }
 
+#' Validate consistency of performance matrix specified using fuzzy numbers
+#'
+#' @name validation$validate_pm_fuzzy
+#' @param pm performance matrix
+#' @param dict_pm dictionary for performance matrix
+#' @param w weight matrix
+#' @param dict_w dictionary for weight matrix
+#' @param fn type of fuzzy number (i.e. 3 for triangular, 4 for trapeziodal)
+#' @param alt vector of alternatives names
+validation_env$validate_pm_fuzzy <- function(pm, dict_pm, w, dict_w, fn, alt) {
+  n <- ncol(pm) #no. of decision makers
+  ncri <- nrow(w)
+  validation_env$validate_invalid_val(pm, rownames(dict_pm),
+                                      "Performance matrix")
+  validation_env$validate_invalid_val(w, rownames(dict_w),
+                                      "Weight matrix")
+  validation_env$validate_scalar_same(ncol(w), n, "No. of decision makers in performance matrix and weights matrix")
+  nalt <- trunc(nrow(pm) / ncri)
+  validation_env$validate_scalar_same(nalt, length(alt), "No. of alternatives in alt. vector and performance matrix")
+  validation_env$validate_fuzzy_consistency(pm, dict_pm, fn,
+                                            "performance matrix")
+  validation_env$validate_fuzzy_consistency(w, dict_w, fn,
+                                            "weight matrix")
+}
+
 #' Validates that to 1 in rows there is symetrical 0 in columns (and vice
 #'  versa)
 #'
@@ -171,6 +224,19 @@ validation_env$validate_pm_rows_columns_same <- function(pm) {
 validation_env$validate_scalar_numeric <- function(s, msg) {
   if (!is.numeric(s)) {
     m <- paste(msg, " must be a number")
+    stop(m)
+  }
+}
+
+#' Validates that provided params val1 and 2 are same
+#'
+#' @name validation$validate_scalar_same
+#' @param val1 first value to check
+#' @param val2 second value to check
+#' @param msg identification of what we are checking
+validation_env$validate_scalar_same <- function(val1, val2, msg) {
+  if (val1 != val2) {
+    m <- paste(msg, " expected to be the same")
     stop(m)
   }
 }

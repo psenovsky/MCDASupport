@@ -166,23 +166,7 @@ fuzzytopsis <- R6Class("fuzzytopsis",
     initialize = function(pm, dictionary_pm, w, dictionary_w, alt) {
       ## check validity of the objects manipulated by the current function
       n <- ncol(pm) #no. of decision makers
-      if (ncol(w) != n) {
-        stop("number of decission makers in w and PM is not same")
-      }
-      ncri <- nrow(w)
-      if (nrow(pm) %% ncri != 0) {
-        stop("no. of rows in PM must == to no. cri * no. alt.")
-      }
-      nalt <- trunc(nrow(pm) / ncri)
-      if (nalt != length(alt)) {
-        stop("No. of alternatives in alt param != no. of alternatives in PM")
-      }
-      if (!private$fuzzy_consistency(pm, dictionary_pm, "PM")) {
-        stop("Error when checking consistency of fuzzy numbers in PM")
-      }
-      if (!private$fuzzy_consistency(w, dictionary_w, "weights")) {
-        stop("Error when checking consistency of fuzzy numbers in weights matrix")
-      }
+      validation$validate_pm_fuzzy(pm, dictionary_pm, w, dictionary_w, 3, alt)
       ## End of checking the validity of the "inputs"
 
       self$pm <- pm
