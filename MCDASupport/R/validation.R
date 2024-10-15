@@ -30,7 +30,8 @@ validation_env$validate_electre_pqv <- function(p, q, v, cri) {
 #' @param fn type of fuzzy number (i.e. 3 for triangular, 4 for trapeziodal)
 #' @param msg message to guide user on what is being examined i.e. PM,
 #'   weight matrix, etc.
-validation_env$validate_fuzzy_consistency = function(m, dict, fn = 3, msg = NULL) {
+validation_env$validate_fuzzy_consistency <- function(m, dict, fn = 3,
+                                                      msg = NULL) {
   if (!is.numeric(fn)) {
     stop("Fn param needs to be specified as number of numbers formung the fuzzy
          number (i.e. 3 for triangular or 4 for trapeziodal fuzzy number.)")
