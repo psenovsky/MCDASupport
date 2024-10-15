@@ -226,58 +226,6 @@ fuzzytopsis <- R6Class("fuzzytopsis",
     }
   ),
   private = list(
-    # function to check consistency of matrix againts dictionary of values
-    #
-    # @param m matrix to be checked
-    # @param dict dictionary to check matrix against
-    # @param msg message to guide user on what is being examined i.e. PM,
-    #   weight matrix, etc.
-    # @return TRUE if everything is OK, otherwise stops the computation
-    #    (at first problem)
-    fuzzy_consistency = function(m, dict, msg = NULL) {
-      # check consistency of dictionary (needed to also check consistency
-      # of M later)
-      if (ncol(dict) != 3) {
-        stop(paste("dictionary ", msg,
-                   " needs to be defined as stringle fuzzy number (3 columns)"))
-      }
-      if (!is.numeric(unlist(dict))) {
-        stop(paste("Only numeric values expected in ", msg))
-      }
-      for (i in seq_len(dict)) {
-        # check consistency of dictionary - numbers are expected to grow from
-        # left to right and from top to bottom
-        if (dict[i, 2] < dict[i, 1] || dict[i, 2] > dict[i, 3]) {
-          stop(paste("Problem with dictionaryPM inconsistency in row ", i))
-        }
-        if (i > 1) { # top to bottom check
-          for (j in 1:3) {
-            if (dict[i, j] < dict[i - 1, j]) {
-              stop(paste("Inconsistency in dict. ", msg,
-                         " detected on [line, row]: [", i, ",", j,
-                         "], rows are expected to go from lowest ",
-                         "value to highest."))
-            }
-          }
-        }
-      } # end check consistency of dictionary
-      dict_names <- rownames(dict) #list of variables values used in dictionary
-      # check consistency of matrix M
-      if (!(is.matrix(m) || (is.data.frame(m)))) {
-        stop(paste("Problem with definition of matrix, ", msg,
-                   ": not matrix or dataframe."))
-      }
-      #check whether the M uses only fuzzy numbers from dictionary
-      t_m <- unlist(m)
-      for (j in seq_along(t_m)) { #check for consistency of preference function
-        if (!(t_m[j] %in% dict_names)) {
-          stop(paste("Dictionary ", msg, " uses value not in the dictionary (",
-                     t_m[j], ")"))
-        }
-      }
-      return(TRUE) # every check passed, return TRUE
-    }, # end of fuzzyConsistency function
-
     # Convert the linguistic variables for the criteria weights or the ratings
     # into fuzzy weights and fuzzy decision matrix, respectively
     #
