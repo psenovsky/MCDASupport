@@ -206,7 +206,7 @@
 mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
   # validate inputs
   t <- c("min", "max")
-  if (!minmax %in% t) stop("minmax parameter expected to be max or min.")
+  validation$validate_invalid_val(minmax, t, "minmax")
   if (!is.vector(tonorm, mode = "numeric")) {
     stop("tonorm paramerer expected to be numeric vector.")
   }
@@ -222,9 +222,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
                 "vector",
                 "ZavadskasTurskis",
                 "zscore")
-  if (!(method %in% nmethods)) {
-    stop("trying to normalize with unsupported (unknown) normalization method")
-  }
+  validation$validate_invalid_val(method, nmethods, "normalization method")
 
   #LaiHwang normalization
   norm_lai_hwang <- function(tonorm, minmax = "max") {
