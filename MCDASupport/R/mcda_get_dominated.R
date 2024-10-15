@@ -53,14 +53,10 @@
 #'
 #' @keywords MCDA domination
 mcda_get_dominated <- function(m, minmaxcriteria = "max") {
-  #check validity of inputs
+  # check validity of inputs
   ncrit <- ncol(m)
-  if (nrow(m) < 2 || ncrit < 2) {
-    stop("Performance matrix must have at minimum 2 alteratives and criteria")
-  }
-  if (!(is.matrix(m) || (is.data.frame(m)))) {
-    stop("wrong performance matrix, should be a matrix or a data frame")
-  }
+  validation$validate_pm(m)
+  # end of validity check
 
   pm <- util_pm_minmax(m, minmaxcriteria)
   nalt  <- nrow(pm)
