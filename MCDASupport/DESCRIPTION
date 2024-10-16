@@ -1,8 +1,8 @@
 Package: MCDASupport
 Type: Package
 Title: Support functions for solving Multiple-criteria Decision-making Problems
-Version: 0.32
-Date: 2024-10-07
+Version: 0.33
+Date: 2024-10-16
 Author: Pavel Šenovský pavel.senovsky@vsb.cz [aut, cre]
 Maintainer: Pavel Šenovský <pavel.senovsky@vsb.cz>
 Description: Functions to process ''outranking'' using various methods existing in the literature.
