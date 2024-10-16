@@ -108,23 +108,15 @@ topsis <- R6Class("topsis",
     #' result <- topsis$new(PM, w, minmax)
     initialize = function(pm, w, minmax = "max") {
       ## check validity of the objects manipulated by the current function
-      # with < 2 criteria or 2 alternatives, there is no MCDA problem
-      if (is.null(dim(pm))) stop("less than 2 criteria or 2 alternatives")
-      if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-        stop("wrong performance matrix, should be a matrix or a data frame")
-      }
-      if (!is.numeric(unlist(pm))) {
-        stop("Only numeric values in performance matrix expected")
-      }
+      validation$validate_pm(pm)
+      ncri <- ncol(pm)
       self$pm_orig <- pm
       # validate minmax and invert scales if neccessary
       self$pm <- util_pm_minmax(pm, minmax)
       self$pm <- as.data.frame(pm)
+      validation$validate_scalar_same(length(w), ncri, "No. of criteria in weight vestor and performance matrix")
       if (!(is.vector(w, mode = "numeric"))) {
         stop("criteria weights should be a vector")
-      }
-      if (ncol(pm) != length(w)) {
-        stop("length of criteria weights should be checked")
       }
       ## End of checking the validity of the "inputs"
 
