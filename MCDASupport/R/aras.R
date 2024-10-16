@@ -155,12 +155,11 @@ aras <- R6Class("aras",
       validation$validate_pm(pm)
       validation$validate_no_elements_vs_cri(w, ncri, "weights")
       validation$validate_w_sum_eq_1(w)
-      validation$validate_minmax(minmax, ncri)
+      self$minmax <- validation$validate_minmax(minmax, ncri)
       self$pm <- util_pm_minmax(pm, minmax)
       # end of validaty check
 
       self$w <- w
-      self$minmax <- minmax
       self$compute()
       self
     },
