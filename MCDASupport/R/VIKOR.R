@@ -140,22 +140,12 @@ vikor <- R6Class("vikor",
     initialize = function(pm, w, minmax = "max", v = NULL) {
       ## check validity of the objects manipulated by the current function
       # with < 2 criteria or 2 alternatives, there is no MCDA problem
-      if (is.null(dim(pm))) stop("less than 2 criteria or 2 alternatives")
-      if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-        stop("wrong performanceMatrix, should be a matrix or a data frame")
-      }
-      if (!is.numeric(unlist(pm))) {
-        stop("Only numeric values in performance matrix expected")
-      }
+      validation$validate_pm(pm)
+      ncri <- ncol(pm)
       self$pm_orig <- pm
       #validate minmax and invert scales if neccessary
+      validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
       self$pm <- util_pm_minmax(pm, minmax)
-      if (!(is.vector(w, mode = "numeric"))) {
-        stop("criteriaWeights should be a vector")
-      }
-      if (ncol(self$pm) != length(w)) {
-        stop("length of criteriaWeights should be checked")
-      }
       if (is.null(v)) {
         self$v <- (ncri + 1) / (2 * ncri)
       } else if (!is.numeric(v)) {
