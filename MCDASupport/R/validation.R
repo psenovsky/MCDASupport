@@ -226,6 +226,77 @@ validation_env$validate_pm_rows_columns_same <- function(pm) {
   }
 }
 
+#' validates consistency of preference, indifference and intermediate
+#'  thresholds pro PROMETHEE based approaches
+#'
+#' @name validation$validate_promethee_thresholds
+#' @param p preference threshold
+#' @param q indifference threshold
+#' @param s intermediate threshold
+#' @param ncri number of criteria
+#' @return adjusted intermediate threshold
+validation_env$validate_promethee_thresholds <- function(p, q, s,
+                                                         preference_function,
+                                                         ncri) {
+  f_types <- c("default", "U-shape", "V-shape", "level", "linear", "Gaussian")
+  validation_env$validate_invalid_val(preference_function, f_types,
+                                      "prefference functions")
+  indif_types <- c("U-shape", "level", "linear")
+  pref_types <- c("V-shape", "level", "linear")
+  for (i in 1:ncri) {
+    # indifference threshold
+    if (preference_function[i] %in% indif_types &&
+          (!is.numeric(q[i]) || q[i] < 0)) {
+      msg <- paste0("Nonnumeric value found in criterium ", i, ". ",
+                    preference_function[i], " must have set numeric  positive
+                     indifference threshold")
+      stop(msg)
+    }
+    # preference threshold
+    if (preference_function[i] %in% pref_types &&
+          (!is.numeric(p[i]) || p[i] < 0)) {
+      msg <- paste0("Nonnumeric value found in criterium ", i, ". ",
+                    preference_function[i], " must have set numeric positive
+                     prefference threshold")
+    }
+    # indifference threshold vs preference threshold
+    if (preference_function[i] %in% c("linear", "level") && q[i] > p[i]) {
+      msg <- paste0("For level/linear preference function indifference
+                     threshold must be lower then prefference threshold.
+                      Problem detectied in criterium ", i, ".")
+      stop(msg)
+    }
+
+    if (preference_function[i] == "Gaussian") {
+      # Gaussian type of prefference function check intermediate threshold
+      # for consistency
+      if (is.null(s[i]) || !is.numeric(s[i]) || s[i] < 0) {
+        # itermediate threshold is missing, we try to derive it from preference
+        # and indifference thresholds
+        if (is.null(p[i]) || !is.numeric(p[i]) || is.null(q[i]) ||
+              !is.numeric(q[i]) || p[i] < 0 || q[i] < 0) {
+          #fail nothing to derive it from
+          msg <- paste0("Criterium ", i, " is Gaussian, but the it has not ",
+                        " set intermediate threshold for it and this ",
+                        " threshold is not deriveable from preference and ",
+                        "indefference thresholds, as you did not provide them.")
+          stop(msg)
+        }
+      } else if (q[i] > p[i]) { #fail thresholds are faulty
+        msg <- paste0("Failed to derive intermediate threshold for criterium ",
+                      i, " from preference and indifference thresholds as the",
+                      " indifference threshold is larger then preference ",
+                      "threshold.")
+        stop(msg)
+      } else { #succ - derive it
+        s <- rep(0, times = ncri)
+        s[i] <- (p[i] + q[i]) / 2
+      }
+    }
+  }
+  return(s)
+}
+
 #' Validate that scalar is number
 #'
 #' @name validation$validate_scalar_numeric

@@ -159,18 +159,20 @@
 PROMETHEE <- function(PM, preferenceFunction, w, indifferenceTreshold = NULL, prefferenceThreshold = NULL,
                       intermediateThreshold = NULL) {
   ## check validity of the objects manipulated by the current function
-  # with < 2 criteria or 2 alternatives, there is no MCDA problem
-  t <- promethee_param_check(PM, preferenceFunction, w, indifferenceTreshold, prefferenceThreshold,
-                             intermediateThreshold)
+  validation$validate_pm(PM)
+  ncri <- ncol(PM) #no. of criteria
+  validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
+  validation$validate_w_sum_eq_1(w)
+  qj <- indifferenceTreshold
+  pj <- prefferenceThreshold
+  sj <- validation$validate_promethee_thresholds(pj, qj,
+                                                 intermediateThreshold,
+                                                 preferenceFunction, ncri)
   ## End of checking the validity of the "inputs"
 
   nalt <- nrow(PM)  #no. of alternatives
-  ncri <- ncol(PM)
   alt  <- rownames(PM) #list of alternatives
   cri  <- colnames(PM) #list of criteria
-  qj   <- indifferenceTreshold
-  pj   <- prefferenceThreshold
-  sj   <- t
   
   #pairwaise comparison (validated)
   DK <- lapply(1:ncri, function(k) {
