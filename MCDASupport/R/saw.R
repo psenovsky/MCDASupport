@@ -110,16 +110,15 @@ saw <- R6Class("saw",
     #' t <- saw$new(M, w)
     initialize = function(pm, w, minmax = "max") {
       # validity check
+      ncri <- ncol(pm)
       self$pm_orig <- pm
-      self$pm <- param_check_wsm(pm, w, minmax)
-      if (round(sum(w), 4) != 1) {
-        stop("Sum of weights must be equal to 1. If you do not want to use this
-             constrain use wsm method instead.")
-      }
+      validation$validate_pm(pm)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights")
+      validation$validate_w_sum_eq_1(w)
+      self$minmax <- validation$validate_minmax(minmax, ncri)
       # end of validaty check
 
       self$w <- w
-      self$minmax <- minmax
       self$compute()
       self
     },
