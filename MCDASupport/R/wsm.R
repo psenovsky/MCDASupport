@@ -85,10 +85,16 @@ wsm <- R6Class("wsm",
     #' w = c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
     #' t <- wsm$new(M, w)
     initialize = function(pm, w, minmax = "max") {
+      #validation
+      ncri <- ncol(pm)
       self$pm_orig <- pm
-      self$pm <- param_check_wsm(pm, w, minmax)
+      validation$validate_pm(pm)
+      self$minmax <- validation$validate_minmax(minmax, ncri)
+      self$pm <- util_pm_minmax(pm, self$minmax)
+      validation$validate_no_elements_vs_cri(w, ncri, "weights")
+      # end of validation
+
       self$w <- w
-      self$minmax <- minmax
       self$compute()
       self
     },
