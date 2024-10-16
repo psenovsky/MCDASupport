@@ -124,13 +124,13 @@ sir <- R6Class("sir",
     #' @param pm Matrix or data frame containing the performance table. Each
     #'  row corresponds to an alternative, and each column to a criterion. only
     #'  numeric values expercted. Rows and columns are expected to be named.
-    #' @param w vector, specifies type of function used to compute preferences.
+    #' @param w vector containing the weights of the criteria. Values need to
+    #'  \mjseqn{0 \le w_i \le 1, \sum w_i = 1}
+    #' @param d vector, specifies type of function used to compute preferences.
     #'  Need to be set for each criterion. Possible values are: 'default',
     #'  'U-shape', 'V-shape', 'level', 'linear', 'Gaussian'. Choice of function
     #'  type will decide on what type of threshold (if any) is required for
     #'  computation. Each criterion can use different preference function.
-    #' @param d vector containing the weights of the criteria. Values need to
-    #'  \mjseqn{0 \le w_i \le 1, \sum w_i = 1}
     #' @param minmax value or vector of values 'min' or 'max' specifying
     #'  optimization direction for the criterium
     #' @param i_threshold vector containing indifference threshods for
@@ -183,20 +183,24 @@ sir <- R6Class("sir",
                           im_threshold = NULL, SAW = TRUE) {
 
       ## check validity of the objects manipulated by the current function
-      # with < 2 criteria or 2 alternatives, there is no MCDA problem
       self$pm_orig <- pm
       #validate minmax and invert scales if neccessary
       self$pm <- util_pm_minmax(pm, minmax)
       self$pref_function <- d
-      t <- promethee_param_check(pm, self$pref_function, w, i_threshold,
-                                 p_threshold, im_threshold)
+      validation$validate_pm(PM)
+      ncri <- ncol(PM) #no. of criteria
+      validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
+      validation$validate_w_sum_eq_1(w)
+      im_threshold <- validation$validate_promethee_thresholds(p_threshold,
+                                                               i_threshold,
+                                                               im_threshold,
+                                                               d, ncri)
       ## End of checking the validity of the "inputs"
 
       self$w <- w
       self$minmax <- minmax
       self$i_threshold <- i_threshold
       self$p_threshold <- p_threshold
-      self$im_threshold <- t
       self$SAW <- SAW
       self$compute()
       self

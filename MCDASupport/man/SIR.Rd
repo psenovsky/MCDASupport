@@ -179,14 +179,14 @@ public constructor allowing the user to construct SIR decision analysis
 row corresponds to an alternative, and each column to a criterion. only
 numeric values expercted. Rows and columns are expected to be named.}
 
-\item{\code{w}}{vector, specifies type of function used to compute preferences.
+\item{\code{w}}{vector containing the weights of the criteria. Values need to
+\mjseqn{0 \le w_i \le 1, \sum w_i = 1}}
+
+\item{\code{d}}{vector, specifies type of function used to compute preferences.
 Need to be set for each criterion. Possible values are: 'default',
 'U-shape', 'V-shape', 'level', 'linear', 'Gaussian'. Choice of function
 type will decide on what type of threshold (if any) is required for
 computation. Each criterion can use different preference function.}
-
-\item{\code{d}}{vector containing the weights of the criteria. Values need to
-\mjseqn{0 \le w_i \le 1, \sum w_i = 1}}
 
 \item{\code{minmax}}{value or vector of values 'min' or 'max' specifying
 optimization direction for the criterium}
