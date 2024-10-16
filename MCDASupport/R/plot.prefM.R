@@ -53,17 +53,9 @@ plot.prefM <- function(x) {
   pm <- x
 
   # consistency check
-  if (!(is.matrix(pm) || (is.data.frame(pm)))) {
-    stop("wrong performance matrix, should be a matrix or a data frame")
-  }
-  nr <- ncol(pm)
-  if (nr != nrow(pm)) {
-    stop("Different number of alternatives in columns and rows")
-  }
-  if (nr < 2) stop("less than 2 alternatives")
-  if (!is.numeric(unlist(pm))) {
-    stop("Only numeric values in performance matrix expected")
-  }
+  validation$validate_pm_rows_columns_same(pm)
+  validation$validate_matrix_numeric(pm)
+  # end of consistency check
 
   # construct resulting network graph
   if (all(pm == 0)) {

@@ -67,6 +67,16 @@ validation_env$validate_invalid_val <- function(m, valid_val, msg) {
   if (any(!m %in% valid_val)) stop(msg2)
 }
 
+#' Validates that the matrix or dataframe has only numeric elements
+#'
+#' @name validation$validate_matrix_numeric
+#' @param pm matrix or dataframe to check
+validation_env$validate_matrix_numeric <- function(pm) {
+  if (!is.numeric(unlist(pm))) {
+    stop("Only numeric values in matrix/dataframe expected")
+  }
+}
+
 #' Validate min-max vector (internal use only)
 #'
 #' @description
