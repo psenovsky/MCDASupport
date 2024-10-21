@@ -36,6 +36,8 @@ S3method(summary,saw)
 S3method(summary,sir)
 S3method(summary,topsis)
 S3method(summary,vikor)
+S3method(summary,waspas)
+S3method(summary,wpm)
 S3method(summary,wsm)
 
 import(graphics)
