@@ -131,7 +131,7 @@ same.}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-instance of the class included ocmputed model
+instance of the class included computed model
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
