@@ -82,7 +82,7 @@ moosra <- R6Class("moosra",
     #' )
     #' rownames(M) <- alternatives
     #' colnames(M) <- criteria
-    #' w = c(0.1, 0.2, 0.1, 0.2, 0.1, 0.3)
+    #' w <- c(0.1, 0.2, 0.1, 0.2, 0.1, 0.3)
     #' minmax <- c("max", "max", "max", "min", "min", "min")
     #' t <- moosra$new(M, w, minmax)
     initialize = function(pm, w, minmax = "max") {
