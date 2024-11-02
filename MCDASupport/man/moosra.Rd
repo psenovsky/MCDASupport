@@ -44,7 +44,7 @@ M <- rbind(
 )
 rownames(M) <- alternatives
 colnames(M) <- criteria
-w = c(0.1, 0.2, 0.1, 0.2, 0.1, 0.3)
+w <- c(0.1, 0.2, 0.1, 0.2, 0.1, 0.3)
 minmax <- c("max", "max", "max", "min", "min", "min")
 t <- moosra$new(M, w, minmax)
 }
@@ -137,7 +137,7 @@ M <- rbind(
 )
 rownames(M) <- alternatives
 colnames(M) <- criteria
-w = c(0.1, 0.2, 0.1, 0.2, 0.1, 0.3)
+w <- c(0.1, 0.2, 0.1, 0.2, 0.1, 0.3)
 minmax <- c("max", "max", "max", "min", "min", "min")
 t <- moosra$new(M, w, minmax)
 }
