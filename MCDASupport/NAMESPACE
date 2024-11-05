@@ -43,6 +43,7 @@ S3method(summary,sir)
 S3method(summary,topsis)
 S3method(summary,vikor)
 S3method(summary,waspas)
+S3method(summary,wisp)
 S3method(summary,wpm)
 S3method(summary,wsm)
 
