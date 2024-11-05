@@ -80,7 +80,7 @@ gra <- R6Class("gra",
     #'  same.
     #' @param dc distinguished coefficient (0.5 by default)
     #'
-    #' @return instance of the class included computed model
+    #' @return instance of the class including computed model
     #'
     #' @examples
     #' # from: https://www.youtube.com/watch?v=J63Q5IbK-cs
