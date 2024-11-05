@@ -94,6 +94,7 @@ optimization direction.}
 \itemize{
 \item \href{#method-merec-new}{\code{merec$new()}}
 \item \href{#method-merec-compute}{\code{merec$compute()}}
+\item \href{#method-merec-summary}{\code{merec$summary()}}
 \item \href{#method-merec-clone}{\code{merec$clone()}}
 }
 }
@@ -155,6 +156,17 @@ Compute the MEREC using params provided in constructor. Usually run
  automatically by constructor.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{merec$compute()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-merec-summary"></a>}}
+\if{latex}{\out{\hypertarget{method-merec-summary}{}}}
+\subsection{Method \code{summary()}}{
+prepares summary of the GRA method resutls and outputs them
+ to the console.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{merec$summary()}\if{html}{\out{</div>}}
 }
 
 }
