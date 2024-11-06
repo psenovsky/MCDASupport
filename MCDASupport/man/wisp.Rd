@@ -58,21 +58,79 @@ Overall metric for performance is derived from these four measures by
 \mjsdeqn{u_i = (\overline{u_i^{wsd}} + \overline{u_i^{wpd}} + \overline{u_i^{wsr}} + \overline{u_i^{wpr}}) / 4}
 
 Using this metric we can sort the alternatives from best to worst.
+
+The class also supports simple wariant of WIPS (S-WIPS), which simplifies
+ the model by using only wsd and wpr utility measures.
+}
+\examples{
+
+## ------------------------------------------------
+## Method `wisp$new`
+## ------------------------------------------------
+
+# from: https://www.youtube.com/watch?v=gfnZNUsWBeg
+alternatives <- c("AI 2024-T6", "AI 5052-O", "SS 301 FH", "SS 310-3AH",
+ "Ti-6AI-4V", "Inconel 718", "70Cu-30Zn")
+criteria <- c("Toughness index", "Yield Strength", "Young's Modulus",
+ "Density", "Thermal expansion", "Thermal conductivity", "Specific Heat")
+pm <- cbind(
+ c(75.5, 95, 770, 187, 179, 239, 273),
+ c(420, 91, 1365, 1120, 875, 1190, 200),
+ c(74.2, 70, 189, 210, 112, 217, 112),
+ c(2.8, 2.68, 7.9, 7.9, 4.43, 8.51, 8.53),
+ c(21.4, 22.1, 16.9, 14.4, 9.4, 11.5, 19.9),
+ c(0.37, 0.33, 0.04, 0.03, 0.016, 0.31, 0.29),
+ c(0.16, 0.16, 0.08, 0.08, 0.09, 0.07, 0.06)
+)
+rownames(pm) <- alternatives
+colnames(pm) <- criteria
+w <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
+minmax <- c("max", "max", "max", "min", "min", "min", "min")
+t <- wisp$new(pm, w, minmax)
 }
 \references{
 Stanujkic, D., Popovic, G., Karabasevic, D., Meidute-Kavaliauskiene, I., &
  Ulutaş, A. (2021). An integrated simple weighted sum product method—WISP.
  IEEE Transactions on Engineering Management.
+
+Ulutaş, A., Stanujkic, D., Karabasevic, D., Popovic, G., & Novaković, S.
+ (2022). Pallet truck selection with MEREC and WISP-S methods. Strategic
+ Management-International Journal of Strategic Management and Decision
+ Support Systems in Strategic Management.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }
 \keyword{WISP}
 \keyword{WSM}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{pm_orig}}{original (not normalized) performance matrix.
+Alternatives in rows and criteria in columns}
+
+\item{\code{pm}}{normalized performance matrix
+ @field w weight vector (sum of weights = 1)}
+
+\item{\code{u}}{overal utility of the alternatives}
+
+\item{\code{us}}{overal utility of the alternatives for S-WIPS}
+
+\item{\code{u_sorted}}{overal sorted utility of the alternatives}
+
+\item{\code{us_sorted}}{overal sorted utility of the alternatives for S-WIPS}
+
+\item{\code{minmax}}{vector of optimization directions (min/max). Can be
+single min or max value  if all optimization directions are same.}
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-wisp-new}{\code{wisp$new()}}
+\item \href{#method-wisp-compute}{\code{wisp$compute()}}
+\item \href{#method-wisp-summary}{\code{wisp$summary()}}
 \item \href{#method-wisp-clone}{\code{wisp$clone()}}
 }
 }
@@ -80,8 +138,73 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \if{html}{\out{<a id="method-wisp-new"></a>}}
 \if{latex}{\out{\hypertarget{method-wisp-new}{}}}
 \subsection{Method \code{new()}}{
+class constructor, validates data and computes the model.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{wisp$new(pm, w, minmax = "max")}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{pm}}{performance matrix (alternatives in rows, criteria in columns).}
+
+\item{\code{w}}{weight vector (sum of weights = 1)}
+
+\item{\code{minmax}}{vector of optimization direction for criteria (min/max).
+Can use single min/max if optimization direction of all criteria is
+same.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+instance of the class including computed model
+}
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{# from: https://www.youtube.com/watch?v=gfnZNUsWBeg
+alternatives <- c("AI 2024-T6", "AI 5052-O", "SS 301 FH", "SS 310-3AH",
+ "Ti-6AI-4V", "Inconel 718", "70Cu-30Zn")
+criteria <- c("Toughness index", "Yield Strength", "Young's Modulus",
+ "Density", "Thermal expansion", "Thermal conductivity", "Specific Heat")
+pm <- cbind(
+ c(75.5, 95, 770, 187, 179, 239, 273),
+ c(420, 91, 1365, 1120, 875, 1190, 200),
+ c(74.2, 70, 189, 210, 112, 217, 112),
+ c(2.8, 2.68, 7.9, 7.9, 4.43, 8.51, 8.53),
+ c(21.4, 22.1, 16.9, 14.4, 9.4, 11.5, 19.9),
+ c(0.37, 0.33, 0.04, 0.03, 0.016, 0.31, 0.29),
+ c(0.16, 0.16, 0.08, 0.08, 0.09, 0.07, 0.06)
+)
+rownames(pm) <- alternatives
+colnames(pm) <- criteria
+w <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
+minmax <- c("max", "max", "max", "min", "min", "min", "min")
+t <- wisp$new(pm, w, minmax)
+}
+\if{html}{\out{</div>}}
+
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-wisp-compute"></a>}}
+\if{latex}{\out{\hypertarget{method-wisp-compute}{}}}
+\subsection{Method \code{compute()}}{
+computes WISP model based on parameters of the fields of the class.
+ Usually run automatically as part of class inititation.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{wisp$compute()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-wisp-summary"></a>}}
+\if{latex}{\out{\hypertarget{method-wisp-summary}{}}}
+\subsection{Method \code{summary()}}{
+prepares summary of the WISP method resutls and outputs them
+ to the console.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{wisp$summary()}\if{html}{\out{</div>}}
 }
 
 }

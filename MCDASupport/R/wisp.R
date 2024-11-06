@@ -56,10 +56,18 @@
 #'
 #' Using this metric we can sort the alternatives from best to worst.
 #'
+#' The class also supports simple wariant of WIPS (S-WIPS), which simplifies
+#'  the model by using only wsd and wpr utility measures.
+#'
 #' @references
 #' Stanujkic, D., Popovic, G., Karabasevic, D., Meidute-Kavaliauskiene, I., &
 #'  Ulutaş, A. (2021). An integrated simple weighted sum product method—WISP.
 #'  IEEE Transactions on Engineering Management.
+#'
+#' Ulutaş, A., Stanujkic, D., Karabasevic, D., Popovic, G., & Novaković, S.
+#'  (2022). Pallet truck selection with MEREC and WISP-S methods. Strategic
+#'  Management-International Journal of Strategic Management and Decision
+#'  Support Systems in Strategic Management.
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
@@ -79,8 +87,14 @@ wisp <- R6Class("wisp",
     #' @field u overal utility of the alternatives
     u = NULL,
 
+    #' @field us overal utility of the alternatives for S-WIPS
+    us = NULL,
+
     #' @field u_sorted overal sorted utility of the alternatives
     u_sorted = NULL,
+
+    #' @field us_sorted overal sorted utility of the alternatives for S-WIPS
+    us_sorted = NULL,
 
     #' @field minmax vector of optimization directions (min/max). Can be
     #'  single min or max value  if all optimization directions are same.
@@ -155,6 +169,8 @@ wisp <- R6Class("wisp",
       u_wpr2 <- private$util(u_wpr)
       self$u <- (u_wsd2 + u_wpd2 + u_wsr2 + u_wpr2) / 4
       self$u_sorted <- sort(self$u, decreasing = TRUE)
+      self$us <- (u_wsd2 + u_wpr2) / 2
+      self$us_sorted <- sort(self$us, decreasing = TRUE)
     },
 
     #' @description
@@ -166,6 +182,8 @@ wisp <- R6Class("wisp",
       cat(paste("WISP method results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
       print(self$u_sorted, pretty = TRUE)
+      cat("\n\nS-WISP method results:\n")
+      print(self$us_sorted, pretty = TRUE)
     }
   ),
   private = list(
