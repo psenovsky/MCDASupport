@@ -81,7 +81,7 @@ wisp <- R6Class("wisp",
     #' @field pm normalized performance matrix
     pm = NULL,
 
-    #' @field w weight vector (sum of weights = 1)
+    #' @field w weight vector (sum of weights = 1)
     w = NULL,
 
     #' @field u overal utility of the alternatives
