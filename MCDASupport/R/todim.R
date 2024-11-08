@@ -150,7 +150,7 @@ todim <- R6Class("todim",
     summary = function() {
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
-      cat(paste("WISP TODIM results:\nProcessed ", nalt, " alternatives in ",
+      cat(paste("TODIM results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
       print(self$results_sorted, pretty = TRUE)
     }
