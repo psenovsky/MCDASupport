@@ -109,8 +109,9 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \item{\code{pm_orig}}{original (not normalized) performance matrix.
 Alternatives in rows and criteria in columns}
 
-\item{\code{pm}}{normalized performance matrix
- @field w weight vector (sum of weights = 1)}
+\item{\code{pm}}{normalized performance matrix}
+
+\item{\code{w}}{weight vector (sum of weights = 1)}
 
 \item{\code{u}}{overal utility of the alternatives}
 
