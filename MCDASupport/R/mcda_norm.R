@@ -13,7 +13,7 @@
 #'        minmax \tab min-max normalization \tab Y \cr
 #'        nonlinear \tab nonlinear normalization \tab Y \cr
 #'        toaverage \tab normalizing to average value \tab N \cr
-#'        tobest \tab normaliring to best value \tab N \cr
+#'        tobest \tab normaliring to best value \tab Y \cr
 #'        TzengHuang \tab Tzeng-Huang normalization \tab N \cr
 #'        vector \tab vertor normalization \tab Y \cr
 #'        ZavadskasTurskis \tab Zavadskas-Turskis normalization \tab Y \cr
@@ -298,13 +298,15 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
   }
 
   # normalize to best value
-  norm_tobest <- function(tonorm) {
-    maximum <- max(tonorm)
-    if (maximum == 0) {
-      stop("Maximal value in the vector is 0, 
-        unable to normalize using this function.")
+  norm_tobest <- function(tonorm, minmax = "max") {
+    if (minmax == "max") {
+      maximum <- max(tonorm)
+      z <- tonorm / maximum
+    } else {
+      minimum <- min(tonorm)
+      z <- minimum / tonorm
     }
-    z <- 100 * tonorm / maximum
+    z <- tonorm / maximum
     return(z)
   }
 
@@ -354,7 +356,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
     "minmax" = norm_minmax(tonorm, minmax = minmax),
     "nonlinear" = norm_nonlinear(tonorm, minmax = minmax),
     "toaverage" = norm_toaverage(tonorm),
-    "tobest" = norm_tobest(tonorm),
+    "tobest" = norm_tobest(tonorm, minmax = minmax),
     "TzengHuang" = norm_tzeng_huang(tonorm),
     "vector" = norm_vector(tonorm, minmax),
     "ZavadskasTurskis" = norm_zavadskas_turskis(tonorm, minmax),
