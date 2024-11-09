@@ -31,7 +31,7 @@ Performs normalization of the vector using one of supported normalization
        minmax \tab min-max normalization \tab Y \cr
        nonlinear \tab nonlinear normalization \tab Y \cr
        toaverage \tab normalizing to average value \tab N \cr
-       tobest \tab normaliring to best value \tab N \cr
+       tobest \tab normaliring to best value \tab Y \cr
        TzengHuang \tab Tzeng-Huang normalization \tab N \cr
        vector \tab vertor normalization \tab Y \cr
        ZavadskasTurskis \tab Zavadskas-Turskis normalization \tab Y \cr
