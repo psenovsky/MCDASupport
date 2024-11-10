@@ -13,7 +13,7 @@
 #'        minmax \tab min-max normalization \tab Y \cr
 #'        nonlinear \tab nonlinear normalization \tab Y \cr
 #'        toaverage \tab normalizing to average value \tab N \cr
-#'        tobest \tab normaliring to best value \tab Y \cr
+#'        tobest \tab normalizing to best value \tab Y \cr
 #'        TzengHuang \tab Tzeng-Huang normalization \tab N \cr
 #'        vector \tab vertor normalization \tab Y \cr
 #'        ZavadskasTurskis \tab Zavadskas-Turskis normalization \tab Y \cr
@@ -359,7 +359,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
     "tobest" = norm_tobest(tonorm, minmax = minmax),
     "TzengHuang" = norm_tzeng_huang(tonorm),
     "vector" = norm_vector(tonorm, minmax),
-    "ZavadskasTurskis" = norm_zavadskas_turskis(tonorm, minmax),
+    "ZavadskasTurskis" = norm_zavadskas_turskis(tonorm, minmax = minmax),
     "zscore" = norm_zscore(tonorm)
   )
   return(result)
