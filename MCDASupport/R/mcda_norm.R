@@ -290,7 +290,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
   norm_toaverage <- function(tonorm) {
     av <- mean(tonorm)
     if (av == 0) {
-      stop("Mean of the tonorm vector is zero, so it is imposible 
+      stop("Mean of the tonorm vector is zero, so it is imposible
         to normalize it using this function.")
     }
     z <- 100 * tonorm / av
@@ -306,7 +306,6 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
       minimum <- min(tonorm)
       z <- minimum / tonorm
     }
-    z <- tonorm / maximum
     return(z)
   }
 
