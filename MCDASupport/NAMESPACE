@@ -19,6 +19,7 @@ export(vector_compare)
 
 S3method(summary,aras)
 S3method(summary,cocoso)
+S3method(summary,codas)
 S3method(summary,copras)
 S3method(summary,cradis)
 S3method(summary,edas)
