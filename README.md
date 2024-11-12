@@ -1,24 +1,33 @@
 # MCDASupport R Package
 
- MCDASupport R package aims to give the educators tool in their hands to both demonstrate the usage of modern multiple criteria decision analysis and explore inner working of them, its quirks and limitations in the code and mathematical apparatus in accompanying documentation. Apart from MCDA methods it supports also various normalization methods and EWM method for criteria weight estimation.
+ MCDASupport R package aims to give the educators tool in their hands to both demonstrate the usage of modern multiple criteria decision analysis and explore inner working of them, its quirks and limitations in the code and mathematical apparatus in accompanying documentation. Apart from MCDA methods it supports also various normalization methods and some methods for criteria weight estimation.
  
 ## Description
 
 implemented MCDA methods:
 
 - ARAS
+- CoCoSo
+- CODAS
 - CRADIS
 - CRITIC
+- EDAS
 - ELECTRE (variants I, II, III, IV, 1S and TRI)
+- GRA
 - MARCOS
+- MOORA
+- MOOSRA
 - PROMETHEE (variants I, II and III)
+- PSI (also weight derivation method)
 - SAW
-- SIR
-- TOPSIS
-- VIKOR
+- SIR (normal and fuzzy)
+- TODIM
+- TOPSIS (normal and fuzzy)
+- VIKOR (normal and fuzzy)
+- WASPAS
+- WISP (and S-WIPS)
+- WPM (Weighted Product Method)
 - WSM (Weighted Sum Method)
-
-TOPSIS, SIR and VIKOR are implemented for normal and fuzzy numbers.
 
 For normalization package supports:
 
@@ -41,6 +50,8 @@ For weight establishment the package supports:
 - COPRAS
 - DEMATEL
 - EWM (Entropy Weight Method)
+- MEREC
+- PSI (also MCDA method)
 
 The package has also some graphical capabilities to help visualizing network of outranking relations between the alternatives and tools to visualize changes in ranking due to changes in analysis parameters (sensitivity analysis).
 
@@ -83,7 +94,7 @@ You can use following R code to install package and its dependencies
 packages <- c("mathjaxr", "graphics", "igraph", "diagram", "stats", "dplyr", "visNetwork", "plotly", "tidyr")
 install.packages(setdiff(packages, rownames(installed.packages())))  
 # adjust name of the file to version you are installing
-install.packages("MCDASupport_0.31.tar.gz", repos=NULL, type="source")  
+install.packages("MCDASupport_0.34.tar.gz", repos=NULL, type="source")  
 ```
 ### Executing program
 
@@ -130,6 +141,27 @@ See function's documentation for information on mathematics and theories methods
 
 ## Version History
 
+### MCDASupport v0.34 (Release date: 2024-11-17)
+
+new models:
+* implemented WPM model
+* implemented WASPAS model
+* implemented MOORA model
+* implemented MOOSRA model
+* implemented GRA model
+* implemented PSI model
+* implemented EDAS model
+* implemented MEREC model
+* implemented WISP and S-WIPS model
+* implemented TODIM model
+* implemented CoCoSo model
+* implemented CODAS model
+
+other changes:
+* corrected some typos in documentation
+* reimplemented tobest normalization. Now returns values in <0;1> and allows processin both benefit and cost criteria
+* added examples to valitation functions
+
 ### MCDASupport v0.33 (Release date: 2024-10-17)
 
 In this version the codebase is again refactored. This time validation functions are separated into separate environment volidation to be used across whole codebase and simplify it to some extent. On one hand it reduces number of files required for purposes of parameter validation.
@@ -139,18 +171,6 @@ As side effect parameter requirements of the methods are easier to interpret as 
 Other changes:
 * summary function in ELECTRE 1 now produces more consisten outputs to the console.
 * there was en error for PROMETHEE preference validation checks (the check did not work properly)
-
-### MCDASupport v0.32 (Release date: 2024-10-07)
-
-* Refactored parameter validation from WSM into separate function to be utilized by other functions, such as SAW.
-* added implementation of SAW method
-* added implementation of ARAS method
-* added implementation of DEMATEL method for weight derivation
-* added implementation of MARCOS method
-* implemented binary pair-wise comparison for weight estionation
-* added implementation of CRADIS method
-* added implementation of CRITIC method for weight derivation
-* added implementation of COPRAS method
 
 ### Full version history
 

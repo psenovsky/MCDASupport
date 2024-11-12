@@ -1,3 +1,24 @@
+# MCDASupport v0.34 (Release date: 2024-11-17)
+
+new models:
+* implemented WPM model
+* implemented WASPAS model
+* implemented MOORA model
+* implemented MOOSRA model
+* implemented GRA model
+* implemented PSI model
+* implemented EDAS model
+* implemented MEREC model
+* implemented WISP and S-WISP model
+* implemented TODIM model
+* implemented CoCoSo model
+* implemented CODAS model
+
+other changes:
+* corrected some typos in documentation
+* reimplemented tobest normalization. Now returns values in <0;1> and allows processin both benefit and cost criteria
+* added examples to valitation functions
+
 # MCDASupport v0.33 (Release date: 2024-10-17)
 
 In this version the codebase is again refactored. This time validation functions are separated into separate environment volidation to be used across whole codebase and simplify it to some extent. On one hand it reduces number of files required for purposes of parameter validation.
