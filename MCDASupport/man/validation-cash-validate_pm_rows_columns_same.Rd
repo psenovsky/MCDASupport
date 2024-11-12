@@ -9,3 +9,15 @@
 \description{
 Validate that the number of rows and columns is same
 }
+\examples{
+PM <- rbind(
+   c(0,1,1,0,1,1),
+   c(0,0,0,0,1,1),
+   c(0,1,0,0,1,1),
+   c(1,1,1,0,1,1),
+   c(0,0,0,0,0,1),
+   c(0,0,0,0,0,0)
+)
+rownames(PM) <- colnames(PM) <- c("C1", "C2", "C4", "C5", "C6", "C8")
+validation$validate_pm_rows_columns_same(PM)
+}

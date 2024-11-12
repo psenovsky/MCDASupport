@@ -16,3 +16,13 @@ threshold)}
 \description{
 Validates tahl all values in the vactor are in specified bounds
 }
+\examples{
+c_minus <- 0.65
+c_zero <- 0.75
+c_plus <- 0.85
+d_minus <- 0.25
+d_plus <- 0.5
+thres <- c(d_minus, d_plus, c_minus, c_zero, c_plus)
+validation$validation_vector_in_interval(thres, 0, 1,
+                                         "C-, C0, C+, D-, D+")
+}

@@ -13,3 +13,15 @@ The preference matrix for binary preference comparison is symetrical if
  important than a (represented by 0). This function checks that this is the
  case
 }
+\examples{
+PM <- rbind(
+   c(0,1,1,0,1,1),
+   c(0,0,0,0,1,1),
+   c(0,1,0,0,1,1),
+   c(1,1,1,0,1,1),
+   c(0,0,0,0,0,1),
+   c(0,0,0,0,0,0)
+)
+rownames(PM) <- colnames(PM) <- c("C1", "C2", "C4", "C5", "C6", "C8")
+validation$validate_pm_01_symetry(PM)
+}

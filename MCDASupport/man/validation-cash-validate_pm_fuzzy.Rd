@@ -19,3 +19,65 @@
 \description{
 Validate consistency of performance matrix specified using fuzzy numbers
 }
+\examples{
+dictionaryW <- rbind(
+ c(0, 0, 0.1),
+ c(0, 0.1, 0.3),
+ c(0.1, 0.3, 0.5),
+ c(0.3, 0.5, 0.7),
+ c(0.5, 0.7, 0.9),
+ c(0.7, 0.9, 1),
+ c(0.9, 1, 1)
+)
+# V = very, L = low, M = medium, H = high
+rownames(dictionaryW) <- c('VL', 'L', 'ML', 'M', 'MH', 'H', 'VH')
+w <- rbind(
+ c('H', 'VH', 'VH'),
+ c('M', 'H', 'VH'),
+ c('M', 'MH', 'ML'),
+ c('H', 'VH', 'MH')
+)
+rownames(w) <- c('Investment cost', 'Employment needs', 'Social impact',
+ 'Environmental impact')
+dictionaryPM <- rbind(
+ c(0,0,1),
+ c(0,1,3),
+ c(1,3,5),
+ c(3,5,7),
+ c(5,7,9),
+ c(7,9,10),
+ c(9,10,10)
+)
+#V very, P poor, M medium, F fair, G good
+rownames(dictionaryPM) <- c('VP', 'P', 'MP', 'F', 'MG', 'G', 'VG')
+PM <- rbind(
+ c('VG', 'G', 'MG'),
+ c('MP', 'F', 'F'),
+ c('MG', 'MP', 'F'),
+ c('MG', 'MG', 'VG'),
+ c('VP', 'P', 'G'),
+ c('F', 'G', 'G'),
+ c('F', 'MG', 'MG'),
+ c('F', 'VG', 'G'),
+ c('MG', 'MG', 'VG'),
+ c('G', 'G', 'VG'),
+ c('P', 'VP', 'MP'),
+ c('F', 'MP', 'MG'),
+ c('P', 'P', 'MP'),
+ c('MG', 'VG', 'G'),
+ c('MP', 'F', 'F'),
+ c('MG', 'VG', 'G'),
+ c('G', 'G', 'VG'),
+ c('VG', 'MG', 'F'),
+ c('G', 'VG', 'G'),
+ c('MG', 'F', 'MP'),
+ c('MP', 'P', 'P'),
+ c('VP', 'F', 'P'),
+ c('G', 'MG', 'MG'),
+ c('P', 'MP', 'F')
+)
+alternatives <- c('site 1', 'site 2', 'site 3', 'site 4', 'site 5',
+ 'site 6')
+validation$validate_pm_fuzzy(PM, dictionaryPM, w, dictionaryW, 3,
+ alternatives)
+}

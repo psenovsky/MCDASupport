@@ -17,3 +17,8 @@
 Validates that the number of elements in the vector is same as number of
  criteria
 }
+\examples{
+w <- c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
+ncri <- 7
+validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
+}

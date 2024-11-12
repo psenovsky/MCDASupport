@@ -15,3 +15,12 @@
 \description{
 Validate consistency of thresholds
 }
+\examples{
+cri <- c( "CR1","CR2","CR3","CR4","CR5")
+Q <- c(25,16,0,12,10) #Indifference thresholds
+P <- c(50,24,1,24,20) #Preference thresholds
+V <- c(100,60,2,48,90) #Veto thresholds
+validation$validate_electre_pqv(P, Q, V, cri) # OK
+P <- c(15,24,1,24,20)
+validation$validate_electre_pqv(P, Q, V, cri) # P<Q
+}

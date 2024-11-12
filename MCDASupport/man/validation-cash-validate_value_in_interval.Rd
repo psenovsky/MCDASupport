@@ -15,3 +15,6 @@
 \description{
 Validates that provided val is in <from;to> interval.
 }
+\examples{
+validation$validate_value_in_interval(10, 0, 100, "value")
+}

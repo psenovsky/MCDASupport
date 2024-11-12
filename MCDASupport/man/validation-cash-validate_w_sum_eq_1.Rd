@@ -9,3 +9,7 @@
 \description{
 Validate that sum of weights is equal to 1
 }
+\examples{
+w <- c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
+validation$validate_w_sum_eq_1(w)
+}

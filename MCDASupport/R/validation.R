@@ -7,6 +7,15 @@ validation_env <- new.env()
 #' @param q indifference threshold
 #' @param v veto threshold
 #' @param cri vector of names for criteria
+#'
+#' @examples
+#' cri <- c( "CR1","CR2","CR3","CR4","CR5")
+#' Q <- c(25,16,0,12,10) #Indifference thresholds
+#' P <- c(50,24,1,24,20) #Preference thresholds
+#' V <- c(100,60,2,48,90) #Veto thresholds
+#' validation$validate_electre_pqv(P, Q, V, cri) # OK
+#' P <- c(15,24,1,24,20)
+#' validation$validate_electre_pqv(P, Q, V, cri) # P<Q
 validation_env$validate_electre_pqv <- function(p, q, v, cri) {
   ncri <- length(cri)
   validation_env$validate_no_elements_vs_cri(p, ncri, "Preference threshold")
@@ -30,6 +39,47 @@ validation_env$validate_electre_pqv <- function(p, q, v, cri) {
 #' @param fn type of fuzzy number (i.e. 3 for triangular, 4 for trapeziodal)
 #' @param msg message to guide user on what is being examined i.e. PM,
 #'   weight matrix, etc.
+#'
+#' @examples
+#' dictionaryPM <- rbind(
+#'  c(0,0,1),
+#'  c(0,1,3),
+#'  c(1,3,5),
+#'  c(3,5,7),
+#'  c(5,7,9),
+#'  c(7,9,10),
+#'  c(9,10,10)
+#' )
+#' #V very, P poor, M medium, F fair, G good
+#' rownames(dictionaryPM) <- c('VP', 'P', 'MP', 'F', 'MG', 'G', 'VG')
+#' PM <- rbind(
+#'  c('VG', 'G', 'MG'),
+#'  c('MP', 'F', 'F'),
+#'  c('MG', 'MP', 'F'),
+#'  c('MG', 'MG', 'VG'),
+#'  c('VP', 'P', 'G'),
+#'  c('F', 'G', 'G'),
+#'  c('F', 'MG', 'MG'),
+#'  c('F', 'VG', 'G'),
+#'  c('MG', 'MG', 'VG'),
+#'  c('G', 'G', 'VG'),
+#'  c('P', 'VP', 'MP'),
+#'  c('F', 'MP', 'MG'),
+#'  c('P', 'P', 'MP'),
+#'  c('MG', 'VG', 'G'),
+#'  c('MP', 'F', 'F'),
+#'  c('MG', 'VG', 'G'),
+#'  c('G', 'G', 'VG'),
+#'  c('VG', 'MG', 'F'),
+#'  c('G', 'VG', 'G'),
+#'  c('MG', 'F', 'MP'),
+#'  c('MP', 'P', 'P'),
+#'  c('VP', 'F', 'P'),
+#'  c('G', 'MG', 'MG'),
+#'  c('P', 'MP', 'F')
+#' )
+#' validation_env$validate_fuzzy_consistency(pm, dict_pm, 3,
+#'                                           "performance matrix")
 validation_env$validate_fuzzy_consistency <- function(m, dict, fn = 3,
                                                       msg = NULL) {
   if (!is.numeric(fn)) {
@@ -61,6 +111,18 @@ validation_env$validate_fuzzy_consistency <- function(m, dict, fn = 3,
 #' @param m matrix or dataframe to check
 #' @param valid_val vector of valid values to check
 #' @param msg Identification of what are we checking (i.e. performance matrix)
+#'
+#' @examples
+#' PM <- rbind(
+#'    c(0,1,1,0,1,1),
+#'    c(0,0,0,0,1,1),
+#'    c(0,1,0,0,1,1),
+#'    c(1,1,1,0,1,1),
+#'    c(0,0,0,0,0,1),
+#'    c(0,0,0,0,0,0)
+#' )
+#' rownames(PM) <- colnames(PM) <- c("C1", "C2", "C4", "C5", "C6", "C8")
+#' validation$validate_invalid_val(PM, c(0, 1), "Preference matrix")
 validation_env$validate_invalid_val <- function(m, valid_val, msg) {
   val1 <- paste(valid_val, collapse = ", ")
   msg2 <- paste(msg, "has some invalid values, expected only: {", val1, "}")
@@ -71,6 +133,25 @@ validation_env$validate_invalid_val <- function(m, valid_val, msg) {
 #'
 #' @name validation$validate_matrix_numeric
 #' @param pm matrix or dataframe to check
+#'
+#' @examples
+#' alternatives <- c('BLR', 'BOM', 'DEL', 'MNL', 'HYD', 'GRU', 'DUB', 'KRK',
+#'   'MAA', 'EZE')
+#'   M <- rbind(
+#'     c(0, 0, 0, 1, 1, 0, 0, 0, 1, 0),
+#'     c(0, 0, 1, 1, 1, 1, 0, 0, 1, 0),
+#'     c(0, 0, 0, 1, 1, 0, 0, 0, 1, 0),
+#'     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+#'     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+#'     c(0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
+#'     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+#'     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+#'     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+#'     c(0, 0, 0, 0, 1, 1, 0, 0, 0, 0)
+#'   )
+#'   rownames(M) <- alternatives
+#'   colnames(M) <- alternatives
+#' validation$validate_matrix_numeric(M)
 validation_env$validate_matrix_numeric <- function(pm) {
   if (!is.numeric(unlist(pm))) {
     stop("Only numeric values in matrix/dataframe expected")
@@ -94,6 +175,9 @@ validation_env$validate_matrix_numeric <- function(pm) {
 #' @param ncri number of criteria in decision problem
 #'
 #' @return validated vector of min/max for criteria
+#'
+#' @examples
+#' x <- validation$validate_minmax("max", 6)
 validation_env$validate_minmax <- function(minmax, ncri) {
   if (any(!minmax %in% c("min", "max"))) {
     stop("Minmax parameter supports only min/max values")
@@ -118,6 +202,11 @@ validation_env$validate_minmax <- function(minmax, ncri) {
 #' @param ncri number of criteria
 #' @param msg identification of what are we checking to use in error message
 #' @param test_numeric set to TRUE to test vect as numeric vector
+#'
+#' @examples
+#' w <- c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
+#' ncri <- 7
+#' validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
 validation_env$validate_no_elements_vs_cri <- function(vect, ncri, msg,
                                                        test_numeric = FALSE) {
   if (test_numeric) {
@@ -151,6 +240,26 @@ validation_env$validate_no_elements_vs_cri <- function(vect, ncri, msg,
 #'
 #' @name validation$validate_pm
 #' @param pm performance matrix
+#'
+#' @examples
+#' alternatives <- c('BLR', 'BOM', 'DEL', 'MNL', 'HYD', 'GRU', 'DUB',
+#'   'KRK', 'MAA', 'EZE')
+#' criteria <- c('tlnt', 'stab', 'cost', 'infl', 'tm-zn', 'infr', "life")
+#' M <- rbind(
+#'   c(0.8181818, 0.1814159, 1.0000000, 0.1198582, 0, 0.6, 0.750),
+#'   c(1.0000000, 0.1814159, 0.6666667, 0.1198582, 0, 0.6, 0.375),
+#'   c(1.0000000, 0.1814159, 0.8333333, 0.1198582, 0, 0.6, 0.125),
+#'   c(0.8181818, 0.0000000, 1.0000000, 0.3482143, 0, 0.6, 0.375),
+#'   c(0.1818182, 0.1814159, 1.0000000, 0.1198582, 0, 0.2, 0.375),
+#'   c(0.1818182, 0.1814159, 0.5000000, 0.1198582, 0, 0.2, 0.125),
+#'   c(0.0000000, 1.0000000, 0.0000000, 0.5741667, 1, 1.0, 1.000),
+#'   c(0.3636364, 0.7787611, 0.6666667, 1.0000000, 1, 0.0, 0.500),
+#'   c(0.4545455, 0.1814159, 0.9166667, 0.1198582, 0, 0.4, 0.000),
+#'   c(0.1818182, 0.6283186, 0.5833333, 0.0000000, 0, 0.4, 0.125)
+#' )
+#' rownames(M) <- alternatives
+#' colnames(M) <- criteria
+#' validation$validate_pm(M)
 validation_env$validate_pm <- function(pm) {
   ncrit <- ncol(pm)
   if (is.null(dim(pm))) stop("Less than 2 criteria or 2 alternatives")
@@ -174,6 +283,68 @@ validation_env$validate_pm <- function(pm) {
 #' @param dict_w dictionary for weight matrix
 #' @param fn type of fuzzy number (i.e. 3 for triangular, 4 for trapeziodal)
 #' @param alt vector of alternatives names
+#'
+#' @examples
+#' dictionaryW <- rbind(
+#'  c(0, 0, 0.1),
+#'  c(0, 0.1, 0.3),
+#'  c(0.1, 0.3, 0.5),
+#'  c(0.3, 0.5, 0.7),
+#'  c(0.5, 0.7, 0.9),
+#'  c(0.7, 0.9, 1),
+#'  c(0.9, 1, 1)
+#' )
+#' # V = very, L = low, M = medium, H = high
+#' rownames(dictionaryW) <- c('VL', 'L', 'ML', 'M', 'MH', 'H', 'VH')
+#' w <- rbind(
+#'  c('H', 'VH', 'VH'),
+#'  c('M', 'H', 'VH'),
+#'  c('M', 'MH', 'ML'),
+#'  c('H', 'VH', 'MH')
+#' )
+#' rownames(w) <- c('Investment cost', 'Employment needs', 'Social impact',
+#'  'Environmental impact')
+#' dictionaryPM <- rbind(
+#'  c(0,0,1),
+#'  c(0,1,3),
+#'  c(1,3,5),
+#'  c(3,5,7),
+#'  c(5,7,9),
+#'  c(7,9,10),
+#'  c(9,10,10)
+#' )
+#' #V very, P poor, M medium, F fair, G good
+#' rownames(dictionaryPM) <- c('VP', 'P', 'MP', 'F', 'MG', 'G', 'VG')
+#' PM <- rbind(
+#'  c('VG', 'G', 'MG'),
+#'  c('MP', 'F', 'F'),
+#'  c('MG', 'MP', 'F'),
+#'  c('MG', 'MG', 'VG'),
+#'  c('VP', 'P', 'G'),
+#'  c('F', 'G', 'G'),
+#'  c('F', 'MG', 'MG'),
+#'  c('F', 'VG', 'G'),
+#'  c('MG', 'MG', 'VG'),
+#'  c('G', 'G', 'VG'),
+#'  c('P', 'VP', 'MP'),
+#'  c('F', 'MP', 'MG'),
+#'  c('P', 'P', 'MP'),
+#'  c('MG', 'VG', 'G'),
+#'  c('MP', 'F', 'F'),
+#'  c('MG', 'VG', 'G'),
+#'  c('G', 'G', 'VG'),
+#'  c('VG', 'MG', 'F'),
+#'  c('G', 'VG', 'G'),
+#'  c('MG', 'F', 'MP'),
+#'  c('MP', 'P', 'P'),
+#'  c('VP', 'F', 'P'),
+#'  c('G', 'MG', 'MG'),
+#'  c('P', 'MP', 'F')
+#' )
+#' alternatives <- c('site 1', 'site 2', 'site 3', 'site 4', 'site 5',
+#'  'site 6')
+#' validation$validate_pm_fuzzy(PM, dictionaryPM, w, dictionaryW, 3,
+#'  alternatives)
 validation_env$validate_pm_fuzzy <- function(pm, dict_pm, w, dict_w, fn, alt) {
   n <- ncol(pm) #no. of decision makers
   ncri <- nrow(w)
@@ -201,6 +372,18 @@ validation_env$validate_pm_fuzzy <- function(pm, dict_pm, w, dict_w, fn, alt) {
 #'
 #' @name validation$validate_pm_01_symetry
 #' @param pm performance matrix
+#'
+#' @examples
+#' PM <- rbind(
+#'    c(0,1,1,0,1,1),
+#'    c(0,0,0,0,1,1),
+#'    c(0,1,0,0,1,1),
+#'    c(1,1,1,0,1,1),
+#'    c(0,0,0,0,0,1),
+#'    c(0,0,0,0,0,0)
+#' )
+#' rownames(PM) <- colnames(PM) <- c("C1", "C2", "C4", "C5", "C6", "C8")
+#' validation$validate_pm_01_symetry(PM)
 validation_env$validate_pm_01_symetry <- function(pm) {
   n <- nrow(pm)
   for (i in 1:(n - 1)) {
@@ -219,6 +402,18 @@ validation_env$validate_pm_01_symetry <- function(pm) {
 #'
 #' @name validation$validate_pm_rows_columns_same
 #' @param pm performance matrix
+#'
+#' @examples
+#' PM <- rbind(
+#'    c(0,1,1,0,1,1),
+#'    c(0,0,0,0,1,1),
+#'    c(0,1,0,0,1,1),
+#'    c(1,1,1,0,1,1),
+#'    c(0,0,0,0,0,1),
+#'    c(0,0,0,0,0,0)
+#' )
+#' rownames(PM) <- colnames(PM) <- c("C1", "C2", "C4", "C5", "C6", "C8")
+#' validation$validate_pm_rows_columns_same(PM)
 validation_env$validate_pm_rows_columns_same <- function(pm) {
   if (ncol(pm) != nrow(pm)) {
     stop("number of criteria in rows and colums of preference matrix must be
@@ -235,6 +430,13 @@ validation_env$validate_pm_rows_columns_same <- function(pm) {
 #' @param s intermediate threshold
 #' @param ncri number of criteria
 #' @return adjusted intermediate threshold
+#'
+#' @examples
+#' p <- c(10, 0, 450, 50, 0, 0) #indifference threshold
+#' q <- c(0, 30, 50, 10, 0, 0) #prefference threshold
+#' s <- c(0,0,0,0,0,5) #intermediate threshold
+#' shape <- c('U-shape', 'V-shape', 'linear', 'level', 'default', 'Gaussian')
+#' sj <- validation$validate_promethee_thresholds(p, q, s, shape, 6)
 validation_env$validate_promethee_thresholds <- function(p, q, s,
                                                          preference_function,
                                                          ncri) {
@@ -303,6 +505,10 @@ validation_env$validate_promethee_thresholds <- function(p, q, s,
 #' @param s the value to be checked
 #' @param msg identification of what failed to check (i.e. "Discrimination
 #'  threshold") must be a number.
+#'
+#' @examples
+#' psi <- 0.5
+#' validation$validate_scalar_numeric(psi, "coefficient of determination")
 validation_env$validate_scalar_numeric <- function(s, msg) {
   if (!is.numeric(s)) {
     m <- paste(msg, " must be a number")
@@ -316,6 +522,9 @@ validation_env$validate_scalar_numeric <- function(s, msg) {
 #' @param val1 first value to check
 #' @param val2 second value to check
 #' @param msg identification of what we are checking
+#'
+#' @examples
+#' validation$validate_scalar_same(5, 5, "message")
 validation_env$validate_scalar_same <- function(val1, val2, msg) {
   if (val1 != val2) {
     m <- paste(msg, " expected to be the same")
@@ -330,6 +539,9 @@ validation_env$validate_scalar_same <- function(val1, val2, msg) {
 #' @param from lower bound of the interval to check
 #' @param to upper bound of interval to check
 #' @param msg identification of what we are checking
+#'
+#' @examples
+#' validation$validate_value_in_interval(10, 0, 100, "value")
 validation_env$validate_value_in_interval <- function(val, from, to, msg) {
   if (!is.numeric(val) || !is.numeric(from) || !is.numeric(to)) {
     m <- paste("Provided ", msg, " and bounds of the interval need to be
@@ -350,6 +562,16 @@ validation_env$validate_value_in_interval <- function(val, from, to, msg) {
 #' @param to upper bound for the checking interval
 #' @param msg identification of object we are checking (i.e. indifference
 #'  threshold)
+#'
+#' @examples
+#' c_minus <- 0.65
+#' c_zero <- 0.75
+#' c_plus <- 0.85
+#' d_minus <- 0.25
+#' d_plus <- 0.5
+#' thres <- c(d_minus, d_plus, c_minus, c_zero, c_plus)
+#' validation$validation_vector_in_interval(thres, 0, 1,
+#'                                          "C-, C0, C+, D-, D+")
 validation_env$validation_vector_in_interval <- function(vect, from, to, msg) {
   if (!is.numeric(from) || !is.numeric(to)) {
     m <- paste("Provided ", msg, " and bounds of the interval need to be
@@ -374,6 +596,15 @@ validation_env$validation_vector_in_interval <- function(vect, from, to, msg) {
 #'
 #' @name validation$validate_vector_progression
 #' @param vect numeric vector with values to check
+#'
+#' @examples
+#' c_minus <- 0.65
+#' c_zero <- 0.75
+#' c_plus <- 0.85
+#' d_minus <- 0.25
+#' d_plus <- 0.5
+#' thres <- c(d_minus, d_plus, c_minus, c_zero, c_plus)
+#' validation$validate_vector_progression(thres)
 validation_env$validate_vector_progression <- function(vect) {
   if (!is.vector(vect, mode = "numeric")) {
     stop("Expected provided parameter to be vector of numbers.")
@@ -414,14 +645,16 @@ validation_env$validate_vector_progression2 <- function(vect1, vect2, msg) {
 #'
 #' @name validation$validate_w_sum_eq_1
 #' @param w weight vector
+#'
+#' @examples
+#' w <- c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
+#' validation$validate_w_sum_eq_1(w)
 validation_env$validate_w_sum_eq_1 <- function(w) {
   if (round(sum(w), 4) != 1) {
     stop("Sum of weights must be equal to 1. If you do not want to use this
          constrain use wsm method instead.")
   }
 }
-
-
 
 # Export the environment
 validation <- as.list(validation_env)

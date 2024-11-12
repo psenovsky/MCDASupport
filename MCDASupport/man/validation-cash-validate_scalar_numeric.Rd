@@ -12,3 +12,7 @@ threshold") must be a number.}
 \description{
 Validate that scalar is number
 }
+\examples{
+psi <- 0.5
+validation$validate_scalar_numeric(psi, "coefficient of determination")
+}

@@ -10,3 +10,12 @@
 Presumes that the elements in the vector are ordered ascending. This is
  usefull for various threshold checks.
 }
+\examples{
+c_minus <- 0.65
+c_zero <- 0.75
+c_plus <- 0.85
+d_minus <- 0.25
+d_plus <- 0.5
+thres <- c(d_minus, d_plus, c_minus, c_zero, c_plus)
+validation$validate_vector_progression(thres)
+}

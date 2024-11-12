@@ -16,3 +16,44 @@ weight matrix, etc.}
 \description{
 function to check consistency of matrix againts dictionary of values
 }
+\examples{
+dictionaryPM <- rbind(
+ c(0,0,1),
+ c(0,1,3),
+ c(1,3,5),
+ c(3,5,7),
+ c(5,7,9),
+ c(7,9,10),
+ c(9,10,10)
+)
+#V very, P poor, M medium, F fair, G good
+rownames(dictionaryPM) <- c('VP', 'P', 'MP', 'F', 'MG', 'G', 'VG')
+PM <- rbind(
+ c('VG', 'G', 'MG'),
+ c('MP', 'F', 'F'),
+ c('MG', 'MP', 'F'),
+ c('MG', 'MG', 'VG'),
+ c('VP', 'P', 'G'),
+ c('F', 'G', 'G'),
+ c('F', 'MG', 'MG'),
+ c('F', 'VG', 'G'),
+ c('MG', 'MG', 'VG'),
+ c('G', 'G', 'VG'),
+ c('P', 'VP', 'MP'),
+ c('F', 'MP', 'MG'),
+ c('P', 'P', 'MP'),
+ c('MG', 'VG', 'G'),
+ c('MP', 'F', 'F'),
+ c('MG', 'VG', 'G'),
+ c('G', 'G', 'VG'),
+ c('VG', 'MG', 'F'),
+ c('G', 'VG', 'G'),
+ c('MG', 'F', 'MP'),
+ c('MP', 'P', 'P'),
+ c('VP', 'F', 'P'),
+ c('G', 'MG', 'MG'),
+ c('P', 'MP', 'F')
+)
+validation_env$validate_fuzzy_consistency(pm, dict_pm, 3,
+                                          "performance matrix")
+}

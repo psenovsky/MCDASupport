@@ -21,3 +21,6 @@ Minmax parameter should use only the "min" or "max" values. Appart of
 Also test if number of criteria in minmax is the same as no. of criteria in
  ncri.
 }
+\examples{
+x <- validation$validate_minmax("max", 6)
+}

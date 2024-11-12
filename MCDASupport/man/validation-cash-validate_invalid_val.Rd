@@ -15,3 +15,15 @@ Vector of valid values must contain full set of valid values to check
  against. If other value is detected the error will be generated and
  computation run will be stoped.
 }
+\examples{
+PM <- rbind(
+   c(0,1,1,0,1,1),
+   c(0,0,0,0,1,1),
+   c(0,1,0,0,1,1),
+   c(1,1,1,0,1,1),
+   c(0,0,0,0,0,1),
+   c(0,0,0,0,0,0)
+)
+rownames(PM) <- colnames(PM) <- c("C1", "C2", "C4", "C5", "C6", "C8")
+validation$validate_invalid_val(PM, c(0, 1), "Preference matrix")
+}

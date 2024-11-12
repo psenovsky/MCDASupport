@@ -9,3 +9,22 @@
 \description{
 Validates that the matrix or dataframe has only numeric elements
 }
+\examples{
+alternatives <- c('BLR', 'BOM', 'DEL', 'MNL', 'HYD', 'GRU', 'DUB', 'KRK',
+  'MAA', 'EZE')
+  M <- rbind(
+    c(0, 0, 0, 1, 1, 0, 0, 0, 1, 0),
+    c(0, 0, 1, 1, 1, 1, 0, 0, 1, 0),
+    c(0, 0, 0, 1, 1, 0, 0, 0, 1, 0),
+     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+     c(0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
+     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+     c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+     c(0, 0, 0, 0, 1, 1, 0, 0, 0, 0)
+   )
+   rownames(M) <- alternatives
+   colnames(M) <- alternatives
+validation$validate_matrix_numeric(M)
+}

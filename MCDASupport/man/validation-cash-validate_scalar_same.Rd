@@ -13,3 +13,6 @@
 \description{
 Validates that provided params val1 and 2 are same
 }
+\examples{
+validation$validate_scalar_same(5, 5, "message")
+}
