@@ -146,7 +146,7 @@ aras <- R6Class("aras",
     #' )
     #' rownames(M) <- alternatives
     #' colnames(M) <- criteria
-    #' w = c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
+    #' w <- c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
     #' t <- wsm$new(M, w)
     initialize = function(pm, w, minmax = "max") {
       # validity check
