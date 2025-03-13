@@ -125,7 +125,7 @@ validation_env$validate_fuzzy_consistency <- function(m, dict, fn = 3,
 #' validation$validate_invalid_val(PM, c(0, 1), "Preference matrix")
 validation_env$validate_invalid_val <- function(m, valid_val, msg) {
   val1 <- paste(valid_val, collapse = ", ")
-  msg2 <- paste(msg, "has some invalid values, expected only: {", val1, "}")
+  msg2 <- paste(msg, " has some invalid values, expected only: {", val1, "}")
   if (any(!m %in% valid_val)) stop(msg2)
 }
 
