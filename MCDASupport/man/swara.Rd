@@ -19,7 +19,7 @@ Introduce by Kersuliene et al in 2010 as a way to derive the weights for
  criteria when intitial importance ratio for the criteria is known.
 
 The method starts with establishing initial weights (S) in means of relative
- importance to first criterium.
+ importance (weight) to previous criterium.
 
 Next the coefficient K is established as 1 for first criterium and S + 1 for
  all other criteria.

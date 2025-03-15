@@ -5,7 +5,7 @@
 #'  criteria when intitial importance ratio for the criteria is known.
 #'
 #' The method starts with establishing initial weights (S) in means of relative
-#'  importance to first criterium.
+#'  importance (weight) to previous criterium.
 #'
 #' Next the coefficient K is established as 1 for first criterium and S + 1 for
 #'  all other criteria.
@@ -47,11 +47,11 @@ swara <- function(relative_weights, criteria) {
   # coefficient K
   k <- relative_weights + 1
   k[1] <- 1
-  
+
   # initial weight q
   q <- rep(1, times = ncri)
   for (i in 2:ncri) q[i] <- q[i - 1] / k[i]
-  
+
   # relative weights w
   w <- q / sum(q)
   names(w) <- criteria
