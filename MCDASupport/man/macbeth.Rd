@@ -56,7 +56,7 @@ pm <- rbind(
 rownames(pm) <- alternatives
 colnames(pm) <- criteria
 w <-c(0.116, 0.207, 0.242, 0.34, 0.095)
-t <- macbeth$new(pm, minmax, w)
+t <- macbeth$new(pm, w)
 }
 \references{
 Alinezhad, A., Khalili, J. New Methods and Applications in Multiple
@@ -133,7 +133,7 @@ pm <- rbind(
 rownames(pm) <- alternatives
 colnames(pm) <- criteria
 w <-c(0.116, 0.207, 0.242, 0.34, 0.095)
-t <- macbeth$new(pm, minmax, w)
+t <- macbeth$new(pm, w)
 }
 \if{html}{\out{</div>}}
 
