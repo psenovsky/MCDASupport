@@ -146,7 +146,7 @@ oreste <- R6Class("oreste",
       lookup_table <- setNames(ranked_values, unique_values)
       bdm2 <- matrix(lookup_table[as.character(bdm)], nrow = nalt, ncol = ncri)
       self$ra <- rowSums(bdm2)
-      self$finalRank <- rank(-self$ra)
+      self$finalRank <- rank(-self$ra, ties.method = max)
     },
 
     #' @description
