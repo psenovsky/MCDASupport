@@ -115,11 +115,6 @@ macbeth <- R6Class("macbeth",
       cri <- colnames(self$pm)
       r_minus <- apply(pm, 2, min)
       r_plus <- apply(pm, 2, max)
-      # DEBUG
-      print("r-:")
-      print(r_minus)
-      print("r+:")
-      print(r_plus)
       v <- matrix(0, nrow = nalt, ncol = ncri)
       rownames(v) <- alt
       colnames(v) <- cri
@@ -128,18 +123,10 @@ macbeth <- R6Class("macbeth",
           v[i, j] <- self$v_minus + ((self$pm[i, j] - r_minus[j]) / (r_plus[j] - r_minus[j])) * (self$v_plus - self$v_minus)
         }
       }
-      # DEBUG
-      print("MACBETH score V")
-      print(v)
       vi <- sweep(v, 2, self$w, "*")
       vi <- rowSums(vi)
       self$v <- vi
       self$finalRank <- rank(-self$v, ties.method = "max")
-      # DEBUG
-      print("Overal score V for alrternatives")
-      print(vi)
-      print("Final ranking")
-      print(self$finalRank)
     },
 
     #' @description
