@@ -138,7 +138,7 @@ macbeth <- R6Class("macbeth",
       cat(paste("MACBETH results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n\nOverall score:\n"))
       print(self$v, pretty = TRUE)
-      print("Final ranking:")
+      cat(paste("\nFinal ranking:\n"))
       print(self$finalRank, pretty = TRUE)
     }
   )
