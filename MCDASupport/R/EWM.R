@@ -91,7 +91,6 @@ EWM <- function(PM, minmaxcriteria = "max", VERBOSE = FALSE) {
   # with < 2 criteria or alternatives, there is no MCDA problem
   validation$validate_pm(PM)
   minmaxcriteria <- validation$validate_minmax(minmaxcriteria, ncol(PM))
-  PM <- util_pm_minmax(PM, minmaxcriteria) #validate minmax and invert scales if necessary
   nalt <- nrow(PM)
   ## End of checking the validity of the "inputs"
 
