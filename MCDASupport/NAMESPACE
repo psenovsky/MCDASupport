@@ -1,5 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 export(binary_paiwise_comp)
+export(cilos)
 export(critic)
 export(dematel)
 export(EWM)
