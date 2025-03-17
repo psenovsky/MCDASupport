@@ -227,7 +227,7 @@ evamix <- R6Class("evamix",
       cat(paste("EVAMIX results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n\nEvaluation score:\n"))
       print(self$evaluation_score, pretty = TRUE)
-      print("Final rank:")
+      cat(paste("\nFinal rank:\n"))
       print(self$finalRank, pretty = TRUE)
     }
   ),
