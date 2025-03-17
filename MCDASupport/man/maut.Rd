@@ -43,7 +43,7 @@ pm <- rbind(
 )
 rownames(pm) <- alternatives
 colnames(pm) <- criteria
-w <-c(0.345, 0.35, 0.155, 015)
+w <-c(0.345, 0.35, 0.155, 0.15)
 minmax <- c("min", "min", "max", "max")
 t <- maut$new(pm, w, minmax)
 }
@@ -121,7 +121,7 @@ pm <- rbind(
 )
 rownames(pm) <- alternatives
 colnames(pm) <- criteria
-w <-c(0.345, 0.35, 0.155, 015)
+w <-c(0.345, 0.35, 0.155, 0.15)
 minmax <- c("min", "min", "max", "max")
 t <- maut$new(pm, w, minmax)
 }
