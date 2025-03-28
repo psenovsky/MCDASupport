@@ -13,14 +13,23 @@ implemented MCDA methods:
 - CRITIC
 - EDAS
 - ELECTRE (variants I, II, III, IV, 1S and TRI)
+- EVAMIX
 - GRA
+- MABAC
+- MACBETH
 - MARCOS
+- MAUT
 - MOORA
 - MOOSRA
+- ORESTE
+- PAMSSEM (variants I (not validated) and II)
 - PROMETHEE (variants I, II and III)
 - PSI (also weight derivation method)
+- QUALIFLEX
+- REGIME
 - SAW
 - SIR (normal and fuzzy)
+- SMART
 - TODIM
 - TOPSIS (normal and fuzzy)
 - VIKOR (normal and fuzzy)
@@ -47,11 +56,13 @@ For normalization package supports:
 For weight establishment the package supports:
 
 - binary pair-wise comparison
+- CILOS (Criterion Impact LOSs)
 - COPRAS
 - DEMATEL
 - EWM (Entropy Weight Method)
 - MEREC
 - PSI (also MCDA method)
+- SWARA
 
 The package has also some graphical capabilities to help visualizing network of outranking relations between the alternatives and tools to visualize changes in ranking due to changes in analysis parameters (sensitivity analysis).
 
@@ -141,6 +152,24 @@ See function's documentation for information on mathematics and theories methods
 
 ## Version History
 
+### MCDASupport v0.35 (Release date: 2025-03-28)
+
+new models:
+* implemented SMART model
+* implemented REGIME model
+* implemented ORESTE model
+* implemented QUALIFLEX model
+* implemented EVAMIX model
+* implemented SWARA model
+* implemented MACBETH model
+* implemented MAUT model
+* implemented CILOS model
+* implemented PAMSSEM I and II
+* implemented MABAC
+
+bugs corected
+* EWM weights vere not correctly computed if there were some criteria being minimized
+
 ### MCDASupport v0.34 (Release date: 2024-11-17)
 
 new models:
@@ -162,16 +191,6 @@ other changes:
 * reimplemented tobest normalization. Now returns values in <0;1> and allows processin both benefit and cost criteria
 * added examples to valitation functions
 
-### MCDASupport v0.33 (Release date: 2024-10-17)
-
-In this version the codebase is again refactored. This time validation functions are separated into separate environment volidation to be used across whole codebase and simplify it to some extent. On one hand it reduces number of files required for purposes of parameter validation.
-
-As side effect parameter requirements of the methods are easier to interpret as they are dirrectly incorporated into instance criation of the model.
-
-Other changes:
-* summary function in ELECTRE 1 now produces more consisten outputs to the console.
-* there was en error for PROMETHEE preference validation checks (the check did not work properly)
-
 ### Full version history
 
 For full version history see [[NEWS]].md file.
@@ -180,7 +199,7 @@ For full version history see [[NEWS]].md file.
 
 MCDASupport R package is a library with various functions for computations around multiple criteria analyses
 
-  Copyright (C)  2024 by Pavel Šenovský
+Copyright (C)  2025 by Pavel Šenovský
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License (GPL) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

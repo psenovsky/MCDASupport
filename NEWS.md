@@ -1,3 +1,21 @@
+# MCDASupport v0.35 (Release date: 2025-03-28)
+
+new models:
+* implemented SMART model
+* implemented REGIME model
+* implemented ORESTE model
+* implemented QUALIFLEX model
+* implemented EVAMIX model
+* implemented SWARA model
+* impleemnted MACBETH model
+* implemented MAUT model
+* implemented CILOS model
+* implemented PAMSSEM I and II
+* implemented MABAC
+
+bugs corected
+* EWM weights vere not correctly computed if there were some criteria being minimized
+
 # MCDASupport v0.34 (Release date: 2024-11-17)
 
 new models:
