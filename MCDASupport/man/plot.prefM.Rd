@@ -29,6 +29,11 @@ This version of the function uses visNetwork package to solve this problem,
  generated networks also looks better, and the newrok is interactive by
  adding capability to highlight nodes to ease up visual analysis of the
  network.
+
+Note that the function has relatively general usage as many methods in
+ multiple criteria analysis, risk analysis, and other fields use the
+ adjacancy matrix to express various types of relations between the
+ alternatives, risks, ...
 }
 \examples{
 alternatives <- c('BLR', 'BOM', 'DEL', 'MNL', 'HYD', 'GRU', 'DUB', 'KRK',

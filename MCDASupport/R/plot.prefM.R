@@ -16,6 +16,11 @@
 #'  adding capability to highlight nodes to ease up visual analysis of the
 #'  network.
 #'
+#' Note that the function has relatively general usage as many methods in
+#'  multiple criteria analysis, risk analysis, and other fields use the
+#'  adjacancy matrix to express various types of relations between the
+#'  alternatives, risks, ...
+#'
 #' @param x preference matrix - values in matrix used to descibe strength of
 #'  the relation. Generally it is adjacancy matrix.
 #'
