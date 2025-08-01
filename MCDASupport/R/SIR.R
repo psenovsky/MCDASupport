@@ -178,23 +178,24 @@ sir <- R6Class("sir",
     #' q <- c(1, 1, 1, 1)
     #' p <- c(2,2,2,2)
     #' s <- c(0,0,0,0)
-    #' result <- SIR(PM, w, shape, minmax, q, p, s, SAW = TRUE)
-    initialize = function(pm, w, d, minmax = "max", i_threshold = NULL, p_threshold = NULL,
-                          im_threshold = NULL, SAW = TRUE) {
-
+    #' result <- sir$new(PM, w, shape, minmax, q, p, s, SAW = TRUE)
+    initialize = function(pm, w, d, minmax = "max", i_threshold = NULL,
+                          p_threshold = NULL, im_threshold = NULL, SAW = TRUE) {
       ## check validity of the objects manipulated by the current function
       self$pm_orig <- pm
-      #validate minmax and invert scales if neccessary
+      # validate minmax and invert scales if neccessary
       self$pm <- util_pm_minmax(pm, minmax)
       self$pref_function <- d
       validation$validate_pm(PM)
-      ncri <- ncol(PM) #no. of criteria
+      ncri <- ncol(PM) # no. of criteria
       validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
       validation$validate_w_sum_eq_1(w)
-      im_threshold <- validation$validate_promethee_thresholds(p_threshold,
-                                                               i_threshold,
-                                                               im_threshold,
-                                                               d, ncri)
+      im_threshold <- validation$validate_promethee_thresholds(
+        p_threshold,
+        i_threshold,
+        im_threshold,
+        d, ncri
+      )
       ## End of checking the validity of the "inputs"
 
       self$w <- w
@@ -214,15 +215,15 @@ sir <- R6Class("sir",
     #' Manual re-computation si required only if the user changes class' fields
     #'  without using the constructor.
     compute = function() {
-      nalt <- nrow(self$pm)  #no. of alternatives
+      nalt <- nrow(self$pm) # no. of alternatives
       ncri <- ncol(self$pm)
-      alt  <- rownames(self$pm)
-      cri  <- colnames(self$pm)
-      qj   <- self$i_threshold
-      pj   <- self$p_threshold
-      sj   <- self$im_threshold
+      alt <- rownames(self$pm)
+      cri <- colnames(self$pm)
+      qj <- self$i_threshold
+      pj <- self$p_threshold
+      sj <- self$im_threshold
 
-      #pairwaise comparison
+      # pairwaise comparison
       DK <- lapply(1:ncri, function(k) {
         DKf <- outer(1:nalt, 1:nalt, Vectorize(function(i, j) self$pm[i, k] - self$pm[j, k]))
         rownames(DKf) <- alt
@@ -231,11 +232,13 @@ sir <- R6Class("sir",
       })
       names(DK) <- cri
 
-      #preference degree (validated in PROMETHEE)
-      Pj <- preferenceDegree(nalt, ncri, DK, self$pref_function, qj, pj, sj,
-                             alt, cri)
+      # preference degree (validated in PROMETHEE)
+      Pj <- preferenceDegree(
+        nalt, ncri, DK, self$pref_function, qj, pj, sj,
+        alt, cri
+      )
 
-      #superiority (Si) and inferiority (Ii) index
+      # superiority (Si) and inferiority (Ii) index
       si <- sapply(1:ncri, function(i) rowSums(Pj[[i]]))
       ii <- sapply(1:ncri, function(i) colSums(Pj[[i]]))
       rownames(si) <- alt
@@ -243,13 +246,13 @@ sir <- R6Class("sir",
       colnames(si) <- cri
       colnames(ii) <- cri
 
-      #S-flow a I-flow
+      # S-flow a I-flow
       if (self$SAW) {
-        #SIR SAW agregation method
+        # SIR SAW agregation method
         s_flow <- rowSums(sweep(si, MARGIN = 2, w, `*`))
         i_flow <- rowSums(sweep(ii, MARGIN = 2, w, `*`))
       } else {
-        #SIR TOPSIS agregation method
+        # SIR TOPSIS agregation method
         # as oposed to TOPSIS the procedure works separately with Si and Ii
         # matrixes to derive S and I flow
         # Determination of the Ideal (A_ideal) and Anti-ideal (A_anti)
@@ -289,15 +292,15 @@ sir <- R6Class("sir",
       # partial ranking
       partial_ranking <- outer(1:nalt, 1:nalt, Vectorize(function(i, j) {
         if (i == j) {
-          return(0) #no meaning evaluation alternative with itself
+          return(0) # no meaning evaluation alternative with itself
         } else if ((rank_s_flow[alt[i]] < rank_s_flow[alt[j]] && rank_i_flow[alt[i]] < rank_i_flow[alt[j]]) ||
-                   (rank_s_flow[alt[i]] < rank_s_flow[alt[j]] && rank_i_flow[alt[i]] == rank_i_flow[alt[j]]) ||
-                   (rank_s_flow[alt[i]] == rank_s_flow[alt[j]] && rank_i_flow[alt[i]] < rank_i_flow[alt[j]])) {
-          return("P") #preference
+          (rank_s_flow[alt[i]] < rank_s_flow[alt[j]] && rank_i_flow[alt[i]] == rank_i_flow[alt[j]]) ||
+          (rank_s_flow[alt[i]] == rank_s_flow[alt[j]] && rank_i_flow[alt[i]] < rank_i_flow[alt[j]])) {
+          return("P") # preference
         } else if (rank_s_flow[alt[i]] == rank_s_flow[alt[j]] && rank_i_flow[alt[i]] == rank_i_flow[alt[j]]) {
-          return("I") #indifference
-        }else if (rank_s_flow[alt[i]] < rank_s_flow[alt[j]] && rank_i_flow[alt[i]] > rank_i_flow[alt[j]]) {
-          return("R") #incomparable
+          return("I") # indifference
+        } else if (rank_s_flow[alt[i]] < rank_s_flow[alt[j]] && rank_i_flow[alt[i]] > rank_i_flow[alt[j]]) {
+          return("R") # incomparable
         }
       }))
       rownames(partial_ranking) <- alt
@@ -315,13 +318,15 @@ sir <- R6Class("sir",
 
     #' @description
     #' summary of the SIR method resutls.
-    #' 
+    #'
     #' @return basic information on the model.
     summary = function() {
-      nalt <- nrow(self$pm)  #no. of alternatives
+      nalt <- nrow(self$pm) # no. of alternatives
       ncri <- ncol(self$pm)
-      cat(paste0("SIR:\n", "processed ", nalt,
-                 " alternatives in ", ncri, " criteria\nused "))
+      cat(paste0(
+        "SIR:\n", "processed ", nalt,
+        " alternatives in ", ncri, " criteria\nused "
+      ))
       if (self$SAW) {
         cat(paste(" SIR-SAW procedure\n"))
       } else {
