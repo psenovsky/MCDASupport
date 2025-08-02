@@ -70,7 +70,7 @@ shape <- c('linear', 'linear', 'linear', 'linear')
 q <- c(1, 1, 1, 1)
 p <- c(2,2,2,2)
 s <- c(0,0,0,0)
-result <- SIR(PM, w, shape, minmax, q, p, s, SAW = TRUE)
+result <- sir$new(PM, w, shape, minmax, q, p, s, SAW = TRUE)
 }
 \references{
 Papathanasiou, Jason, Ploskas, Nikolaos. Multiple Criteria Decision Aid
@@ -243,7 +243,7 @@ shape <- c('linear', 'linear', 'linear', 'linear')
 q <- c(1, 1, 1, 1)
 p <- c(2,2,2,2)
 s <- c(0,0,0,0)
-result <- SIR(PM, w, shape, minmax, q, p, s, SAW = TRUE)
+result <- sir$new(PM, w, shape, minmax, q, p, s, SAW = TRUE)
 }
 \if{html}{\out{</div>}}
 
