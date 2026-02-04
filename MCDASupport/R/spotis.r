@@ -24,7 +24,7 @@
 #' \itemize{
 #'  \item{specify performance matrix in natural units (PM), weights,
 #' optimization direction of the criteria and their bounds}
-#'  \item}{compute ideal solution point as max or min of the bounds, depending
+#'  \item{compute ideal solution point as max or min of the bounds, depending
 #' on optimization direction}
 #'  \item{compute distance between the alternatives and ideal solution point}
 #'  \item{apply weight}

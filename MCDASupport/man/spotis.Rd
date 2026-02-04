@@ -4,7 +4,36 @@
 \alias{spotis}
 \title{Stable Preference Ordering Super Intelligence}
 \description{
+Relatively new approach to computation of preference ordering. Its novelty
+  lies in ability of the method to prevent rank reversal - a problem to
+  which almost all MCDA methods are subject.
 
+Similarly to other MCDA methods, SPOTIS starts with Altives performance
+  estimation in the criteria.Also similartly method requires criteria
+  weights to be specified.
+
+Unlike other MCDA methods, SPOTIS requires Specification of bounds of the
+ criteria. These bounds are established apriori (as part of decision problem
+ specification) and are used to compute the ideal solution point (ISP) to
+ which the criteria are compared to.
+
+Idea is, that there cannot be another variant (alternative), whose
+ performance will be outside of thse bounds. Introducing such variant then
+ cannot change used scale for the criteria, which means that the performance
+ of the original alternatives will remain unchanges, thus preventing rank
+ reversal.
+
+Approach:
+\itemize{
+ \item{specify performance matrix in natural units (PM), weights,
+optimization direction of the criteria and their bounds}
+ \item{compute ideal solution point as max or min of the bounds, depending
+on optimization direction}
+ \item{compute distance between the alternatives and ideal solution point}
+ \item{apply weight}
+ \item{compute average distace}
+ \item{order alternatives by the average distance}
+}
 }
 \examples{
 
