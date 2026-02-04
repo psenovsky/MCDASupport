@@ -1,3 +1,13 @@
+# MCDASupport v0.36 (Release date: TBD)
+
+new models:
+* implemented SPOTIS model 
+
+other changes:
+* corrected error in documentation in exmaple for SIR constructor
+* small corrections in documentation
+* added support for min and max parametres in minmax normalization to minimize risk of rank reversal (optional parameters)
+
 # MCDASupport v0.35 (Release date: 2025-03-28)
 
 new models:

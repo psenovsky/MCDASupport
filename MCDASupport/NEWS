@@ -1,3 +1,14 @@
+MCDASupport v0.36 (Release date: TBD)
+===================
+
+new models:
+* implemented SPOTIS model
+
+bug fixes:
+* corrected error in documentation in exmaple for SIR constructor
+* small corrections in documentation
+* added support for min and max parametres in minmax normalization to minimize risk of rank reversal (optional parameters)
+
 MCDASupport v0.35 (Release date: 2025-03-28)
 ===================
 
@@ -77,8 +88,8 @@ More detailed list of changes for the vesion:
 * refactored common code for SIR and TOPSIS into topsis_ideal function
 * some refactoring in FuzzyTOPSIS function
 * added plot.threshold.3d and plot.threshold functions to visualize senzitivity, paradoxically new approach to computation using R6 classes makes no use of these. Possibly these functions will be removed in future versions (or never leave the development branch)
-* refactored Electre_1 and Electre_1_sensitivity into single universally usable R6 class. This approach will be used as model for other methods. 
-    * as side effect the summary function for the model object is now supported. 
+* refactored Electre_1 and Electre_1_sensitivity into single universally usable R6 class. This approach will be used as model for other methods.
+    * as side effect the summary function for the model object is now supported.
     * and sensitivity of the solution is computed (in past intervals for parametr testing had to be set manually)
     * please note that this change is API breaking
 * refactored Electre_1S and Electre_1s_sensitivity into single R6 class (similarly to implementation of the Electre_1) - implementation should be still considered as experimental and bugy. As a side effect Electre_1s_paramCheck is no longer needed.
