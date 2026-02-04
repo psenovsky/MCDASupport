@@ -4,7 +4,7 @@
 \alias{mcda_norm}
 \title{Normalize values using using chosen method of normalization}
 \usage{
-mcda_norm(tonorm, minmax = "max", method = "minmax")
+mcda_norm(tonorm, minmax = "max", method = "minmax", min = NULL, max = NULL)
 }
 \arguments{
 \item{tonorm}{vector of numeric values to be normalized}
@@ -14,6 +14,12 @@ default value}
 
 \item{method}{specify normalization method, use constant from table above,
 the 'minmax' is default value.}
+
+\item{min}{NULL minimal value in original scale - optional parameter used
+for minmax method to limit possibility of rank reversal problem}
+
+\item{max}{NULL maximal value in original scale - optional parameter used
+for minmax method to limit possibility of rank reversal problem}
 }
 \value{
 vector of values normalized by specified function

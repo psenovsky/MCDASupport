@@ -162,6 +162,10 @@
 #'  default value
 #' @param method specify normalization method, use constant from table above,
 #'  the 'minmax' is default value.
+#' @param  min NULL minimal value in original scale - optional parameter used
+#'  for minmax method to limit possibility of rank reversal problem
+#' @param  max NULL maximal value in original scale - optional parameter used
+#'  for minmax method to limit possibility of rank reversal problem
 #'
 #' @return vector of values normalized by specified function
 #'
@@ -203,7 +207,8 @@
 #' @keywords normalization Lai-Hwang linear aggregation logarithmic
 #' @keywords Markovic min-max nonlinear toaverage tobest Tzeng-Huang
 #' @keywords vector Zavadskas-Turskis Z-score
-mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
+mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
+                      min = NULL, max = NULL) {
   # validate inputs
   t <- c("min", "max")
   validation$validate_invalid_val(minmax, t, "minmax")
@@ -223,6 +228,15 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
                 "ZavadskasTurskis",
                 "zscore")
   validation$validate_invalid_val(method, nmethods, "normalization method")
+  if (!is.null(min) && min > min(tonorm)) {
+    stop("Value set in min parameter is larger then minimum in provided data 
+      to normalize")
+  }
+  if (!is.null(max) && max < max(tonorm)) {
+    stop("Value set in max parameter is smaller then maximum in provided data 
+      to normalize")
+  }
+  if (is.integer(min)) print("test min")
 
   #LaiHwang normalization
   norm_lai_hwang <- function(tonorm, minmax = "max") {
@@ -267,9 +281,19 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
   }
 
   # min-max method
-  norm_minmax <- function(tonorm, minmax = "max") {
-    minimum <- min(tonorm)
-    maximum <- max(tonorm)
+  norm_minmax <- function(tonorm, minmax = "max", min = NULL, max = NULL) {
+    if (!is.null(min)) {
+      minimum <- min
+    } else {
+      minimum <- min(tonorm)
+    }
+    if (!is.null((max))) {
+      maximum <- max
+    } else {
+      maximum <- max(tonorm)
+    }
+    print(minimum)
+    print(maximum)
     if (maximum == minimum) stop("All values same, nothing to normalize")
     z <- (tonorm - minimum) / (maximum - minimum)
     if (minmax == "min") z <- 1 - z
@@ -352,7 +376,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax") {
     "linear aggregation" = norm_linear_aggreg(tonorm, minmax = minmax),
     "logarithm" = norm_logarithm(tonorm, minmax = minmax),
     "Markovic" = norm_markovic(tonorm),
-    "minmax" = norm_minmax(tonorm, minmax = minmax),
+    "minmax" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
     "nonlinear" = norm_nonlinear(tonorm, minmax = minmax),
     "toaverage" = norm_toaverage(tonorm),
     "tobest" = norm_tobest(tonorm, minmax = minmax),
