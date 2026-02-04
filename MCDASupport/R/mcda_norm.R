@@ -292,8 +292,6 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
     } else {
       maximum <- max(tonorm)
     }
-    print(minimum)
-    print(maximum)
     if (maximum == minimum) stop("All values same, nothing to normalize")
     z <- (tonorm - minimum) / (maximum - minimum)
     if (minmax == "min") z <- 1 - z
