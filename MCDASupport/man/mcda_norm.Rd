@@ -37,7 +37,7 @@ Performs normalization of the vector using one of supported normalization
        minmax \tab min-max normalization \tab Y \cr
        nonlinear \tab nonlinear normalization \tab Y \cr
        toaverage \tab normalizing to average value \tab N \cr
-       tobest \tab normalizing to best value \tab Y \cr
+       tobest \tab normalizing to best value (AKA max normalization) \tab Y \cr
        TzengHuang \tab Tzeng-Huang normalization \tab N \cr
        vector \tab vertor normalization \tab Y \cr
        ZavadskasTurskis \tab Zavadskas-Turskis normalization \tab Y \cr
@@ -129,12 +129,17 @@ Normalized values are computed by comparing the values to average.
 
 \mjsdeqn{z = \frac{x}{\mu} \cdot 100}
 
-\bold{Normalize to best value}
+\bold{Normalize to best value AKA Max nomalization}
 
 Normalized values are computed by comparing the values to maximum. Results
- show how close the values are to this maximum (in percents).
+ show how close the values are to this maximum. For benefit criteria it is 
+ computes as:
 
-\mjsdeqn{z = \frac{x}{max(x)} \cdot 100}
+\mjsdeqn{z = \frac{x}{max(x)}}
+
+For cost criteria:
+
+\mjsdeqn{z = \frac{min(x)}{x}}
 
 \bold{Normalize values using Tzeng and Huang approach}
 
