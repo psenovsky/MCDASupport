@@ -7,7 +7,7 @@
 #' \tabular{llc}{
 #'        \bold{constant} \tab \bold{method} \tab \bold{B/C} \cr
 #'        LaiHwang \tab Lai-Hwang \tab Y \cr
-#'        linear aggregation \tab linear aggregation \tab Y \cr
+#'        linear aggregation \tab linear aggregation (AKA sum normalization) \tab Y \cr
 #'        logarithm \tab logarithmic normalization \tab Y \cr
 #'        Markovic \tab Markovic normalization \tab N \cr
 #'        minmax \tab min-max normalization (AKA max-min normalization) \tab Y \cr
@@ -38,7 +38,7 @@
 #'
 #' \mjsdeqn{z = \frac{x}{min(x) - max(x)}}
 #'
-#' \bold{Linear normalization}
+#' \bold{Linear normalization AKA Sum normalization}
 #'
 #' Normalized values are computed as follows.
 #'
@@ -222,6 +222,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
   }
   nmethods <- c("LaiHwang",
                 "linear aggregation",
+                "sum",
                 "logarithm",
                 "Markovic",
                 "minmax",
@@ -379,6 +380,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
     method,
     "LaiHwang" = norm_lai_hwang(tonorm, minmax = minmax),
     "linear aggregation" = norm_linear_aggreg(tonorm, minmax = minmax),
+    "sum" = norm_linear_aggreg(tonorm, minmax = minmax),
     "logarithm" = norm_logarithm(tonorm, minmax = minmax),
     "Markovic" = norm_markovic(tonorm),
     "minmax" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),

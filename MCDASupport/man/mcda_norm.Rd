@@ -31,7 +31,7 @@ Performs normalization of the vector using one of supported normalization
 \tabular{llc}{
        \bold{constant} \tab \bold{method} \tab \bold{B/C} \cr
        LaiHwang \tab Lai-Hwang \tab Y \cr
-       linear aggregation \tab linear aggregation \tab Y \cr
+       linear aggregation \tab linear aggregation (AKA sum normalization) \tab Y \cr
        logarithm \tab logarithmic normalization \tab Y \cr
        Markovic \tab Markovic normalization \tab N \cr
        minmax \tab min-max normalization (AKA max-min normalization) \tab Y \cr
@@ -62,7 +62,7 @@ For cost criteria
 
 \mjsdeqn{z = \frac{x}{min(x) - max(x)}}
 
-\bold{Linear normalization}
+\bold{Linear normalization AKA Sum normalization}
 
 Normalized values are computed as follows.
 
