@@ -34,7 +34,7 @@ Performs normalization of the vector using one of supported normalization
        linear aggregation \tab linear aggregation \tab Y \cr
        logarithm \tab logarithmic normalization \tab Y \cr
        Markovic \tab Markovic normalization \tab N \cr
-       minmax \tab min-max normalization \tab Y \cr
+       minmax \tab min-max normalization (AKA max-min normalization) \tab Y \cr
        nonlinear \tab nonlinear normalization \tab Y \cr
        toaverage \tab normalizing to average value \tab N \cr
        tobest \tab normalizing to best value (AKA max normalization) \tab Y \cr
@@ -98,7 +98,7 @@ Normalize values using approach by Markovic (2010), see equation bellow.
 
 \mjsdeqn{z = 1 - \frac{x - min(x)}{max(x)}}
 
-\bold{Min-max method}
+\bold{Min-max normalization AKA max-min normalization}
 
 Min-max normalization is one of most used normalization methods. It takes
  values in any ascale an normalizes them into 0-1 scale.

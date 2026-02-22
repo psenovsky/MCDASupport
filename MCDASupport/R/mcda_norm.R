@@ -10,7 +10,7 @@
 #'        linear aggregation \tab linear aggregation \tab Y \cr
 #'        logarithm \tab logarithmic normalization \tab Y \cr
 #'        Markovic \tab Markovic normalization \tab N \cr
-#'        minmax \tab min-max normalization \tab Y \cr
+#'        minmax \tab min-max normalization (AKA max-min normalization) \tab Y \cr
 #'        nonlinear \tab nonlinear normalization \tab Y \cr
 #'        toaverage \tab normalizing to average value \tab N \cr
 #'        tobest \tab normalizing to best value (AKA max normalization) \tab Y \cr
@@ -74,7 +74,7 @@
 #'
 #' \mjsdeqn{z = 1 - \frac{x - min(x)}{max(x)}}
 #'
-#' \bold{Min-max method}
+#' \bold{Min-max normalization AKA max-min normalization}
 #'
 #' Min-max normalization is one of most used normalization methods. It takes
 #'  values in any ascale an normalizes them into 0-1 scale.
@@ -225,6 +225,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
                 "logarithm",
                 "Markovic",
                 "minmax",
+                "maxmin",
                 "nonlinear",
                 "toaverage",
                 "tobest",
@@ -381,6 +382,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
     "logarithm" = norm_logarithm(tonorm, minmax = minmax),
     "Markovic" = norm_markovic(tonorm),
     "minmax" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
+    "maxmin" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
     "nonlinear" = norm_nonlinear(tonorm, minmax = minmax),
     "toaverage" = norm_toaverage(tonorm),
     "tobest" = norm_tobest(tonorm, minmax = minmax),
