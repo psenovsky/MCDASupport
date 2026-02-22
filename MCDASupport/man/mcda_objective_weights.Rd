@@ -4,15 +4,17 @@
 \alias{mcda_objective_weights}
 \title{Compute weights of the criteria using objective weighting methods.}
 \usage{
-mcda_objective_weights(pm, minmax = "max", method = "minmax")
+mcda_objective_weights(pm, method, minmax = "max", norm = "minmax")
 }
 \arguments{
 \item{pm}{performance matrix}
 
+\item{method}{weight computation method}
+
 \item{minmax}{'min' or 'max' to specify cost or benefit criterion, max is
 default value}
 
-\item{method}{specify normalization method, use constant from table above,
+\item{norm}{specify normalization method, use constant from table above,
 the 'minmax' is default value.}
 }
 \value{
@@ -24,7 +26,8 @@ The function for criteria weights computation using various objective
 
 \tabular{llc}{
        \bold{constant} \tab \bold{method} \tab \bold{normalization}\cr
-       MW \tab Mean weighting method \tab N
+       MW \tab Mean weighting method \tab N \cr
+       SDW \tab Standard Deviation Weighting method \tab Y \cr
    }
 
 In normalization column of previous table Y means that the analyst can also
@@ -41,6 +44,24 @@ Method presumes that the weights of all criteria are the same (there are no)
 \mjsdeqn{w_j = \frac{1}{n}}
 
 where n is number of criteria in decision problem.
+
+\bold{SDW - Standard Deviation Weighting Method}
+
+Steps:
+
+1) normalize data, min-max method is default, but you can choose to use
+ other normalization method
+
+2) compute standard deviation (SD) of the criteria:
+
+\mjsdeqn{\sigma_j = \sqrt{\frac{\sum_{i=1}^m (F_{ij} - \overline{F_j})^2}{m}}}
+
+For alll j in (1, 2, ..., n), where F`j is arithmetic mean of normalized
+ values.
+
+3) calcutate the weights by normalizing the sigma to max sigma
+
+\mjsdeqn{w_j = \frac{\sigma_j}{\sum_{k = 1}^m \sigma_k}}
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -50,6 +71,7 @@ c3 <- c(420, 750, 300, 634, 248)
 pm <- cbind(c1, c2, c3)
 rownames(pm) <- alternatives
 minmax <- c("max", "min", "max")
+t <- mcda_objective_weights(pm, method = "MW", minmax = minmax, method = "MW")
 
 }
 \author{
