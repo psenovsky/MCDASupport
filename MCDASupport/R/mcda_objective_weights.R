@@ -104,32 +104,32 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
 
   # SDW - Standard Deviation Weighting Method
   SDW <- function(pm, minmax, method = "minmax") {
-    ncri <- ncol(pm)
-    nalt <- nrow(pm)
-    pm2 <- pm
-    SD <- rep(0, times = ncri)
-    for(i in 1:ncri) { # step 1) normalization
-      pm2[, i] <- mcda_norm(pm[, i], minmax = minmax[i], method = method)
-      SD[i] <- sd(pm2[, i]) * sqrt((nalt - 1) / nalt) # step 2) compute SD
-    }
+    SD <- pop_sd(pm, minmax, method)
     w <- SD / sum(SD)
     return(w)
   }
 
   # SVW - Statistical Variance Weighting Method
   SVW <- function(pm, minmax, method = "minmax") {
+    SD <- pop_sd(pm, minmax, method)
+    SD2 <- SD^2
+    w <- SD2 / sum(SD2)
+    return(w)
+  }
+
+  # population standard deviation
+  pop_sd <- function(pm, minmax, method = "minmax") {
     ncri <- ncol(pm)
     nalt <- nrow(pm)
     pm2 <- pm
     SD <- rep(0, times = ncri)
+    p <- sqrt((nalt - 1) / nalt) # const. to transform to population sd
     for (i in 1:ncri) {
       # step 1) normalization
       pm2[, i] <- mcda_norm(pm[, i], minmax = minmax[i], method = method)
-      SD[i] <- sd(pm2[, i]) * sqrt((nalt - 1) / nalt) # step 2) compute SD
+      SD[i] <- sd(pm2[, i]) * p # step 2) compute SD
     }
-    SD2 <- SD^2
-    w <- SD2 / sum(SD2)
-    return(w)
+    return(SD)
   }
 
   # perform weight computation based on selected method
