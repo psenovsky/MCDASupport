@@ -11,6 +11,7 @@
 #'        SVW \tab Statistical Variance Weighting method \tab Y \cr
 #'        EWM \tab Entropy Weight Method \tab N \cr
 #'        CRITIC \tab Criterion Importance Through Intercriteria Correlation \tab N \cr
+#'        GCW \tab Gini Coefficient Weighting \tab N \cr
 #'    }
 #' 
 #' In normalization column of previous table Y means that the analyst can also
@@ -116,6 +117,19 @@
 #'
 #' \mjsdeqn{w_j = \frac{C_j}{\sum_{k=1}^m C_j}}
 #' 
+#' \bold{GCW - Gini Coefficient Weighting}
+#' 
+#' Computes weights based on Gini index.
+#' 
+#' First we compute Gini coefficient (Gj) based on pairwise absolute difference
+#'  of the discrete values of criteria. (No normalization needed).
+#' 
+#' \mjsdeqn{G_j = \frac{\sum_{i=1}^m \sum_{k=1}^m |f_{ij} - f_{kj}|}{2m^2\overline{f_j}}}
+#' 
+#' Then we calculate weights:
+#' 
+#'\mjsdeqn{w_j = \frac{G_j}{\sum_{k=1}^m G_k}}
+#' 
 #' @param pm performance matrix
 #' @param method weight computation method
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
@@ -160,7 +174,8 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
     "SDW",
     "SVW",
     "EWM",
-    "CRITIC"
+    "CRITIC",
+    "GCW"
   )
   validation$validate_invalid_val(method, nmethods, "objective weighting method")
   # end of validation
@@ -256,6 +271,26 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
     return(wj)
   }
 
+  # Gini Coefficient Weighting Method
+  GCW <- function(pm) {
+    m <- ncol(pm) # no. of criteria
+    nalt <- nrow(pm) # no. of alternatives
+    df <- rep(0, times = m)
+    gini <- prum <- df
+    for (j in 1:ncri) {
+      # for criteria
+      for (i in 1:nalt) {
+        for (k in 1:nalt) {
+          df[j] <- df[j] + abs(pm[i, j] - pm[k, j])
+        }
+      }
+      gini[j] <- df[j] / (2 * m^2 * mean(pm[, j]))
+    }
+    w <- gini / sum(gini)
+    names(w) <- colnames(pm)
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
@@ -263,6 +298,7 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
     "SDW" = SDW(pm, minmax, norm), # Standard Deviation Weighting Method
     "SVW" = SVW(pm, minmax, norm), # Statistical Variace Weighting Method
     "EWM" = EWM(pm), # Entropy Weight Methor
-    "CRITIC" = CRITIC(pm, minmax) # Criterion Importance Through Intercriteria Correlation
+    "CRITIC" = CRITIC(pm, minmax), # Criterion Importance Through Intercriteria Correlation
+    "GCW" = GCW(pm) # Gini Coefficient Weighting Method
   )
 }

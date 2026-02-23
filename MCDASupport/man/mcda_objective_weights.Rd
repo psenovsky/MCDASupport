@@ -31,6 +31,7 @@ The function for criteria weights computation using various objective
        SVW \tab Statistical Variance Weighting method \tab Y \cr
        EWM \tab Entropy Weight Method \tab N \cr
        CRITIC \tab Criterion Importance Through Intercriteria Correlation \tab N \cr
+       GCW \tab Gini Coefficient Weighting \tab N \cr
    }
 
 In normalization column of previous table Y means that the analyst can also
@@ -135,6 +136,19 @@ Then we determine quality of the information provided by multiplying the
 Finally we can compute the weight by normalizing the C indicator
 
 \mjsdeqn{w_j = \frac{C_j}{\sum_{k=1}^m C_j}}
+
+\bold{GCW - Gini Coefficient Weighting}
+
+Computes weights based on Gini index.
+
+First we compute Gini coefficient (Gj) based on pairwise absolute difference
+ of the discrete values of criteria. (No normalization needed).
+
+\mjsdeqn{G_j = \frac{\sum_{i=1}^m \sum_{k=1}^m |f_{ij} - f_{kj}|}{2m^2\overline{f_j}}}
+
+Then we calculate weights:
+
+\mjsdeqn{w_j = \frac{G_j}{\sum_{k=1}^m G_k}}
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
