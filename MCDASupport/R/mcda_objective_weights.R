@@ -9,6 +9,7 @@
 #'        MW \tab Mean weighting method \tab N \cr
 #'        SDW \tab Standard Deviation Weighting method \tab Y \cr
 #'        SVW \tab Statistical Variance Weighting method \tab Y \cr
+#'        EWM \tab Entropy Weight Method \tab N \cr
 #'    }
 #' 
 #' In normalization column of previous table Y means that the analyst can also
@@ -28,6 +29,8 @@
 #' 
 #' \bold{SDW - Standard Deviation Weighting Method}
 #' 
+#' Computes weights based on standard deviation of the criteria.
+#' 
 #' Steps:
 #' 
 #' 1) normalize data, min-max method is default, but you can choose to use
@@ -46,6 +49,9 @@
 #' 
 #' \bold{SVW - Statistical Variance Weighting method}
 #' 
+#' Allows to compute the weights of criteria based on differences in variance
+#'  in performance of altrernatives in the criteria.
+#' 
 #' Steps:
 #' 
 #' 1) normalize data, min-max method is default, but you can choose to use
@@ -59,6 +65,37 @@
 #' 
 #' \mjsdeqn{w_j = \frac{\sigma_j^2}{\sum_{k = 1}^m \sigma_k^2}}
 #' 
+#' \bold{EWM - Entropy Weight Method}
+#' 
+#' Allows us to establish weight system just based on evaluation of the entropy
+#'  in input data of the performance matrix.
+#' 
+#' \mjsdeqn{EM_{ij} = \frac{PM_{ij}}{max(PM_{ij})_j}}
+#'
+#' Then we compute probability of criteria to occur.
+#'
+#' \mjsdeqn{p_{ij} = \frac{EM_{ij}}{\sum_{i=1}^n EM_{ij}}}
+#'
+#' Where j = criteria, i = alternatives, n = number of alternatives.
+#'
+#' Then we compute entropy E:
+#'
+#' \mjsdeqn{E_j = -P \sum_{i=1}^n p_{ij} * ln (p_{ij})}
+#'
+#' Where
+#'
+#' \mjsdeqn{P = \frac{1}{ln(n)}}.
+#'
+#' Value of E is then in interval of <0;1>.
+#'
+#' Then we compute degree of divergence:
+#'
+#' \mjsdeqn{div_j = | 1 - E_j|}
+#'
+#' and from it entropy weights which are returned as result of the function:
+#'
+#'\mjsdeqn{Ew_j = \frac{div_j}{\sum_{j=1}^m div_j}}
+#' 
 #' @param pm performance matrix
 #' @param method weight computation method
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
@@ -67,6 +104,13 @@
 #'  the 'minmax' is default value.
 #'
 #' @return weights for the criteria
+#' 
+#' @references
+#' Kumar, Raman; Bilga, Paramjit Singh Singh, Sehijpal. Multi objective
+#'  optimization using different methods of assigning weights to energy
+#'  consumption responses, surface roughness and material removal rate during
+#'  rough turning operation. Journal of Cleaner Production, vol. 16, pp. 45-57,
+#'  DOI: 10.1016/j.jclepro.2017.06.077.
 #' 
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #' @examples
@@ -90,7 +134,8 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
   nmethods <- c(
     "MW",
     "SDW",
-    "SVW"
+    "SVW",
+    "EWM"
   )
   validation$validate_invalid_val(method, nmethods, "objective weighting method")
   # end of validation
@@ -132,11 +177,36 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
     return(SD)
   }
 
+  # Entropy Weight Method
+  EWM <- function(pm) {
+    # function computes maximum in columns in matrix or data frame
+    col_max <- function(data) {
+      t <- apply(data, 2, max)
+      return(t)
+    }
+    nalt <- nrow(pm)
+    em <- sweep(pm, 2, col_max(pm), "/") # 1. normalize PM: EM = PM_ij/max(PM_j)
+    # sum_{i=1}^n EM_{ij}, where j = criteria, i = alternatives,
+    # n = number of alternatives
+    p <- sweep(em, 2, colSums(em), "/") # probability of criteria to occur
+    p2 <- p * log(p)
+    # required since if p = 0, then ln(0) = -inf, so 0 * ln(0) = NaN
+    na_values <- is.na(p2)
+    p2[na_values] <- 0
+    # E_j = -P sum_{i=1}^n p_{ij} * log_e (p_{ij})
+    ej <- -(1 / log(nalt)) * colSums(p2)
+    divj <- abs(1 - ej) # degree of divergence
+    # Entropy weight
+    ewj <- divj / sum(divj) # Ew_j = div_j / sum_{j=1}^m div_j
+    return(ewj)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
     "MW" = MW(pm), # Mean Weighting Method
     "SDW" = SDW(pm, minmax, norm), # Standard Deviation Weighting Method
-    "SVW" = SVW(pm, minmax, norm) # Statistical Variace Weighting Method
+    "SVW" = SVW(pm, minmax, norm), # Statistical Variace Weighting Method
+    "EWM" = EWM(pm) # Entropy Weight Method
   )
 }

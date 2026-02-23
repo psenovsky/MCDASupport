@@ -29,6 +29,7 @@ The function for criteria weights computation using various objective
        MW \tab Mean weighting method \tab N \cr
        SDW \tab Standard Deviation Weighting method \tab Y \cr
        SVW \tab Statistical Variance Weighting method \tab Y \cr
+       EWM \tab Entropy Weight Method \tab N \cr
    }
 
 In normalization column of previous table Y means that the analyst can also
@@ -48,6 +49,8 @@ where n is number of criteria in decision problem.
 
 \bold{SDW - Standard Deviation Weighting Method}
 
+Computes weights based on standard deviation of the criteria.
+
 Steps:
 
 1) normalize data, min-max method is default, but you can choose to use
@@ -66,18 +69,52 @@ For alll j in (1, 2, ..., n), where F`j is arithmetic mean of normalized
 
 \bold{SVW - Statistical Variance Weighting method}
 
+Allows to compute the weights of criteria based on differences in variance
+ in performance of altrernatives in the criteria.
+
 Steps:
 
 1) normalize data, min-max method is default, but you can choose to use
  other normalization method
 
-2) compute variance of normalized data
+2) compute variance of normalized data. Again population variance is being used
 
 \mjsdeqn{\sigma_j^2 = \frac{\sum_{i=1}^m (F_{ij} - \overline{F_j})^2}{m}}
 
 3) Calculate the weights
 
 \mjsdeqn{w_j = \frac{\sigma_j^2}{\sum_{k = 1}^m \sigma_k^2}}
+
+\bold{EWM - Entropy Weight Method}
+
+Allows us to establish weight system just based on evaluation of the entropy
+ in input data of the performance matrix.
+
+\mjsdeqn{EM_{ij} = \frac{PM_{ij}}{max(PM_{ij})_j}}
+
+Then we compute probability of criteria to occur.
+
+\mjsdeqn{p_{ij} = \frac{EM_{ij}}{\sum_{i=1}^n EM_{ij}}}
+
+Where j = criteria, i = alternatives, n = number of alternatives.
+
+Then we compute entropy E:
+
+\mjsdeqn{E_j = -P \sum_{i=1}^n p_{ij} * ln (p_{ij})}
+
+Where
+
+\mjsdeqn{P = \frac{1}{ln(n)}}.
+
+Value of E is then in interval of <0;1>.
+
+Then we compute degree of divergence:
+
+\mjsdeqn{div_j = | 1 - E_j|}
+
+and from it entropy weights which are returned as result of the function:
+
+\mjsdeqn{Ew_j = \frac{div_j}{\sum_{j=1}^m div_j}}
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -89,6 +126,13 @@ rownames(pm) <- alternatives
 minmax <- c("max", "min", "max")
 t <- mcda_objective_weights(pm, method = "MW", minmax = minmax, method = "MW")
 
+}
+\references{
+Kumar, Raman; Bilga, Paramjit Singh Singh, Sehijpal. Multi objective
+ optimization using different methods of assigning weights to energy
+ consumption responses, surface roughness and material removal rate during
+ rough turning operation. Journal of Cleaner Production, vol. 16, pp. 45-57,
+ DOI: 10.1016/j.jclepro.2017.06.077.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
