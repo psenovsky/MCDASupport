@@ -30,6 +30,7 @@ The function for criteria weights computation using various objective
        SDW \tab Standard Deviation Weighting method \tab Y \cr
        SVW \tab Statistical Variance Weighting method \tab Y \cr
        EWM \tab Entropy Weight Method \tab N \cr
+       CRITIC \tab Criterion Importance Through Intercriteria Correlation \tab N \cr
    }
 
 In normalization column of previous table Y means that the analyst can also
@@ -115,6 +116,25 @@ Then we compute degree of divergence:
 and from it entropy weights which are returned as result of the function:
 
 \mjsdeqn{Ew_j = \frac{div_j}{\sum_{j=1}^m div_j}}
+
+\bold{CRITIC - Criterion Importance Through Intercriteria Correlation}
+
+Derives weight coefficients of criteria based on correlations.
+
+Basis of the evaluation is correlation matrix R we compute using Pearson's
+ correlation coefficien. This information can be used to compute the
+ conflict created by the criterium with respect to other criteria:
+
+\mjsdeqn{\sum_{k=1}^m (1 - r_{jk})}
+
+Then we determine quality of the information provided by multiplying the
+ result by standard deviation
+
+\mjsdeqn{C_j = \sigma_j \sum_{k=1}^m (1 - r_{jk}) }
+
+Finally we can compute the weight by normalizing the C indicator
+
+\mjsdeqn{w_j = \frac{C_j}{\sum_{k=1}^m C_j}}
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -124,7 +144,7 @@ c3 <- c(420, 750, 300, 634, 248)
 pm <- cbind(c1, c2, c3)
 rownames(pm) <- alternatives
 minmax <- c("max", "min", "max")
-t <- mcda_objective_weights(pm, method = "MW", minmax = minmax, method = "MW")
+t <- mcda_objective_weights(pm, method = "MW", minmax = minmax, norm = "minmax")
 
 }
 \references{
@@ -133,6 +153,10 @@ Kumar, Raman; Bilga, Paramjit Singh Singh, Sehijpal. Multi objective
  consumption responses, surface roughness and material removal rate during
  rough turning operation. Journal of Cleaner Production, vol. 16, pp. 45-57,
  DOI: 10.1016/j.jclepro.2017.06.077.
+
+Diakonlaki, D., Mavrotas, G., Papayannadis, J. (1995). Datamining Objective
+ Weights in Multiple Criteria Problems: the CRITIC Method. Computers and
+ Operations Research, 22(7), pp. 763-770.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
