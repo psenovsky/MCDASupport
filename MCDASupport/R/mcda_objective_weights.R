@@ -8,6 +8,7 @@
 #'        \bold{constant} \tab \bold{method} \tab \bold{normalization}\cr
 #'        MW \tab Mean weighting method \tab N \cr
 #'        SDW \tab Standard Deviation Weighting method \tab Y \cr
+#'        SVW \tab Statistical Variance Weighting method \tab Y \cr
 #'    }
 #' 
 #' In normalization column of previous table Y means that the analyst can also
@@ -43,6 +44,21 @@
 #' 
 #' \mjsdeqn{w_j = \frac{\sigma_j}{\sum_{k = 1}^m \sigma_k}}
 #' 
+#' \bold{SVW - Statistical Variance Weighting method}
+#' 
+#' Steps:
+#' 
+#' 1) normalize data, min-max method is default, but you can choose to use
+#'  other normalization method
+#' 
+#' 2) compute variance of normalized data. Again population variance is being used
+#' 
+#' \mjsdeqn{\sigma_j^2 = \frac{\sum_{i=1}^m (F_{ij} - \overline{F_j})^2}{m}}
+#' 
+#' 3) Calculate the weights
+#' 
+#' \mjsdeqn{w_j = \frac{\sigma_j^2}{\sum_{k = 1}^m \sigma_k^2}}
+#' 
 #' @param pm performance matrix
 #' @param method weight computation method
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
@@ -73,7 +89,8 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
   if (n == 1) minmax <- rep(minmax, times = n)
   nmethods <- c(
     "MW",
-    "SDW"
+    "SDW",
+    "SVW"
   )
   validation$validate_invalid_val(method, nmethods, "objective weighting method")
   # end of validation
@@ -99,10 +116,27 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
     return(w)
   }
 
+  # SVW - Statistical Variance Weighting Method
+  SVW <- function(pm, minmax, method = "minmax") {
+    ncri <- ncol(pm)
+    nalt <- nrow(pm)
+    pm2 <- pm
+    SD <- rep(0, times = ncri)
+    for (i in 1:ncri) {
+      # step 1) normalization
+      pm2[, i] <- mcda_norm(pm[, i], minmax = minmax[i], method = method)
+      SD[i] <- sd(pm2[, i]) * sqrt((nalt - 1) / nalt) # step 2) compute SD
+    }
+    SD2 <- SD^2
+    w <- SD2 / sum(SD2)
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
     "MW" = MW(pm), # Mean Weighting Method
-    "SDW" = SDW(pm, minmax, norm) # Standard Deviation Method
+    "SDW" = SDW(pm, minmax, norm), # Standard Deviation Weighting Method
+    "SVW" = SVW(pm, minmax, norm) # Statistical Variace Weighting Method
   )
 }

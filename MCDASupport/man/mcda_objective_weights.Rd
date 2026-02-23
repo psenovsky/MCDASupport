@@ -28,6 +28,7 @@ The function for criteria weights computation using various objective
        \bold{constant} \tab \bold{method} \tab \bold{normalization}\cr
        MW \tab Mean weighting method \tab N \cr
        SDW \tab Standard Deviation Weighting method \tab Y \cr
+       SVW \tab Statistical Variance Weighting method \tab Y \cr
    }
 
 In normalization column of previous table Y means that the analyst can also
@@ -52,7 +53,7 @@ Steps:
 1) normalize data, min-max method is default, but you can choose to use
  other normalization method
 
-2) compute standard deviation (SD) of the criteria:
+2) compute standard deviation (SD) of the population for the criteria:
 
 \mjsdeqn{\sigma_j = \sqrt{\frac{\sum_{i=1}^m (F_{ij} - \overline{F_j})^2}{m}}}
 
@@ -62,6 +63,21 @@ For alll j in (1, 2, ..., n), where F`j is arithmetic mean of normalized
 3) calcutate the weights by normalizing the sigma to max sigma
 
 \mjsdeqn{w_j = \frac{\sigma_j}{\sum_{k = 1}^m \sigma_k}}
+
+\bold{SVW - Statistical Variance Weighting method}
+
+Steps:
+
+1) normalize data, min-max method is default, but you can choose to use
+ other normalization method
+
+2) compute variance of normalized data
+
+\mjsdeqn{\sigma_j^2 = \frac{\sum_{i=1}^m (F_{ij} - \overline{F_j})^2}{m}}
+
+3) Calculate the weights
+
+\mjsdeqn{w_j = \frac{\sigma_j^2}{\sum_{k = 1}^m \sigma_k^2}}
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
