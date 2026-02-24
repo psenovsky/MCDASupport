@@ -249,8 +249,8 @@ Final values of the weights is achieved by normalizing the solution.
 
 \bold{IDOCRIW - Integrated Determination of Objective CRIteria Weights}
 
-Introfuced by Zavadskas and Podvezko in 2016. Formaly it combines two other
- methods for weight establishment: EWM and CILOS, in following manner:
+Introduced by Zavadskas and Podvezko in 2016. Formaly it combines two other
+ methods for weight establishment: EWM and CILOS, in following manner
 
 \mjsdeqn{w_j = \frac{q_j \cdot ew_j}{\sum_{i = 1}^n q_j \cdot ew_j}}
 
