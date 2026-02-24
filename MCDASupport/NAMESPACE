@@ -1,6 +1,5 @@
 exportPattern("^[[:alpha:]]+")
 export(binary_paiwise_comp)
-export(cilos)
 export(dematel)
 export(idocriw)
 export(mcda_get_dominated)
