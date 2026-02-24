@@ -30,6 +30,7 @@ implemented MCDA methods:
 - SAW
 - SIR (normal and fuzzy)
 - SMART
+- SPOTIS
 - TODIM
 - TOPSIS (normal and fuzzy)
 - VIKOR (normal and fuzzy)
@@ -60,8 +61,12 @@ For weight establishment the package supports:
 - COPRAS
 - DEMATEL
 - EWM (Entropy Weight Method)
+- IDOCRIW (Integrated Determination of Objective CRIteria Weights)
 - MEREC
+- MW (Mean Weighting)
 - PSI (also MCDA method)
+- SDW (Standard Deviation Weighting)
+- SVW (Statistical Variance Weighting)
 - SWARA
 
 The package has also some graphical capabilities to help visualizing network of outranking relations between the alternatives and tools to visualize changes in ranking due to changes in analysis parameters (sensitivity analysis).
@@ -155,6 +160,14 @@ See function's documentation for information on mathematics and theories methods
 ### MCDASupport v0.35 (Release date: 2025-03-28)
 
 new models:
+* implemented SPOTIS model
+
+bug fixes:
+* corrected error in documentation in exmaple for SIR constructor
+
+### MCDASupport v0.35 (Release date: 2025-03-28)
+
+new models:
 * implemented SMART model
 * implemented REGIME model
 * implemented ORESTE model
@@ -169,27 +182,6 @@ new models:
 
 bugs corected
 * EWM weights vere not correctly computed if there were some criteria being minimized
-
-### MCDASupport v0.34 (Release date: 2024-11-17)
-
-new models:
-* implemented WPM model
-* implemented WASPAS model
-* implemented MOORA model
-* implemented MOOSRA model
-* implemented GRA model
-* implemented PSI model
-* implemented EDAS model
-* implemented MEREC model
-* implemented WISP and S-WIPS model
-* implemented TODIM model
-* implemented CoCoSo model
-* implemented CODAS model
-
-other changes:
-* corrected some typos in documentation
-* reimplemented tobest normalization. Now returns values in <0;1> and allows processin both benefit and cost criteria
-* added examples to valitation functions
 
 ### Full version history
 

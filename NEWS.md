@@ -1,12 +1,31 @@
 # MCDASupport v0.36 (Release date: TBD)
 
+backward incompatible changes:
+* original EWM function available in previous version is available only as a method for mcda_objective_weights(pm, method = "EWM")
+* original CRITIC function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "CRITIC")
+* original MEREC function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "MEREC")
+* original CILOS function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "CILOS")
+* original IDOCRIW function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "IDOCRIW")
+
 new models:
 * implemented SPOTIS model 
+* objective weighting methods
+  * added MW - Mean Weighting method
+  * added SDW - Standard Deviation Weighting Method
+  * added SVW - Statistical Variance Weighting Method
+  * refactored EWM (Entropy Weight Method) into this framework
+  * refactored CRITIC (Criterion Importance Through Intercriteria Correlation) into this framework
+  * refactored MEREC (Method based on Removal Effects of Criteria) into this framework
+  * refactored IDOCRIW (Integrated Determination of Objective CRIteria Weights) into this framework
 
 other changes:
 * corrected error in documentation in exmaple for SIR constructor
 * small corrections in documentation
-* added support for min and max parametres in minmax normalization to minimize risk of rank reversal (optional parameters)
+* normalization methods
+  * added support for min and max parametres in minmax normalization to minimize risk of rank reversal (optional parameters)
+  * corrected documentation for to best normalization and added a synonym to it (max normalization)
+  * added synonym for minmax normalization (maxmin normalization)
+  * added synonym for Linear aggregation - sum normalization
 
 # MCDASupport v0.35 (Release date: 2025-03-28)
 
