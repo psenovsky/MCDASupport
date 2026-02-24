@@ -34,6 +34,7 @@ The function for criteria weights computation using various objective
        GCW \tab Gini Coefficient Weighting \tab N \cr
        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
        CILOS \tab Criterion Impact LOSs \tab N \cr
+       IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
    }
 
 In normalization column of previous table Y means that the analyst can also
@@ -245,6 +246,16 @@ This implementation of the method uses singular valuable decomposition (SVD) of
  matrix F for this purpose.
 
 Final values of the weights is achieved by normalizing the solution.
+
+\bold{IDOCRIW - Integrated Determination of Objective CRIteria Weights}
+
+Introfuced by Zavadskas and Podvezko in 2016. Formaly it combines two other
+ methods for weight establishment: EWM and CILOS, in following manner:
+
+\mjsdeqn{w_j = \frac{q_j \cdot ew_j}{\sum_{i = 1}^n q_j \cdot ew_j}}
+
+where q are weights established using CILOS method and ew are weights
+ derived using EWM method.
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")

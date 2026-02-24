@@ -14,6 +14,7 @@
 #'        GCW \tab Gini Coefficient Weighting \tab N \cr
 #'        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
 #'        CILOS \tab Criterion Impact LOSs \tab N \cr
+#'        IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
 #'    }
 #'
 #' In normalization column of previous table Y means that the analyst can also
@@ -163,7 +164,7 @@
 #' Finally the final weights (wj) are coputed in step 6.
 #'
 #' \mjsdeqn{w_j = \frac{E_j}{\sum_k E_k}}
-#' 
+#'
 #' \bold{CILAS - Criterion Impact LOSs}
 #'
 #' Weight derivation based on measure impact loss.
@@ -225,6 +226,16 @@
 #'  matrix F for this purpose.
 #'
 #' Final values of the weights is achieved by normalizing the solution.
+#'
+#' \bold{IDOCRIW - Integrated Determination of Objective CRIteria Weights}
+#' 
+#' Introduced by Zavadskas and Podvezko in 2016. Formaly it combines two other
+#'  methods for weight establishment: EWM and CILOS, in following manner
+#'
+#' \mjsdeqn{w_j = \frac{q_j \cdot ew_j}{\sum_{i = 1}^n q_j \cdot ew_j}}
+#'
+#' where q are weights established using CILOS method and ew are weights
+#'  derived using EWM method.
 #' 
 #' @param pm performance matrix
 #' @param method weight computation method
@@ -254,7 +265,7 @@
 #'  Antucheviciene, J. (2021). Determination of objective weights using a new
 #'  method based on the removal effects of criteria (MEREC). Symmetry, 13(4),
 #'  525.
-#' 
+#'
 #' Alinezhad, A., Khalili, J. New Methods and Applications in Multiple
 #'  Attribute Decision Making (MADM). Springer Nature Switzerland AG, 2019,
 #'  233 p., ISBN 978-3-030-15009-9
@@ -295,7 +306,8 @@ mcda_objective_weights <- function(
     "CRITIC",
     "GCW",
     "MEREC",
-    "CILOS"
+    "CILOS",
+    "IDOCRIW"
   )
   validation$validate_invalid_val(
     method,
@@ -485,6 +497,18 @@ mcda_objective_weights <- function(
     }
   }
 
+  # IDOCRIW - Integrated Determination of Objective CRIteria Weights
+  IDOCRIW <- function(pm, minmax) {
+    # TODO implement
+    ncri <- ncol(pm)
+    cri <- colnames(pm)
+    ew <- EWM(pm)
+    q <- CILOS(pm, minmax)
+    w <- (q * ew) / sum(q * ew)
+    names(w) <- cri
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
@@ -495,6 +519,7 @@ mcda_objective_weights <- function(
     "CRITIC" = CRITIC(pm, minmax), # Criterion Importance Through Intercriteria Correlation
     "GCW" = GCW(pm), # Gini Coefficient Weighting Method
     "MEREC" = MEREC(pm, minmax), # Method based on Removal Effects of Criteria
-    "CILOS" = CILOS(pm, minmax) # Criterion Impact LOSs
+    "CILOS" = CILOS(pm, minmax), # Criterion Impact LOSs
+    "IDOCRIW" = IDOCRIW(pm, minmax) # Integrated Determination of Objective CRIteria Weights
   )
 }
