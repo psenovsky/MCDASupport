@@ -21,7 +21,7 @@ the 'minmax' is default value.}
 weights for the criteria
 }
 \description{
-The function for criteria weights computation using various objective 
+The function for criteria weights computation using various objective
  weighting methods. At present time supported are:
 
 \tabular{llc}{
@@ -32,17 +32,18 @@ The function for criteria weights computation using various objective
        EWM \tab Entropy Weight Method \tab N \cr
        CRITIC \tab Criterion Importance Through Intercriteria Correlation \tab N \cr
        GCW \tab Gini Coefficient Weighting \tab N \cr
+       MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
    }
 
 In normalization column of previous table Y means that the analyst can also
- choose normalization method. All normalization methods from mcda_norm can
- be used. If no normalization method is provided, the function uses default
- one for the method, usually min-max normalization.
+ choose normalization method himself. All normalization methods from
+ mcda_norm can be used. If no normalization method is provided, the function
+ uses default one for the method, usually min-max normalization.
 
 \bold{MW - Mean weighting Method}
 
 Method presumes that the weights of all criteria are the same (there are no)
- meaningfull differences between them. Thus method approximates the weigts 
+ meaningfull differences between them. Thus method approximates the weigts
  as a mean value:
 
 \mjsdeqn{w_j = \frac{1}{n}}
@@ -149,6 +150,38 @@ First we compute Gini coefficient (Gj) based on pairwise absolute difference
 Then we calculate weights:
 
 \mjsdeqn{w_j = \frac{G_j}{\sum_{k=1}^m G_k}}
+
+\bold{MEREC - Method based on Removal Effects of Criteria}
+
+Computes weights based by considering the effect of criterium removal from
+ the evaluation on overall performance of the alternatives.
+
+We start with normalization of performance matrix. For benefit criteria we
+ use:
+
+\mjsdeqn{n_{ij} = \frac{min_k x_{kj}}{x_{ij}}}
+
+for cost criteria
+
+\mjsdeqn{n_{ij} = \frac{x_{ij}}{max_k x_{kj}}}
+
+Then we compute overal performance of overal performance of the alternatives
+ Si (step 3)
+
+\mjsdeqn{S_i = ln(1 + (\frac{1}{m} \sum_j |ln(n_{ij})|)}
+
+In step 4 the calculation of performance alternatives by removig each
+ attribute (Sij') is performed
+
+\mjsdeqn{S_{ij}^\prime = ln(1 + (\frac{1}{m} \sum_{k,k \ne j} |ln(n_{ik})|))}
+
+Then a Removal effect (Ej) is calculated (step 5).
+
+\mjsdeqn{E_j = \sum_j |S_{ij}^\prime - S_i|}
+
+Finally the final weights (wj) are coputed in step 6.
+
+\mjsdeqn{w_j = \frac{E_j}{\sum_k E_k}}
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -171,6 +204,15 @@ Kumar, Raman; Bilga, Paramjit Singh Singh, Sehijpal. Multi objective
 Diakonlaki, D., Mavrotas, G., Papayannadis, J. (1995). Datamining Objective
  Weights in Multiple Criteria Problems: the CRITIC Method. Computers and
  Operations Research, 22(7), pp. 763-770.
+
+Bhangale, P. P., Agrawal, V. P., & Saha, S. K. (2004). Attribute based
+ specification, comparison and selection of a robot. Mechanism and Machine
+ Theory, 39(12), 1345-1366.
+
+Keshavarz-Ghorabaee, M., Amiri, M., Zavadskas, E. K., Turskis, Z., &
+ Antucheviciene, J. (2021). Determination of objective weights using a new
+ method based on the removal effects of criteria (MEREC). Symmetry, 13(4),
+ 525.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}

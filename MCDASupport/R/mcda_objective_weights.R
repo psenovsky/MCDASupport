@@ -1,9 +1,9 @@
 #' Compute weights of the criteria using objective weighting methods.
 #'
 #' @description
-#' The function for criteria weights computation using various objective 
+#' The function for criteria weights computation using various objective
 #'  weighting methods. At present time supported are:
-#' 
+#'
 #' \tabular{llc}{
 #'        \bold{constant} \tab \bold{method} \tab \bold{normalization}\cr
 #'        MW \tab Mean weighting method \tab N \cr
@@ -12,66 +12,67 @@
 #'        EWM \tab Entropy Weight Method \tab N \cr
 #'        CRITIC \tab Criterion Importance Through Intercriteria Correlation \tab N \cr
 #'        GCW \tab Gini Coefficient Weighting \tab N \cr
+#'        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
 #'    }
-#' 
+#'
 #' In normalization column of previous table Y means that the analyst can also
-#'  choose normalization method. All normalization methods from mcda_norm can
-#'  be used. If no normalization method is provided, the function uses default
-#'  one for the method, usually min-max normalization.
-#' 
+#'  choose normalization method himself. All normalization methods from
+#'  mcda_norm can be used. If no normalization method is provided, the function
+#'  uses default one for the method, usually min-max normalization.
+#'
 #' \bold{MW - Mean weighting Method}
-#' 
+#'
 #' Method presumes that the weights of all criteria are the same (there are no)
-#'  meaningfull differences between them. Thus method approximates the weigts 
+#'  meaningfull differences between them. Thus method approximates the weigts
 #'  as a mean value:
-#' 
+#'
 #' \mjsdeqn{w_j = \frac{1}{n}}
-#' 
+#'
 #' where n is number of criteria in decision problem.
-#' 
+#'
 #' \bold{SDW - Standard Deviation Weighting Method}
-#' 
+#'
 #' Computes weights based on standard deviation of the criteria.
-#' 
+#'
 #' Steps:
-#' 
+#'
 #' 1) normalize data, min-max method is default, but you can choose to use
 #'  other normalization method
-#' 
+#'
 #' 2) compute standard deviation (SD) of the population for the criteria:
-#' 
+#'
 #' \mjsdeqn{\sigma_j = \sqrt{\frac{\sum_{i=1}^m (F_{ij} - \overline{F_j})^2}{m}}}
-#' 
+#'
 #' For alll j in (1, 2, ..., n), where F`j is arithmetic mean of normalized
 #'  values.
-#' 
+#'
 #' 3) calcutate the weights by normalizing the sigma to max sigma
-#' 
+#'
 #' \mjsdeqn{w_j = \frac{\sigma_j}{\sum_{k = 1}^m \sigma_k}}
-#' 
+#'
 #' \bold{SVW - Statistical Variance Weighting method}
-#' 
+#'
 #' Allows to compute the weights of criteria based on differences in variance
 #'  in performance of altrernatives in the criteria.
-#' 
+#'
 #' Steps:
-#' 
+#'
 #' 1) normalize data, min-max method is default, but you can choose to use
 #'  other normalization method
-#' 
+#'
 #' 2) compute variance of normalized data. Again population variance is being used
-#' 
+#'
 #' \mjsdeqn{\sigma_j^2 = \frac{\sum_{i=1}^m (F_{ij} - \overline{F_j})^2}{m}}
-#' 
+#'
 #' 3) Calculate the weights
-#' 
+#'
 #' \mjsdeqn{w_j = \frac{\sigma_j^2}{\sum_{k = 1}^m \sigma_k^2}}
-#' 
+#'
 #' \bold{EWM - Entropy Weight Method}
-#' 
+#'
 #' Allows us to establish weight system just based on evaluation of the entropy
 #'  in input data of the performance matrix.
-#' 
+#'
 #' \mjsdeqn{EM_{ij} = \frac{PM_{ij}}{max(PM_{ij})_j}}
 #'
 #' Then we compute probability of criteria to occur.
@@ -97,11 +98,11 @@
 #' and from it entropy weights which are returned as result of the function:
 #'
 #'\mjsdeqn{Ew_j = \frac{div_j}{\sum_{j=1}^m div_j}}
-#' 
+#'
 #' \bold{CRITIC - Criterion Importance Through Intercriteria Correlation}
-#' 
+#'
 #' Derives weight coefficients of criteria based on correlations.
-#' 
+#'
 #' Basis of the evaluation is correlation matrix R we compute using Pearson's
 #'  correlation coefficien. This information can be used to compute the
 #'  conflict created by the criterium with respect to other criteria:
@@ -116,19 +117,51 @@
 #' Finally we can compute the weight by normalizing the C indicator
 #'
 #' \mjsdeqn{w_j = \frac{C_j}{\sum_{k=1}^m C_j}}
-#' 
+#'
 #' \bold{GCW - Gini Coefficient Weighting}
-#' 
+#'
 #' Computes weights based on Gini index.
-#' 
+#'
 #' First we compute Gini coefficient (Gj) based on pairwise absolute difference
 #'  of the discrete values of criteria. (No normalization needed).
-#' 
+#'
 #' \mjsdeqn{G_j = \frac{\sum_{i=1}^m \sum_{k=1}^m |f_{ij} - f_{kj}|}{2m^2\overline{f_j}}}
-#' 
+#'
 #' Then we calculate weights:
-#' 
+#'
 #'\mjsdeqn{w_j = \frac{G_j}{\sum_{k=1}^m G_k}}
+#' 
+#' \bold{MEREC - Method based on Removal Effects of Criteria}
+#'
+#' Computes weights based by considering the effect of criterium removal from
+#'  the evaluation on overall performance of the alternatives.
+#' 
+#' We start with normalization of performance matrix. For benefit criteria we
+#'  use:
+#'
+#' \mjsdeqn{n_{ij} = \frac{min_k x_{kj}}{x_{ij}}}
+#'
+#' for cost criteria
+#'
+#' \mjsdeqn{n_{ij} = \frac{x_{ij}}{max_k x_{kj}}}
+#'
+#' Then we compute overal performance of overal performance of the alternatives
+#'  Si (step 3)
+#'
+#' \mjsdeqn{S_i = ln(1 + (\frac{1}{m} \sum_j |ln(n_{ij})|)}
+#'
+#' In step 4 the calculation of performance alternatives by removig each
+#'  attribute (Sij') is performed
+#'
+#' \mjsdeqn{S_{ij}^\prime = ln(1 + (\frac{1}{m} \sum_{k,k \ne j} |ln(n_{ik})|))}
+#'
+#' Then a Removal effect (Ej) is calculated (step 5).
+#'
+#' \mjsdeqn{E_j = \sum_j |S_{ij}^\prime - S_i|}
+#'
+#' Finally the final weights (wj) are coputed in step 6.
+#'
+#' \mjsdeqn{w_j = \frac{E_j}{\sum_k E_k}}
 #' 
 #' @param pm performance matrix
 #' @param method weight computation method
@@ -138,17 +171,26 @@
 #'  the 'minmax' is default value.
 #'
 #' @return weights for the criteria
-#' 
+#'
 #' @references
 #' Kumar, Raman; Bilga, Paramjit Singh Singh, Sehijpal. Multi objective
 #'  optimization using different methods of assigning weights to energy
 #'  consumption responses, surface roughness and material removal rate during
 #'  rough turning operation. Journal of Cleaner Production, vol. 16, pp. 45-57,
 #'  DOI: 10.1016/j.jclepro.2017.06.077.
-#' 
+#'
 #' Diakonlaki, D., Mavrotas, G., Papayannadis, J. (1995). Datamining Objective
 #'  Weights in Multiple Criteria Problems: the CRITIC Method. Computers and
 #'  Operations Research, 22(7), pp. 763-770.
+#'
+#' Bhangale, P. P., Agrawal, V. P., & Saha, S. K. (2004). Attribute based
+#'  specification, comparison and selection of a robot. Mechanism and Machine
+#'  Theory, 39(12), 1345-1366.
+#'
+#' Keshavarz-Ghorabaee, M., Amiri, M., Zavadskas, E. K., Turskis, Z., &
+#'  Antucheviciene, J. (2021). Determination of objective weights using a new
+#'  method based on the removal effects of criteria (MEREC). Symmetry, 13(4),
+#'  525.
 #' 
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #' @examples
@@ -162,7 +204,12 @@
 #' t <- mcda_objective_weights(pm, method = "MW", minmax = minmax, norm = "minmax")
 #'
 #' @keywords weighting MW
-mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") {
+mcda_objective_weights <- function(
+  pm,
+  method,
+  minmax = "max",
+  norm = "minmax"
+) {
   # validate inputs
   t <- c("min", "max")
   validation$validate_invalid_val(minmax, t, "minmax")
@@ -175,16 +222,21 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
     "SVW",
     "EWM",
     "CRITIC",
-    "GCW"
+    "GCW",
+    "MEREC"
   )
-  validation$validate_invalid_val(method, nmethods, "objective weighting method")
+  validation$validate_invalid_val(
+    method,
+    nmethods,
+    "objective weighting method"
+  )
   # end of validation
 
   # MW - Mean Weighting Method
   MW <- function(pm) {
     cri <- colnames(pm)
     ncri <- ncol(pm)
-    w <- rep(1/ncri, times = ncri)
+    w <- rep(1 / ncri, times = ncri)
     names(w) <- cri
     return(w)
   }
@@ -291,6 +343,31 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
     return(w)
   }
 
+  # MEREC - Methoc based on Removal Effects of Criteria
+  MEREC <- function(pm, minmax) {
+    ncri <- ncol(pm)
+    c_max <- apply(pm, 2, max)
+    c_min <- apply(pm, 2, min)
+    pm2 <- pm
+    for (i in 1:ncri) {
+      if (minmax[i] == "max") {
+        pm2[, i] <- c_min[i] / pm[, i]
+      } else {
+        pm2[, i] <- pm[, i] / c_max[i]
+      }
+    }
+    ln_pm <- abs(log(pm2))
+    si <- log(1 + ((1 / ncri) * rowSums(ln_pm)))
+    sij <- pm2
+    for (i in 1:ncri) {
+      sij[, i] <- log(1 + ((1 / ncri) * rowSums(ln_pm[, -i])))
+    }
+    ej <- colSums(abs(sij - si))
+    w <- ej / sum(ej)
+    names(w) <- colnames(pm)
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
@@ -299,6 +376,7 @@ mcda_objective_weights <- function(pm, method, minmax = "max", norm = "minmax") 
     "SVW" = SVW(pm, minmax, norm), # Statistical Variace Weighting Method
     "EWM" = EWM(pm), # Entropy Weight Methor
     "CRITIC" = CRITIC(pm, minmax), # Criterion Importance Through Intercriteria Correlation
-    "GCW" = GCW(pm) # Gini Coefficient Weighting Method
+    "GCW" = GCW(pm), # Gini Coefficient Weighting Method
+    "MEREC" = MEREC(pm, minmax) # Method based on Removal Effects of Criteria
   )
 }
