@@ -499,7 +499,6 @@ mcda_objective_weights <- function(
 
   # IDOCRIW - Integrated Determination of Objective CRIteria Weights
   IDOCRIW <- function(pm, minmax) {
-    # TODO implement
     ncri <- ncol(pm)
     cri <- colnames(pm)
     ew <- EWM(pm)
