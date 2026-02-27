@@ -9,6 +9,8 @@ backward incompatible changes:
 
 new models:
 * implemented SPOTIS model 
+* implemented Borda count method
+* implemented BWM (Best-Worst Model) for weights estimation 
 * objective weighting methods
   * added MW - Mean Weighting method
   * added SDW - Standard Deviation Weighting Method

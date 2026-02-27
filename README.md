@@ -7,6 +7,7 @@
 implemented MCDA methods:
 
 - ARAS
+- Borda count method
 - CoCoSo
 - CODAS
 - CRADIS
@@ -56,6 +57,7 @@ For normalization package supports:
 For weight establishment the package supports:
 
 - binary pair-wise comparison
+- BWM (Best-Worst Model)
 - CILOS (Criterion Impact LOSs)
 - COPRAS
 - CRITIC

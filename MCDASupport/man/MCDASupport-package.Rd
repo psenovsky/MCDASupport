@@ -59,6 +59,7 @@ For weight derivation following methods are available:
 
 \itemize{
   \item binary pair-wise comparison
+  \item BWM (Best-Worst Method)
   \item CILOS (Criterion Impact LOSs)
   \item COPRAS
   \item CRITIC
@@ -118,6 +119,8 @@ backward incompatible changes:
 new models:
 \itemize{
   \item implemented SPOTIS model
+  \item implemented Borda count method
+  \item implemented BWM (Best-Worst Model) for weights estimation 
   \item objective weighting methods
   \itemize{
     \item added MW - Mean Weighting method
