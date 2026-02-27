@@ -18,6 +18,7 @@ export(validation)
 export(vector_compare)
 
 S3method(summary,aras)
+S3method(summary,borda)
 S3method(summary,cocoso)
 S3method(summary,codas)
 S3method(summary,copras)
