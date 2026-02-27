@@ -10,7 +10,6 @@ implemented MCDA methods:
 - CoCoSo
 - CODAS
 - CRADIS
-- CRITIC
 - EDAS
 - ELECTRE (variants I, II, III, IV, 1S and TRI)
 - EVAMIX
@@ -59,6 +58,7 @@ For weight establishment the package supports:
 - binary pair-wise comparison
 - CILOS (Criterion Impact LOSs)
 - COPRAS
+- CRITIC
 - DEMATEL
 - EWM (Entropy Weight Method)
 - IDOCRIW (Integrated Determination of Objective CRIteria Weights)
