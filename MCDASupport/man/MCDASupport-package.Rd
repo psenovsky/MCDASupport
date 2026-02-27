@@ -13,7 +13,7 @@ They main feature is to compare all feasible alternatives or actions by pair bui
 Package: \tab MCDASupport\cr
 Type: \tab Package\cr
 Version: \tab 0.36\cr
-Date: \tab 2024-10-17\cr
+Date: \tab 2026-02-27\cr
 License: \tab GPL (>= 3)\cr
 }
 
@@ -21,6 +21,7 @@ From MCDA methods point of view the package at present time supports:
 
 \itemize{
   \item ARAS
+  \item Borda count method
   \item CoCoSo
   \item CODAS
   \item COPRAS
