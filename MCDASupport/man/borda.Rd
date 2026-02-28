@@ -45,8 +45,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{pm}}{performance matrix of alternatives in criteria (all criteria
-are maximized)}
+\item{\code{pm}}{performance matrix of alternatives in criteria}
 
 \item{\code{minmax}}{direction (max or min) of criteria optimization}
 
