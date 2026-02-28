@@ -22,6 +22,9 @@ The procedure starts with 1) normalization of performance matrix using vector
 \mjsdeqn{D_i = \sum_{j=1}^n |v_{ij} - v_j^+ |}
 
 and use it to rank the alternatives.
+
+Note: since PIV is so close to TOPSIS this class just computes TOPSIS and
+ publishes parts relevant to PIV.
 }
 \examples{
 
