@@ -23,8 +23,7 @@
 borda <- R6Class(
   "borda",
   public = list(
-    #' @field pm performance matrix of alternatives in criteria (all criteria
-    #'  are maximized)
+    #' @field pm performance matrix of alternatives in criteria 
     pm = NULL,
 
     #' @field minmax direction (max or min) of criteria optimization
