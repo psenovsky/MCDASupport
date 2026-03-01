@@ -11,6 +11,11 @@ new models:
 * implemented SPOTIS model 
 * implemented Borda count method
 * implemented BWM (Best-Worst Model) for weights estimation 
+* implementes Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
+* implemented PIV (Proximity Indexed Value) function
+* implemented Copeland's method
+* implemented MAIRCA
+* initial WIP implementation of PROBID method
 * objective weighting methods
   * added MW - Mean Weighting method
   * added SDW - Standard Deviation Weighting Method

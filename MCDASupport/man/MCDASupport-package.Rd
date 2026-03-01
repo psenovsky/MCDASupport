@@ -24,6 +24,7 @@ From MCDA methods point of view the package at present time supports:
   \item Borda count method
   \item CoCoSo
   \item CODAS
+  \item Copeland's method
   \item COPRAS
   \item CRADIS
   \item EDAS
@@ -32,15 +33,18 @@ From MCDA methods point of view the package at present time supports:
   \item GRA
   \item MABAC
   \item MACBETH
+  \item MAIRCA
   \item MARCOS
   \item MAUT
   \item MOORA
   \item MOOSRA
   \item ORESTE
   \item PAMSSEM (variants I (not validated) and II)
+  \item PIV (Proximity Indexed Value)
   \item PROMETHEE (variants I, II and III)
   \item PSI (alse weight rerivation method)
   \item QUALIFLEX
+  \item PROBID (WIP implementation - not validated)
   \item REGIME
   \item SAW
   \item SIR (normal and fuzzy)
@@ -51,7 +55,7 @@ From MCDA methods point of view the package at present time supports:
   \item VIKOR (normal and fuzzy)
   \item WASPAS
   \item WISP (and S-WIPS)
-  \item WPM (Wieghted Product Methed)
+  \item WPM (Wieghted Product Methed AKA MEW)
   \item WSM (Weighted Sum Method)
 }
 
@@ -59,6 +63,7 @@ For weight derivation following methods are available:
 
 \itemize{
   \item binary pair-wise comparison
+  \item Borda Count Method
   \item BWM (Best-Worst Method)
   \item CILOS (Criterion Impact LOSs)
   \item COPRAS
@@ -69,6 +74,7 @@ For weight derivation following methods are available:
   \item MEREC
   \item MW (Mean Weighting)
   \item PSI (also MCDA method)
+  \item Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
   \item SDW (Standard Deviation Weighting)
   \item SVW (Statistical Variance Weighting)
   \item SWARA
@@ -121,6 +127,7 @@ new models:
   \item implemented SPOTIS model
   \item implemented Borda count method
   \item implemented BWM (Best-Worst Model) for weights estimation 
+  \item Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
   \item objective weighting methods
   \itemize{
     \item added MW - Mean Weighting method

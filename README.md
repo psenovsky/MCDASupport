@@ -10,6 +10,7 @@ implemented MCDA methods:
 - Borda count method
 - CoCoSo
 - CODAS
+- Copeland's method
 - CRADIS
 - EDAS
 - ELECTRE (variants I, II, III, IV, 1S and TRI)
@@ -17,15 +18,18 @@ implemented MCDA methods:
 - GRA
 - MABAC
 - MACBETH
+- MAIRCA
 - MARCOS
 - MAUT
 - MOORA
 - MOOSRA
 - ORESTE
 - PAMSSEM (variants I (not validated) and II)
+- PIV (Proximity Indexed Value)
 - PROMETHEE (variants I, II and III)
 - PSI (also weight derivation method)
 - QUALIFLEX
+- PROBID (WIP - not validated)
 - REGIME
 - SAW
 - SIR (normal and fuzzy)
@@ -36,7 +40,7 @@ implemented MCDA methods:
 - VIKOR (normal and fuzzy)
 - WASPAS
 - WISP (and S-WIPS)
-- WPM (Weighted Product Method)
+- WPM (Weighted Product Method AKA MEW)
 - WSM (Weighted Sum Method)
 
 For normalization package supports:
@@ -67,6 +71,7 @@ For weight establishment the package supports:
 - MEREC
 - MW (Mean Weighting)
 - PSI (also MCDA method)
+- implementes Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
 - SDW (Standard Deviation Weighting)
 - SVW (Statistical Variance Weighting)
 - SWARA
