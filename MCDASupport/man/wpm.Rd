@@ -2,7 +2,7 @@
 % Please edit documentation in R/wpm.R
 \name{wpm}
 \alias{wpm}
-\title{Weighted Product Model}
+\title{Weighted Product Model AKA MEW}
 \description{
 One of original (simpliest) models in MCDA. Works similarly to \link{wsm},
  but instead of summing weighted performance of the alternatives it is based
@@ -14,6 +14,9 @@ Mathematically this is expressed as:
 
 Where a is performance of alternative K in sriterium j, n is number of
  criteria and w are weights. Computed value of P is directly comparable.
+
+Note that the method is also known under different name: MEW Multiplicative
+ Exponent Weighting.
 }
 \examples{
 
@@ -34,6 +37,7 @@ t <- wpm$new(PM, w)
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }
+\keyword{MEW}
 \keyword{WPM}
 \keyword{WSM}
 \section{Public fields}{

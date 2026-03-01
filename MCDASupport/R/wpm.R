@@ -1,4 +1,4 @@
-#' Weighted Product Model
+#' Weighted Product Model AKA MEW
 #'
 #' @description
 #' One of original (simpliest) models in MCDA. Works similarly to \link{wsm},
@@ -12,9 +12,12 @@
 #' Where a is performance of alternative K in sriterium j, n is number of
 #'  criteria and w are weights. Computed value of P is directly comparable.
 #'
+#' Note that the method is also known under different name: MEW Multiplicative
+#'  Exponent Weighting.
+#' 
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
-#' @keywords WSM WPM
+#' @keywords WSM WPM MEW
 wpm <- R6Class("wpm",
   public = list(
 
