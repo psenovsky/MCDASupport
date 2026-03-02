@@ -134,7 +134,7 @@ Public constructor for the class. Checks validity of input parameters
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{pm}}{normalized performance matrix}
+\item{\code{pm}}{performance matrix}
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
