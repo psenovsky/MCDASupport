@@ -89,7 +89,7 @@ probid <- R6Class(
     #' Public constructor for the class. Checks validity of input parameters
     #'  and performs computation of of the model based on them.
     #'
-    #' @param pm normalized performance matrix
+    #' @param pm performance matrix
     #' @param w vector of weights, its sum must be equal to 1
     #' @param minmax minmax vector specifying optimalization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
