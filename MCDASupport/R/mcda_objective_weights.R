@@ -15,6 +15,7 @@
 #'        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
 #'        CILOS \tab Criterion Impact LOSs \tab N \cr
 #'        IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
+#'        MPSI \tab M Preference Selection Index \tab N \cr
 #'    }
 #'
 #' In normalization column of previous table Y means that the analyst can also
@@ -228,7 +229,7 @@
 #' Final values of the weights is achieved by normalizing the solution.
 #'
 #' \bold{IDOCRIW - Integrated Determination of Objective CRIteria Weights}
-#' 
+#'
 #' Introduced by Zavadskas and Podvezko in 2016. Formaly it combines two other
 #'  methods for weight establishment: EWM and CILOS, in following manner
 #'
@@ -236,7 +237,24 @@
 #'
 #' where q are weights established using CILOS method and ew are weights
 #'  derived using EWM method.
-#' 
+#'
+#' \bold{MPSI - M Preference Selection Index}
+#'
+#' Proposed by Gligorić et al in 2022. First we normalize performance matrix
+#'  using to best normalization. Next we calculate mean value vj of normalized
+#'  evaluations of the criteria j.
+#'
+#' \mjsdeqn{v_j = \frac{1}{m}\sum_{i=1}^m r_{ij}}
+#'
+#' With m being number of alternatives. We foloow with calculation of
+#'  preference variation value pj
+#'
+#' \mjsdeqn{p_j = \sum_{i=1}^m (r_{ij} - v_j)^2}
+#'
+#' Finaly we compute the weights:
+#'
+#' \mjsdeqn{w_j = \frac{p_j}{\sum_{j = 1}^n p_j}}
+#'
 #' @param pm performance matrix
 #' @param method weight computation method
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
@@ -274,6 +292,11 @@
 #'  Criteria Weights in MCDM. International Journal of Information Technology &
 #'  Decision Making, vol. 15, DOI: 10.1142/S0219622016500036.
 #'
+#' Gligorić, M.; Gligorić, Z.; Lutovac, S.; Negovanović, M.; Langović, Z. Novel
+#'  Hybrid MPSI–MARA Decision-Making Model for Support System Selection in an
+#'  Underground Mine. Systems 2022, 10, 248.
+#'  https://doi.org/10.3390/systems10060248
+#'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #' @examples
 #' alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -307,7 +330,8 @@ mcda_objective_weights <- function(
     "GCW",
     "MEREC",
     "CILOS",
-    "IDOCRIW"
+    "IDOCRIW",
+    "MPSI"
   )
   validation$validate_invalid_val(
     method,
@@ -508,17 +532,38 @@ mcda_objective_weights <- function(
     return(w)
   }
 
+  # M Preference Selection Index
+  MPSI <- function(pm, minmax) {
+    # TODO implement
+    ncri <- ncol(pm)
+    nalt <- nrow(pm)
+    cri <- colnames(pm)
+    p <- R <- pm
+    for (j in 1:ncri) {
+      R[, j] <- mcda_norm(pm[, j], minmax = minmax[j], method = "tobest")
+    }
+    v <- colSums(R) / nalt
+    for (j in 1:ncri) {
+      p[, j] <- (R[, j] - v[j])^2
+    }
+    pj <- colSums(p)
+    w <- pj / sum(pj)
+    names(w) <- cri
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
+    "CILOS" = CILOS(pm, minmax), # Criterion Impact LOSs
+    "CRITIC" = CRITIC(pm, minmax), # Criterion Importance Through Intercriteria Correlation
+    "EWM" = EWM(pm), # Entropy Weight Methor
+    "GCW" = GCW(pm), # Gini Coefficient Weighting Method
+    "IDOCRIW" = IDOCRIW(pm, minmax), # Integrated Determination of Objective CRIteria Weights
+    "MEREC" = MEREC(pm, minmax), # Method based on Removal Effects of Criteria
+    "MPSI" = MPSI(pm, minmax), # M Preference Selection Index
     "MW" = MW(pm), # Mean Weighting Method
     "SDW" = SDW(pm, minmax, norm), # Standard Deviation Weighting Method
-    "SVW" = SVW(pm, minmax, norm), # Statistical Variace Weighting Method
-    "EWM" = EWM(pm), # Entropy Weight Methor
-    "CRITIC" = CRITIC(pm, minmax), # Criterion Importance Through Intercriteria Correlation
-    "GCW" = GCW(pm), # Gini Coefficient Weighting Method
-    "MEREC" = MEREC(pm, minmax), # Method based on Removal Effects of Criteria
-    "CILOS" = CILOS(pm, minmax), # Criterion Impact LOSs
-    "IDOCRIW" = IDOCRIW(pm, minmax) # Integrated Determination of Objective CRIteria Weights
+    "SVW" = SVW(pm, minmax, norm) # Statistical Variace Weighting Method
   )
 }

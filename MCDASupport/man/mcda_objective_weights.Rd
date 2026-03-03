@@ -35,6 +35,7 @@ The function for criteria weights computation using various objective
        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
        CILOS \tab Criterion Impact LOSs \tab N \cr
        IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
+       MPSI \tab M Preference Selection Index \tab N \cr
    }
 
 In normalization column of previous table Y means that the analyst can also
@@ -256,6 +257,23 @@ Introduced by Zavadskas and Podvezko in 2016. Formaly it combines two other
 
 where q are weights established using CILOS method and ew are weights
  derived using EWM method.
+
+\bold{MPSI - M Preference Selection Index}
+
+Proposed by Gligorić et al in 2022. First we normalize performance matrix
+ using to best normalization. Next we calculate mean value vj of normalized
+ evaluations of the criteria j.
+
+\mjsdeqn{v_j = \frac{1}{m}\sum_{i=1}^m r_{ij}}
+
+With m being number of alternatives. We foloow with calculation of
+ preference variation value pj
+
+\mjsdeqn{p_j = \sum_{i=1}^m (r_{ij} - v_j)^2}
+
+Finaly we compute the weights:
+
+\mjsdeqn{w_j = \frac{p_j}{\sum_{j = 1}^n p_j}}
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -295,6 +313,11 @@ Alinezhad, A., Khalili, J. New Methods and Applications in Multiple
 Zavadskas, E. K., Podvezko, V. Integrated Determination of Objective
  Criteria Weights in MCDM. International Journal of Information Technology &
  Decision Making, vol. 15, DOI: 10.1142/S0219622016500036.
+
+Gligorić, M.; Gligorić, Z.; Lutovac, S.; Negovanović, M.; Langović, Z. Novel
+ Hybrid MPSI–MARA Decision-Making Model for Support System Selection in an
+ Underground Mine. Systems 2022, 10, 248.
+ https://doi.org/10.3390/systems10060248
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
