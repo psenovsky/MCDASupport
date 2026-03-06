@@ -145,6 +145,5 @@ rov <- R6Class(
       ))
       print(self$result, pretty = TRUE)
     }
-    # TODO implement
   )
 )
