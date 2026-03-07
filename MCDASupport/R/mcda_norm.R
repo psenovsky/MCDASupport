@@ -141,8 +141,9 @@
 #'
 #' \bold{Normalize values using Zavadskas and Turskis approach}
 #'
-#' ormalize values using approach by Zavadskas and Turskis (2008), see
-#'  equations bellow.
+#' normalize values using approach by Zavadskas and Turskis (2008), see
+#'  equations bellow. The approach has also been published under name
+#'  JKN - Jüttler’s-Körth’s Normalization
 #'
 #' For benefit criteria
 #'
@@ -162,6 +163,7 @@
 #'
 #' \mjsdeqn{z = \frac{x - \mu}{\sigma}}
 #'
+#' 
 #' @param tonorm vector of numeric values to be normalized
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
 #'  default value
@@ -197,6 +199,10 @@
 #'
 #' Zavadskas, E.K., Turskis, Z. (2008). A New Logarithmic Normalization Method
 #'  in Games Theory. Informatica, vol. 19, no. 2, pp. 303-314
+#' 
+#' Chakrakborty, S., Chatterjee, P. Das, P. P. Multi-Criteria Decision Making
+#'  Methods in Manufacturing Environments: Models and Applications. CRC Press,
+#'  Boca Raton, 2024, 450 p., ISBN: 978-1-00337-703-0
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
