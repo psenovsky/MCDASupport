@@ -67,9 +67,8 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{minmax}}{vector of optimization directions - min/max}
 
-\item{\code{result}}{dataframe with computational results: ideal alternatice
-(A_plus), anti-ideal alternative (A_minus), degree of conflict with
-ideal (cos_e_plus) and antiideal (cos_e_minus), similarity to ideal
+\item{\code{result}}{dataframe with computational results: degree of conflict
+with ideal (cos_e_plus) and antiideal (cos_e_minus), similarity to ideal
 (s_plus), similarity to antiideal (s_minus), performance (Ri), rank}
 }
 \if{html}{\out{</div>}}
