@@ -16,6 +16,17 @@ new models:
 * implemented Copeland's method
 * implemented MAIRCA
 * initial WIP implementation of PROBID method
+* initial WIP implementation of sPROBID method
+* implemented FUCA function
+* implemented RAWEC method
+* implemented AROMAN method
+* implemented Extended AROMAN method
+* implemented OCRA method
+* implemented RIM normalization
+* implemented RIM method
+* implemented ROV method
+* implemented MSIM method
+* implemented PIPRECIA method
 * objective weighting methods
   * added MW - Mean Weighting method
   * added SDW - Standard Deviation Weighting Method

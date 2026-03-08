@@ -7,6 +7,7 @@
 implemented MCDA methods:
 
 - ARAS
+- AROMAN
 - Borda count method
 - CoCoSo
 - CODAS
@@ -15,6 +16,8 @@ implemented MCDA methods:
 - EDAS
 - ELECTRE (variants I, II, III, IV, 1S and TRI)
 - EVAMIX
+- Extended AROMAN
+- FUCA
 - GRA
 - MABAC
 - MACBETH
@@ -23,6 +26,8 @@ implemented MCDA methods:
 - MAUT
 - MOORA
 - MOOSRA
+- MSIM
+- OCRA
 - ORESTE
 - PAMSSEM (variants I (not validated) and II)
 - PIV (Proximity Indexed Value)
@@ -30,11 +35,15 @@ implemented MCDA methods:
 - PSI (also weight derivation method)
 - QUALIFLEX
 - PROBID (WIP - not validated)
+- RAWEC
 - REGIME
+- RIM
+- ROV
 - SAW
 - SIR (normal and fuzzy)
 - SMART
 - SPOTIS
+- sPROBID (WIP - not validated)
 - TODIM
 - TOPSIS (normal and fuzzy)
 - VIKOR (normal and fuzzy)
@@ -51,11 +60,12 @@ For normalization package supports:
 - Markovic normalization
 - Min-max method
 - nonlinear normalization
-- value normalization to average value
-- normaliozation to best value
+- RIM normalization
+- to average normalization
+- to best normalization
 - Tzeng and Huang normalization
 - vector normalization
-- Zavadskas and Turskis normalization
+- Zavadskas and Turskis normalization (AKA JKN method)
 - Z-score
 
 For weight establishment the package supports:
@@ -70,8 +80,9 @@ For weight establishment the package supports:
 - IDOCRIW (Integrated Determination of Objective CRIteria Weights)
 - MEREC
 - MW (Mean Weighting)
+- PIPRECIA (Pivot Pairwise Relative Criteria Importance Assessment)
 - PSI (also MCDA method)
-- implementes Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
+- Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
 - SDW (Standard Deviation Weighting)
 - SVW (Statistical Variance Weighting)
 - SWARA

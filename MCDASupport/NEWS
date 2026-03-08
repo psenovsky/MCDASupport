@@ -11,16 +11,28 @@ backward incompatible changes:
 new models:
 * implemented SPOTIS model
 * implemented Borda count method
-* implemented BWM (Best-Worse Model) for weights estimation 
+* implemented BWM (Best-Worse Model) for weights estimation
 * implementes Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
 * implemented PIV (Proximity Indexed Value) function
 * implemented Copeland's method
 * implemented MAIRCA
 * initial WIP implementation of PROBID method
+* initial WIP implementation of sPROBID method
+* implemented FUCA function
+* implemented RAWEC method
+* implemented AROMAN method
+* implemented Extended AROMAN method
+* implemented OCRA method
+* implemented RIM normalization
+* implemented RIM method
+* implemented ROV method
+* implemented MSIM method
+* implemented PIPRECIA method
 * objective weighting methods
   * added MW - Mean Weighting method
   * added SDW - Standard Deviation Weighting Method
   * added SVW - Statistical Variance Weighting Method
+  * added MPSI - M Preference Selection Index Method
   * refactored EWM (Entropy Weight Method) into this framework
   * refactored CRITIC (Criterion Importance Through Intercriteria Correlation) into this framework
   * refactored MEREC (Method based on Removal Effects of Criteria) into this framework

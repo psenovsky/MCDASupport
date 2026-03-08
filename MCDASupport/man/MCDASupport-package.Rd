@@ -21,6 +21,7 @@ From MCDA methods point of view the package at present time supports:
 
 \itemize{
   \item ARAS
+  \item AROMAN
   \item Borda count method
   \item CoCoSo
   \item CODAS
@@ -30,6 +31,8 @@ From MCDA methods point of view the package at present time supports:
   \item EDAS
   \item ELECTRE (variants I, II, III, IV, 1S and TRI)
   \item EVAMIX
+  \item Extended AROMAN
+  \item FUCA
   \item GRA
   \item MABAC
   \item MACBETH
@@ -38,6 +41,8 @@ From MCDA methods point of view the package at present time supports:
   \item MAUT
   \item MOORA
   \item MOOSRA
+  \item MSIM
+  \item OCRA
   \item ORESTE
   \item PAMSSEM (variants I (not validated) and II)
   \item PIV (Proximity Indexed Value)
@@ -45,10 +50,14 @@ From MCDA methods point of view the package at present time supports:
   \item PSI (alse weight rerivation method)
   \item QUALIFLEX
   \item PROBID (WIP implementation - not validated)
+  \item RAWEC
   \item REGIME
+  \item RIM
+  \item ROV
   \item SAW
   \item SIR (normal and fuzzy)
   \item SMART
+  \item sPROBID (WIP implementation - not validated)
   \item SPOTIS
   \item TODIM
   \item TOPSIS (normal and fuzzy)
@@ -72,7 +81,9 @@ For weight derivation following methods are available:
   \item EWM
   \item IDOCRIW (Integrated Determination of Objective CRIteria Weights)
   \item MEREC
+  \item MPSI (M Preference Selection Index)
   \item MW (Mean Weighting)
+  \item PIPRECIA (Pivot Pairwise Relative Criteria Importance Assessment)
   \item PSI (also MCDA method)
   \item Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
   \item SDW (Standard Deviation Weighting)
@@ -89,11 +100,12 @@ For normalization:
   \item Markovic normalization
   \item Min-max method
   \item nonlinear normalization
-  \item value normalization to average value
-  \item normaliozation to best value
+  \item RIM normalization
+  \item to average normalization
+  \item to best normalization
   \item Tzeng and Huang normalization
   \item vector normalization
-  \item Zavadskas and Turskis normalization
+  \item Zavadskas and Turskis normalization (AKA JKN method)
   \item Z-score
 }
 
