@@ -42,7 +42,7 @@
 bwm <- function(a_best, a_worst) {
   ## Validation
   if (!is.numeric(a_best) || !is.numeric(a_worst)) {
-    stop("a_best and a_worst musí být numerické vektory.")
+    stop("a_best and a_worst must be numeric verctors.")
   }
   if (length(a_best) != length(a_worst)) {
     stop("a_best and a_worst must be of same length.")
