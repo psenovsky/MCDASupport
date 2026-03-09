@@ -7,7 +7,7 @@
 Decision support method in family of weighted sum methods such as \link{wsm}
  and many other. The difference is, that the method does not take weights as
  parameter but derives them from provided performance information in manner
- which is similar to \link{EWM}.
+ which is similar to EWM (see \link{mcda_objective_weights}).
 
 The process is following. First the performance matrix (alternatives in
  rows and criteria in colums is provided). These values are normalized. For
