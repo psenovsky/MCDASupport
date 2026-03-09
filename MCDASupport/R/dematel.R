@@ -8,8 +8,8 @@
 #'  which derive the weights from stated preferences of one criterium when
 #'  comparing with the ether criterium.
 #'
-#' Or approaches such as \link{EWM} which derive weights based on entropy of
-#'  performances of alternatives in the criteria.
+#' Or approaches such as EWM (see \link{mcda_objective_weights}) which derive
+#'  weights based on entropy of performances of alternatives in the criteria.
 #'
 #' The procedure of DEMATEL is:
 #'
