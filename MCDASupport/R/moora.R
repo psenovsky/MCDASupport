@@ -1,7 +1,7 @@
 #' Multi-Objective Optimization on the basis of Ratio Analysis
 #'
 #' @description
-#' Another method in family of \ling{wsm}-based methods.
+#' Another method in family of \link{wsm}-based methods.
 #'
 #' This time around the method uses vector normalization for benefit criteria.
 #'  This form of normalization is used on both benefit and cost criteria.
