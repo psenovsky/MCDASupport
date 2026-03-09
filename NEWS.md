@@ -1,4 +1,4 @@
-# MCDASupport v0.36 (Release date: TBD)
+# MCDASupport v0.36 (Release date: 2026-03-09)
 
 backward incompatible changes:
 * original EWM function available in previous version is available only as a method for mcda_objective_weights(pm, method = "EWM")

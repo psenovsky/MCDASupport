@@ -128,7 +128,7 @@ You can use following R code to install package and its dependencies
 packages <- c("mathjaxr", "graphics", "igraph", "diagram", "stats", "dplyr", "visNetwork", "plotly", "tidyr")
 install.packages(setdiff(packages, rownames(installed.packages())))  
 # adjust name of the file to version you are installing
-install.packages("MCDASupport_0.34.tar.gz", repos=NULL, type="source")  
+install.packages("MCDASupport_0.36.tar.gz", repos=NULL, type="source")  
 ```
 ### Executing program
 
@@ -175,31 +175,52 @@ See function's documentation for information on mathematics and theories methods
 
 ## Version History
 
-### MCDASupport v0.35 (Release date: 2025-03-28)
+### MCDASupport v0.36 (Release date: 2026-03-09)
+
+backward incompatible changes:
+* original EWM function available in previous version is available only as a method for mcda_objective_weights(pm, method = "EWM")
+* original CRITIC function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "CRITIC")
+* original MEREC function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "MEREC")
+* original CILOS function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "CILOS")
+* original IDOCRIW function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "IDOCRIW")
 
 new models:
-* implemented SPOTIS model
+* implemented SPOTIS model 
+* implemented Borda count method
+* implemented BWM (Best-Worst Model) for weights estimation 
+* implementes Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
+* implemented PIV (Proximity Indexed Value) function
+* implemented Copeland's method
+* implemented MAIRCA
+* initial WIP implementation of PROBID method
+* initial WIP implementation of sPROBID method
+* implemented FUCA function
+* implemented RAWEC method
+* implemented AROMAN method
+* implemented Extended AROMAN method
+* implemented OCRA method
+* implemented RIM normalization
+* implemented RIM method
+* implemented ROV method
+* implemented MSIM method
+* implemented PIPRECIA method
+* objective weighting methods
+  * added MW - Mean Weighting method
+  * added SDW - Standard Deviation Weighting Method
+  * added SVW - Statistical Variance Weighting Method
+  * refactored EWM (Entropy Weight Method) into this framework
+  * refactored CRITIC (Criterion Importance Through Intercriteria Correlation) into this framework
+  * refactored MEREC (Method based on Removal Effects of Criteria) into this framework
+  * refactored IDOCRIW (Integrated Determination of Objective CRIteria Weights) into this framework
 
-bug fixes:
+other changes:
 * corrected error in documentation in exmaple for SIR constructor
-
-### MCDASupport v0.35 (Release date: 2025-03-28)
-
-new models:
-* implemented SMART model
-* implemented REGIME model
-* implemented ORESTE model
-* implemented QUALIFLEX model
-* implemented EVAMIX model
-* implemented SWARA model
-* implemented MACBETH model
-* implemented MAUT model
-* implemented CILOS model
-* implemented PAMSSEM I and II
-* implemented MABAC
-
-bugs corected
-* EWM weights vere not correctly computed if there were some criteria being minimized
+* small corrections in documentation
+* normalization methods
+  * added support for min and max parametres in minmax normalization to minimize risk of rank reversal (optional parameters)
+  * corrected documentation for to best normalization and added a synonym to it (max normalization)
+  * added synonym for minmax normalization (maxmin normalization)
+  * added synonym for Linear aggregation - sum normalization
 
 ### Full version history
 
