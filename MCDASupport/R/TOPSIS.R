@@ -144,7 +144,7 @@ topsis <- R6Class("topsis",
       rownames(r) <- alt
 
       # Step 2. Calculation of the Weighted Normalized Decision Matrix (v)
-      v <- sweep(r, MARGIN = 2, w, `*`)
+      v <- sweep(r, MARGIN = 2, self$w, `*`)
       colnames(v) <- cri
       rownames(v) <- alt
       v <- as.data.frame(v)
