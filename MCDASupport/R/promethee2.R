@@ -157,7 +157,7 @@ promethee2 <- R6Class("promethee2",
     #' s <- c(0,0,0,0,0,5) #intermediate threshold
     #' w <- c(0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1665)
     #' result <- promethee2$new(PM, shape, w, minmax, q, p, s)
-    initialize = function(pm, pref_function, w, minmax = "max",
+    initialize = function(pm, pref_function = NULL, w, minmax = "max",
                           i_threshold = NULL, p_threshold = NULL,
                           im_threshold = NULL) {
       # params consistency check centralized in generalized PROMETHEE function
@@ -167,6 +167,9 @@ promethee2 <- R6Class("promethee2",
       self$pm <- util_pm_minmax(pm, minmax)
       #end of parameter consistency check
 
+      if (is.null(pref_function)) {
+        pref_function <- rep("default", times = ncol(pm))
+      }
       self$w <- w
       self$i_threshold <- i_threshold
       self$p_threshold <- p_threshold
