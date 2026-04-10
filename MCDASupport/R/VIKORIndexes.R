@@ -76,10 +76,10 @@ VIKORIndexes <- function(car, bw_perf, cw, v = NULL) {
   orderR <- sort(R)
   orderQ <- sort(Q)
   compromise <- list()
+  nS <- names(orderS)
+  nR <- names(orderR)
+  nQ <- names(orderQ)
   if (orderQ[2] - orderQ[1] >= 1 / (nalt - 1)) { #C1 satisfied
-    nS <- names(orderS)
-    nR <- names(orderR)
-    nQ <- names(orderQ)
     if ((v > 0.5 && nQ[1] == nS[1]) || (v < 0.5 && nQ[1] == nR[1]) ||
           (v == 0.5 && nQ[1] == nR[1] && nQ[1] == nS[1])) {
       compromise[1] <- nQ[1]
