@@ -91,7 +91,7 @@ vikor <- R6Class("vikor",
     #' @field R ordered list of alternatives using R-metric
     R = NULL,
 
-    #' @field Q rdered list of alternatives using Q-metric
+    #' @field Q ordered list of alternatives using Q-metric
     Q = NULL,
 
     #' @field compromiseSolution list of alternatives forming compromise

@@ -135,7 +135,7 @@ public constructor for the promethee2 class. Validates input parameters
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{promethee2$new(
   pm,
-  pref_function,
+  pref_function = NULL,
   w,
   minmax = "max",
   i_threshold = NULL,

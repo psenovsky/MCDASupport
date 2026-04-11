@@ -118,7 +118,7 @@ criterion has to be minimized (maximized).}
 
 \item{\code{R}}{ordered list of alternatives using R-metric}
 
-\item{\code{Q}}{rdered list of alternatives using Q-metric}
+\item{\code{Q}}{ordered list of alternatives using Q-metric}
 
 \item{\code{compromiseSolution}}{list of alternatives forming compromise
 solution (based on Q, S, R metrics)}
