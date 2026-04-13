@@ -85,7 +85,7 @@ wsm <- R6Class("wsm",
     #' w = c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
     #' t <- wsm$new(M, w)
     initialize = function(pm, w, minmax = "max") {
-      #validation
+      # validation
       ncri <- ncol(pm)
       self$pm_orig <- pm
       validation$validate_pm(pm)
