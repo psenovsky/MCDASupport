@@ -168,7 +168,7 @@ for cost criteria
 
 \mjsdeqn{n_{ij} = \frac{x_{ij}}{max_k x_{kj}}}
 
-Then we compute overal performance of overal performance of the alternatives
+Then we compute overal performance of the alternatives
  Si (step 3)
 
 \mjsdeqn{S_i = ln(1 + (\frac{1}{m} \sum_j |ln(n_{ij})|)}
@@ -186,7 +186,7 @@ Finally the final weights (wj) are coputed in step 6.
 
 \mjsdeqn{w_j = \frac{E_j}{\sum_k E_k}}
 
-\bold{CILAS - Criterion Impact LOSs}
+\bold{CILOS - Criterion Impact LOSs}
 
 Weight derivation based on measure impact loss.
 
@@ -243,7 +243,7 @@ Please note that the system of equation is clearly homogenous system of
  weight establishments. For establishment of weights non-trivial solutions
  need to be found.
 
-This implementation of the method uses singular valuable decomposition (SVD) of
+This implementation of the method uses singular variable decomposition (SVD) of
  matrix F for this purpose.
 
 Final values of the weights is achieved by normalizing the solution.
@@ -266,7 +266,7 @@ Proposed by Gligorić et al in 2022. First we normalize performance matrix
 
 \mjsdeqn{v_j = \frac{1}{m}\sum_{i=1}^m r_{ij}}
 
-With m being number of alternatives. We foloow with calculation of
+With m being number of alternatives. We follow with calculation of
  preference variation value pj
 
 \mjsdeqn{p_j = \sum_{i=1}^m (r_{ij} - v_j)^2}
