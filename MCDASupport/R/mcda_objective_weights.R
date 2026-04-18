@@ -6,6 +6,7 @@
 #'
 #' \tabular{llc}{
 #'        \bold{constant} \tab \bold{method} \tab \bold{normalization}\cr
+#'        angle \tab angle (or angular) weighting \tab N \cr
 #'        MW \tab Mean weighting method \tab N \cr
 #'        SDW \tab Standard Deviation Weighting method \tab Y \cr
 #'        SVW \tab Statistical Variance Weighting method \tab Y \cr
@@ -22,6 +23,19 @@
 #'  choose normalization method himself. All normalization methods from
 #'  mcda_norm can be used. If no normalization method is provided, the function
 #'  uses default one for the method, usually min-max normalization.
+#' 
+#' \bold{Angle or angular weighting}
+#' 
+#' Intersting method which bases the weights on the angle between the criterion
+#'  and referential point representing equal weights. The larger angle the 
+#'  criterium has ageinst this referential point the higher value of weight it
+#'  should have.
+#' 
+#' Mathematically:
+#' 
+#' \mjsdeqn{ u_{j}= arccos \frac{\sum_{i=1}^m b_{ij}}{\sqrt{\sum_{i=1}^m b_{ij}^2}}}
+#' 
+#' The weights are derived from uj using vector normalization.
 #'
 #' \bold{MW - Mean weighting Method}
 #'
@@ -296,6 +310,11 @@
 #'  Hybrid MPSI–MARA Decision-Making Model for Support System Selection in an
 #'  Underground Mine. Systems 2022, 10, 248.
 #'  https://doi.org/10.3390/systems10060248
+#' 
+#' Dong Shuai, Zheng Zongzhun, Wang Yongji and Liu Lei, "A new angular method to
+#'  determine the objective weights," 2012 24th Chinese Control and Decision
+#'  Conference (CCDC), Taiyuan, 2012, pp. 3889-3892,
+#'  doi: 10.1109/CCDC.2012.6244621.
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #' @examples
@@ -331,7 +350,8 @@ mcda_objective_weights <- function(
     "MEREC",
     "CILOS",
     "IDOCRIW",
-    "MPSI"
+    "MPSI",
+    "angle"
   )
   validation$validate_invalid_val(
     method,
@@ -552,9 +572,37 @@ mcda_objective_weights <- function(
     return(w)
   }
 
+  # angle weights
+  angle <- function(pm, minmax) {
+    m <- nrow(pm) # alternatives
+    n <- ncol(pm) # criteria
+  
+    b <- pm
+    for (i in 1:n) {
+      # linear normalization
+      b[, i] <- mcda_norm(pm[, i], minmax = "max", method = "sum")
+    }
+    u <- apply(b, 2, function(col) { # angle computation
+      sum_b = sum(col)
+      sqrt_sum_b2 = sqrt(sum(col^2))
+      argument <- sum_b / (sqrt_sum_b2 * sqrt(m))
+      argument <- pmin(pmax(argument, -1), 1)
+      return(acos(argument))
+    })
+    
+    if (sum(u) == 0) { # all angles are same
+      w <- rep(1/n, n)
+    } else {
+      w <- u / sum(u)
+    }
+    names(w) <- colnames(pm)
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
+    "angle" = angle(pm, minmax), # angular/angle weight derivation
     "CILOS" = CILOS(pm, minmax), # Criterion Impact LOSs
     "CRITIC" = CRITIC(pm, minmax), # Criterion Importance Through Intercriteria Correlation
     "EWM" = EWM(pm), # Entropy Weight Methor

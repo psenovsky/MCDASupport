@@ -26,6 +26,7 @@ The function for criteria weights computation using various objective
 
 \tabular{llc}{
        \bold{constant} \tab \bold{method} \tab \bold{normalization}\cr
+       angle \tab angle (or angular) weighting \tab N \cr
        MW \tab Mean weighting method \tab N \cr
        SDW \tab Standard Deviation Weighting method \tab Y \cr
        SVW \tab Statistical Variance Weighting method \tab Y \cr
@@ -42,6 +43,19 @@ In normalization column of previous table Y means that the analyst can also
  choose normalization method himself. All normalization methods from
  mcda_norm can be used. If no normalization method is provided, the function
  uses default one for the method, usually min-max normalization.
+
+\bold{Angle or angular weighting}
+
+Intersting method which bases the weights on the angle between the criterion
+ and referential point representing equal weights. The larger angle the 
+ criterium has ageinst this referential point the higher value of weight it
+ should have.
+
+Mathematically:
+
+\mjsdeqn{ u_{j}= arccos \frac{\sum_{i=1}^m b_{ij}}{\sqrt{\sum_{i=1}^m b_{ij}^2}}}
+
+The weights are derived from uj using vector normalization.
 
 \bold{MW - Mean weighting Method}
 
@@ -318,6 +332,11 @@ Gligorić, M.; Gligorić, Z.; Lutovac, S.; Negovanović, M.; Langović, Z. Novel
  Hybrid MPSI–MARA Decision-Making Model for Support System Selection in an
  Underground Mine. Systems 2022, 10, 248.
  https://doi.org/10.3390/systems10060248
+
+Dong Shuai, Zheng Zongzhun, Wang Yongji and Liu Lei, "A new angular method to
+ determine the objective weights," 2012 24th Chinese Control and Decision
+ Conference (CCDC), Taiyuan, 2012, pp. 3889-3892,
+ doi: 10.1109/CCDC.2012.6244621.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
