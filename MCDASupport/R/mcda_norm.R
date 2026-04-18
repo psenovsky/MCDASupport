@@ -74,10 +74,11 @@
 #'
 #' \mjsdeqn{z = 1 - \frac{x - min(x)}{max(x)}}
 #'
-#' \bold{Min-max normalization AKA max-min normalization}
+#' \bold{Min-max normalization}
 #'
-#' Min-max normalization is one of most used normalization methods. It takes
-#'  values in any ascale an normalizes them into 0-1 scale.
+#' Min-max normalization (AKA \bold{max-min normalization}, or 
+#' \bold{Weitendorf normalization}) is one of most used normalization methods.
+#'  It takes values in any scale and normalizes them into 0-1 scale.
 #'
 #' Normalized values z are using computed for benefit criteria:
 #'
@@ -239,6 +240,7 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
                 "max",
                 "TzengHuang",
                 "vector",
+                "Weitendorf",
                 "ZavadskasTurskis",
                 "zscore")
   validation$validate_invalid_val(method, nmethods, "normalization method")
@@ -382,23 +384,51 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
   }
 
   # perform normalization
+  # result <- switch(
+  #   method,
+  #   "LaiHwang" = norm_lai_hwang(tonorm, minmax = minmax),
+  #   "linear aggregation" = norm_linear_aggreg(tonorm, minmax = minmax),
+  #   "sum" = norm_linear_aggreg(tonorm, minmax = minmax),
+  #   "logarithm" = norm_logarithm(tonorm, minmax = minmax),
+  #   "Markovic" = norm_markovic(tonorm),
+  #   "minmax" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
+  #   "maxmin" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
+  #   "Weitendorf" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
+  #   "nonlinear" = norm_nonlinear(tonorm, minmax = minmax),
+  #   "toaverage" = norm_toaverage(tonorm),
+  #   "tobest" = norm_tobest(tonorm, minmax = minmax),
+  #   "max" = norm_tobest(tonorm, minmax = minmax),
+  #   "TzengHuang" = norm_tzeng_huang(tonorm),
+  #   "vector" = norm_vector(tonorm, minmax),
+  #   "ZavadskasTurskis" = norm_zavadskas_turskis(tonorm, minmax = minmax),
+  #   "zscore" = norm_zscore(tonorm)
+  # )
   result <- switch(
     method,
-    "LaiHwang" = norm_lai_hwang(tonorm, minmax = minmax),
-    "linear aggregation" = norm_linear_aggreg(tonorm, minmax = minmax),
+    # Grouped aliases (Empty values fall through to the next defined expression)
+    "linear aggregation" = ,
     "sum" = norm_linear_aggreg(tonorm, minmax = minmax),
+
+    "maxmin" = ,
+    "Weitendorf" = ,
+    "minmax" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
+
+    "max" = ,
+    "tobest" = norm_tobest(tonorm, minmax = minmax),
+
+    # Single cases
+    "LaiHwang" = norm_lai_hwang(tonorm, minmax = minmax),
     "logarithm" = norm_logarithm(tonorm, minmax = minmax),
     "Markovic" = norm_markovic(tonorm),
-    "minmax" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
-    "maxmin" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
     "nonlinear" = norm_nonlinear(tonorm, minmax = minmax),
     "toaverage" = norm_toaverage(tonorm),
-    "tobest" = norm_tobest(tonorm, minmax = minmax),
-    "max" = norm_tobest(tonorm, minmax = minmax),
     "TzengHuang" = norm_tzeng_huang(tonorm),
     "vector" = norm_vector(tonorm, minmax),
     "ZavadskasTurskis" = norm_zavadskas_turskis(tonorm, minmax = minmax),
-    "zscore" = norm_zscore(tonorm)
+    "zscore" = norm_zscore(tonorm),
+
+    # Optional: Default value if no match is found
+    stop("Unknown normalization method: ", method)
   )
   return(result)
 }

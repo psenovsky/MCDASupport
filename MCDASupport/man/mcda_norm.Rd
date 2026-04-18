@@ -98,10 +98,11 @@ Normalize values using approach by Markovic (2010), see equation bellow.
 
 \mjsdeqn{z = 1 - \frac{x - min(x)}{max(x)}}
 
-\bold{Min-max normalization AKA max-min normalization}
+\bold{Min-max normalization}
 
-Min-max normalization is one of most used normalization methods. It takes
- values in any ascale an normalizes them into 0-1 scale.
+Min-max normalization (AKA \bold{max-min normalization}, or 
+\bold{Weitendorf normalization}) is one of most used normalization methods.
+ It takes values in any scale and normalizes them into 0-1 scale.
 
 Normalized values z are using computed for benefit criteria:
 
