@@ -53,6 +53,8 @@
 #'  vol. 122, p. 106114, available from: \url{https://doi.org/10.1016/j.engappai.2023.106114},
 #'  ISSN 0952-1976.
 #' 
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#' 
 #' @examples
 #' PM <- rbind(
 #'    c(0.5,1,1,0,1,1),
@@ -77,36 +79,54 @@ mcda_pairwise_weights <- function(pm, method) {
     nmethods,
     "pairwise weighting methods"
   )
-  if (method == "RANCOM") {
-    validation$validate_invalid_val(pm, c(0, 1, 0.5), "Preference matrix")
-    diag(pm) <- 0.5
-    # validate symetry of matrix
-    ncri <- ncol(pm)
-    for (i in 2:ncri) {
-      for (j in i:ncri) {
-        if (
-          (pm[i, j] == 0 && pm[j, i] != 1) ||
-            (pm[i, j] == 1 && pm[j, i] != 0) ||
-            (pm[i, j]) == 0.5 && pm[j, i] != 0.5
-        ) {
-          t <- paste(
-            "Inconsistencies detected in preference matrix in index [", i, ", ", j, "] = ",
-            pm[i, j], " vs [", j, ", ", i, "] = ", pm[j, i]
-          )
-          stop(t)
-        }
-      }
-    }
-  } else if (method == "binary") {
-    validation$validate_invalid_val(pm, c(0, 1), "Preference matrix")
-    diag(pm) <- 0
-    validation$validate_pm_01_symetry(pm)
-  }
   # end of validate
 
   rs <- rowSums(pm)
   w <- rs / sum(rs)
   names(w) <- colnames(pm)
   return(w)
+
+binary <- function(pm) {
+  # validation
+  validation$validate_invalid_val(pm, c(0, 1), "Preference matrix")
+  diag(pm) <- 0
+  validation$validate_pm_01_symetry(pm)
+  #end of validation
+  rs <- rowSums(pm)
+  w <- rs / sum(rs)
+  names(w) <- colnames(pm)
+  result <- list(w = w)
+  return(result)
+}
+
+rancom <- function(pm) {
+  # validation
+  validation$validate_invalid_val(pm, c(0, 1, 0.5), "Preference matrix")
+  diag(pm) <- 0.5
+  ncri <- ncol(pm)
+  for (i in 2:ncri) { # validate symetry of matrix
+    for (j in i:ncri) {
+      if ((pm[i, j] == 0 && pm[j, i] != 1) || (pm[i, j] == 1 && pm[j, i] != 0) || (pm[i, j]) == 0.5 && pm[j, i] != 0.5) {
+        t <- paste(
+          "Inconsistencies detected in preference matrix in index [",
+          i, ", ", j, "] = ", pm[i, j],
+          " vs [", j, ", ", i, "] = ", pm[j, i])
+        stop(t)
+      }
+    }
+  }
+  # end of validation
+  rs <- rowSums(pm)
+  w <- rs / sum(rs)
+  names(w) <- colnames(pm)
+  result <- list(w = w)
+  return(result)
+}
+
+result <- switch(
+  method,
+  "binary" = binary(pm), # binary pairwise comparison
+  "RANCOM" = rancom(pm)
+)
 
 }

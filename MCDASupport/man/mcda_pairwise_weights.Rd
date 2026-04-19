@@ -73,3 +73,6 @@ WIĘCKOWSKI, Jakub, KIZIELEWICZ, Bartłomiej, SHEKHOVTSOV, Andrii, SAŁABUN, Woj
  vol. 122, p. 106114, available from: \url{https://doi.org/10.1016/j.engappai.2023.106114},
  ISSN 0952-1976.
 }
+\author{
+Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+}
