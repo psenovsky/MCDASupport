@@ -1,4 +1,5 @@
 exportPattern("^[[:alpha:]]+")
+export(ahp)
 export(bwm)
 export(dematel)
 export(mcda_get_dominated)
