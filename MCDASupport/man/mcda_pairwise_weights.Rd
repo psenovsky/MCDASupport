@@ -12,7 +12,7 @@ mcda_pairwise_weights(pm, method)
 \item{method}{constant (see the table to identify the method to use)}
 }
 \value{
-named weights vector
+list with named weights vector and CR (for AHP only)
 }
 \description{
 Function allows to apply various method which derive weights based on stated
@@ -21,6 +21,7 @@ Function allows to apply various method which derive weights based on stated
 At present time the function computes:
 \tabular{ll}{
        \bold{constant} \tab \bold{method}\cr
+       AHP \tab Analytic Hierarchy Process\cr
        binary \tab Binary pairwise camparison weight estimation\cr
        RANCOM \tab RANking COMparison\cr
    }
@@ -48,6 +49,32 @@ Very similar method to binary pairwise comparison only with slightly
 
 The preferences are them summed up on per row basis and weights derived by
  vector normalizing the result.
+
+\bold{AHP - Analytic Hierarchy Process}
+
+AHP is one of most widely used methods for MCDA and weight derivation based
+ on stated preferences. 
+
+This function implements only single preference matrix computation, so it
+ does not implement hierarchy at all. 
+
+The preferences are stated in interval 1 (equal) to 9 (extremely more inportrant)
+ and 1/9 (extremely less important) to 1.
+
+One of interesting properties of AHP is ability to evaluate randomnes of
+ stated preferences by comparing its consistency index (CI) to average random
+ consistency index (RCI). 
+
+The weights are derived using geometric mean method.
+
+\mjsdeqn{CI = \frac{\lambda_{mmax} - n}{n - 1}}
+
+Lambda max is largest eigenvalue of the preference matrix, n is number of criteria
+
+The ratio (CR - Consistency Ration) of CI/RCI should be under 0.1 to reject
+ hyphothesis, that the stated preferences has been stated randomly. Function
+ allows to perform this evaluation maximally for 15 criteria in single matrix.
+ In case you need more, use hierarchy.
 }
 \examples{
 PM <- rbind(
@@ -72,6 +99,10 @@ WIĘCKOWSKI, Jakub, KIZIELEWICZ, Bartłomiej, SHEKHOVTSOV, Andrii, SAŁABUN, Woj
  expert judgments. Engineering Applications of Artificial Intelligence. 2023,
  vol. 122, p. 106114, available from: \url{https://doi.org/10.1016/j.engappai.2023.106114},
  ISSN 0952-1976.
+
+Řehák, D., Šenovský, P. Preference risk assessment of electric power critical
+ infrastructure. In Chemical Engineering Transactions, Vol. 36, pp. 469-474,
+ DOI 10.3303/CET1436079, ISSN: 1974-9791
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}

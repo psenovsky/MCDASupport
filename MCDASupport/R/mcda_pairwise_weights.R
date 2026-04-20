@@ -7,6 +7,7 @@
 #' At present time the function computes:
 #' \tabular{ll}{
 #'        \bold{constant} \tab \bold{method}\cr
+#'        AHP \tab Analytic Hierarchy Process\cr
 #'        binary \tab Binary pairwise camparison weight estimation\cr
 #'        RANCOM \tab RANking COMparison\cr
 #'    }
@@ -35,11 +36,37 @@
 #' The preferences are them summed up on per row basis and weights derived by
 #'  vector normalizing the result.
 #' 
+#' \bold{AHP - Analytic Hierarchy Process}
+#' 
+#' AHP is one of most widely used methods for MCDA and weight derivation based
+#'  on stated preferences. 
+#' 
+#' This function implements only single preference matrix computation, so it
+#'  does not implement hierarchy at all. 
+#' 
+#' The preferences are stated in interval 1 (equal) to 9 (extremely more inportrant)
+#'  and 1/9 (extremely less important) to 1.
+#' 
+#' One of interesting properties of AHP is ability to evaluate randomnes of
+#'  stated preferences by comparing its consistency index (CI) to average random
+#'  consistency index (RCI). 
+#' 
+#' The weights are derived using geometric mean method.
+#' 
+#' \mjsdeqn{CI = \frac{\lambda_{mmax} - n}{n - 1}}
+#' 
+#' Lambda max is largest eigenvalue of the preference matrix, n is number of criteria
+#' 
+#' The ratio (CR - Consistency Ration) of CI/RCI should be under 0.1 to reject
+#'  hyphothesis, that the stated preferences has been stated randomly. Function
+#'  allows to perform this evaluation maximally for 15 criteria in single matrix.
+#'  In case you need more, use hierarchy.
+#' 
 #' @param pm preference matrix n:n, where n is number of criteria
 #' 
 #' @param method constant (see the table to identify the method to use)
 #' 
-#' @return named weights vector
+#' @return list with named weights vector and CR (for AHP only)
 #' 
 #' @references
 #' ŠENOVSKÝ, Pavel. Modelling of Decision Procesess. 4th edition, VŠB - TU
@@ -52,6 +79,10 @@
 #'  expert judgments. Engineering Applications of Artificial Intelligence. 2023,
 #'  vol. 122, p. 106114, available from: \url{https://doi.org/10.1016/j.engappai.2023.106114},
 #'  ISSN 0952-1976.
+#' 
+#' Řehák, D., Šenovský, P. Preference risk assessment of electric power critical
+#'  infrastructure. In Chemical Engineering Transactions, Vol. 36, pp. 469-474,
+#'  DOI 10.3303/CET1436079, ISSN: 1974-9791
 #' 
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #' 
@@ -71,6 +102,7 @@ mcda_pairwise_weights <- function(pm, method) {
   validation$validate_pm(pm)
   validation$validate_pm_rows_columns_same(pm)
   nmethods <- c(
+    "AHP",
     "binary",
     "RANCOM"
   )
@@ -80,11 +112,6 @@ mcda_pairwise_weights <- function(pm, method) {
     "pairwise weighting methods"
   )
   # end of validate
-
-  rs <- rowSums(pm)
-  w <- rs / sum(rs)
-  names(w) <- colnames(pm)
-  return(w)
 
 binary <- function(pm) {
   # validation
@@ -123,8 +150,51 @@ rancom <- function(pm) {
   return(result)
 }
 
+ahp2 <- function(pm) {
+  # validation
+  validation$validation_vector_in_interval(c(pm), 0, 9, "preference matrix elements")
+  ncri <- ncol(pm)
+  if (ncri < 3 || ncri > 15) {
+    stop("The consistency ratio is computable for matrixes of size 3 - 15.")
+  }
+  diag(pm) <- 1
+  # end of validation
+  # constants
+  RCI <- c(NULL, NULL, 0.58, 0.9, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49, 1.51,
+    1.48, 1.56, 1.57, 1.59)
+
+  # AHP procedure
+  multiplication <- rep(1, times = ncri)
+  weights <- rep(0, times = ncri)
+  nroot <- rep(0, times = ncri)
+  for (i in 1:ncri) {
+    multiplication <- multiplication * pm[, i]
+  }
+  for (i in 1:ncri) {
+    nroot[i] <- multiplication[i]^0.17
+  }
+  sum_nroot <- sum(nroot)
+  for (i in 1:ncri) {
+    weights[i] <- nroot[i] / sum_nroot
+  }
+  t <- weights
+  for (i in 1:ncri) {
+    t[i] <- sum(weights * pm[i, ])
+  }
+  lambda_max <- t / weights
+  t2 <- sum(lambda_max) / ncri
+  CI <- (t2 - ncri) / (ncri - 1)
+  CR <- CI / RCI[ncri]
+  results <- list(
+    w = weights,
+    CR = CR
+  )
+  return(results)
+}
+
 result <- switch(
   method,
+  "AHP" = ahp2(pm), # Analytic Hierarchy Process
   "binary" = binary(pm), # binary pairwise comparison
   "RANCOM" = rancom(pm)
 )
