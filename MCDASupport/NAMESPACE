@@ -79,6 +79,7 @@ S3method(summary,wsm)
 
 import(graphics)
 import(igraph)
+import(data.tree)
 import(diagram)
 import(mathjaxr)
 import(stats)
