@@ -154,8 +154,8 @@ ahp2 <- function(pm) {
   # validation
   validation$validation_vector_in_interval(c(pm), 0, 9, "preference matrix elements")
   ncri <- ncol(pm)
-  if (ncri < 3 || ncri > 15) {
-    stop("The consistency ratio is computable for matrixes of size 3 - 15.")
+  if (ncri > 15) {
+    stop("The consistency ratio is computable for matrixes of size up to 15.")
   }
   diag(pm) <- 1
   # end of validation
@@ -184,7 +184,10 @@ ahp2 <- function(pm) {
   lambda_max <- t / weights
   t2 <- sum(lambda_max) / ncri
   CI <- (t2 - ncri) / (ncri - 1)
-  CR <- CI / RCI[ncri]
+  CR <- 0
+  if (ncri > 2){
+    CR <- CI / RCI[ncri]
+  }
   results <- list(
     w = weights,
     CR = CR
