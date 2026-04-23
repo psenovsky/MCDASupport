@@ -92,7 +92,7 @@ spotis <- R6Class("spotis",
     #' )
     #' rownames(bounds) <- colnames(PM)
     #' colnames(bounds) <- c('min', 'max')
-    #' result <- SPOTIS(PM, w, minmax, bounds)
+    #' result <- spotis$new(PM, w, minmax, bounds)
     initialize = function(pm, w, minmax = "max", bounds) {
       ## check validity of the objects manipulated by the current function
       self$pm <- pm

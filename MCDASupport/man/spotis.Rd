@@ -59,7 +59,7 @@ bounds <- rbind(
 )
 rownames(bounds) <- colnames(PM)
 colnames(bounds) <- c('min', 'max')
-result <- SPOTIS(PM, w, minmax, bounds)
+result <- spotis$new(PM, w, minmax, bounds)
 }
 \references{
 Dezert et al. The SPOTIS Rank Reversal Free Method for Multi-Criteria
@@ -146,7 +146,7 @@ bounds <- rbind(
 )
 rownames(bounds) <- colnames(PM)
 colnames(bounds) <- c('min', 'max')
-result <- SPOTIS(PM, w, minmax, bounds)
+result <- spotis$new(PM, w, minmax, bounds)
 }
 \if{html}{\out{</div>}}
 
