@@ -52,6 +52,9 @@ Shankar Chakraborty, Prasenjit Chatterjee, Partha Protim Das. Ranking of
  Methods in Manufacturing Environments. Apple Academic Press: New York, 2023,
  pp. 317-323, ISBN 9781003377030.
 }
+\author{
+Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{

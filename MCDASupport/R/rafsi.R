@@ -34,6 +34,8 @@
 #' To the resulting matrix we apply the weights and sum across the criteria to
 #'  get measure Vi, which we sort in descending maner.
 #'
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#' 
 #' @references
 #' Shankar Chakraborty, Prasenjit Chatterjee, Partha Protim Das. Ranking of
 #'  Alternatives through Functional Mapping of Criterion Sub-Intervals into
