@@ -37,14 +37,6 @@ where A is arithmetic and H is harmonic mean:
 To the resulting matrix we apply the weights and sum across the criteria to
  get measure Vi, which we sort in descending maner.
 }
-\examples{
-
-## ------------------------------------------------
-## Method `rafsi$new`
-## ------------------------------------------------
-
-pm <- cbind(
-}
 \references{
 Shankar Chakraborty, Prasenjit Chatterjee, Partha Protim Das. Ranking of
  Alternatives through Functional Mapping of Criterion Sub-Intervals into
@@ -108,14 +100,6 @@ is default.}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Examples}{
-\if{html}{\out{<div class="r example copy">}}
-\preformatted{pm <- cbind(
-}
-\if{html}{\out{</div>}}
-
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-rafsi-compute"></a>}}

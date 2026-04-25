@@ -74,9 +74,6 @@ rafsi <- R6Class(
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
     #' @param n2k number of intervals, recommended to be 6 or more (integer)
-    #'
-    #' @examples
-    #' pm <- cbind(
     initialize = function(pm, w, minmax = "max", n2k = 6) {
       # validity check
       ncri <- ncol(pm)
