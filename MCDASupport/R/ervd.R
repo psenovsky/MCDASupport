@@ -42,6 +42,14 @@
 #'  ideal solution. Last two steps are same as in TOPSIS:
 #'
 #' \mjsdeqn{\phi_i = \frac{S_i^-}{S_i^+ + S_i^-}}
+#' 
+#' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+#' 
+#' @references 
+#' SHYUR, Huan-jyh, YIN, Liang, SHIH, Hsu-shih, CHENG, Chi-bin. A MULTIPLE
+#'  CRITERIA DECISION MAKING METHOD BASED ON RELATIVE VALUE DISTANCES.
+#'  FOUNDATIONS OF COMPUTING AND DECISION SCIENCES. Vol. 40, No. 4, pp. 299-315,
+#'  DOI: 10.1515/fcds-2015-0017.
 ervd <- R6Class(
   "ervd",
   public = list(

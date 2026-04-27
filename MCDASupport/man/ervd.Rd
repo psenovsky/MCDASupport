@@ -46,6 +46,15 @@ Finaly relative closeness index for each cleseness of each alternative to
 
 \mjsdeqn{\phi_i = \frac{S_i^-}{S_i^+ + S_i^-}}
 }
+\references{
+SHYUR, Huan-jyh, YIN, Liang, SHIH, Hsu-shih, CHENG, Chi-bin. A MULTIPLE
+ CRITERIA DECISION MAKING METHOD BASED ON RELATIVE VALUE DISTANCES.
+ FOUNDATIONS OF COMPUTING AND DECISION SCIENCES. Vol. 40, No. 4, pp. 299-315,
+ DOI: 10.1515/fcds-2015-0017.
+}
+\author{
+Pavel Šenovský \email{pavel.senovsky@vsb.cz}
+}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
