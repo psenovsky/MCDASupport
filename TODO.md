@@ -10,10 +10,8 @@ Also the ideas are unsorted.
 
 ### Package
 
-- explore possibility to work with the object returned by the function as a class.
 - PROMETHEE functions family - it could be interesting to transform information provided by the flow vectors into single dataframe. At least it would simplify return sigrature for the function.
 - MCDA Support package - implement more advanced sensitivity analysis. Existing implementation of the analysis creates search space using current parameters value +/- 10 %, which is mostly insufficient to demonstrate changes in provided results
-- summary() function should be supported
 - review some metainformation in the package
 - fuzzy numbers
     - explore possibility in FuzzyTOPSIS generaliza deffuz function to triangle fuzzy number
@@ -36,16 +34,12 @@ Also the ideas are unsorted.
 - an alternative way of how to express uncertainties in the decision making is to use grey theory. This theory can be seen as an alternative to fuzzy numbers.
     - example in literature could be grey-TOPSIS
     - robust implementation could open this functionality to other methods
-- there are many methods to derive weights, such as: SWARA, KEMIRA, SIMOS, P-SWING, PIPRECIA, FUCOM, DEMATEL, CRiteria Importance Through Inter-criteria Correlation (CRITIC)
+- there are many methods to derive weights, such as: KEMIRA, SIMOS, P-SWING, FUCOM
 - review the code of the functions to decrease number of functions the package provides, while maintaining current (or even extended) functionality of it. 
-    - good example could be normalization function - instead of using norm_* functions use normalize(vectorToNormalize, method = methodName)
+    - this opportunity is for methods MOORA, MOOSRA, COPRAS, RAM - these are very similar
     - this approach could be generally applicable on other similarly structured functions
     - (the real complexity of the package would remain same, it just would not be directly visible to the end user)
 
 ### Documentation
 
 - while the functions at present time are documented, there is lot of typos and small issues in clarity of text. It would be nice if somebody went through the documentation and submited its corrections.
-
-## Ideas that will probably be never implemented
-
-- AHP and ANP methods - while these methods are quite popular, there are already many tools available, including in R. Implementation of the methods in the package would not have any impact.
