@@ -1,3 +1,25 @@
+# MCDASupport v0.37 (Release date: 2026-05-01)
+
+backward incompatible changes:
+* refactored RANCOM and binary parwise comparison methodd for weight estimation into mcda_pairwise_weights call the function using mcda_pairwise_weights(pm, method = "RANCOM")
+
+new methods:
+* new objective weighting method - angle (or angular)
+* implemented RANCOM weighting method
+* implemented AHP method
+* implemented Balanced SPOTIS (or B-SPOTIS) method
+* implemented RAFSI method
+* implemented SECA model
+* implemented R method
+* implemented RAM method
+* implemented ERVD method
+* implemented MARE method
+
+bugfixes
+* TOPSIS had broken aplication of weights
+* PROMETHEE II function no longer has mandatory pref_function parameter. It will use default preference function if not told otherwise
+* corrected error in implementation of VIKOR indexes where nQ was available only for C1 test, but was used in all tests
+
 # MCDASupport v0.36 (Release date: 2026-03-09)
 
 backward incompatible changes:

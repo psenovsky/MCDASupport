@@ -2,11 +2,11 @@ Package: MCDASupport
 Type: Package
 Title: Support functions for solving Multiple-criteria Decision-making Problems
 Version: 0.37
-Date: 2026-03-09
+Date: 2027-05-01
 Author: Pavel Šenovský pavel.senovsky@vsb.cz [aut, cre]
 Maintainer: Pavel Šenovský <pavel.senovsky@vsb.cz>
 Description: Complex package of method for multi-criteria decision making, derivation of the weights and normalization.
-Depends: igraph, diagram, dplyr, tidyr, stats, graphics, plotly, visNetwork, R6, lpSolve
+Depends: igraph, diagram, dplyr, tidyr, stats, graphics, plotly, visNetwork, R6, lpSolve, quadprog
 License: GPL (>= 3)
 NeedsCompilation: no
 Encoding: UTF-8

@@ -8,13 +8,16 @@ implemented MCDA methods:
 
 - ARAS
 - AROMAN
+- Balanced SPOTIS (AKA B-SPOTIS)
 - Borda count method
 - CoCoSo
 - CODAS
 - Copeland's method
+- COPRAS
 - CRADIS
 - EDAS
 - ELECTRE (variants I, II, III, IV, 1S and TRI)
+- ERVD
 - EVAMIX
 - Extended AROMAN
 - FUCA
@@ -23,6 +26,7 @@ implemented MCDA methods:
 - MACBETH
 - MAIRCA
 - MARCOS
+- MARE
 - MAUT
 - MOORA
 - MOOSRA
@@ -33,13 +37,17 @@ implemented MCDA methods:
 - PIV (Proximity Indexed Value)
 - PROMETHEE (variants I, II and III)
 - PSI (also weight derivation method)
-- QUALIFLEX
 - PROBID (WIP - not validated)
+- QUALIFLEX
+- R method
+- RAM
+- RAFSI
 - RAWEC
 - REGIME
 - RIM
 - ROV
 - SAW
+- SECA
 - SIR (normal and fuzzy)
 - SMART
 - SPOTIS
@@ -52,13 +60,13 @@ implemented MCDA methods:
 - WPM (Weighted Product Method AKA MEW)
 - WSM (Weighted Sum Method)
 
-For normalization package supports:
+For normalization, the package supports:
 
 - Lai and Hwang normalization
 - Linear normalization using aggregation of values
 - Normalization of values by applying logarithmic transformation.
 - Markovic normalization
-- Min-max method
+- Min-max method (AKA max-min or Weitendorf normalization)
 - nonlinear normalization
 - RIM normalization
 - to average normalization
@@ -70,21 +78,27 @@ For normalization package supports:
 
 For weight establishment the package supports:
 
-- binary pair-wise comparison
 - BWM (Best-Worst Model)
-- CILOS (Criterion Impact LOSs)
-- COPRAS
-- CRITIC
 - DEMATEL
-- EWM (Entropy Weight Method)
-- IDOCRIW (Integrated Determination of Objective CRIteria Weights)
-- MEREC
-- MW (Mean Weighting)
+- objective weighting methods:
+  - angle weighting
+  - CILOS (Criterion Impact LOSs)
+  - CRITIC (Criterion Importance Through Intercriteria Correlation)
+  - EWM (Entropy Weight Method)
+  - GCW (Gini Coefficient Weighting Method) 
+  - IDOCRIW (Integrated Determination of Objective CRIteria Weights)
+  - MEREC (Methoc based on Removal Effects of Criteria)
+  - MPSI (M Preference Selection Index)
+  - MW (Mean Weighting)
+  - SDW (Standard Deviation Weighting)
+  - SVW (Statistical Variance Weighting)
+- pairwise comparison methods
+  - binary pair-wise comparison
+  - RANCOM RANking COMparison
+  - AHP (Analytic Hierarchy Process)
 - PIPRECIA (Pivot Pairwise Relative Criteria Importance Assessment)
 - PSI (also MCDA method)
 - Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
-- SDW (Standard Deviation Weighting)
-- SVW (Statistical Variance Weighting)
 - SWARA
 
 The package has also some graphical capabilities to help visualizing network of outranking relations between the alternatives and tools to visualize changes in ranking due to changes in analysis parameters (sensitivity analysis).
@@ -111,13 +125,17 @@ The "binary" version of the package is provided for last stable version of R (4.
 R packages MCDASupport depends on:
 
 - mathjaxr
-- igraph,
+
+- data.tree,
 - diagram,
 - dplyr,
-- tidyr,
-- stats,
 - graphics,
+- igraph,
+- lpSolve
 - plotly,
+- quadprog
+- stats,
+- tidyr,
 - visNetwork
 
 ### Installing
@@ -125,10 +143,10 @@ R packages MCDASupport depends on:
 You can use following R code to install package and its dependencies
 ```R
 # check for missing dependencies
-packages <- c("mathjaxr", "graphics", "igraph", "diagram", "stats", "dplyr", "visNetwork", "plotly", "tidyr")
+packages <- c("mathjaxr", "graphics", "igraph", "diagram", "stats", "dplyr", "visNetwork", "plotly", "tidyr", "data.tree", "quadprog")
 install.packages(setdiff(packages, rownames(installed.packages())))  
 # adjust name of the file to version you are installing
-install.packages("MCDASupport_0.36.tar.gz", repos=NULL, type="source")  
+install.packages("MCDASupport_0.37.tar.gz", repos=NULL, type="source")  
 ```
 ### Executing program
 
@@ -175,52 +193,27 @@ See function's documentation for information on mathematics and theories methods
 
 ## Version History
 
-### MCDASupport v0.36 (Release date: 2026-03-09)
+### MCDASupport v0.37 (Release date: 2026-05-01)
 
 backward incompatible changes:
-* original EWM function available in previous version is available only as a method for mcda_objective_weights(pm, method = "EWM")
-* original CRITIC function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "CRITIC")
-* original MEREC function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "MEREC")
-* original CILOS function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "CILOS")
-* original IDOCRIW function available in previous version is now available only as mcda_objective_weights(pm, minmax, method = "IDOCRIW")
+* refactored RANCOM and binary parwise comparison methodd for weight estimation into mcda_pairwise_weights call the function using mcda_pairwise_weights(pm, method = "RANCOM")
 
-new models:
-* implemented SPOTIS model 
-* implemented Borda count method
-* implemented BWM (Best-Worst Model) for weights estimation 
-* implementes Rank Ordering Methods (ROMs) namely Rank Sum, Rank Exponent and Rank Reciprocal methods
-* implemented PIV (Proximity Indexed Value) function
-* implemented Copeland's method
-* implemented MAIRCA
-* initial WIP implementation of PROBID method
-* initial WIP implementation of sPROBID method
-* implemented FUCA function
-* implemented RAWEC method
-* implemented AROMAN method
-* implemented Extended AROMAN method
-* implemented OCRA method
-* implemented RIM normalization
-* implemented RIM method
-* implemented ROV method
-* implemented MSIM method
-* implemented PIPRECIA method
-* objective weighting methods
-  * added MW - Mean Weighting method
-  * added SDW - Standard Deviation Weighting Method
-  * added SVW - Statistical Variance Weighting Method
-  * refactored EWM (Entropy Weight Method) into this framework
-  * refactored CRITIC (Criterion Importance Through Intercriteria Correlation) into this framework
-  * refactored MEREC (Method based on Removal Effects of Criteria) into this framework
-  * refactored IDOCRIW (Integrated Determination of Objective CRIteria Weights) into this framework
+new methods:
+* new objective weighting method - angle (or angular)
+* implemented RANCOM weighting method
+* implemented AHP method
+* implemented Balanced SPOTIS (or B-SPOTIS) method
+* implemented RAFSI method
+* implemented SECA model
+* implemented R method
+* implemented RAM method
+* implemented ERVD method
+* implemented MARE method
 
-other changes:
-* corrected error in documentation in exmaple for SIR constructor
-* small corrections in documentation
-* normalization methods
-  * added support for min and max parametres in minmax normalization to minimize risk of rank reversal (optional parameters)
-  * corrected documentation for to best normalization and added a synonym to it (max normalization)
-  * added synonym for minmax normalization (maxmin normalization)
-  * added synonym for Linear aggregation - sum normalization
+bugfixes
+* TOPSIS had broken aplication of weights
+* PROMETHEE II function no longer has mandatory pref_function parameter. It will use default preference function if not told otherwise
+* corrected error in implementation of VIKOR indexes where nQ was available only for C1 test, but was used in all tests
 
 ### Full version history
 
