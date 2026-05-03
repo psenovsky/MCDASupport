@@ -117,6 +117,9 @@ aras <- R6Class("aras",
     #'  alternative to the performance of best alternative
     assessment_ratio = NULL,
 
+    #' @field result dataframe with results (just assessment ratio and rank)
+    result = NULL,
+
     #' @description
     #' Public constructor for the class. Checks validity of input parameters
     #'  and performs computation of of the model based on them.
@@ -147,7 +150,7 @@ aras <- R6Class("aras",
     #' rownames(M) <- alternatives
     #' colnames(M) <- criteria
     #' w <- c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
-    #' t <- wsm$new(M, w)
+    #' t <- aras$new(M, w)
     initialize = function(pm, w, minmax = "max") {
       # validity check
       ncri <- ncol(pm)
@@ -178,17 +181,29 @@ aras <- R6Class("aras",
       self$weighted_sum_prc <- t$weighted_sum_prc
       self$assessment_ratio <- ar
       self$scoreM <- t$scoreM
+
+      self$result <- data.frame(
+        t$result_table$assesment_ratio,
+        rank(-t$result_table$assesment_ratio)
+      )
+      colnames(self$result) <- c("assessment ratio", "rank")
+      rownames(self$result) <- rownames(t$result_table)
     },
 
     #' @description
     #' prepares summary of the SAW method resutls and outputs them
     #'  to the console.
     summary = function() {
-      cat(paste("ARAS method results:\n"))
-      print(self$result_table, pretty = TRUE)
-      cat(paste("\nAssessment ration (ration of sum of alternative to best
-                alternative\n"))
-      print(self$assessment_ratio, pretty = TRUE)
+      nalt <- nrow(self$pm)
+      ncri <- ncol(self$pm)
+      cat(paste(
+        "ARAS results:\nProcessed ",
+        nalt,
+        " alternatives in ",
+        ncri,
+        " criteria\n\nResults:\n"
+      ))
+      print(self$result, pretty = TRUE)
       print(self$scoreM)
     }
   )

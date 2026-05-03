@@ -98,7 +98,7 @@ M <- rbind(
 rownames(M) <- alternatives
 colnames(M) <- criteria
 w <- c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
-t <- wsm$new(M, w)
+t <- aras$new(M, w)
 }
 \references{
 Zavadskas, E. K., Turskis, Z.: A New Additive Ratio Assessment (ARAS) method
@@ -140,6 +140,8 @@ of the alternative.}
 
 \item{\code{assessment_ratio}}{is ration between overal performance of the
 alternative to the performance of best alternative}
+
+\item{\code{result}}{dataframe with results (just assessment ratio and rank)}
 }
 \if{html}{\out{</div>}}
 }
@@ -196,7 +198,7 @@ M <- rbind(
 rownames(M) <- alternatives
 colnames(M) <- criteria
 w <- c(0.125, 0.2, 0.2, 0.2, 0.175, 0.05, 0.05)
-t <- wsm$new(M, w)
+t <- aras$new(M, w)
 }
 \if{html}{\out{</div>}}
 
