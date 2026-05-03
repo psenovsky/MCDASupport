@@ -99,8 +99,9 @@ is same for all criteria.}
 \item{\code{lambda}}{a constant in interval <0;1> to establish influence of
 weighted sum and weighted product on the result}
 
-\item{\code{results}}{provides dataframe with ki a to c partial rankings and ki
-representing final (compromise) solution. (largest value best)}
+\item{\code{result}}{provides dataframe with ki a to c partial rankings and ki
+representing final (compromise) solution (largest value best) and final
+ranking of the alternatives}
 }
 \if{html}{\out{</div>}}
 }

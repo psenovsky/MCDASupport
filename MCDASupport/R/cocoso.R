@@ -65,9 +65,10 @@ cocoso <- R6Class("cocoso",
     #'  weighted sum and weighted product on the result
     lambda = NULL,
 
-    #' @field results provides dataframe with ki a to c partial rankings and ki
-    #'  representing final (compromise) solution. (largest value best)
-    results = NULL,
+    #' @field result provides dataframe with ki a to c partial rankings and ki
+    #'  representing final (compromise) solution (largest value best) and final
+    #'  ranking of the alternatives
+    result = NULL,
 
     #' @description
     #' class constructor, validates data and computes the model.
@@ -146,7 +147,8 @@ cocoso <- R6Class("cocoso",
         (self$lambda * max_si + (1 - self$lambda) * max_pi)
       ki <- (kia * kib * kic)^(1 / 3) + (kia + kib + kic) / 3
 
-      self$results <- data.frame(kia, kib, kic, ki)
+      self$result <- data.frame(kia, rank(-kia), kib, rank(-kib), kic, rank(-kic), ki, rank(-ki))
+      colnames(self$result) <- c("kia", "rank a", "kib", "rank b", "kic", "rank c", "k compromise", "rank comp.")
     },
 
     #' @description
@@ -157,7 +159,7 @@ cocoso <- R6Class("cocoso",
       ncri <- ncol(self$pm)
       cat(paste("CoCoSo results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
-      print(self$results, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
