@@ -52,6 +52,9 @@ balanced_spotis <- R6Class(
     #' @field score vector of average distance to ideal solution ordered
     score = NULL,
 
+    #' @field result dataframe with score and ranks of the alternatives
+    result = NULL,
+
     #' @description
     #' public constructor allowing the user to construct SPOTIS decision
     #'  analysis problem and compute it.
@@ -124,6 +127,12 @@ balanced_spotis <- R6Class(
         s2$score_raw +
         (1 - self$alpha) * s2$score_raw
       self$score <- self$score_raw[order(self$score_raw)]
+      self$result <- data.frame(
+        self$score_raw,
+        rank(self$score_raw)
+      )
+      colnames(self$result) <- c("score", "rank")
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -142,7 +151,7 @@ balanced_spotis <- R6Class(
         self$alpha,
         "\nResults\n"
       ))
-      print(self$score, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
