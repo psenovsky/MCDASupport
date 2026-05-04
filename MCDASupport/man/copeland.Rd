@@ -52,7 +52,8 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{CopelandScore}}{summed results per criteria}
 
-\item{\code{result}}{matrix with points based on pairwise comparison}
+\item{\code{result}}{matrix with points based on pairwise comparison and 
+Copeland Score with its accompanying ranking}
 
 \item{\code{rank}}{vector of asigned ranks based on Copeland's score}
 }

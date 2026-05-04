@@ -33,7 +33,8 @@ copeland <- R6Class(
     #' @field CopelandScore summed results per criteria
     CopelandScore = NULL,
 
-    #' @field result matrix with points based on pairwise comparison
+    #' @field result matrix with points based on pairwise comparison and 
+    #'  Copeland Score with its accompanying ranking
     result = NULL,
 
     #' @field rank vector of asigned ranks based on Copeland's score
@@ -110,9 +111,12 @@ copeland <- R6Class(
         }
       }
       rownames(r) <- colnames(r) <- alt
-      self$result <- r
+      r <- as.data.frame(r)
       self$CopelandScore <- rowSums(r)
       self$rank <- rank(-self$CopelandScore, ties.method = "min")
+      r$`Copeland Score` <- self$CopelandScore
+      r$rank <- self$rank
+      self$result <- r
     },
 
     #' @description
@@ -128,11 +132,9 @@ copeland <- R6Class(
         nalt,
         " alternatives in ",
         ncri,
-        " criteria\nCopeland's Score:\n"
+        " criteria\n\nResults:\n"
       ))
-      print(self$CopelandScore, pretty = TRUE)
-      cat("\nAlternative's ranks:\n")
-      print(self$rank, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
