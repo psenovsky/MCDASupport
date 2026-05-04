@@ -1,7 +1,7 @@
 #' Complex Proportional Assessment
 #'
 #' @description
-#' COPRAS is a approach pholosophically comming from methods such as
+#' COPRAS is a approach philosophically comming from methods such as
 #'  \link{saw}, but it evaluates separately minimizing and maximizing criteria.
 #'  In case only maximized criteria are present, the method provides exactly
 #'  same results as SAW.
@@ -62,6 +62,9 @@ copras <- R6Class("copras",
 
     #' @field u quantitative utility in percents
     u = NULL,
+
+    #' @field result result dataframe with significance (Q), utility (%) and rank
+    result = NULL,
 
     #' @description
     #' public constructor of the function. Validates inputs and computes the
@@ -126,6 +129,12 @@ copras <- R6Class("copras",
       u <- 100 * q / max(q)
       self$q <- q
       self$u <- u
+      self$result <- data.frame(
+        q, u, rank(-q)
+      )
+      colnames(self$result) <- c("significance", "utility (%)", "rank")
+      rownames(self$result) <- rownames(self$pm)
+
     },
 
     #' @description
@@ -136,8 +145,9 @@ copras <- R6Class("copras",
       ncri <- ncol(self$pm)
       cat(paste0("\nCOPRAS:\n", "processed ", nalt,
                  " alternatives in ", ncri,
-                 " criteria\n\nUtility (%):\n"))
-      print(sort(self$u, decreasing = TRUE), pretty = TRUE)
+                 " criteria\n\nResults:\n"))
+      # print(sort(self$u, decreasing = TRUE), pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
