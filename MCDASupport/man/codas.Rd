@@ -28,7 +28,10 @@ Next we compute Eucludean and taxicab distances of the alternatives to this
 
 Then we compute relative assesment matrix
 
-\mjsdeqn{h_{ik} = (E_i - E_k) + \psi(E_i - E_k) \times (T_i - T_k)}
+\mjsdeqn{h_{ik} = (E_i - E_k) + \psi \times (T_i - T_k)}
+
+Where psi is 1 if difference of eucledian distances is greater, than set
+ threshold: |Ei - Ek| >= tau, otherwise the psi = 0
 
 Finaly we calculate assessment score, which is a measure that can be used
  directly to establish ranking of the alternatives. (Highest value 'best').
@@ -41,35 +44,28 @@ Finaly we calculate assessment score, which is a measure that can be used
 ## Method `codas$new`
 ## ------------------------------------------------
 
-# from: https://www.youtube.com/watch?v=VetfNIHLyn0
-alternatives <- c("AI 2024-T6", "AI 5052-O", "SS 301 FH", "SS 310-3AH",
- "Ti-6AI-4V", "Inconel 718", "70Cu-30Zn")
-criteria <- c("Toughness index", "Yield Strength", "Young's Modulus",
- "Density", "Thermal expansion", "Thermal conductivity", "Specific Heat")
-pm <- cbind(
- c(75.5, 95, 770, 187, 179, 239, 273),
- c(420, 91, 1365, 1120, 875, 1190, 200),
- c(74.2, 70, 189, 210, 112, 217, 112),
- c(2.8, 2.68, 7.9, 7.9, 4.43, 8.51, 8.53),
- c(21.4, 22.1, 16.9, 14.4, 9.4, 11.5, 19.9),
- c(0.37, 0.33, 0.04, 0.03, 0.016, 0.31, 0.29),
- c(0.16, 0.16, 0.08, 0.08, 0.09, 0.07, 0.06)
+# adjusted from reference article
+pm <- rbind(
+ c(60, 0.4, 2540, 500, 990),
+ c(6.35, 0.15, 1016, 3000, 1041),
+ c(6.8, 0.10, 1727.2, 1500, 1676),
+ c(10, 0.2, 1000, 2000, 965),
+ c(2.5, 0.10, 560, 500, 915),
+ c(4.5, 0.08, 1016, 350, 508),
+ c(3, 0.1, 1778, 1000, 920)
 )
-rownames(pm) <- alternatives
-colnames(pm) <- criteria
-w <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
-minmax <- c("max", "max", "max", "min", "min", "min", "min")
-t <- codas$new(pm, w, minmax)
+colnames(pm) <- c("Load cap.", "Max. tip speed", 
+  "Repeatability", "Memory capacity", "Manipulator reach")
+rownames(pm) <- c(paste0("A", 1:7))
+w <- c(0.036, 0.192, 0.326, 0.326, 0.120)
+minmax <- c("max", "min", "max", "max", "max")
+t <- codas$new(pm, w, minmax = minmax, tau = 0.02)
+summary(t)
 }
 \references{
-Vitarka. CODAS - Combinative Distance-based Assessment #MADM #Optimization
- #MaterialSelection #MCDM. Available from
-\url{https://www.youtube.com/watch?v=d0W8wBxPkhY}
-
-Manshadi B.D., Mahmudi, H., Abedian, A., Manmudi, R. A novel method for
- materials selection in mechanical design: combination of non-linear
- linearization and a modified digital logic method. Mater Des 2007, 28:
- 8-15
+GHORABAEE, M.K. et al. A NEW COMBINATIVE DISTANCE-BASED ASSESSMENT (CODAS)
+METHOD FOR MULTI - CRITERIA DECISION - MAKING. Economic Computation and
+ Economic Cybernetics Studies and Research, Vol. 50, no. 3, pp. 25-44.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
@@ -85,11 +81,13 @@ alternatives (in rows) in criteria (columns)}
 
 \item{\code{w}}{weight vector}
 
-\item{\code{psi}}{coefficient of determination}
+\item{\code{tau}}{coefficient of determination}
 
 \item{\code{score}}{assesment score (best = highest)}
 
 \item{\code{score_sorted}}{assesment score sorted from best to worst}
+
+\item{\code{result}}{databrame with score and rank}
 
 \item{\code{minmax}}{optimization direction vector for criteria. Either min or
 max. Can be substituted by single min or max if optimization direction
@@ -112,7 +110,7 @@ is same for all criteria.}
 \subsection{Method \code{new()}}{
 class constructor, validates data and computes the model.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{codas$new(pm, w, minmax = "max", psi = 0.02)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{codas$new(pm, w, minmax = "max", tau = 0.02)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -126,7 +124,7 @@ class constructor, validates data and computes the model.
 Can use single min/max if optimization direction of all criteria is
 same.}
 
-\item{\code{psi}}{coefficient of determination, set to 0.02 by default}
+\item{\code{tau}}{parameter of threshold, set to 0.02 by default}
 }
 \if{html}{\out{</div>}}
 }
@@ -135,25 +133,23 @@ instance of the class including computed model
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{# from: https://www.youtube.com/watch?v=VetfNIHLyn0
-alternatives <- c("AI 2024-T6", "AI 5052-O", "SS 301 FH", "SS 310-3AH",
- "Ti-6AI-4V", "Inconel 718", "70Cu-30Zn")
-criteria <- c("Toughness index", "Yield Strength", "Young's Modulus",
- "Density", "Thermal expansion", "Thermal conductivity", "Specific Heat")
-pm <- cbind(
- c(75.5, 95, 770, 187, 179, 239, 273),
- c(420, 91, 1365, 1120, 875, 1190, 200),
- c(74.2, 70, 189, 210, 112, 217, 112),
- c(2.8, 2.68, 7.9, 7.9, 4.43, 8.51, 8.53),
- c(21.4, 22.1, 16.9, 14.4, 9.4, 11.5, 19.9),
- c(0.37, 0.33, 0.04, 0.03, 0.016, 0.31, 0.29),
- c(0.16, 0.16, 0.08, 0.08, 0.09, 0.07, 0.06)
+\preformatted{# adjusted from reference article
+pm <- rbind(
+ c(60, 0.4, 2540, 500, 990),
+ c(6.35, 0.15, 1016, 3000, 1041),
+ c(6.8, 0.10, 1727.2, 1500, 1676),
+ c(10, 0.2, 1000, 2000, 965),
+ c(2.5, 0.10, 560, 500, 915),
+ c(4.5, 0.08, 1016, 350, 508),
+ c(3, 0.1, 1778, 1000, 920)
 )
-rownames(pm) <- alternatives
-colnames(pm) <- criteria
-w <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
-minmax <- c("max", "max", "max", "min", "min", "min", "min")
-t <- codas$new(pm, w, minmax)
+colnames(pm) <- c("Load cap.", "Max. tip speed", 
+  "Repeatability", "Memory capacity", "Manipulator reach")
+rownames(pm) <- c(paste0("A", 1:7))
+w <- c(0.036, 0.192, 0.326, 0.326, 0.120)
+minmax <- c("max", "min", "max", "max", "max")
+t <- codas$new(pm, w, minmax = minmax, tau = 0.02)
+summary(t)
 }
 \if{html}{\out{</div>}}
 

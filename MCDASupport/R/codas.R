@@ -25,7 +25,10 @@
 #'
 #' Then we compute relative assesment matrix
 #'
-#' \mjsdeqn{h_{ik} = (E_i - E_k) + \psi(E_i - E_k) \times (T_i - T_k)}
+#' \mjsdeqn{h_{ik} = (E_i - E_k) + \psi \times (T_i - T_k)}
+#'
+#' Where psi is 1 if difference of eucledian distances is greater, than set
+#'  threshold: |Ei - Ek| >= tau, otherwise the psi = 0
 #'
 #' Finaly we calculate assessment score, which is a measure that can be used
 #'  directly to establish ranking of the alternatives. (Highest value 'best').
@@ -33,19 +36,15 @@
 #' \mjsdeqn{H_i = \sum_{k=1}^n h_{ik}}
 #'
 #' @references
-#' Vitarka. CODAS - Combinative Distance-based Assessment #MADM #Optimization
-#'  #MaterialSelection #MCDM. Available from
-#' \url{https://www.youtube.com/watch?v=d0W8wBxPkhY}
-#'
-#' Manshadi B.D., Mahmudi, H., Abedian, A., Manmudi, R. A novel method for
-#'  materials selection in mechanical design: combination of non-linear
-#'  linearization and a modified digital logic method. Mater Des 2007, 28:
-#'  8-15
+#' GHORABAEE, M.K. et al. A NEW COMBINATIVE DISTANCE-BASED ASSESSMENT (CODAS)
+#' METHOD FOR MULTI - CRITERIA DECISION - MAKING. Economic Computation and
+#'  Economic Cybernetics Studies and Research, Vol. 50, no. 3, pp. 25-44.
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
 #' @keywords CODAS
-codas <- R6Class("codas",
+codas <- R6Class(
+  "codas",
   public = list(
     #' @field pm_orig original (unnormalized) performance matrix of
     #'  alternatives (in rows) in criteria (columns)
@@ -57,14 +56,17 @@ codas <- R6Class("codas",
     #' @field w weight vector
     w = NULL,
 
-    #' @field psi coefficient of determination
-    psi = NULL,
+    #' @field tau coefficient of determination
+    tau = NULL,
 
     #' @field score assesment score (best = highest)
     score = NULL,
 
     #' @field score_sorted assesment score sorted from best to worst
     score_sorted = NULL,
+
+    #'@field result databrame with score and rank
+    result = NULL,
 
     #' @field minmax optimization direction vector for criteria. Either min or
     #'  max. Can be substituted by single min or max if optimization direction
@@ -78,31 +80,29 @@ codas <- R6Class("codas",
     #' @param minmax vector of optimization direction for criteria (min/max).
     #'  Can use single min/max if optimization direction of all criteria is
     #'  same.
-    #' @param psi coefficient of determination, set to 0.02 by default
+    #' @param tau parameter of threshold, set to 0.02 by default
     #'
     #' @return instance of the class including computed model
     #'
     #' @examples
-    #' # from: https://www.youtube.com/watch?v=VetfNIHLyn0
-    #' alternatives <- c("AI 2024-T6", "AI 5052-O", "SS 301 FH", "SS 310-3AH",
-    #'  "Ti-6AI-4V", "Inconel 718", "70Cu-30Zn")
-    #' criteria <- c("Toughness index", "Yield Strength", "Young's Modulus",
-    #'  "Density", "Thermal expansion", "Thermal conductivity", "Specific Heat")
-    #' pm <- cbind(
-    #'  c(75.5, 95, 770, 187, 179, 239, 273),
-    #'  c(420, 91, 1365, 1120, 875, 1190, 200),
-    #'  c(74.2, 70, 189, 210, 112, 217, 112),
-    #'  c(2.8, 2.68, 7.9, 7.9, 4.43, 8.51, 8.53),
-    #'  c(21.4, 22.1, 16.9, 14.4, 9.4, 11.5, 19.9),
-    #'  c(0.37, 0.33, 0.04, 0.03, 0.016, 0.31, 0.29),
-    #'  c(0.16, 0.16, 0.08, 0.08, 0.09, 0.07, 0.06)
+    #' # adjusted from reference article
+    #' pm <- rbind(
+    #'  c(60, 0.4, 2540, 500, 990),
+    #'  c(6.35, 0.15, 1016, 3000, 1041),
+    #'  c(6.8, 0.10, 1727.2, 1500, 1676),
+    #'  c(10, 0.2, 1000, 2000, 965),
+    #'  c(2.5, 0.10, 560, 500, 915),
+    #'  c(4.5, 0.08, 1016, 350, 508),
+    #'  c(3, 0.1, 1778, 1000, 920)
     #' )
-    #' rownames(pm) <- alternatives
-    #' colnames(pm) <- criteria
-    #' w <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
-    #' minmax <- c("max", "max", "max", "min", "min", "min", "min")
-    #' t <- codas$new(pm, w, minmax)
-    initialize = function(pm, w, minmax = "max", psi = 0.02) {
+    #' colnames(pm) <- c("Load cap.", "Max. tip speed", 
+    #'   "Repeatability", "Memory capacity", "Manipulator reach")
+    #' rownames(pm) <- c(paste0("A", 1:7))
+    #' w <- c(0.036, 0.192, 0.326, 0.326, 0.120)
+    #' minmax <- c("max", "min", "max", "max", "max")
+    #' t <- codas$new(pm, w, minmax = minmax, tau = 0.02)
+    #' summary(t)
+    initialize = function(pm, w, minmax = "max", tau = 0.02) {
       # validation of the parameters
       ncri <- ncol(pm)
       self$pm_orig <- pm
@@ -110,11 +110,12 @@ codas <- R6Class("codas",
       self$minmax <- validation$validate_minmax(minmax, ncri)
       validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
       validation$validate_w_sum_eq_1(w)
-      validation$validate_scalar_numeric(psi, "coefficient of determination")
+      validation$validate_scalar_numeric(tau, "coefficient of determination")
+      if (tau > 0.05 || tau < 0.01) warning("Value of tau is usualy in <0.01; 0.05>")
       # end of validation
 
       self$w <- w
-      self$psi <- psi
+      self$tau <- tau
       self$compute()
       self
     },
@@ -124,28 +125,32 @@ codas <- R6Class("codas",
     #'  Usually run automatically as part of class inititation.
     compute = function() {
       ncri <- ncol(self$pm_orig)
-      nalt <- ncol(self$pm_orig)
+      nalt <- nrow(self$pm_orig)
       alt <- rownames(self$pm_orig)
-      self$pm <- self$pm_orig
+      wpm_ns <- w_pm <- self$pm <- self$pm_orig
       for (i in 1:ncri) {
         self$pm[, i] <- mcda_norm(self$pm_orig[, i], self$minmax[i], "tobest")
+        w_pm[, i] <- self$pm[, i] * self$w[i]
       }
-      w_pm <- as.data.frame(sweep(self$pm, 2, self$w, "*"))
-      ns <- apply(w_pm, 2, min)
-      wpm_ns <- sweep(w_pm, 2, ns, "-")
+      ns <- apply(w_pm, 2, min) # validováno
+      for (i in 1:ncri) {
+        wpm_ns[, i] <- w_pm[, i] - ns[i]
+      }
       ei <- sqrt(rowSums(wpm_ns^2))
       ti <- rowSums(abs(wpm_ns))
-      psi <- 0.02
-      hik <- matrix(0, nrow = nalt, ncol = nalt)
-      rownames(hik) <- colnames(hik) <- alt
-      for (i in 1:nalt) {
-        for (j in 1:nalt) {
-          hik[i, j] <- (ei[i] - ei[j]) +
-            (psi * (ei[i] - ei[j]) * (ti[i] - ti[j]))
-        }
-      }
+      diff_ei <- outer(ei, ei, "-")
+      diff_ti <- outer(ti, ti, "-")
+      psi <- abs(diff_ei) >= self$tau
+      hik <- diff_ei + psi * diff_ti
       self$score <- rowSums(hik)
       self$score_sorted <- sort(self$score, decreasing = TRUE)
+
+      self$result <- data.frame(
+        self$score,
+        rank(-self$score)
+      )
+      colnames(self$result) <- c("score", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -154,9 +159,14 @@ codas <- R6Class("codas",
     summary = function() {
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
-      cat(paste("CODAS results:\nProcessed ", nalt, " alternatives in ",
-                ncri, " criteria\n\nResults:\n"))
-      print(self$score_sorted, pretty = TRUE)
+      cat(paste(
+        "CODAS results:\nProcessed ",
+        nalt,
+        " alternatives in ",
+        ncri,
+        " criteria\n\nResults:\n"
+      ))
+      print(self$result, pretty = TRUE)
     }
   )
 )
