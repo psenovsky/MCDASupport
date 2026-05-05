@@ -60,6 +60,8 @@ direction for all criteria}
 \item{\code{Ri}}{vector of agreggated weighted ranks}
 
 \item{\code{rank}}{vector of alternative ranks derived from Ri}
+
+\item{\code{result}}{data frame with values of Ri and rank}
 }
 \if{html}{\out{</div>}}
 }

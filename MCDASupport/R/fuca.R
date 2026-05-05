@@ -47,6 +47,9 @@ fuca <- R6Class(
     #' @field rank vector of alternative ranks derived from Ri
     rank = NULL,
 
+    #' @field result data frame with values of Ri and rank
+    result = NULL,
+
     #' @description
     #' Public constructor for the class. Checks validity of input parameters
     #'  and performs computation of of the model based on them.
@@ -109,6 +112,8 @@ fuca <- R6Class(
       self$rank <- rank
       self$Ri <- Ri
       self$rankPM <- rankPM
+      self$result <- data.frame(Ri, rank)
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -120,16 +125,9 @@ fuca <- R6Class(
       ncri <- ncol(self$pm)
       cat(paste0(
         "FUCA:\n",
-        "processed ",
-        nalt,
-        " alternatives in ",
-        ncri,
-        " criteria\n"
+        "processed ", nalt, " alternatives in ", ncri, " criteria\n\nResults:\n"
       ))
-      cat("Aggregated weighted ranks for alternatives:\n")
-      print(self$Ri, pretty = TRUE)
-      cat("\nAlternative's ranks\n")
-      print(self$rank, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
