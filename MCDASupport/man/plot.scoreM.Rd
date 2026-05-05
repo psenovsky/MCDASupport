@@ -5,11 +5,14 @@
 \title{Function to plot contribution of the criteria to overal performance of the
  alternatives.}
 \usage{
-\method{plot}{scoreM}(x)
+\method{plot}{scoreM}(x, title = "Overal score of the variants")
 }
 \arguments{
 \item{x}{weighted preference matrix - values in matrix used to descibe
 strength of the relation.}
+
+\item{title}{title to be used for the graph. "Overal score of the variants"
+by default}
 }
 \value{
 stocked bar chart of criteria contributions to overal performance

@@ -12,6 +12,8 @@
 #'
 #' @param x weighted preference matrix - values in matrix used to descibe
 #'  strength of the relation.
+#' @param title title to be used for the graph. "Overal score of the variants"
+#'  by default
 #'
 #' @return stocked bar chart of criteria contributions to overal performance
 #' of the alternative
@@ -42,7 +44,7 @@
 #' plot.scoreM(preferences$weightedPM)
 #'
 #' @keywords WSM performance score MCDA
-plot.scoreM <- function(x) {
+plot.scoreM <- function(x, title = "Overal score of the variants") {
   pm <- x
   #1. order the rows according to rowSums
   pm <- pm[order(rowSums(pm), decreasing = TRUE), ]
@@ -60,6 +62,6 @@ plot.scoreM <- function(x) {
                                 categoryorder = "array",
                                 categoryarray = ~variant),
                    barmode = "stack",
-                   title = "Overal score of the variants")
+                   title = title)
   return(fig)
 }
