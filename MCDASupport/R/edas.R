@@ -74,10 +74,10 @@ edas <- R6Class("edas",
     #'  weighted sum of negative distances
     sni_scoreM = NULL,
 
-    #' @field result_table Table with computed weighted positive (SPI),
+    #' @field result Table with computed weighted positive (SPI),
     #'  negative (SNI) sums, normalized positive (NSPI), negative (NSNI) sums
     #'  and average (ASI) of NSNI and NSPI
-    result_table = NULL,
+    result = NULL,
 
     #' @description
     #' class constructor, validates data and computes the model.
@@ -145,14 +145,17 @@ edas <- R6Class("edas",
       t <- wsm$new(pda, self$w, "max")
       spi <- t$result_table$weighted_sum
       nspi <- spi / max(spi)
-      self$spi_scoreM <- t$scoreM
+      self$spi_scoreM <- t$scoreM %>%
+        plotly::layout(title = "SPI")
       t <- wsm$new(nda, self$w, "max")
       sni <- t$result_table$weighted_sum
       nsni <- sni / max(sni)
-      self$sni_scoreM <- t$scoreM
+      self$sni_scoreM <- t$scoreM %>%
+        plotly::layout(title = "SNI")
       asi <- (nspi + nsni) / 2
-      self$result_table <- data.frame(spi, sni, nspi, nsni, asi)
-      rownames(self$result_table) <- rownames(self$pm)
+      self$result <- data.frame(spi, sni, nspi, nsni, asi, rank(-asi))
+      colnames(self$result) <- c("SPI", "SNI", "norm. SPI", "norm. SNI", "avg. (ASI)", "rank")
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -160,7 +163,7 @@ edas <- R6Class("edas",
     #'  to the console.
     summary = function() {
       cat(paste("Edas method results:\n\nResult table:\n"))
-      print(self$result_table, pretty = TRUE)
+      print(self$result, pretty = TRUE)
       print(self$spi_scoreM)
       print(self$sni_scoreM)
     }

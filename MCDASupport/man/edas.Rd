@@ -104,7 +104,7 @@ weighted sum of positive distances}
 \item{\code{sni_scoreM}}{graphical representation of criteria contribution to
 weighted sum of negative distances}
 
-\item{\code{result_table}}{Table with computed weighted positive (SPI),
+\item{\code{result}}{Table with computed weighted positive (SPI),
 negative (SNI) sums, normalized positive (NSPI), negative (NSNI) sums
 and average (ASI) of NSNI and NSPI}
 }
