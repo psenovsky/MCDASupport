@@ -86,6 +86,9 @@ evamix <- R6Class("evamix",
     #' @field evaluation_score Evaluation score of the alternative
     evaluation_score = NULL,
 
+    #' @field result dataframe with evaluation score and ranks
+    result = NULL,
+
     #' @description
     #' class constructor, validates data and computes the model.
     #'
@@ -216,6 +219,12 @@ evamix <- R6Class("evamix",
       diag(dii) <- 1
       self$evaluation_score <- colSums(dii)^(-1)
       self$finalRank <- rank(-self$evaluation_score, ties.method = "min")
+      self$result <- data.frame(
+        self$evaluation_score,
+        self$finalRank
+      )
+      colnames(self$result) <- c("eval. score", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -225,10 +234,8 @@ evamix <- R6Class("evamix",
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
       cat(paste("EVAMIX results:\nProcessed ", nalt, " alternatives in ",
-                ncri, " criteria\n\nResults:\n\nEvaluation score:\n"))
-      print(self$evaluation_score, pretty = TRUE)
-      cat(paste("\nFinal rank:\n"))
-      print(self$finalRank, pretty = TRUE)
+                ncri, " criteria\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
     }
   ),
   private = list(

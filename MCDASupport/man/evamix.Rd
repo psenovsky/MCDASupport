@@ -104,6 +104,8 @@ numeric criteria (ordinal criteria are already considered processed).}
 \item{\code{finalRank}}{final ranking of the alternatives}
 
 \item{\code{evaluation_score}}{Evaluation score of the alternative}
+
+\item{\code{result}}{dataframe with evaluation score and ranks}
 }
 \if{html}{\out{</div>}}
 }
