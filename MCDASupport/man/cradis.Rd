@@ -63,36 +63,31 @@ First 4 steps of the method are closely mimicking ARAS approach, remainder
 ## Method `cradis$new`
 ## ------------------------------------------------
 
-PM <- rbind(
-   c(0.446, 1.785, 6.643, 6.843, 50),
-   c(1.113, 2.425, 10.525, 2.902, 250),
-   c(1.246, 3.321, 14.224, 3.885, 600),
-   c(1.935, 3.678, 17.852, 4.406, 1000),
-   c(0.446, 3.062, 5.238, 3.112, 200),
-   c(1.064, 3.814, 14.558, 4.121, 250),
-   c(1.654, 4.581, 17.888, 4.886, 1600),
-   c(1.924, 5.226, 22.224, 5.702, 1500),
-   c(0.337, 4.444, 24.708, 4.123, 450),
-   c(0.998, 5.12, 18.012, 5.206, 1500),
-   c(1.622, 5.886, 22.226, 6.226, 600),
-   c(1.844, 6.234, 26.128, 6.786, 1500),
-   c(0.531, 5.6, 18.883, 5.405, 800),
-   c(1.023, 6.123, 21.987, 6.501, 1500),
-   c(1.664, 7.244, 27.012, 7.421, 1600),
-   c(2.012, 7.345, 28.021, 7.923, 1000)
+# https://doi.org/10.18485/aeletters.2023.8.1.4
+w <- c(0.257, 0.129, 0.214, 0.196, 0.204)
+pm <- rbind(
+  c(2, 110, 3, 2, 3),
+  c(5, 100, 5, 3, 3),
+  c(3, 90, 4, 5, 2),
+  c(10, 80, 3, 4, 4),
+  c(4, 85, 2, 4, 5),
+  c(8, 80, 3, 4, 4),
+  c(5, 95, 2, 4, 3)
 )
-rownames(PM) <- c("A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9",
-   "A10", "A11", "A12", "A13", "A14", "A15", "A16")
-colnames(PM) <- c("Ra", "Ax", "Ay", "Az", "Q")
-w <- rep(0.2, times = 5) #equal weights
-minmax <- c("min", "min", "min", "min", "max")
-t <- cradis$new(PM, w, minmax)
+colnames(pm) <- c(paste0("C", 1:5))
+rownames(pm) <- c(paste0("S", 1:7))
+t <- cradis$new(pm = pm, w = w, minmax = "max")
+summary(t)
 }
 \references{
 Puška, A., Stević, Ž., Panučar, D.: Evaluation and selection of healtcare
  waste incinerators using extended sustainability criteria and multicriteria
  analysis methods. Environment, Development and Sustainability, vol. 24, pp.
  11195-11225 (2022), DOI: 10.1007/s10668-021-01902-2
+
+Ha, Le Dang. SELECTION OF SUITABLE DATA NORMALIZATION METHOD TO COMBINE WITH
+ THE CRADIS METHOD FOR MAKING MULTI - CRITERIA DECISION. Applied Engineering
+ Letters, Vol. 8, No. 1, pp. 24-35 (2023), DOI: 10.18485/aeletters.2023.8.1.4
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
@@ -115,6 +110,8 @@ transforming criteria)}
 or max if all criteria have same optimization direction.}
 
 \item{\code{q}}{sorted average utility order descending from best to worst}
+
+\item{\code{result}}{data frame with average utility and ranking}
 }
 \if{html}{\out{</div>}}
 }
@@ -154,30 +151,21 @@ inicialized and computed model
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{PM <- rbind(
-   c(0.446, 1.785, 6.643, 6.843, 50),
-   c(1.113, 2.425, 10.525, 2.902, 250),
-   c(1.246, 3.321, 14.224, 3.885, 600),
-   c(1.935, 3.678, 17.852, 4.406, 1000),
-   c(0.446, 3.062, 5.238, 3.112, 200),
-   c(1.064, 3.814, 14.558, 4.121, 250),
-   c(1.654, 4.581, 17.888, 4.886, 1600),
-   c(1.924, 5.226, 22.224, 5.702, 1500),
-   c(0.337, 4.444, 24.708, 4.123, 450),
-   c(0.998, 5.12, 18.012, 5.206, 1500),
-   c(1.622, 5.886, 22.226, 6.226, 600),
-   c(1.844, 6.234, 26.128, 6.786, 1500),
-   c(0.531, 5.6, 18.883, 5.405, 800),
-   c(1.023, 6.123, 21.987, 6.501, 1500),
-   c(1.664, 7.244, 27.012, 7.421, 1600),
-   c(2.012, 7.345, 28.021, 7.923, 1000)
+\preformatted{# https://doi.org/10.18485/aeletters.2023.8.1.4
+w <- c(0.257, 0.129, 0.214, 0.196, 0.204)
+pm <- rbind(
+  c(2, 110, 3, 2, 3),
+  c(5, 100, 5, 3, 3),
+  c(3, 90, 4, 5, 2),
+  c(10, 80, 3, 4, 4),
+  c(4, 85, 2, 4, 5),
+  c(8, 80, 3, 4, 4),
+  c(5, 95, 2, 4, 3)
 )
-rownames(PM) <- c("A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9",
-   "A10", "A11", "A12", "A13", "A14", "A15", "A16")
-colnames(PM) <- c("Ra", "Ax", "Ay", "Az", "Q")
-w <- rep(0.2, times = 5) #equal weights
-minmax <- c("min", "min", "min", "min", "max")
-t <- cradis$new(PM, w, minmax)
+colnames(pm) <- c(paste0("C", 1:5))
+rownames(pm) <- c(paste0("S", 1:7))
+t <- cradis$new(pm = pm, w = w, minmax = "max")
+summary(t)
 }
 \if{html}{\out{</div>}}
 
