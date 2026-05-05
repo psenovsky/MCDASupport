@@ -154,7 +154,6 @@ cradis <- R6Class("cradis",
       # step 4) ideal and anti-ideal solution
       t_i <- apply(pm_w, 2, max)
       t_ai <- apply(pm_w, 2, min)
-      print(t_i)
       # step 5) compute d+ and d-
       # d- = t_i - pm_w
       d_plus <- sweep(-pm_w, 2, t_i, FUN = "+")
