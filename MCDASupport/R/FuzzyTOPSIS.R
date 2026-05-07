@@ -94,6 +94,9 @@ fuzzytopsis <- R6Class("fuzzytopsis",
     #' @field cc Alternatives sorted by closeness coeficient
     cc = NULL,
 
+    #' @field result dataframe with a+, a- and closeness coef.
+    result = NULL,
+
     #' @description
     #' public constructor, creates fuzzytopsis object.
     #'
@@ -207,6 +210,9 @@ fuzzytopsis <- R6Class("fuzzytopsis",
       self$a_plus <- a_plus
       self$a_minus <- a_minus
       self$cc <- sort(cc, decreasing = TRUE)
+      self$result <- data.frame(a_plus, a_minus, cc)
+      colnames(self$result) <- c("a+", "a-", "closeness coef.")
+      rownames(self$result) <- self$alt
     },
 
     #' @description
@@ -216,13 +222,9 @@ fuzzytopsis <- R6Class("fuzzytopsis",
     summary = function() {
       nalt <- length(self$alt)
       ncri <- nrow(self$w)
-      cat(paste0("Fuzzy TOPSIS processed ", nalt, " alternatives in ", ncri,
-                 " criteria\n\n", "a+:\n"))
-      print(self$a_plus, pretty = TRUE)
-      cat(paste("\na-:\n"))
-      print(self$a_minus, pretty = TRUE)
-      cat(paste("\nAlternatives sorted by closeness coef.:\n"))
-      print(self$cc, pretty = TRUE)
+      cat(paste0("Fuzzy TOPSIS\nprocessed ", nalt, " alternatives in ", ncri,
+                 " criteria\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
     }
   ),
   private = list(

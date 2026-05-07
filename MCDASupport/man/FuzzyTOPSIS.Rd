@@ -156,6 +156,8 @@ maximalize)}
 \item{\code{a_minus}}{a-}
 
 \item{\code{cc}}{Alternatives sorted by closeness coeficient}
+
+\item{\code{result}}{dataframe with a+, a- and closeness coef.}
 }
 \if{html}{\out{</div>}}
 }
