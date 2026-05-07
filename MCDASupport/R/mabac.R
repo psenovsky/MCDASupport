@@ -35,7 +35,8 @@
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
 #' @keywords MABAC
-mabac <- R6Class("mabac",
+mabac <- R6Class(
+  "mabac",
   public = list(
     #' @field pm normalized performance matrix. Criteria (in columns) are
     #'  expected to be ordered from most influential to least influential.
@@ -58,6 +59,9 @@ mabac <- R6Class("mabac",
 
     #' @field final_rank final ranking of the alternatives based on dist_border
     final_rank = NULL,
+
+    #' @field result dataframe with distance from border approximation area and rank
+    result = NULL,
 
     #' @description
     #' class constructor, validates data and computes the model.
@@ -93,8 +97,11 @@ mabac <- R6Class("mabac",
       self$minmax <- validation$validate_minmax(minmax, ncri)
       self$pm <- pm
       for (i in 1:ncri) {
-        self$pm[, i] <- mcda_norm(pm[, i], minmax = self$minmax[i],
-                                  method = "minmax")
+        self$pm[, i] <- mcda_norm(
+          pm[, i],
+          minmax = self$minmax[i],
+          method = "minmax"
+        )
       }
       validation$validate_no_elements_vs_cri(w, ncri, "weights", TRUE)
       # end of validation
@@ -113,7 +120,9 @@ mabac <- R6Class("mabac",
       m <- nrow(self$pm)
       pm_w <- self$pm
       # weighted normalized decision matrix
-      for (j in 1:ncri) pm_w[, j] <- self$w[j] + self$pm[, j] * self$w[j]
+      for (j in 1:ncri) {
+        pm_w[, j] <- self$w[j] + self$pm[, j] * self$w[j]
+      }
       # border approximation area vector
       g <- apply(pm_w, 2, prod)^(1 / m)
       # distance from border approximated area
@@ -122,6 +131,12 @@ mabac <- R6Class("mabac",
       self$dist_border <- rowSums(q)
       # final ranking
       self$final_rank <- rank(-self$dist_border, ties.method = "max")
+      self$result <- data.frame(
+        self$dist_border,
+        rank(-self$dist_border, ties.method = "max")
+      )
+      colnames(self$result) <- c("disrance", "rank")
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -130,12 +145,14 @@ mabac <- R6Class("mabac",
     summary = function() {
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
-      cat(paste("MABAC method results:\nProcessed ", nalt, " alternatives in ",
-                ncri, " criteria\n\nResults:\n\n",
-                "Total distance from border approximate area:\n"))
-      print(self$dist_border, pretty = TRUE)
-      cat(paste("\nFinal rank:\n"))
-      print(self$final_rank)
+      cat(paste(
+        "MABAC method results:\nProcessed ",
+        nalt,
+        " alternatives in ",
+        ncri,
+        " criteria\n\nResults:\n"
+      ))
+      print(self$result, pretty = TRUE)
     }
   )
 )

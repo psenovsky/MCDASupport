@@ -77,6 +77,8 @@ numeric criteria (ordinal criteria are already considered processed).}
 \item{\code{dist_border}}{total distance from border approximation area}
 
 \item{\code{final_rank}}{final ranking of the alternatives based on dist_border}
+
+\item{\code{result}}{dataframe with distance from border approximation area and rank}
 }
 \if{html}{\out{</div>}}
 }
