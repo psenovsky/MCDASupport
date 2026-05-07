@@ -71,6 +71,9 @@ gra <- R6Class("gra",
     #'  is default.
     minmax = NULL,
 
+    #' @field result datagrame with GRA and ranks
+    result = NULL,
+
     #' @description
     #' class constructor, validates data and computes the model.
     #'
@@ -132,6 +135,12 @@ gra <- R6Class("gra",
       self$grc <- 0.5 / (k + 0.5)
       self$gra <- rowSums(self$grc) / ncri
       self$gra_sorted <- sort(self$gra, decreasing = TRUE)
+      self$result <- data.frame(
+        self$gra,
+        rank(-self$gra, ties.method = "min")
+      )
+      colnames(self$result) <- c("GRA", "rank")
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -140,9 +149,10 @@ gra <- R6Class("gra",
     summary = function() {
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
-      cat(paste("GRA method results:\nProcessed ", nalt, " alternatives in ",
+      cat(paste("GRA method\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
-      print(self$gra_sorted, pretty = TRUE)
+      print(self$result, pretty = TRUE)
+      self$interaction_diagram()
     },
 
     #' @description

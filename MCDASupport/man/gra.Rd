@@ -95,6 +95,8 @@ relational coefficient). Sorted form best to worst.}
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
+
+\item{\code{result}}{datagrame with GRA and ranks}
 }
 \if{html}{\out{</div>}}
 }
