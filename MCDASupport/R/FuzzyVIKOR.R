@@ -210,11 +210,11 @@ fuzzyvikor <- R6Class("fuzzyvikor",
       self$compromiseSolution <- sr_indexes$compromiseSolution
       self$result <- data.frame(
         self$S,
-        rank(self$S),
+        rank(self$S, ties.method = "min"),
         self$R,
-        rank(self$R),
+        rank(self$R, ties.method = "min"),
         self$Q,
-        rank(self$Q)
+        rank(self$Q, ties.method = "min")
       )
       colnames(self$result) <- c("S", "rank (S)", "R", "rank (R)", "Q", "rank (Q, compromise)")
       rownames(self$result) <- self$alt

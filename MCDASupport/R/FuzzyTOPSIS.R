@@ -210,7 +210,7 @@ fuzzytopsis <- R6Class("fuzzytopsis",
       self$a_plus <- a_plus
       self$a_minus <- a_minus
       self$cc <- sort(cc, decreasing = TRUE)
-      self$result <- data.frame(a_plus, a_minus, cc, rank(-cc, , ties.method = "min"))
+      self$result <- data.frame(a_plus, a_minus, cc, rank(-cc, ties.method = "min"))
       colnames(self$result) <- c("a+", "a-", "closeness coef.", "rank")
       rownames(self$result) <- self$alt
     },
