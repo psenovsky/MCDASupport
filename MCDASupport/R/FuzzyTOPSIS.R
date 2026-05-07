@@ -94,7 +94,7 @@ fuzzytopsis <- R6Class("fuzzytopsis",
     #' @field cc Alternatives sorted by closeness coeficient
     cc = NULL,
 
-    #' @field result dataframe with a+, a- and closeness coef.
+    #' @field result dataframe with a+, a-, closeness coef. and rank
     result = NULL,
 
     #' @description
@@ -210,8 +210,8 @@ fuzzytopsis <- R6Class("fuzzytopsis",
       self$a_plus <- a_plus
       self$a_minus <- a_minus
       self$cc <- sort(cc, decreasing = TRUE)
-      self$result <- data.frame(a_plus, a_minus, cc)
-      colnames(self$result) <- c("a+", "a-", "closeness coef.")
+      self$result <- data.frame(a_plus, a_minus, cc, rank(-cc, , ties.method = "min"))
+      colnames(self$result) <- c("a+", "a-", "closeness coef.", "rank")
       rownames(self$result) <- self$alt
     },
 

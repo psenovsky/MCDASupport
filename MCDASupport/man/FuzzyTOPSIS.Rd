@@ -157,7 +157,7 @@ maximalize)}
 
 \item{\code{cc}}{Alternatives sorted by closeness coeficient}
 
-\item{\code{result}}{dataframe with a+, a- and closeness coef.}
+\item{\code{result}}{dataframe with a+, a-, closeness coef. and rank}
 }
 \if{html}{\out{</div>}}
 }
