@@ -137,6 +137,9 @@ are: 1: 1.cri-1.alt., 2: 1.cri.-2.alt, 3: 2.cri-1.alt, 4: 2.cri-2.alt,
 
 \item{\code{Q}}{list of alternatives using Q-metric}
 
+\item{\code{result}}{dataframe with S, R, Q metrics and its accompanying ranking
+Q represents balance between S and R. All metrics are minimized}
+
 \item{\code{compromiseSolution}}{compromise solution based on S, R and Q metrics}
 }
 \if{html}{\out{</div>}}

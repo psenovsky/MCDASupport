@@ -73,6 +73,10 @@ fuzzyvikor <- R6Class("fuzzyvikor",
     #' @field Q list of alternatives using Q-metric
     Q = NULL,
 
+    #' @field result dataframe with S, R, Q metrics and its accompanying ranking
+    #'  Q represents balance between S and R. All metrics are minimized
+    result = NULL,
+
     #' @field compromiseSolution compromise solution based on S, R and Q metrics
     compromiseSolution = NULL,
 
@@ -204,18 +208,26 @@ fuzzyvikor <- R6Class("fuzzyvikor",
       self$R <- sr_indexes$R
       self$Q <- sr_indexes$Q
       self$compromiseSolution <- sr_indexes$compromiseSolution
+      self$result <- data.frame(
+        self$S,
+        rank(self$S),
+        self$R,
+        rank(self$R),
+        self$Q,
+        rank(self$Q)
+      )
+      colnames(self$result) <- c("S", "rank (S)", "R", "rank (R)", "Q", "rank (Q, compromise)")
+      rownames(self$result) <- self$alt
     },
 
     #' @description
     #' summary of the Fuzzy VIKOR method resutls.
     #' @return basic information on the model including ranking.
     summary = function() {
-      cat(paste0("Fuzzy VIKOR\nS metric\n"))
-      print(self$S, pretty = TRUE)
-      cat(paste("\nR metric\n"))
-      print(self$R, pretty = TRUE)
-      cat(paste("\nQ metric\n"))
-      print(self$Q, pretty = TRUE)
+      ncri <- nrow(self$w)
+      nalt <- length(self$alt)
+      cat(paste0("Fuzzy VIKOR\nProcessed ", nalt, " alternatives in ", ncri, " criteria with ", self$v, " ratio between S and R metrics.\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
       cat("\nCompromise solution: ", unlist(self$compromiseSolution))
     }
   ),
