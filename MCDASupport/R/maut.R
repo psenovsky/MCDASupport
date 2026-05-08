@@ -52,6 +52,9 @@ maut <- R6Class("maut",
     #' @field finalRank final ranking of the alternatives
     finalRank = NULL,
 
+    #' @field result data frame with utility score and rank
+    result = NULL,
+
     #' @description
     #' class constructor, validates data and computes the model.
     #'
@@ -114,6 +117,9 @@ maut <- R6Class("maut",
       ui <- rowSums(ui)
       self$utility_score <- ui
       self$finalRank <- rank(-self$utility_score, ties.method = "max")
+      self$result <- data.frame(ui, self$finalRank)
+      colnames(self$result) <- c("utility score", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -123,10 +129,8 @@ maut <- R6Class("maut",
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
       cat(paste("MAUT results:\nProcessed ", nalt, " alternatives in ",
-                ncri, " criteria\n\nResults:\n\nFinal utility:\n"))
-      print(self$utility_score, pretty = TRUE)
-      cat(paste("\nFinal ranking:\n"))
-      print(self$finalRank, pretty = TRUE)
+                ncri, " criteria\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
     }
   )
 )

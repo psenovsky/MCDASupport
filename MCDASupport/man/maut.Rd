@@ -71,6 +71,8 @@ direction.}
 \item{\code{utility_score}}{final utility score}
 
 \item{\code{finalRank}}{final ranking of the alternatives}
+
+\item{\code{result}}{data frame with utility score and rank}
 }
 \if{html}{\out{</div>}}
 }
