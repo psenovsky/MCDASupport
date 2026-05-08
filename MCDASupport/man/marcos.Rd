@@ -148,6 +148,8 @@ to max.}
 
 \item{\code{ranking}}{ordered results expresed as benefit function f(K), from
 best to worst}
+
+\item{\code{result}}{dataframe with f(K) ... the benefit function and rank}
 }
 \if{html}{\out{</div>}}
 }

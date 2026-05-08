@@ -118,6 +118,9 @@ marcos <- R6Class("marcos",
     #'  best to worst
     ranking = NULL,
 
+    #' @field result dataframe with f(K) ... the benefit function and rank
+    result = NULL,
+
     #' @description
     #' Public constructor of the class. Validates the input parameters and
     #'  runs the model computation.
@@ -214,6 +217,9 @@ marcos <- R6Class("marcos",
 
       order_indices <- order(fK, decreasing = TRUE)
       self$ranking <- fK[order_indices]
+      self$result <- data.frame(fK, rank(-fK, ties = "min"))
+      colnames(self$result) <- c("benefit score f(K)", "rank")
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -223,9 +229,8 @@ marcos <- R6Class("marcos",
       nalt <- nrow(self$pm)
       ncri <- length(self$w)
       cat(paste0("MARCOS method\n processed ", nalt, " alternatives in ", ncri,
-                 " criteria\n\nRanking using benefit function:\n"))
-      print(self$ranking, pretty = TRUE)
+        " criteria\n\nResult:\n"))
+      print(self$result, pretty = TRUE)
     }
-
   )
 )
