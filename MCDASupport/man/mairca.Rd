@@ -86,6 +86,8 @@ performance of the alternative}
 \item{\code{Q}}{vector of final values of criteria functions for alternatives}
 
 \item{\code{rank}}{vector of ranks based on Q}
+
+\item{\code{result}}{data frame with gap, Q and rank}
 }
 \if{html}{\out{</div>}}
 }

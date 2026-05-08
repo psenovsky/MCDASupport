@@ -70,6 +70,9 @@ mairca <- R6Class(
     #'@field rank vector of ranks based on Q
     rank = NULL,
 
+    #' @field result data frame with gap, Q and rank
+    result = NULL,
+
     #' @description
     #' public constructor allowing the user to construct Borta count decision
     #'  analysis problem and compute it.
@@ -160,6 +163,9 @@ mairca <- R6Class(
       self$Q <- Q
       self$gap <- G
       self$rank <- rank(Q, ties = "min")
+      self$result <- data.frame(Q, self$rank)
+      colnames(self$result) <- c("Q", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -175,12 +181,9 @@ mairca <- R6Class(
         nalt,
         " alternatives in ",
         ncri,
-        " criteria\n"
+        " criteria\n\nResults:\n"
       ))
-      cat("Final values of criteria functions (Q):\n")
-      print(self$Q, pretty = TRUE)
-      cat("\nRanking of alternatives:\n")
-      print(self$rank, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
