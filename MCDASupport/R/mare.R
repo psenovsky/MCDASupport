@@ -168,6 +168,7 @@ mare <- R6Class(
         " criteria\n"
       ))
       print(self$result, pretty = TRUE)
+      self$resultPlot
     }
   )
 )
