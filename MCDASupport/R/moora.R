@@ -46,6 +46,9 @@ moora <- R6Class("moora",
     #'  is default.
     minmax = NULL,
 
+    #' @field result dataframe with normalized assessment and rank
+    result = NULL,
+
     #' @description
     #' Public constructor for the class. Checks validity of input parameters
     #'  and performs computation of of the model based on them.
@@ -113,6 +116,9 @@ moora <- R6Class("moora",
       max_sums <- rowSums(weighted_pm[, max_indices])
       self$y <- max_sums - min_sums
       self$y_sorted <- sort(self$y, decreasing = TRUE)
+      self$result <- data.frame(self$y, rank(-self$y, ties.method = "max"))
+      colnames(self$result) <- c("score", "rank")
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -123,8 +129,7 @@ moora <- R6Class("moora",
       ncri <- ncol(self$pm)
       cat(paste("MOORA method results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
-      print(self$y_sorted, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
-
 )

@@ -74,6 +74,8 @@ respect to all objectives from best to worst.}
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
+
+\item{\code{result}}{dataframe with normalized assessment and rank}
 }
 \if{html}{\out{</div>}}
 }
