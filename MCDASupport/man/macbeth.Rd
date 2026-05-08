@@ -82,6 +82,8 @@ ordered from most influential to least influential.}
 \item{\code{v}}{MACBETH score}
 
 \item{\code{finalRank}}{final ranking of the alternatives}
+
+\item{\code{result}}{data frame with MACBETH score and rank}
 }
 \if{html}{\out{</div>}}
 }

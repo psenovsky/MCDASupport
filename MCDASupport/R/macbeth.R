@@ -65,6 +65,9 @@ macbeth <- R6Class("macbeth",
     #' @field finalRank final ranking of the alternatives
     finalRank = NULL,
 
+    #' @field result data frame with MACBETH score and rank
+    result = NULL,
+
     #' @description
     #' class constructor, validates data and computes the model.
     #'
@@ -127,6 +130,12 @@ macbeth <- R6Class("macbeth",
       vi <- rowSums(vi)
       self$v <- vi
       self$finalRank <- rank(-self$v, ties.method = "max")
+      self$result <- data.frame(
+        vi,
+        rank(-self$v, ties.method = "max")
+      )
+      colnames(self$result) <- c("Macbeth score", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -135,11 +144,9 @@ macbeth <- R6Class("macbeth",
     summary = function() {
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
-      cat(paste("MACBETH results:\nProcessed ", nalt, " alternatives in ",
-                ncri, " criteria\n\nResults:\n\nOverall score:\n"))
-      print(self$v, pretty = TRUE)
-      cat(paste("\nFinal ranking:\n"))
-      print(self$finalRank, pretty = TRUE)
+      cat(paste("MACBETH method:\nProcessed ", nalt, " alternatives in ",
+                ncri, " criteria\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
     }
   )
 )
