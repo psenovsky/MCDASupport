@@ -50,6 +50,9 @@ moosra <- R6Class("moosra",
     #'  is default.
     minmax = NULL,
 
+    #' @field result data frame with score and rank of alternatives
+    result = NULL,
+
     #' @description
     #' Public constructor for the class. Checks validity of input parameters
     #'  and performs computation of of the model based on them.
@@ -117,6 +120,10 @@ moosra <- R6Class("moosra",
       max_sums <- rowSums(weighted_pm[, max_indices])
       self$v <- max_sums / min_sums
       self$v_sorted <- sort(self$v, decreasing = TRUE)
+      self$result <- data.frame(self$v, rank(-self$v, ties.method = "max"))
+      colnames(self$result) <- c("score", "rank")
+      rownames(self$result) <- rownames(self$pm)
+
     },
 
     #' @description
@@ -125,9 +132,9 @@ moosra <- R6Class("moosra",
     summary = function() {
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
-      cat(paste("MOOSRA method results:\nProcessed ", nalt, " alternatives in ",
+      cat(paste("MOOSRA method:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
-      print(self$v_sorted, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
