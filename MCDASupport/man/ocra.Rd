@@ -68,6 +68,8 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \item{\code{Pi}}{overall preference rating (higher better)}
 
 \item{\code{rank}}{ranked alternatives, based on Pi}
+
+\item{\code{result}}{data frame with preference rating and ranking}
 }
 \if{html}{\out{</div>}}
 }

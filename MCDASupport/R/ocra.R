@@ -54,6 +54,9 @@ ocra <- R6Class(
     #' @field rank ranked alternatives, based on Pi
     rank = NULL,
 
+    #' @field result data frame with preference rating and ranking
+    result = NULL,
+
     #' @description
     #' Public constructor for the class. Checks validity of input parameters
     #'  and performs computation of of the model based on them.
@@ -147,6 +150,9 @@ ocra <- R6Class(
       # results
       self$Pi <- Pi
       self$rank <- rank
+      self$result <- data.frame(Pi, rank)
+      colnames(self$result) <- c("pref. rating", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -158,16 +164,9 @@ ocra <- R6Class(
       ncri <- ncol(self$pm)
       cat(paste0(
         "OCRA:\n",
-        "processed ",
-        nalt,
-        " alternatives in ",
-        ncri,
-        " criteria\n"
+        "processed ", nalt, " alternatives in ", ncri, " criteria\n\nResults"
       ))
-      cat("\nOverall performance rating:\n")
-      print(self$Pi, pretty = TRUE)
-      cat("\nRanking of the alternatives based on Pi:\n")
-      print(self$rank, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
