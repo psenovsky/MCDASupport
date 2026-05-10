@@ -141,6 +141,8 @@ cardinal, or "O" - ordinal.}
 
 \item{\code{pamssem_i}}{final ranking using PAMSSEM I method (not
 validated)}
+
+\item{\code{result}}{data frame with flows and PAMSEM II ranks}
 }
 \if{html}{\out{</div>}}
 }

@@ -124,6 +124,9 @@ pamssem <- R6Class("pamssem",
     #'   validated)
     pamssem_i = NULL,
 
+    #' @field result data frame with flows and PAMSEM II ranks
+    result = NULL,
+
     #' @description
     #' Public constructor. Valides the inputs and computes the method based on
     #'  them.
@@ -276,6 +279,8 @@ pamssem <- R6Class("pamssem",
         }
       }
       self$pamssem_i <- pam1
+      self$result <- flows
+      self$result$`PAMSSEM II (rank)` <- self$pamssem_ii
     },
     
     #' @description
@@ -287,10 +292,8 @@ pamssem <- R6Class("pamssem",
       cat(paste("PAMSSEM results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n\nPAMSSEM I (not validated):\n"))
       print(self$pamssem_i, pretty = TRUE)
-      cat(paste("\nPAMSSEM II:\n"))
-      print(self$pamssem_ii, pretty = TRUE)
-      cat(paste("\nFlows:\n"))
-      print(self$flows, pretty = TRUE)
+      cat(paste0("\n\nPAMSSEM II\n"))
+      print(self$result, pretty = TRUE)
     }
   ),
   private = list(
