@@ -91,7 +91,7 @@ columns)}
 
 \item{\code{u}}{quantitative utility in percents}
 
-\item{\code{result}}{result dataframe with significance (Q), utility (%) and rank}
+\item{\code{result}}{result dataframe with significance (Q), utility (\%) and rank}
 }
 \if{html}{\out{</div>}}
 }
