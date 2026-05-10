@@ -63,7 +63,7 @@ copras <- R6Class("copras",
     #' @field u quantitative utility in percents
     u = NULL,
 
-    #' @field result result dataframe with significance (Q), utility (%) and rank
+    #' @field result result dataframe with significance (Q), utility (\%) and rank
     result = NULL,
 
     #' @description
@@ -129,9 +129,7 @@ copras <- R6Class("copras",
       u <- 100 * q / max(q)
       self$q <- q
       self$u <- u
-      self$result <- data.frame(
-        q, u, rank(-q)
-      )
+      self$result <- data.frame(q, u, rank(-q, ties.method = "max"))
       colnames(self$result) <- c("significance", "utility (%)", "rank")
       rownames(self$result) <- rownames(self$pm)
 
