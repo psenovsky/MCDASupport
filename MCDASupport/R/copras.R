@@ -144,7 +144,6 @@ copras <- R6Class("copras",
       cat(paste0("\nCOPRAS:\n", "processed ", nalt,
                  " alternatives in ", ncri,
                  " criteria\n\nResults:\n"))
-      # print(sort(self$u, decreasing = TRUE), pretty = TRUE)
       print(self$result, pretty = TRUE)
     }
   )
