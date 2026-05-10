@@ -97,6 +97,8 @@ numeric criteria (ordinal criteria are already considered processed).}
 \item{\code{finalRank}}{- final ranking of the alternatives}
 
 \item{\code{ra}}{total ranking of the alternatives}
+
+\item{\code{result}}{data frame with total rank and rank}
 }
 \if{html}{\out{</div>}}
 }

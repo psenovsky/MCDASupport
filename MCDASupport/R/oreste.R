@@ -78,6 +78,10 @@ oreste <- R6Class("oreste",
     #' @field ra total ranking of the alternatives
     ra = NULL,
 
+
+    #' @field result data frame with total rank and rank 
+    result = NULL,
+
     #' @description
     #' class constructor, validates data and computes the model.
     #'
@@ -147,6 +151,9 @@ oreste <- R6Class("oreste",
       bdm2 <- matrix(lookup_table[as.character(bdm)], nrow = nalt, ncol = ncri)
       self$ra <- rowSums(bdm2)
       self$finalRank <- rank(-self$ra, ties.method = "max")
+      self$result <- data.frame(self$ra, self$finalRank)
+      colnames(self$result) <- c("total rank (ra)", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -156,10 +163,8 @@ oreste <- R6Class("oreste",
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
       cat(paste("ORESTE results:\nProcessed ", nalt, " alternatives in ",
-                ncri, " criteria\n\nResults:\n\nTotal ranking:\n"))
-      print(self$ra, pretty = TRUE)
-      cat(paste("\nFinal rank of alternatives:\n"))
-      print(self$finalRank, pretty = TRUE)
+                ncri, " criteria\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
     }
   )
 )
