@@ -269,118 +269,69 @@ melchior <- R6Class(
     graph = function() {
       alt <- rownames(self$pm)
       n <- length(alt)
-      theta <- seq(0, 2 * pi, length.out = n + 1)[1:n]
-      nodes_x <- cos(theta)
-      nodes_y <- sin(theta)
+      nodes <- data.frame(
+        id = 1:n,
+        label = alt,
+        title = paste("Alternative:", alt), # Hover text
+        color = list(
+          background = "white",
+          border = "black",
+          highlight = "#d3d3d3"
+        ),
+        font = list(size = 20, face = "bold"),
+        borderWidth = 2,
+        shape = "circle"
+      )
+      edges_list <- list()
 
-      SF_mat <- (self$outranking == "SF") * 1
-      Sf_mat <- (self$outranking == "Sf") * 1
-      p <- plot_ly()
-      p <- private$add_preference_edges(
-        p,
-        Sf_mat,
-        "gray",
-        1.5,
-        "dash",
-        "Weak preference (Sf)",
-        n,
-        nodes_x,
-        nodes_y
-      )
-      p <- private$add_preference_edges(
-        p,
-        SF_mat,
-        "#1f77b4",
-        2.5,
-        "solid",
-        "Strong preference (SF)",
-        n,
-        nodes_x,
-        nodes_y
-      )
-      p <- p %>%
-        add_markers(
-          x = nodes_x,
-          y = nodes_y,
-          marker = list(
-            size = 40,
-            color = "white",
-            line = list(color = "black", width = 2)
-          ),
-          text = alt,
-          hoverinfo = "text"
-        ) %>%
-        add_annotations(
-          x = nodes_x,
-          y = nodes_y,
-          text = alt,
-          showarrow = FALSE,
-          font = list(size = 14, weight = "bold")
-        )
-      p <- p %>%
-        layout(
-          title = list(text = "Preference structure (MELICHOR)", y = 0.95),
-          xaxis = list(
-            title = "",
-            showgrid = FALSE,
-            zeroline = FALSE,
-            showticklabels = FALSE
-          ),
-          yaxis = list(
-            title = "",
-            showgrid = FALSE,
-            zeroline = FALSE,
-            showticklabels = FALSE
-          ),
-          showlegend = TRUE
-        )
-      return(p)
-    }
-  ),
-  private = list(
-    # @description
-    # Helper function for graphing
-    #
-    # @param p plot_ly object
-    # @param m matrix (Sf or SF)
-    # @param color color of the edge
-    # @param width width of the edge
-    # @param style style of the edge
-    # @param name name of the edge
-    # @param n number of nodes
-    # @param nodes_x x coordinates
-    # @param nodes_y y coordinates
-    #
-    # @return plot_ly object with added edges
-    add_preference_edges = function(
-      p,
-      m,
-      color,
-      width,
-      style,
-      name,
-      n,
-      nodes_x,
-      nodes_y
-    ) {
       for (i in 1:n) {
         for (j in 1:n) {
-          if (m[i, j] == 1) {
-            p <- p %>%
-              add_segments(
-                x = nodes_x[i],
-                xend = nodes_x[j],
-                y = nodes_y[i],
-                yend = nodes_y[j],
-                line = list(color = color, width = width, dash = style),
-                name = name,
-                hoverinfo = "none",
-                showlegend = FALSE
-              )
+          rel_type <- self$outranking[i, j]
+
+          if (rel_type %in% c("SF", "Sf")) {
+            is_strong <- rel_type == "SF"
+
+            edges_list[[length(edges_list) + 1]] <- data.frame(
+              from = i,
+              to = j,
+              label = rel_type,
+              color = list(color = if (is_strong) "#1f77b4" else "gray"),
+              width = if (is_strong) 3 else 1.5,
+              dashes = !is_strong, 
+              arrows = "to",
+              title = if (is_strong) {
+                "Strong preference (SF)"
+              } else {
+                "Weak preference (Sf)"
+              }
+            )
           }
         }
       }
-      return(p)
+      if (length(edges_list) > 0) {
+        edges <- do.call(rbind, edges_list)
+      } else {
+        edges <- data.frame(from = integer(), to = integer())
+      }
+      v <- visNetwork(
+        nodes,
+        edges,
+        main = "Preference structure (MELCHIOR)"
+      ) %>%
+        visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
+        visPhysics(solver = "forceAtlas2Based", stabilization = TRUE) %>%
+        visEdges(smooth = list(type = "curvedCW", roundness = 0.2)) %>%
+        visLegend(
+          addEdges = data.frame(
+            label = c("Strong (SF)", "Weak (Sf)"),
+            color = c("#1f77b4", "gray"),
+            dashes = c(FALSE, TRUE),
+            arrows = "to"
+          ),
+          useGroups = FALSE
+        )
+
+      return(v)
     }
   )
 )
