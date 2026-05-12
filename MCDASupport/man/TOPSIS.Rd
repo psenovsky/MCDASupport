@@ -73,6 +73,8 @@ are maximized)}
 
 \item{\code{minmax}}{direction (max or min) of criteria optimization}
 
+\item{\code{closeness}}{closeness measure (C) of the alternatives}
+
 \item{\code{closeness_ord}}{ordered list of alternatives using closeness (C)
 criterium}
 
@@ -87,6 +89,9 @@ criterium}
 \item{\code{D_ideal}}{alternative closeness to ideal variant}
 
 \item{\code{D_anti}}{alternative closeness to anti-ideal variant}
+
+\item{\code{result}}{dataframe with ideal, anti-ideal distances,closeness and
+rank based on closeness}
 }
 \if{html}{\out{</div>}}
 }

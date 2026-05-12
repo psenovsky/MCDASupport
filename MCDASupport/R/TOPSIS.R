@@ -48,6 +48,9 @@ topsis <- R6Class("topsis",
     #' @field minmax direction (max or min) of criteria optimization
     minmax = NULL,
 
+    #' @field closeness closeness measure (C) of the alternatives
+    closeness = NULL,
+
     #' @field closeness_ord ordered list of alternatives using closeness (C)
     #'  criterium
     closeness_ord = NULL,
@@ -69,6 +72,10 @@ topsis <- R6Class("topsis",
 
     #' @field D_anti alternative closeness to anti-ideal variant
     D_anti = NULL,
+
+    #' @field result dataframe with ideal, anti-ideal distances,closeness and
+    #'  rank based on closeness
+    result = NULL,
 
     #' @description
     #' Public constructor for TOPSIS object. Performas validation of input
@@ -161,6 +168,14 @@ topsis <- R6Class("topsis",
       self$A_anti <- top_i$a_anti
       self$D_ideal <- top_i$d_ideal
       self$D_anti <- top_i$d_anti
+      self$result <- data.frame(
+        top_i$d_ideal,
+        top_i$d_anti,
+        top_i$closenes,
+        rank(-top_i$closenes, , ties = "max")
+      )
+      colnames(self$result) <- c("ideal", "anti-ideal", "closeness", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -168,16 +183,8 @@ topsis <- R6Class("topsis",
     summary = function() {
       nalt <- nrow(self$pm)
       cat(paste0("TOPSIS\nprocessed ", nalt, " alternatives in ",
-                 length(self$w), " criteria\n\nA ideal\n"))
-      print(self$A_ideal, pretty = TRUE)
-      cat(paste("\nA antiideal\n"))
-      print(self$A_anti, pretty = TRUE)
-      cat(paste("\nD (alternative) ideal\n"))
-      print(self$D_ideal, pretty = TRUE)
-      cat(paste("\nD (alternative) antiideal\n\n"))
-      print(self$D_anti, pretty = TRUE)
-      cat(paste("\n\nSolution (ordered alternatives)\n"))
-      print(self$closeness_ord, pretty = TRUE)
+                 length(self$w), " criteria\n\nResult\n"))
+      print(self$result, pretty = TRUE)
     }
   )
 )
