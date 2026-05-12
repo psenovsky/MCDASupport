@@ -77,6 +77,9 @@ are maximized)}
 \item{\code{D_ideal}}{alternative closeness to ideal variant}
 
 \item{\code{ranks}}{ranks derived from distance to ideal solution (D_ideal) measure}
+
+\item{\code{result}}{data frame with ideal, antiideal distance, closeness and
+rank based on ideal distance}
 }
 \if{html}{\out{</div>}}
 }

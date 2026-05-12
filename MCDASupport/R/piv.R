@@ -58,6 +58,10 @@ piv <- R6Class(
     #' @field ranks ranks derived from distance to ideal solution (D_ideal) measure
     ranks = NULL,
 
+    #' @field result data frame with ideal, antiideal distance, closeness and
+    #'  rank based on ideal distance
+    result = NULL,
+
     #' @description
     #' Public constructor for TOPSIS object. Performas validation of input
     #'  parameters and uses them to compute the model.
@@ -106,6 +110,8 @@ piv <- R6Class(
       self$A_ideal <- t$A_ideal
       self$D_ideal <- t$D_ideal
       self$ranks <- ranks
+      self$result <- t$result
+      self$result$rank <- ranks
     },
 
     #' @description
@@ -117,13 +123,9 @@ piv <- R6Class(
         nalt,
         " alternatives in ",
         length(self$w),
-        " criteria\n\nA ideal\n"
+        " criteria\n\nResults:\n"
       ))
-      print(self$A_ideal, pretty = TRUE)
-      cat(paste("\nD (alternative) ideal\n"))
-      print(self$D_ideal, pretty = TRUE)
-      cat(paste("\n\nRanked alternatives\n"))
-      print(self$ranks, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
