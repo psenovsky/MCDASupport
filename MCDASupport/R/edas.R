@@ -143,12 +143,12 @@ edas <- R6Class("edas",
         }
       }
       t <- wsm$new(pda, self$w, "max")
-      spi <- t$result_table$weighted_sum
+      spi <- t$result$weighted_sum
       nspi <- spi / max(spi)
       self$spi_scoreM <- t$scoreM %>%
         plotly::layout(title = "SPI")
       t <- wsm$new(nda, self$w, "max")
-      sni <- t$result_table$weighted_sum
+      sni <- t$result$weighted_sum
       nsni <- sni / max(sni)
       self$sni_scoreM <- t$scoreM %>%
         plotly::layout(title = "SNI")
