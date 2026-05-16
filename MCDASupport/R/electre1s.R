@@ -360,10 +360,10 @@ electre1s <- R6Class("electre1s",
       for (q1 in interval) {
         q[criterium_no] <- q1
         t <- electre1s$new(self$pm_orig, self$w, q, self$p, self$v,
-                           self$minmaxcriteria, self$lambda, test = FALSE)
+                           self$minmaxcriteria, self$lambda)
         # special case when kernel is does not exist.
         if (length(self$Kernel) != length(t$Kernel)) return(q_prev)
-        t_kern <- all.equal(self$Kernel, t$Kernel)
+        t_kern <- isTRUE(all.equal(self$Kernel, t$Kernel))
         if (!t_kern) return(q_prev)
         q_prev <- q1
       }
@@ -384,10 +384,10 @@ electre1s <- R6Class("electre1s",
       for (p1 in interval) {
         p[criterium_no] <- p1
         t <- electre1s$new(self$pm_orig, self$w, self$q, p, self$v,
-                           self$minmaxcriteria, self$lambda, test = FALSE)
+                           self$minmaxcriteria, self$lambda)
         # special case when kernel is does not exist.
         if (length(self$Kernel) != length(t$Kernel)) return(p_prev)
-        t_kern <- all.equal(self$Kernel, t$Kernel)
+        t_kern <- isTRUE(all.equal(self$Kernel, t$Kernel))
         if (!t_kern) return(p_prev)
         p_prev <- p1
       }
@@ -408,10 +408,10 @@ electre1s <- R6Class("electre1s",
       for (v1 in interval) {
         v[criterium_no] <- v1
         t <- electre1s$new(self$pm_orig, self$w, self$q, self$p, v,
-                           self$minmaxcriteria, self$lambda, test = FALSE)
+                           self$minmaxcriteria, self$lambda)
         # special case when kernel is does not exist.
         if (length(self$Kernel) != length(t$Kernel)) return(v_prev)
-        t_kern <- all.equal(self$Kernel, t$Kernel)
+        t_kern <- isTRUE(all.equal(self$Kernel, t$Kernel))
         if (!t_kern) return(v_prev)
         v_prev <- v1
       }
