@@ -80,6 +80,9 @@ regime <- R6Class("regime",
     #' @field graph - visualization of the guide index using network diagram
     graph = NULL,
 
+    #' @field result dataframe with gi and rank
+    result = NULL,
+
     #' @description
     #' class constructor, validates data and computes the model.
     #'
@@ -175,6 +178,12 @@ regime <- R6Class("regime",
       tgi <- self$gi
       tgi[tgi < 0] <- 0
       self$graph <- plot.prefM(tgi)
+      self$result <- data.frame(
+        self$gi,
+        self$finalRank
+      )
+      colnames(self$result) <- c("gi (A1)", "gi (A2)", "gi (A3)", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -184,10 +193,8 @@ regime <- R6Class("regime",
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
       cat(paste("REGIME results:\nProcessed ", nalt, " alternatives in ",
-                ncri, " criteria\n\nResults:\n\nGuiding index:\n"))
-      print(self$gi, pretty = TRUE)
-      cat(paste("\nFinal rank of alternatives:\n"))
-      print(self$finalRank, pretty = TRUE)
+                ncri, " criteria\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
       print(self$graph)
     }
   )

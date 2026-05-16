@@ -98,6 +98,8 @@ accros the criteria}
 \item{\code{finalRank}}{- final ranking of the alternatives}
 
 \item{\code{graph}}{- visualization of the guide index using network diagram}
+
+\item{\code{result}}{dataframe with gi and rank}
 }
 \if{html}{\out{</div>}}
 }
