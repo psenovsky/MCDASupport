@@ -170,9 +170,6 @@ rawec <- R6Class(
         ""
       ))
       print(self$result, pretty = TRUE)
-      #print(self$Qi, pretty = TRUE)
-      #cat("\nRaning of the alternatives:\n")
-      #print(self$rank, pretty = TRUE)
     }
   )
 )
