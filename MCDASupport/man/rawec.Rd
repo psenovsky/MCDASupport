@@ -78,6 +78,8 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \item{\code{minmax}}{vector of optimization directions to the criteria. Use
 max/min only. Single max or min will be interpreted as direction to
 optimize all criteria.}
+
+\item{\code{result}}{dataframe with Q1 and ranks}
 }
 \if{html}{\out{</div>}}
 }

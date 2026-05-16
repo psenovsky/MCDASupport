@@ -66,6 +66,9 @@ rawec <- R6Class(
     #'  optimize all criteria.
     minmax = NULL,
 
+    #' @field result dataframe with Q1 and ranks
+    result = NULL,
+
     #' @description
     #' Public constructor for the class. Checks validity of input parameters
     #'  and performs computation of of the model based on them.
@@ -142,6 +145,12 @@ rawec <- R6Class(
       self$rank <- rank
       self$normPM1 <- normPM1
       self$normPM2 <- normPM2
+      self$result <- data.frame(
+        self$Qi,
+        self$rank
+      )
+      colnames(self$result) <- c("Qi", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -157,12 +166,13 @@ rawec <- R6Class(
         nalt,
         " alternatives in ",
         ncri,
-        " criteria\nRAWEC value (Qi):\n",
+        " criteria\n\n Results:\n",
         ""
       ))
-      print(self$Qi, pretty = TRUE)
-      cat("\nRaning of the alternatives:\n")
-      print(self$rank, pretty = TRUE)
+      print(self$result, pretty = TRUE)
+      #print(self$Qi, pretty = TRUE)
+      #cat("\nRaning of the alternatives:\n")
+      #print(self$rank, pretty = TRUE)
     }
   )
 )
