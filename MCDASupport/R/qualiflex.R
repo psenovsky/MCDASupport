@@ -115,7 +115,7 @@ qualiflex <- R6Class(
       alt <- rownames(self$pm)
       cri <- colnames(self$pm)
       # permutation generation
-      perm <- util_permutations(alt)
+      perm <- util_permutation(alt)
       # initial ranking of alternatives (pos_m)
       t <- matrix(0, nrow = nalt, ncol = ncri)
       rownames(t) <- alt
