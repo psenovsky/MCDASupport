@@ -44,7 +44,8 @@
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
 #' @keywords QUALIFLEX
-qualiflex <- R6Class("qualiflex",
+qualiflex <- R6Class(
+  "qualiflex",
   public = list(
     #' @field pm performance matrix. Criteria (in columns) are expected to be
     #'  ordered from most influential to least influential.
@@ -70,11 +71,11 @@ qualiflex <- R6Class("qualiflex",
     #'
     #' @param pm performance matrix. Criteria in columns, ordered from most to
     #'  least influential
+    #' @param w weight of the criteria
     #' @param minmax optimization direction vector for criteria. Either min or
     #'  max. Can be substituted by single min or max if optimization direction
     #'  is same for all criteria. The value needs to be provided for all
     #'  numeric criteria (ordinal criteria are already considered processed).
-    #' @param w weight of the criteria
     #'
     #' @return instance of the class including computed model
     #'
@@ -90,8 +91,8 @@ qualiflex <- R6Class("qualiflex",
     #' colnames(pm) <- criteria
     #' minmax <- c("min", "max", "max")
     #' w <-c(1, 1, 1)
-    #' t <- qualiflex$new(pm, minmax, w)
-    initialize = function(pm, minmax = "max", w) {
+    #' t <- qualiflex$new(pm, w, minmax)
+    initialize = function(pm, w, minmax = "max") {
       # validation of the parameters
       ncri <- ncol(pm)
       validation$validate_pm(pm)
@@ -134,7 +135,8 @@ qualiflex <- R6Class("qualiflex",
         for (j in 1:ncri) {
           pv <- 0 # permutation value
           for (k in 1:nalt) {
-            if (k == nalt) { # compare last with first
+            if (k == nalt) {
+              # compare last with first
               pk <- p[1]
               pk1 <- p[k]
             } else {
@@ -169,10 +171,15 @@ qualiflex <- R6Class("qualiflex",
     summary = function() {
       nalt <- nrow(self$pm)
       ncri <- ncol(self$pm)
-      cat(paste("QUALIFLEX results:\nProcessed ", nalt, " alternatives in ",
-                ncri, " criteria\n\nResults:\n\nMax permutation value: ",
-                max(self$permutation_val),
-                " is consistent for proposed final order:\n"))
+      cat(paste(
+        "QUALIFLEX results:\nProcessed ",
+        nalt,
+        " alternatives in ",
+        ncri,
+        " criteria\n\nResults:\n\nMax permutation value: ",
+        max(self$permutation_val),
+        " is consistent for proposed final order:\n"
+      ))
       print(self$finalRank, pretty = TRUE)
     }
   )
