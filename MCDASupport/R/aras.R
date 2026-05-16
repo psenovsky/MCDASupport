@@ -172,10 +172,10 @@ aras <- R6Class("aras",
     #'  is not run manually as constructor calls this method automatically.
     compute = function() {
       t <- wsm$new(self$pm_orig, self$w, self$minmax)
-      t$result_table$assesment_ratio <-
-        t$result_table$weighted_sum / max(t$result_table$weighted_sum)
-      ar <- t$result_table$assesment_ratio
-      names(ar) <- rownames(t$result_table)
+      t$result$assesment_ratio <-
+        t$result$weighted_sum / max(t$result$weighted_sum)
+      ar <- t$result$assesment_ratio
+      names(ar) <- rownames(t$result)
 
       self$result_table <- t$result_table
       self$weighted_sum_prc <- t$weighted_sum_prc
@@ -183,11 +183,11 @@ aras <- R6Class("aras",
       self$scoreM <- t$scoreM
 
       self$result <- data.frame(
-        t$result_table$assesment_ratio,
-        rank(-t$result_table$assesment_ratio)
+        t$result$assesment_ratio,
+        rank(-t$result$assesment_ratio)
       )
       colnames(self$result) <- c("assessment ratio", "rank")
-      rownames(self$result) <- rownames(t$result_table)
+      rownames(self$result) <- rownames(t$result)
     },
 
     #' @description
