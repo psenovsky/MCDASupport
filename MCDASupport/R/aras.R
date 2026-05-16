@@ -177,7 +177,7 @@ aras <- R6Class("aras",
       ar <- t$result$assesment_ratio
       names(ar) <- rownames(t$result)
 
-      self$result_table <- t$result_table
+      self$result_table <- t$result
       self$weighted_sum_prc <- t$weighted_sum_prc
       self$assessment_ratio <- ar
       self$scoreM <- t$scoreM
