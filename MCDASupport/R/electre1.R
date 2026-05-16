@@ -274,15 +274,19 @@ electre1 <- R6Class("electre1",
       upper_limit <- lower_limit <- c(0, 0)
       df <- data.frame(thresholds, lower_limit, upper_limit)
       # C upper limit
-      c_interval <- seq(from = self$c_threshold + step, to = 1, step = step)
+      c_interval <- seq(from = self$c_threshold + step, to = 1, by = step)
       c_prev <- self$c_threshold
       for (c1 in c_interval) {
-        t <- electre1$new(self$pm_orig, self$w, self$minmaxcriteria,
-                          concordance_threshold = c1,
-                          discordance_threshold = self$d_threshold,
-                          test = FALSE)
-        t_kern <- all.equal(self$Kernel, t$Kernel)
-        if (!t_kern) { # limit identified
+        t <- electre1$new(
+          self$pm_orig,
+          self$w,
+          self$minmaxcriteria,
+          concordance_threshold = c1,
+          discordance_threshold = self$d_threshold
+        )
+        t_kern <- isTRUE(all.equal(self$Kernel, t$Kernel))
+        if (!t_kern) {
+          # limit identified
           df[1, 3] <- c_prev
           break
         }
@@ -291,14 +295,13 @@ electre1 <- R6Class("electre1",
       if (df[1, 3] == 0) df[1, 3] <- "insens."
       # C lower limit
       c_interval <- seq(from = self$c_threshold - step,
-                        to = self$d_threshold + step, step = -step)
+                        to = self$d_threshold + step, by = -step)
       c_prev <- self$c_threshold
       for (c1 in c_interval) {
         t <- electre1$new(self$pm_orig, self$w, self$minmaxcriteria,
                           concordance_threshold = c1,
-                          discordance_threshold = self$d_threshold,
-                          test = FALSE)
-        t_kern <- all.equal(self$Kernel, t$Kernel)
+                          discordance_threshold = self$d_threshold)
+        t_kern <- isTRUE(all.equal(self$Kernel, t$Kernel))
         if (!t_kern) { # limit identified
           df[1, 2] <- c_prev
           break
@@ -308,13 +311,13 @@ electre1 <- R6Class("electre1",
       if (df[1, 2] == 0) df[1, 2] <- "insens."
       # D upper limit
       d_interval <- seq(from = self$d_threshold + step,
-                        to = self$c_threshold - step, step = step)
+                        to = self$c_threshold - step, by = step)
       d_prev <- self$d_threshold
       for (d1 in d_interval) {
         t <- electre1$new(self$pm_orig, self$w, self$minmaxcriteria,
                           concordance_threshold = self$c_threshold,
-                          discordance_threshold = d1, test = FALSE)
-        t_kern <- all.equal(self$Kernel, t$Kernel)
+                          discordance_threshold = d1)
+        t_kern <- isTRUE(all.equal(self$Kernel, t$Kernel))
         if (!t_kern) { # limit identified
           df[2, 3] <- d_prev
           break
@@ -324,13 +327,13 @@ electre1 <- R6Class("electre1",
       if (df[2, 3] == 0) df[2, 3] <- "insens."
       # D lower limit
       d_interval <- seq(from = self$d_threshold - step,
-                        to = 0, step = -step)
+                        to = 0, by = -step)
       d_prev <- self$d_threshold
       for (d1 in d_interval) {
         t <- electre1$new(self$pm_orig, self$w, self$minmaxcriteria,
                           concordance_threshold = self$c_threshold,
-                          discordance_threshold = d1, test = FALSE)
-        t_kern <- all.equal(self$Kernel, t$Kernel)
+                          discordance_threshold = d1)
+        t_kern <- isTRUE(all.equal(self$Kernel, t$Kernel))
         if (!t_kern) { # limit identified
           df[2, 2] <- d_prev
           break
