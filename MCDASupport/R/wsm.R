@@ -38,10 +38,10 @@ wsm <- R6Class("wsm",
     #'  is default.
     minmax = NULL,
 
-    #' @field result_table has weighted performance matrix with added columns
+    #' @field result has weighted performance matrix with added columns
     #'  to summ performance and extress this sum as a percentage of the best
     #'  alternative
-    result_table = NULL,
+    result = NULL,
 
     #' @field weighted_sum_prc vector specifying how close the alternatives are
     #'  to the best aleternative (expresed as the percentage of best) sorted
@@ -109,11 +109,12 @@ wsm <- R6Class("wsm",
       result_table <- weighted_pm
       result_table$weighted_sum <- weighted_sum
       result_table$weighted_sum_prc <- weighted_sum_prc
+      result_table$rank <- rank(-weighted_sum_prc, ties.method = "min")
       weighted_sum_prc <- sort(weighted_sum_prc, decreasing = TRUE)
       scoreM <- plot.scoreM(weighted_pm)
 
       # save results
-      self$result_table <- result_table
+      self$result <- result_table
       self$weighted_sum_prc <- weighted_sum_prc
       self$scoreM <- scoreM
     },
@@ -122,10 +123,10 @@ wsm <- R6Class("wsm",
     #' prepares summary of the WSM method resutls and outputs them
     #'  to the console.
     summary = function() {
-      cat(paste("WSM method results:\n"))
-      print(self$result_table, pretty = TRUE)
-      cat(paste("\nClosenes to best alternative as % of best\n"))
-      print(self$weighted_sum_prc, pretty = TRUE)
+      nalt <- nrow(self$pm) # no. of alternatives
+      ncri <- ncol(self$pm)
+      cat(paste0("WSM method\nprocessed ", nalt, " alternatives in ", ncri, " criteria\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
       print(self$scoreM)
     }
   )

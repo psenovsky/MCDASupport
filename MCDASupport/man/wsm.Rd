@@ -67,7 +67,7 @@ criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
 
-\item{\code{result_table}}{has weighted performance matrix with added columns
+\item{\code{result}}{has weighted performance matrix with added columns
 to summ performance and extress this sum as a percentage of the best
 alternative}
 
