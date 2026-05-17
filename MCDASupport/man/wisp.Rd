@@ -123,6 +123,8 @@ Alternatives in rows and criteria in columns}
 
 \item{\code{minmax}}{vector of optimization directions (min/max). Can be
 single min or max value  if all optimization directions are same.}
+
+\item{\code{result}}{dataframe with u, us and ranking for them}
 }
 \if{html}{\out{</div>}}
 }

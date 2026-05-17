@@ -100,6 +100,9 @@ wisp <- R6Class("wisp",
     #'  single min or max value  if all optimization directions are same.
     minmax = NULL,
 
+    #' @field result dataframe with u, us and ranking for them
+    result = NULL,
+
     #' @description
     #' class constructor, validates data and computes the model.
     #'
@@ -171,6 +174,14 @@ wisp <- R6Class("wisp",
       self$u_sorted <- sort(self$u, decreasing = TRUE)
       self$us <- (u_wsd2 + u_wpr2) / 2
       self$us_sorted <- sort(self$us, decreasing = TRUE)
+      self$result <- data.frame(
+        self$u,
+        rank(-self$u, ties.method = "min"),
+        self$us,
+        rank(-self$us, ties.method = "min")
+      )
+      colnames(self$result) <- c("WISP", "WISP rank", "S-WIPS", "S-WISP rank")
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -181,9 +192,10 @@ wisp <- R6Class("wisp",
       ncri <- ncol(self$pm)
       cat(paste("WISP method results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
-      print(self$u_sorted, pretty = TRUE)
-      cat("\n\nS-WISP method results:\n")
-      print(self$us_sorted, pretty = TRUE)
+      print(self$result, pretty = TRUE)
+      #print(self$u_sorted, pretty = TRUE)
+      #cat("\n\nS-WISP method results:\n")
+      #print(self$us_sorted, pretty = TRUE)
     }
   ),
   private = list(
