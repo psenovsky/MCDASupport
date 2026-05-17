@@ -117,10 +117,10 @@ mare <- R6Class(
       t_max <- wsm$new(pmn_max, self$w)
 
       result <- data.frame(
-        t_min$result_table$weighted_sum,
-        t$result_table$weighted_sum,
-        t_max$result_table$weighted_sum,
-        rank(-t$result_table$weighted_sum)
+        t_min$result$weighted_sum,
+        t$result$weighted_sum,
+        t_max$result$weighted_sum,
+        rank(-t$result$weighted_sum)
       )
       colnames(result) <- c("min", "estimate", "max", "rank")
       rownames(result) <- rownames(self$pm)
