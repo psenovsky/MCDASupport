@@ -87,6 +87,8 @@ min and max columns)}
 \item{\code{score_raw}}{vector of average distance to ideal solution}
 
 \item{\code{score}}{vector of average distance to ideal solution ordered}
+
+\item{\code{result}}{dataframe with score and rank}
 }
 \if{html}{\out{</div>}}
 }

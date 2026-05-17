@@ -62,6 +62,9 @@ spotis <- R6Class("spotis",
     #' @field score vector of average distance to ideal solution ordered
     score = NULL,
 
+    #' @field result dataframe with score and rank
+    result = NULL,
+
     #' @description
     #' public constructor allowing the user to construct SPOTIS decision
     #'  analysis problem and compute it.
@@ -139,6 +142,12 @@ spotis <- R6Class("spotis",
       d <- as.data.frame(sweep(dij, 2, self$w, "*"))
       self$score_raw <- rowSums(d)
       self$score <- self$score_raw[order(self$score_raw)]
+      self$result <- data.frame(
+        self$score_raw,
+        rank(self$score_raw, ties.method = "max")
+      )
+      colnames(self$result) <- c("score", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -151,7 +160,7 @@ spotis <- R6Class("spotis",
         "SPOTIS:\n", "processed ", nalt,
         " alternatives in ", ncri, " criteria.\nResults\n"
       ))
-      print(self$score, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
