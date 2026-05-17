@@ -31,6 +31,10 @@ wpm <- R6Class("wpm",
     #' @field p final weighted product of the alternative
     p = NULL,
 
+    #' @field result dataframe with weighted product of alternatives (p) and
+    #'  ranks
+    result = NULL,
+
     #' @description
     #' validates input parameter, runs the computation of the WPM model and
     #'  returns WPM object with the imputs and resutls of the model.
@@ -81,6 +85,12 @@ wpm <- R6Class("wpm",
         w_pm[, i] <- self$pm[, i]^self$w[i]
       }
       self$p <- apply(w_pm, 1, prod)
+      self$result <- data.frame(
+        self$p,
+        rank(-self$p, ties.method = "min")
+      )
+      colnames(self$result) <- c("product", "rank")
+      rownames(self$result) <- rownames(self$pm)
     },
 
     #' @description
@@ -91,7 +101,7 @@ wpm <- R6Class("wpm",
       ncri <- ncol(self$pm)
       cat(paste("WPM method:\nComputed ", nalt, " alternatives in ", ncri,
                 " criteria\n\nResults:\n"))
-      print(self$p)
+      print(self$result)
     }
   )
 )

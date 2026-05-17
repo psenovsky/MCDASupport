@@ -49,6 +49,9 @@ in columns}
 \item{\code{w}}{weights, sum of weights = 1}
 
 \item{\code{p}}{final weighted product of the alternative}
+
+\item{\code{result}}{dataframe with weighted product of alternatives (p) and
+ranks}
 }
 \if{html}{\out{</div>}}
 }
