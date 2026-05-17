@@ -61,14 +61,15 @@ psi <- R6Class("psi",
     #' @field w computed weight vector for criteria
     w = NULL,
 
-    #' @field result_table result table computed using WSM approach
-    result_table = NULL,
-
     #' @field PSI weighted sum percentages
     PSI = NULL,
+
     #' @field scoreM graph visualizing contribution of the critteria to overall
     #'  PSI
     scoreM = NULL,
+
+    #' @field result dataframe with WSM output (and ranks)
+    result = NULL,
 
     #' @description
     #' class constructor, validates data and computes the model.
@@ -138,8 +139,8 @@ psi <- R6Class("psi",
       self$w <- op / sum(op)
       psi <- wsm$new(self$pm, self$w, "max")
 
-      self$result_table <- psi$result_table
-      self$PSI <- psi$result_table$weighted_sum
+      self$result <- psi$result
+      self$PSI <- psi$result$weighted_sum
       names(self$PSI) <- rownames(self$pm)
       self$scoreM <- psi$scoreM
     },
@@ -150,8 +151,8 @@ psi <- R6Class("psi",
     summary = function() {
       cat(paste("PSI method results:\n\nweights:\n"))
       print(self$w, pretty = TRUE)
-      cat("\nPSI index:\n")
-      print(self$PSI, pretty = TRUE)
+      cat("\nScore and ranks:\n")
+      print(self$result, pretty = TRUE)
       print(self$scoreM)
     }
   )

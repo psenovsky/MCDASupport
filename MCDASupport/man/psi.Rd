@@ -92,12 +92,12 @@ for all criteria is the same.}
 
 \item{\code{w}}{computed weight vector for criteria}
 
-\item{\code{result_table}}{result table computed using WSM approach}
-
 \item{\code{PSI}}{weighted sum percentages}
 
 \item{\code{scoreM}}{graph visualizing contribution of the critteria to overall
 PSI}
+
+\item{\code{result}}{dataframe with WSM output (and ranks)}
 }
 \if{html}{\out{</div>}}
 }
