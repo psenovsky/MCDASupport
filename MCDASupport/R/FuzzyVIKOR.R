@@ -190,6 +190,7 @@ fuzzyvikor <- R6Class("fuzzyvikor",
       n <- ncol(self$pm) #no. of decision makers
       ncri <- nrow(self$w)
       nalt <- length(self$alt)
+      alt <- self$alt
 
       w2 <- private$agg_fuzzy_value(self$dictionary_w, self$w, n)
       rownames(w2) <- self$criteria
@@ -208,16 +209,16 @@ fuzzyvikor <- R6Class("fuzzyvikor",
       self$R <- sr_indexes$R
       self$Q <- sr_indexes$Q
       self$compromiseSolution <- sr_indexes$compromiseSolution
-      self$result <- data.frame(
-        self$S,
-        rank(self$S, ties.method = "min"),
-        self$R,
-        rank(self$R, ties.method = "min"),
-        self$Q,
-        rank(self$Q, ties.method = "min")
-      )
+      
+      self$result <- as.data.frame(matrix(0, nrow = nalt, ncol = 6))
       colnames(self$result) <- c("S", "rank (S)", "R", "rank (R)", "Q", "rank (Q, compromise)")
-      rownames(self$result) <- self$alt
+      rownames(self$result) <- alt
+      self$result$S <- self$S[alt]
+      self$result$`rank (S)` <- rank(self$result$S, ties.method = "min")
+      self$result$R <- self$R[alt]
+      self$result$`rank (R)` <- rank(self$result$R, ties.method = "min")
+      self$result$Q <- self$Q[alt]
+      self$result$`rank (Q, compromise)` <- rank(self$result$Q, ties.method = "min")
     },
 
     #' @description
