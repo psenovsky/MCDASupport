@@ -95,8 +95,7 @@ r_method <- R6Class(
       self$w <- w
       self$wrm <- result
       t <- wsm$new(result, w)
-      t$result_table$rank <- rank(-t$result_table$weighted_sum)
-      self$result <- t$result_table
+      self$result <- t$result
     },
 
     #' @description
