@@ -63,10 +63,8 @@ saw <- R6Class("saw",
     #'  is default.
     minmax = NULL,
 
-    #' @field result_table has weighted performance matrix with added columns
-    #'  to summ performance and extress this sum as a percentage of the best
-    #'  alternative
-    result_table = NULL,
+    #' @field result dataframe with results of the method including rank
+    result = NULL,
 
     #' @field weighted_sum_prc vector specifying how close the alternatives are
     #'  to the best aleternative (expresed as the percentage of best) sorted
@@ -128,7 +126,7 @@ saw <- R6Class("saw",
     #'  is not run manually as constructor calls this method automatically.
     compute = function() {
       t <- wsm$new(self$pm_orig, self$w, self$minmax)
-      self$result_table <- t$result_table
+      self$result <- t$result
       self$weighted_sum_prc <- t$weighted_sum_prc
       self$scoreM <- t$scoreM
     },
@@ -138,9 +136,7 @@ saw <- R6Class("saw",
     #'  to the console.
     summary = function() {
       cat(paste("SAW method results:\n"))
-      print(self$result_table, pretty = TRUE)
-      cat(paste("\nClosenes to best alternative as % of best\n"))
-      print(self$weighted_sum_prc, pretty = TRUE)
+      print(self$result, pretty = TRUE)
       print(self$scoreM)
     }
   )

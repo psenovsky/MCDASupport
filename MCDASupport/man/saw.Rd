@@ -90,9 +90,7 @@ criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
 
-\item{\code{result_table}}{has weighted performance matrix with added columns
-to summ performance and extress this sum as a percentage of the best
-alternative}
+\item{\code{result}}{dataframe with results of the method including rank}
 
 \item{\code{weighted_sum_prc}}{vector specifying how close the alternatives are
 to the best aleternative (expresed as the percentage of best) sorted
