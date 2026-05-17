@@ -79,6 +79,8 @@ is same for all criteria.}
 \item{\code{results}}{overall dominance degree altarnative (best = max)}
 
 \item{\code{results_sorted}}{by dominance degree altarnative (best = max)}
+
+\item{\code{result}}{score and rank dataframe}
 }
 \if{html}{\out{</div>}}
 }

@@ -55,6 +55,9 @@ todim <- R6Class("todim",
     #' @field results_sorted by dominance degree altarnative (best = max)
     results_sorted = NULL,
 
+    #' @field result score and rank dataframe
+    result = NULL,
+
     #' @description
     #' class constructor, validates data and computes the model.
     #'
@@ -142,6 +145,12 @@ todim <- R6Class("todim",
       d_sum_max <- max(d_sum)
       self$results <- (d_sum - d_sum_min) / (d_sum_max - d_sum_min)
       self$results_sorted <- sort(self$results, decreasing = TRUE)
+      self$result <- data.frame(
+        self$results,
+        rank(-self$results, ties.method = "min")
+      )
+      colnames(self$result) <- c("dom. degree", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -152,7 +161,7 @@ todim <- R6Class("todim",
       ncri <- ncol(self$pm)
       cat(paste("TODIM results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
-      print(self$results_sorted, pretty = TRUE)
+      print(self$result, pretty = TRUE)
     }
   )
 )
