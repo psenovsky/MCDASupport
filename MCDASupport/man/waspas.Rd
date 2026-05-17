@@ -62,6 +62,8 @@ criteria in columns)}
 \item{\code{lambda}}{proportion of the WSM}
 
 \item{\code{q}}{performance of alternatives (results of method)}
+
+\item{\code{result}}{dataframe with q and rank}
 }
 \if{html}{\out{</div>}}
 }

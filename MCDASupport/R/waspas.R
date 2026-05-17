@@ -62,6 +62,9 @@ waspas <- R6Class("waspas",
     #' @field q performance of alternatives (results of method)
     q = NULL,
 
+    #' @field result dataframe with q and rank
+    result = NULL, 
+
     #' @description
     #' validates parameters and computes the results.
     #'
@@ -109,8 +112,14 @@ waspas <- R6Class("waspas",
       self$pm <- pm
       t_wpm <- wpm$new(self$pm, self$w)
       t_wsm <- wsm$new(self$pm, self$w)
-      self$q <- self$lambda * t_wsm$result_table$weighted_sum +
+      self$q <- self$lambda * t_wsm$result$weighted_sum +
         (1 - self$lambda) * t_wpm$p
+      self$result <- data.frame(
+        self$q,
+        rank(-self$q, ties.method = "min")
+      )
+      colnames(self$result) <- c("Q", "rank")
+      rownames(self$result) <- rownames(pm)
     },
 
     #' @description
@@ -121,7 +130,7 @@ waspas <- R6Class("waspas",
       ncri <- ncol(self$pm)
       cat(paste("WASPAS method:\nComputed ", nalt, " alternatives in ", ncri,
                 " criteria\n\nResults:\n"))
-      print(self$q)
+      print(self$result)
     }
   )
 )
