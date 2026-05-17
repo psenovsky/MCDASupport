@@ -23,7 +23,7 @@
 #' Values of standard deviation and degree of conflict are vector normalized,
 #'  thus establishing reference points.
 #'
-#' The formulate solution to the decision problem multi-objective non-linar
+#' To formulate solution to the decision problem multi-objective non-linar
 #'  problem needs to be solved:
 #'
 #' \mjsdeqn{max S_j = \sum_{j=1}^n w_j\sigma_j \sum_{j=1}^n w_j \pi_j}
@@ -58,6 +58,9 @@ seca <- R6Class(
 
     #' @field ref_points dataframe with information on computed reference points
     ref_points = NULL,
+
+    #' @field result dataframe with score and rank
+    result = NULL,
 
     #' @description
     #' Public constructor for the class. Checks validity of input parameters
@@ -169,6 +172,12 @@ seca <- R6Class(
       names(scores) <- alt
       self$w <- w_seca
       self$score <- scores
+      self$result <- data.frame(
+        self$score,
+        rank(-self$score, ties.method = "min")
+      )
+      colnames(self$result) <- c("scores", "rank")
+      rownames(self$result) <- alt
     },
 
     #' @description
@@ -184,11 +193,11 @@ seca <- R6Class(
         ncri,
         " criteria with beta = ",
         self$beta,
-        " used.\nComputed wegiths:\n"
+        " used.\nComputed weigths:\n"
       ))
       print(self$w, pretty = TRUE)
-      cat("\nComputed score:\n")
-      print(self$score, pretty = TRUE)
+      cat("\n\nComputed score:\n")
+      print(self$result, pretty = TRUE)
     }
   )
 )

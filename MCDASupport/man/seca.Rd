@@ -26,7 +26,7 @@ The procesure start with normalization of decision matrix using max
 Values of standard deviation and degree of conflict are vector normalized,
  thus establishing reference points.
 
-The formulate solution to the decision problem multi-objective non-linar
+To formulate solution to the decision problem multi-objective non-linar
  problem needs to be solved:
 
 \mjsdeqn{max S_j = \sum_{j=1}^n w_j\sigma_j \sum_{j=1}^n w_j \pi_j}
@@ -57,6 +57,8 @@ is default.}
 \item{\code{beta}}{beta (0.5 by default)}
 
 \item{\code{ref_points}}{dataframe with information on computed reference points}
+
+\item{\code{result}}{dataframe with score and rank}
 }
 \if{html}{\out{</div>}}
 }
