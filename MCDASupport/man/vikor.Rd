@@ -122,6 +122,8 @@ criterion has to be minimized (maximized).}
 
 \item{\code{compromiseSolution}}{list of alternatives forming compromise
 solution (based on Q, S, R metrics)}
+
+\item{\code{result}}{dataframe with S, R, Q metrics and ranks derived from them}
 }
 \if{html}{\out{</div>}}
 }

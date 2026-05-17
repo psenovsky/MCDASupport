@@ -98,6 +98,9 @@ vikor <- R6Class("vikor",
     #'  solution (based on Q, S, R metrics)
     compromiseSolution = NULL,
 
+    #' @field result dataframe with S, R, Q metrics and ranks derived from them
+    result = NULL,
+
     #' @description
     #' Public constructor of the class. It validates provided model parameters,
     #'  initializes the class and computes results of the MCDA problem using¨
@@ -173,7 +176,9 @@ vikor <- R6Class("vikor",
     #'  without using the constructor.
     compute = function() {
       ncri <- ncol(self$pm)  #no. of criteria
+      nalt <- nrow(self$pm)
       cri  <- colnames(self$pm)
+      alt  <- rownames(self$pm)
 
       #Step 1. Determine the Best and the Worst Values of All Criteria Functions
       #f*j = f_max, f-j = f_min
@@ -197,6 +202,15 @@ vikor <- R6Class("vikor",
       self$R <- sr$R
       self$Q <- sr$Q
       self$compromiseSolution <- sr$compromiseSolution
+      self$result <- as.data.frame(matrix(0, nrow = nalt, ncol = 6))
+      colnames(self$result) <- c("S", "rank (S)", "R", "rank (R)", "Q", "rank (Q, compromise)")
+      rownames(self$result) <- alt
+      self$result$S <- self$S[alt]
+      self$result$`rank (S)` <- rank(self$result$S, ties.method = "min")
+      self$result$R <- self$R[alt]
+      self$result$`rank (R)` <- rank(self$result$R, ties.method = "min")
+      self$result$Q <- self$Q[alt]
+      self$result$`rank (Q, compromise)` <- rank(self$result$Q, ties.method = "min")
     },
 
     #' @description
@@ -206,12 +220,8 @@ vikor <- R6Class("vikor",
       cat(paste0("VIKOR\nprocessed ", nalt, " alternatives in ",
                  length(self$w), " criteria\nCompromise solution:\n",
                  self$compromiseSolution))
-      cat(paste("\n\nS-metric:\n"))
-      print(self$S, pretty = TRUE)
-      cat(paste("\nR-metric:\n"))
-      print(self$R, pretty = TRUE)
-      cat(paste("\nQ-metric:\n"))
-      print(self$Q, pretty = TRUE)
+      cat(paste("\n\nResults:\n"))
+      print(self$result, pretty = TRUE)
     }
 
   )
