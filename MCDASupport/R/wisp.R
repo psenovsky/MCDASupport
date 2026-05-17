@@ -193,9 +193,6 @@ wisp <- R6Class("wisp",
       cat(paste("WISP method results:\nProcessed ", nalt, " alternatives in ",
                 ncri, " criteria\n\nResults:\n"))
       print(self$result, pretty = TRUE)
-      #print(self$u_sorted, pretty = TRUE)
-      #cat("\n\nS-WISP method results:\n")
-      #print(self$us_sorted, pretty = TRUE)
     }
   ),
   private = list(
