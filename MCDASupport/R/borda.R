@@ -92,11 +92,12 @@ borda <- R6Class(
       self$points <- points
       point <- rowSums(points)
       rank <- rank(-point, ties.method = "min")
-      result <- rbind(
+      result <- data.frame(
         point,
         rank
       )
-      colnames(result) <- c(rownames(self$pm))
+      colnames(result) <- c("Borda count", "rank")
+      rownames(result) <- alt
       self$result <- result
     },
 
