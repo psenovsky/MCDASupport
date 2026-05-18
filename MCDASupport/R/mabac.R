@@ -89,8 +89,8 @@ mabac <- R6Class(
     #' colnames(pm) <- criteria
     #' minmax <- c("min", "min", "max", "max")
     #' w <- rep(1, times = 4)
-    #' t <- mabac$new(pm, minmax, w)
-    initialize = function(pm, minmax = "max", w) {
+    #' t <- mabac$new(pm, w, minmax)
+    initialize = function(pm, w, minmax = "max") {
       # validation of the parameters
       ncri <- ncol(pm)
       validation$validate_pm(pm)

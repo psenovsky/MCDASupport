@@ -48,7 +48,7 @@ rownames(pm) <- alternatives
 colnames(pm) <- criteria
 minmax <- c("min", "min", "max", "max")
 w <- rep(1, times = 4)
-t <- mabac$new(pm, minmax, w)
+t <- mabac$new(pm, w, minmax)
 }
 \references{
 Alinezhad, A., Khalili, J. New Methods and Applications in Multiple
@@ -97,7 +97,7 @@ numeric criteria (ordinal criteria are already considered processed).}
 \subsection{Method \code{new()}}{
 class constructor, validates data and computes the model.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{mabac$new(pm, minmax = "max", w)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{mabac$new(pm, w, minmax = "max")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -106,12 +106,12 @@ class constructor, validates data and computes the model.
 \item{\code{pm}}{performance matrix. Criteria in columns, ordered from most to
 least influential}
 
+\item{\code{w}}{weights vector}
+
 \item{\code{minmax}}{optimization direction vector for criteria. Either min or
 max. Can be substituted by single min or max if optimization direction
 is same for all criteria. The value needs to be provided for all
 numeric criteria (ordinal criteria are already considered processed).}
-
-\item{\code{w}}{weights vector}
 }
 \if{html}{\out{</div>}}
 }
@@ -132,7 +132,7 @@ rownames(pm) <- alternatives
 colnames(pm) <- criteria
 minmax <- c("min", "min", "max", "max")
 w <- rep(1, times = 4)
-t <- mabac$new(pm, minmax, w)
+t <- mabac$new(pm, w, minmax)
 }
 \if{html}{\out{</div>}}
 
