@@ -1,4 +1,4 @@
-#' Evaluation based on distance from avaerage solution
+#' Evaluation Based on Distance from Average Solution
 #'
 #' @description
 #' Another method loosely based on \link{wsm}. This method computes positive

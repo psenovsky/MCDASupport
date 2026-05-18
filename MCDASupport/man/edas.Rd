@@ -2,7 +2,7 @@
 % Please edit documentation in R/edas.R
 \name{edas}
 \alias{edas}
-\title{Evaluation based on distance from avaerage solution}
+\title{Evaluation Based on Distance from Average Solution}
 \description{
 Another method loosely based on \link{wsm}. This method computes positive
  and negative distance of the performance to the average performance value.
