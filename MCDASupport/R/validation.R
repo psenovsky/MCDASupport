@@ -222,7 +222,7 @@ validation_env$validate_no_elements_vs_cri <- function(vect, ncri, msg,
     stop("number of criteria must be set as number")
   }
   if (length(vect) != ncri) {
-    m <- paste("Number of elements in ", msg, " does not correspont to number of
+    m <- paste("Number of elements in ", msg, " does not correspond to number of
                criteria")
     stop(m)
   }
