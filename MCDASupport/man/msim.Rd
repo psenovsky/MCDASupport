@@ -2,7 +2,7 @@
 % Please edit documentation in R/msim.R
 \name{msim}
 \alias{msim}
-\title{Modeified Similarity Index}
+\title{Modified Similarity Index}
 \description{
 uses modeified \link{topsis}. The modification start in later steps of the
  procedure, namely step 6, when degree of conflict bertween each alternative

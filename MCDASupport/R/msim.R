@@ -1,4 +1,4 @@
-#' Modeified Similarity Index
+#' Modified Similarity Index
 #'
 #' @description
 #' uses modeified \link{topsis}. The modification start in later steps of the
