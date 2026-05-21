@@ -1,3 +1,61 @@
+# MCDASupport v0.38 (Release date: 2026-05-21)
+
+Version 0.38 is intended as clean up and maintenance release. API for results of the methods is main focus. All methods should give result now. Originally there were methods which didn't use this attribute at all, or had it named differently. This backward incompatible change should make the API more predictable usage wise.
+
+backward incompatible changes
+* CoCoSo - renamed results to result and added ranking.
+* CODAS - renamed psi to tau
+* EDAS - redone result attribute (originally used results_table)
+* MABAC - switched order of parameters w and minmax to be same as in other methods
+* QUALIFLEX - switcher order of parameters w and minmax (to be same as for other classes)
+* r_method - slight change in API of result attribute (ranks -> rank)
+* WSM - changed result_table to result (to be same as for other classes)
+* PSI - changed result_table to result (to be same as for other classes)
+* SAW - changed result_table to result (to be same as for other classes)
+
+new methods:
+* implemented MELCHIOR method
+* implemented CWM method
+
+bugfixes
+* ARAS - cleaning up summary and correcting error in the example
+* balanced SPOTIS - cleaning up summary, added result as attribute
+* corrected multiple errors in CODAS method. Renamed psi to tau. Psi is now computed properly and applied to aggregation procedure. Replaced example, also corrected detection of number of alternatives (proviously "worked" only for situation where the decision matrix had same number of columns as rows.)
+* CRADIS - corrected problem in computation of K+ and K-, added result attribute
+* QUALIFLEX - corrected util_permutation() function call
+* ELECTRE 1 - fixed bugs in implementation of sensitivity  testing
+* ELECTRE 1S has some bugs fixed, there are still some bugs left in sensitivity testing logic for threshold hyperparameters testing space generation
+
+Other
+* Copeland method - result adjustment
+* COPRAS method - added result data frame
+* EVAMIX method - added result data frame
+* FUCA method - added result data frame
+* Fuzzy TOPSIS method - added result data frame
+* Fuzzy VIKOR method - added result data frame
+* GRA method - added result data frame
+* MABAC method - added result data frame
+* MACBETH method - added result data frame
+* MAIRCA method - added result data frame
+* MARCOS method - added result data frame
+* MARE - summary now also prints the plot
+* MAUT method - added result data frame
+* MOORA method - added result data frame
+* MOOSRA method - added result data frame
+* ORESTE method - added result data frame
+* TOPSIS method - added result data frame
+* PIV method - added result data frame
+* RAWEC method - added result data frame
+* REGIME method - added result data frame
+* SECA method - added result data frame
+* SPOTIS method - added result data frame
+* TODIM method - added result data frame
+* WASPAS method - added result data frame
+* WISP/S-WISP method - added result data frame
+* WPM method - added result data frame
+* implemented helper function mcda_method() to ease up application of decision method. Workds for selected methods with parameters pm, w and minmax
+* implemented helper function mcda_methods() for comparative MCDA studies
+
 # MCDASupport v0.37 (Release date: 2026-05-01)
 
 backward incompatible changes:

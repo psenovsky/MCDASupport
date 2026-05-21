@@ -28,6 +28,7 @@ implemented MCDA methods:
 - MARCOS
 - MARE
 - MAUT
+- MELCHIOR
 - MOORA
 - MOOSRA
 - MSIM
@@ -79,6 +80,7 @@ For normalization, the package supports:
 For weight establishment the package supports:
 
 - BWM (Best-Worst Model)
+- CWM (Combination Weight Model)
 - DEMATEL
 - objective weighting methods:
   - angle weighting
@@ -146,7 +148,7 @@ You can use following R code to install package and its dependencies
 packages <- c("mathjaxr", "graphics", "igraph", "diagram", "stats", "dplyr", "visNetwork", "plotly", "tidyr", "data.tree", "quadprog")
 install.packages(setdiff(packages, rownames(installed.packages())))  
 # adjust name of the file to version you are installing
-install.packages("MCDASupport_0.37.tar.gz", repos=NULL, type="source")  
+install.packages("MCDASupport_0.38.tar.gz", repos=NULL, type="source")  
 ```
 ### Executing program
 
@@ -193,27 +195,63 @@ See function's documentation for information on mathematics and theories methods
 
 ## Version History
 
-### MCDASupport v0.37 (Release date: 2026-05-01)
+### CDASupport v0.38 (Release date: 2026-05-21)
 
-backward incompatible changes:
-* refactored RANCOM and binary parwise comparison methodd for weight estimation into mcda_pairwise_weights call the function using mcda_pairwise_weights(pm, method = "RANCOM")
+Version 0.38 is intended as clean up and maintenance release. API for results of the methods is main focus. All methods should give result now. Originally there were methods which didn't use this attribute at all, or had it named differently. This backward incompatible change should make the API more predictable usage wise.
+
+backward incompatible changes
+* CoCoSo - renamed results to result and added ranking.
+* CODAS - renamed psi to tau
+* EDAS - redone result attribute (originally used results_table)
+* MABAC - switched order of parameters w and minmax to be same as in other methods
+* QUALIFLEX - switcher order of parameters w and minmax (to be same as for other classes)
+* r_method - slight change in API of result attribute (ranks -> rank)
+* WSM - changed result_table to result (to be same as for other classes)
+* PSI - changed result_table to result (to be same as for other classes)
+* SAW - changed result_table to result (to be same as for other classes)
 
 new methods:
-* new objective weighting method - angle (or angular)
-* implemented RANCOM weighting method
-* implemented AHP method
-* implemented Balanced SPOTIS (or B-SPOTIS) method
-* implemented RAFSI method
-* implemented SECA model
-* implemented R method
-* implemented RAM method
-* implemented ERVD method
-* implemented MARE method
+* implemented MELCHIOR method
+* implemented CWM method
 
 bugfixes
-* TOPSIS had broken aplication of weights
-* PROMETHEE II function no longer has mandatory pref_function parameter. It will use default preference function if not told otherwise
-* corrected error in implementation of VIKOR indexes where nQ was available only for C1 test, but was used in all tests
+* ARAS - cleaning up summary and correcting error in the example
+* balanced SPOTIS - cleaning up summary, added result as attribute
+* corrected multiple errors in CODAS method. Renamed psi to tau. Psi is now computed properly and applied to aggregation procedure. Replaced example, also corrected detection of number of alternatives (proviously "worked" only for situation where the decision matrix had same number of columns as rows.)
+* CRADIS - corrected problem in computation of K+ and K-, added result attribute
+* QUALIFLEX - corrected util_permutation() function call
+* ELECTRE 1 - fixed bugs in implementation of sensitivity  testing
+* ELECTRE 1S has some bugs fixed, there are still some bugs left in sensitivity testing logic for threshold hyperparameters testing space generation
+
+Other
+* Copeland method - result adjustment
+* COPRAS method - added result data frame
+* EVAMIX method - added result data frame
+* FUCA method - added result data frame
+* Fuzzy TOPSIS method - added result data frame
+* Fuzzy VIKOR method - added result data frame
+* GRA method - added result data frame
+* MABAC method - added result data frame
+* MACBETH method - added result data frame
+* MAIRCA method - added result data frame
+* MARCOS method - added result data frame
+* MARE - summary now also prints the plot
+* MAUT method - added result data frame
+* MOORA method - added result data frame
+* MOOSRA method - added result data frame
+* ORESTE method - added result data frame
+* TOPSIS method - added result data frame
+* PIV method - added result data frame
+* RAWEC method - added result data frame
+* REGIME method - added result data frame
+* SECA method - added result data frame
+* SPOTIS method - added result data frame
+* TODIM method - added result data frame
+* WASPAS method - added result data frame
+* WISP/S-WISP method - added result data frame
+* WPM method - added result data frame
+* implemented helper function mcda_method() to ease up application of decision method. Workds for selected methods with parameters pm, w and minmax
+* implemented helper function mcda_methods() for comparative MCDA studies
 
 ### Full version history
 
@@ -223,7 +261,7 @@ For full version history see [[NEWS]].md file.
 
 MCDASupport R package is a library with various functions for computations around multiple criteria analyses
 
-Copyright (C)  2025 by Pavel Šenovský
+Copyright (C)  2026 by Pavel Šenovský
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License (GPL) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
