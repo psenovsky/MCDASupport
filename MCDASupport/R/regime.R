@@ -182,7 +182,7 @@ regime <- R6Class("regime",
         self$gi,
         self$finalRank
       )
-      colnames(self$result) <- c("gi (A1)", "gi (A2)", "gi (A3)", "rank")
+      colnames(self$result) <- c(alt, "rank")
       rownames(self$result) <- alt
     },
 
