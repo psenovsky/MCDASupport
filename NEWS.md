@@ -1,3 +1,5 @@
+# MCDASupport v0.39 (Release date: TBD)
+
 # MCDASupport v0.38 (Release date: 2026-05-21)
 
 Version 0.38 is intended as clean up and maintenance release. API for results of the methods is main focus. All methods should give result now. Originally there were methods which didn't use this attribute at all, or had it named differently. This backward incompatible change should make the API more predictable usage wise.
