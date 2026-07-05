@@ -6,12 +6,12 @@
 #'  rank.
 #'
 #' On ballot last candidate gets 1 point, 2nd worse 2 points, ... Points for
-#'  candidates are then aggregated across all balots, which gives us results
+#'  candidates are then aggregated across all ballots, which gives us results
 #'  for the elections.
 #'
 #' In context of multi-criteria decision making the approach can be applied by
 #'  assigning points based on ranking performance of the alternatives in the
-#'  criteria and then suming the points for alternative across the criteria
+#'  criteria and then summing the points for alternative across the criteria
 #'  leading to measure directly usable to rank the alternatives.
 #'
 #' @references
@@ -19,7 +19,7 @@
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'
-#' @keywords Borta
+#' @keywords Borda
 borda <- R6Class(
   "borda",
   public = list(
@@ -36,14 +36,14 @@ borda <- R6Class(
     result = NULL,
 
     #' @description
-    #' public constructor allowing the user to construct Borta count decision
+    #' public constructor allowing the user to construct Borda count decision
     #'  analysis problem and compute it.
     #'
     #' @param pm Matrix or data frame containing the performance table. Each
     #'  row corresponds to an alternative, and each column to a criterion. only
-    #'  numeric values expercted. Rows and columns are expected to be named.
+    #'  numeric values expected. Rows and columns are expected to be named.
     #' @param minmax value or vector of values 'min' or 'max' specifying
-    #'  optimization direction for the criterium
+    #'  optimization direction for the criterion
     #'
     #' @return initialized R6 class with computed results for Borda count
     #'
@@ -71,11 +71,11 @@ borda <- R6Class(
     },
 
     #' @description
-    #' Computes Borda model based on parametrs specified in constructor.
+    #' Computes Borda model based on parameters specified in constructor.
     #'  Normally this methods does not need to be run manually as constructor
     #'  calls it automatically.
     #'
-    #' Manual re-computation si required only if the user changes class' fields
+    #' Manual re-computation is required only if the user changes class' fields
     #'  without using the constructor.
     compute = function() {
       ncri <- ncol(self$pm)
@@ -102,7 +102,7 @@ borda <- R6Class(
     },
 
     #' @description
-    #' summary of the Borda count method resutls.
+    #' summary of the Borda count method results.
     #'
     #' @return basic information on the model.
     summary = function() {

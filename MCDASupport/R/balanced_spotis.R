@@ -1,14 +1,14 @@
 #' Balanced Stable Preference Ordering Super Intelligence
 #'
 #' @description
-#' introduces Expected solution point (ESP) and alfa confidence coefficient
+#' introduces Expected solution point (ESP) and alpha confidence coefficient
 #'  into the SPOTIS method.
 #'
 #' Uses distance d(Ai, S*) as in normal SPOTIS and d(Ai, S+), where S+ is ESP
-#'  measured as best provided performance in the criterium.
+#'  measured as best provided performance in the criterion.
 #'
-#' Alpha then denotes confidence of decision maker to púrovided values. The
-#'  coeficient is always in interval <0; 1>, balancing d(Ai, S*) and d(Ai, S+)
+#' Alpha then denotes confidence of decision maker to provided values. The
+#'  coefficient is always in interval <0; 1>, balancing d(Ai, S*) and d(Ai, S+)
 #'  components:
 #'
 #' \mjsdeqn{P_i = \alpha \cdot d(A_i, S^+) + (1 - \alpha) \cdot d(A_i, S^*)}
@@ -39,10 +39,10 @@ balanced_spotis <- R6Class(
     #'   min and max columns)
     bounds = NULL,
 
-    #' @field alpha confidence value for pm (in inteval <0; 1>)
+    #' @field alpha confidence value for pm (in interval <0; 1>)
     alpha = 0.5,
 
-    #' @field  esp Expected solution point as vector of best values of the
+    #' @field esp Expected solution point as vector of best values of the
     #'  criteria
     esp = NULL,
 
@@ -63,7 +63,7 @@ balanced_spotis <- R6Class(
     #' @param minmax direction (max or min) of criteria optimization
     #' @param bounds dataframe of bounds of criteria (criteria in rows with
     #'   min and max columns)
-    #' @param alpha confidence value for pm (in inteval <0; 1>)
+    #' @param alpha confidence value for pm (in interval <0; 1>)
     #'
     #' @return initialized R6 class with computed results for SPOTIS
     #'
@@ -115,11 +115,11 @@ balanced_spotis <- R6Class(
     },
 
     #' @description
-    #' Computes Balanced SPOTIS model based on parametrs specified in constructor.
+    #' Computes Balanced SPOTIS model based on parameters specified in constructor.
     #'  Normally this methods does not need to be run manually as constructor
     #'  calls it automatically.
     #'
-    #' Manual re-computation si required only if the user changes class' fields
+    #' Manual re-computation is required only if the user changes class' fields
     #'  without using the constructor.
     compute = function() {
       s2 <- spotis$new(self$pm, self$w, self$minmax, self$esp)
@@ -136,7 +136,7 @@ balanced_spotis <- R6Class(
     },
 
     #' @description
-    #' prepares summary of the balanced SPOTIS method resutls and outputs them
+    #' prepares summary of the balanced SPOTIS method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm) # no. of alternatives

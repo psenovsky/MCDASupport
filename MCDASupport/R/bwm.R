@@ -1,11 +1,11 @@
 #' Best worst method
 #'
 #' @description
-#' Best-worse method (BWM) uses similar approach to weight estimation as AHP,
-#'  but simplifies requrements on pairwise comparisons. While in AHP
+#' Best-worst method (BWM) uses similar approach to weight estimation as AHP,
+#'  but simplifies requirements on pairwise comparisons. While in AHP
 #'  combination of all criteria importance is required, BWM compares only best
-#'  to others and worse criterium to other, all other weights can be derived by
-#'  solving linear programing optimization problem.
+#'  to others and worst criterion to others, all other weights can be derived by
+#'  solving linear programming optimization problem.
 #'
 #' Similarly to AHP Consistency ratio can be computed to identify how
 #'  consistent these preferences are, although the interpretation is different.
@@ -13,20 +13,20 @@
 #' \itemize{
 #'   \item CR <= 0.1 - exceptional consistency (rare in real-world studies)
 #'   \item CR in (0.1; 0.25) - good consistency, usually acceptable in studies
-#'   \item CR > 0.3 - high level of preferences inconsistence, reevaluate
+#'   \item CR > 0.3 - high level of preferences inconsistency, reevaluate
 #'  preferences
 #'}
-#' @param a_best vector of preferences of best criterium to others (preference
+#' @param a_best vector of preferences of best criterion to others (preference
 #'  1-9)
 #'
-#' @param a_worst vector of preferences of all other criteri to worst
-#'  criterium (preference 1-9)
+#' @param a_worst vector of preferences of all other criteria to worst
+#'  criterion (preference 1-9)
 #' 
 #' @return
 #' list:
 #' \itemize{
 #'    \item weights - derived weights
-#'    \item xi - inconsistence indicator
+#'    \item xi - inconsistency indicator
 #'    \item CR - consistency ratio
 #'    \item status - status of LP problem solution
 #' }
