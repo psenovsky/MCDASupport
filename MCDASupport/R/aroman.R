@@ -2,16 +2,16 @@
 #'
 #' @description
 #' The approach uses linear (tij) and vector (tij*) normalization of
-#'  performance measures. Based of these averaged normalization is computed:
+#'  performance measures. Based on these averaged normalization is computed:
 #'
 #' \mjsdeqn{t_{ij}^{norm} = \frac{\beta t_{ij} + (1 - \beta)t_{ij}^*}{2}}
 #'
-#' Where bata is weighting factor in interval 0-1, 0.5 by default.
+#' Where beta is weighting factor in interval 0-1, 0.5 by default.
 #'
-#' To t_norm weights are appied (t^). Next we separately aggreates for cost
+#' To t_norm weights are applied (t^). Next we separately aggregate for cost
 #'  criteria (Li) and benefit criteria (Ai).
 #'
-#' As last step final ranking Ri is computed:
+#' As the last step final ranking Ri is computed:
 #'
 #' \mjsdeqn{R_i = L_i^\lambda + A_i^{1 - \lambda}}
 #'
@@ -49,18 +49,18 @@ aroman <- R6Class(
     #'  by default)
     lambda = NULL,
 
-    #' @field result dataframe with cost (Li) and Bbenefit (Ai) normalized
+    #' @field result dataframe with cost (Li) and Benefit (Ai) normalized
     #'  aggregated value, final result (Ri) and rank of alternatives.
     result = NULL,
 
     #' @description
     #' Public constructor for the class. Checks validity of input parameters
-    #'  and performs computation of of the model based on them.
+    #'  and performs computation of the model based on them.
     #'
     #' @param pm performance matrix
     #' @param w vector of weights, its sum must be equal to 1
-    #' @param minmax minmax vector specifying optimalization direction for the
-    #'  criteria. Values max/min are expected. If all criteria are optimalized
+    #' @param minmax minmax vector specifying optimization direction for the
+    #'  criteria. Values max/min are expected. If all criteria are optimized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
     #' @param beta value 0-1 representing weighting factor between 2 types of
@@ -148,7 +148,7 @@ aroman <- R6Class(
     },
 
     #' @description
-    #' summary of the AROMAN method resutls.
+    #' summary of the AROMAN method results.
     #'
     #' @return basic information on the model.
     summary = function() {
