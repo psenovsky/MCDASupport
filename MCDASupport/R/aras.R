@@ -1,30 +1,25 @@
-#' Additive Ratio Assessment (ARAS) method for multiple criteria decision
-#'  making
+#' Additive Ratio Assessment (ARAS) method for multiple‑criteria decision making
 #'
 #' @description
-#' Another method from \link{wsm} family of methods. In its requirements it is
-#'  perhaps little bit closer to \link{saw} as sum of provided weights needs to
-#'  be equal to 1.
+#' Another method from the \link{wsm} family. In its requirements it is perhaps slightly closer to \link{saw}, as the sum of provided weights must equal 1.
 #'
-#' As all methods in this family of methods, it requires performance matrix to
-#'  be normalized.
+#' As all methods in this family, it requires a performance matrix to be normalized.
 #'
-#' ARAS differs from other methods in the family in optimality estimation step,
-#'  in which it computes ration between utility of the alternative and utility
-#'  of the ideal variant.
+#' ARAS differs from other methods in the optimality estimation step,
+#' where it computes the ratio between an alternative’s utility and that of the ideal variant.
 #'
 #' The computation process:
 #'
 #' step 1) Formulate DMM (Decision Making Matrix)
 #'
-#' Package usually uses different name for it PM (Performance Matrix). The idea
-#'  is same, we work with m alternatives in n criteria describing  performance
+' Package usually uses a different name for it, PM (Performance Matrix). The idea
+#'  is the same; we work with m alternatives in n criteria describing  performance
 #'  of these alternatives.
 #'
-#' Performance of i-th alternative in criterium j is denoted as \mjseqn{x_{ij}}
-#'  and \mjseqn{x_{0j}} represents optimal value of j-th criterium.
+' Performance of the i‑th alternative in criterion j is denoted as \mjseqn{x_{ij}}
+#'  and \mjseqn{x_{0j}} represents the optimal value of the j‑th criterion.
 #'
-#' Generally speaking if optimal value of j-th criterium is not known then for
+#' Generally speaking if optimal value of j-th criterion is not known then for
 #'  benefit criteria we can compute it as:
 #'
 #' \mjsdeqn{x_{0j} = max_i x_{ij}}
@@ -43,9 +38,9 @@
 #'
 #' \mjsdeqn{x_{ij}' = \frac{x_{ij}}{\sum_{i=1}^m x_{ij}}}
 #'
-#' step 3) normalized weight martix
+#' step 3) normalized weight matrix
 #'
-#' For weights followin constraint must hold:
+#' For weights following constraint must hold:
 #'
 #' \mjsdeqn{\sum_{j=1}^n w_j = 1}
 #'
@@ -57,8 +52,8 @@
 #'
 #' \mjsdeqn{S_i = \sum_{j=1}^n \hat{x}_{ij}}
 #'
-#' Alternatives with larger \mjseqn{S_i} are considered better then those with
-#'  lower value of it.
+' Alternatives with larger \mjseqn{S_i} are considered better than those with
+#'  a lower value of it.
 #'
 #' Up to this point, the procedure is basically same as for \link{wsm} or
 #'  \link{saw}. ARAS adds comparison of the ratio between value of \mjseqn{S_i}
@@ -73,8 +68,8 @@
 #'
 #' @references
 #' Zavadskas, E. K., Turskis, Z.: A New Additive Ratio Assessment (ARAS) method
-#'  in multicriteria decision-making. Technological and Economic Deverlopment
-#'  of Econony, 16(2), pp. 159-172, DOI:
+#'  in multicriteria decision-making. Technological and Economic Development
+#'  of Economy, 16(2), pp. 159-172, DOI:
 #'  \url{https://dx.doi.org/10.3846/tede.2010.10}
 #'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
@@ -92,19 +87,19 @@ aras <- R6Class("aras",
     #' @field w vector of weights (there are no other limitations on weights)
     w = NULL,
 
-    #' @field minmax vector specifying optimalization direction for the
-    #'  criteria. Values max/min are expected. If all criteria are optimalized
+    #' @field minmax vector specifying optimization direction for the
+    #'  criteria. Values max/min are expected. If all criteria are optimized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
     minmax = NULL,
 
     #' @field result_table has weighted performance matrix with added columns
-    #'  to summ performance and extress this sum as a percentage of the best
+    #'  to summarize performance and express this sum as a percentage of the best
     #'  alternative
     result_table = NULL,
 
     #' @field weighted_sum_prc vector specifying how close the alternatives are
-    #'  to the best aleternative (expresed as the percentage of best) sorted
+    #'  to the best alternative (expressed as the percentage of best) sorted
     #'  descending (from best to worst)
     weighted_sum_prc = NULL,
 
@@ -113,7 +108,7 @@ aras <- R6Class("aras",
     #'  of the alternative.
     scoreM = NULL,
 
-    #' @field assessment_ratio is ration between overal performance of the
+    #' @field assessment_ratio is ratio between overall performance of the
     #'  alternative to the performance of best alternative
     assessment_ratio = NULL,
 
@@ -126,8 +121,8 @@ aras <- R6Class("aras",
     #'
     #' @param pm normalized performance matrix
     #' @param w vector of weights, its sum must be equal to 1
-    #' @param minmax minmax vector specifying optimalization direction for the
-    #'  criteria. Values max/min are expected. If all criteria are optimalized
+    #' @param minmax minmax vector specifying optimization direction for the
+    #'  criteria. Values max/min are expected. If all criteria are optimized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
     #'
@@ -191,7 +186,7 @@ aras <- R6Class("aras",
     },
 
     #' @description
-    #' prepares summary of the SAW method resutls and outputs them
+    #' prepares summary of the SAW method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

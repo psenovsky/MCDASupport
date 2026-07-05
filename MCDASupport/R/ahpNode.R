@@ -1,7 +1,7 @@
 #' class for creation of AHP hierarchies
-#' 
+#'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
-#' 
+#'
 #' @examples
 #' pm <- rbind(
 #'   c(1, 5, 7, 5, 9, 9),
@@ -135,8 +135,8 @@ ahpNode <- R6Class(
     },
 
     #' @description
-    #' plots the tree from this node downwar in the hierarchy. Call from root
-    #'  node of the hierarchy to plot whole tree
+    #' plots the tree from this node downward in the hierarchy. Call from the root
+    #'  node of the hierarchy to plot the entire tree
     plotTree = function() {
       dt <- self$to_data_tree()
       nodes <- data.frame(
