@@ -32,7 +32,7 @@ wsm <- R6Class("wsm",
     #' @field w vector of weights (there are no other limitations on weights)
     w = NULL,
 
-    #' @field minmax vector specifying optimalization direction for the
+    #' @field minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -59,7 +59,7 @@ wsm <- R6Class("wsm",
     #'
     #' @param pm normalized performance matrix
     #' @param w vector of weights
-    #' @param minmax minmax vector specifying optimalization direction for the
+    #' @param minmax minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -120,7 +120,7 @@ wsm <- R6Class("wsm",
     },
 
     #' @description
-    #' prepares summary of the WSM method resutls and outputs them
+    #' prepares summary of the WSM method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm) # no. of alternatives

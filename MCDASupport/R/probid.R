@@ -1,7 +1,7 @@
 #' Preference Ranking on the Basis of Ideal-Average Distance (WIP implementation)
 #'
 #' @description
-#' Proposed by Wng et al. (2021). The evaluation works on basis of comparison
+#' Proposed by Wang et al. (2021). The evaluation works on basis of comparison
 #'  of the perfomance of the alternatives to range of reference solutions.
 #'  For example TOPSIS works with single ideal and antiideal solution, PROBID
 #'  works with tiered ideal solutions - forming m tiers of ideal solutions. (m
@@ -91,7 +91,7 @@ probid <- R6Class(
     #'
     #' @param pm performance matrix
     #' @param w vector of weights, its sum must be equal to 1
-    #' @param minmax minmax vector specifying optimalization direction for the
+    #' @param minmax minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -205,7 +205,7 @@ probid <- R6Class(
     },
 
     #' @description
-    #' summary of the PROBID count method resutls.
+    #' summary of the PROBID count method results.
     #'
     #' @return basic information on the model.
     summary = function() {

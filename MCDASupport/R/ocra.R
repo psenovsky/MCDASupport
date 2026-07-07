@@ -22,11 +22,11 @@
 #'
 #' \mjsdeqn{\overline{\overline{O_i}} = \overline{O_i} - min(\overline{O_i})}
 #'
-#' Finally overall performance ratings of competetive alternatives is computed:
+#' Finally overall performance ratings of competitive alternatives is computed:
 #'
 #' \mjsdeqn{P_i = \overline{\overline{I_i}} + \overline{\overline{O_i}} - min(\overline{\overline{I_i}} + \overline{\overline{O_i}})}
 #'
-#' The alternative with highest overal performance is best.
+#' The alternative with highest overall performance is best.
 #'
 #' @references
 #' Miloš Madić, Dušan Petković and Miroslav Radovanović. SELECTION OF
@@ -63,7 +63,7 @@ ocra <- R6Class(
     #'
     #' @param pm performance matrix
     #' @param w vector of weights, its sum must be equal to 1
-    #' @param minmax minmax vector specifying optimalization direction for the
+    #' @param minmax minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -156,7 +156,7 @@ ocra <- R6Class(
     },
 
     #' @description
-    #' summary of the OCRA method resutls.
+    #' summary of the OCRA method results.
     #'
     #' @return basic information on the model.
     summary = function() {

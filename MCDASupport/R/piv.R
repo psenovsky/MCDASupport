@@ -68,7 +68,7 @@ piv <- R6Class(
     #'
     #' @param pm Matrix or data frame containing the performance table. Each
     #'  row corresponds to an alternative, and each column to a criterion.
-    #'  Only numeric values expercted. Rows and columns are expected to be
+    #'  Only numeric values expected. Rows and columns are expected to be
     #'  named.
     #' @param w vector containing the weights of the criteria.
     #' @param minmax criteria MinMax Vector containing the preference direction

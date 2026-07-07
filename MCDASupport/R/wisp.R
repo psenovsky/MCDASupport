@@ -84,16 +84,16 @@ wisp <- R6Class("wisp",
     #' @field w weight vector (sum of weights = 1)
     w = NULL,
 
-    #' @field u overal utility of the alternatives
+    #' @field u overall utility of the alternatives
     u = NULL,
 
-    #' @field us overal utility of the alternatives for S-WIPS
+    #' @field us overall utility of the alternatives for S-WIPS
     us = NULL,
 
-    #' @field u_sorted overal sorted utility of the alternatives
+    #' @field u_sorted overall sorted utility of the alternatives
     u_sorted = NULL,
 
-    #' @field us_sorted overal sorted utility of the alternatives for S-WIPS
+    #' @field us_sorted overall sorted utility of the alternatives for S-WIPS
     us_sorted = NULL,
 
     #' @field minmax vector of optimization directions (min/max). Can be
@@ -185,7 +185,7 @@ wisp <- R6Class("wisp",
     },
 
     #' @description
-    #' prepares summary of the WISP method resutls and outputs them
+    #' prepares summary of the WISP method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

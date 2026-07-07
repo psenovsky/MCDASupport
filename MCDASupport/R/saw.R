@@ -2,7 +2,7 @@
 #'
 #' @description
 #' SAW is a accronym for Simple Additive Weighting method. From
-#'  implementation point of wiew it is basically \link{wsm} method, with some
+#'  implementation point of view it is basically \link{wsm} method, with some
 #'  presumptions such as that the sum of weithts is equal to 1 and usage of
 #'  specific normalization method.
 #'
@@ -12,7 +12,7 @@
 #'  from point of view of the result interpretation it makes sense if it is
 #'  normalized.
 #'
-#' SAW processes decision problem in 3 basix steps:
+#' SAW processes decision problem in 3 basic steps:
 #'
 #' Step 1: prepare initial performance matrix (nust be numeric)
 #'
@@ -57,7 +57,7 @@ saw <- R6Class("saw",
     #' @field w vector of weights (there are no other limitations on weights)
     w = NULL,
 
-    #' @field minmax vector specifying optimalization direction for the
+    #' @field minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -81,7 +81,7 @@ saw <- R6Class("saw",
     #'
     #' @param pm normalized performance matrix
     #' @param w vector of weights, summ of weights = 1
-    #' @param minmax minmax vector specifying optimalization direction for the
+    #' @param minmax minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -132,7 +132,7 @@ saw <- R6Class("saw",
     },
 
     #' @description
-    #' prepares summary of the SAW method resutls and outputs them
+    #' prepares summary of the SAW method results and outputs them
     #'  to the console.
     summary = function() {
       cat(paste("SAW method results:\n"))

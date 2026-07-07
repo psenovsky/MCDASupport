@@ -47,7 +47,7 @@ seca <- R6Class(
     #' @field score to evaluate the results
     score = NULL,
 
-    #' @field minmax vector specifying optimalization direction for the
+    #' @field minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -67,7 +67,7 @@ seca <- R6Class(
     #'  and performs computation of of the model based on them.
     #'
     #' @param pm normalized performance matrix
-    #' @param minmax minmax vector specifying optimalization direction for the
+    #' @param minmax minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -181,7 +181,7 @@ seca <- R6Class(
     },
 
     #' @description
-    #' prepares summary of the SECA method resutls and outputs them
+    #' prepares summary of the SECA method results and outputs them
     #'  to the console.
     summary = function() {
       ncri <- ncol(self$pm)

@@ -33,7 +33,7 @@
 #'  differently expressed preferences. In RANCOM the preference is 1 if
 #'  f(Ci) < f(Cj), 0 if f(Ci) < f(Cj) and 0.5 if f(Ci) == f(Cj).
 #' 
-#' The preferences are them summed up on per row basis and weights derived by
+#' The preferences are then summed up on per row basis and weights derived by
 #'  vector normalizing the result.
 #' 
 #' \bold{AHP - Analytic Hierarchy Process}

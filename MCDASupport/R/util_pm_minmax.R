@@ -1,7 +1,7 @@
-#' Process performance metrix - reverts minimalized criteria in the matrix
+#' Process performance matrix - reverts minimalized criteria in the matrix
 #'
 #' @description
-#' Internal function the package uses to prepare performace matrix for
+#' Internal function the package uses to prepare performance matrix for
 #'  computations. It processes the performance matrix and transfers scales of
 #'  minimized criteria to maximized ones.
 #'

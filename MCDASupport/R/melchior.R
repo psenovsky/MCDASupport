@@ -246,7 +246,7 @@ melchior <- R6Class(
     },
 
     #' @description
-    #' summary of the MELCHIOR method resutls.
+    #' summary of the MELCHIOR method results.
     #' @return basic information on the model including ranking.
     summary = function() {
       nalt <- nrow(self$pm) #no. of alternatives

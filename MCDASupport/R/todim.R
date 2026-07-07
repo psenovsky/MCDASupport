@@ -49,10 +49,10 @@ todim <- R6Class("todim",
     #'  is same for all criteria.
     minmax = NULL,
 
-    #' @field results overall dominance degree altarnative (best = max)
+    #' @field results overall dominance degree alternative (best = max)
     results = NULL,
 
-    #' @field results_sorted by dominance degree altarnative (best = max)
+    #' @field results_sorted by dominance degree alternative (best = max)
     results_sorted = NULL,
 
     #' @field result score and rank dataframe
@@ -154,7 +154,7 @@ todim <- R6Class("todim",
     },
 
     #' @description
-    #' prepares summary of the TODIM method resutls and outputs them
+    #' prepares summary of the TODIM method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

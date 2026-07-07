@@ -12,7 +12,7 @@
 #' where wj is the weight of the j-th alternative or criterium, rk is the rank
 #'  assigned to k-th alternative or criterium.
 #'
-#' The resulting two sets of weights are aggregated basicaly using \link{wsm}
+#' The resulting two sets of weights are aggregated basically using \link{wsm}
 #'  method, where criteria weights serve as weights and performance weights
 #'  serve as pervormance measure.
 #'
@@ -99,7 +99,7 @@ r_method <- R6Class(
     },
 
     #' @description
-    #' prepares summary of the R method resutls and outputs them
+    #' prepares summary of the R method results and outputs them
     #'  to the console.
     summary = function() {
       ncri <- ncol(self$pm)

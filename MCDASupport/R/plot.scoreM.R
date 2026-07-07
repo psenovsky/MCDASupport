@@ -1,10 +1,10 @@
-#' Function to plot contribution of the criteria to overal performance of the
+#' Function to plot contribution of the criteria to overall performance of the
 #'  alternatives.
 #'
 #' @description
 #' Takes weighted preference matrix and uses it to plot stacked bar chart
 #'  describing how the criteria (forming the stocks in graph) contribute to the
-#'  overal score of the alternatives. Visualized in form of the ordered bar
+#'  overall score of the alternatives. Visualized in form of the ordered bar
 #'  plot.
 #'
 #' This is usefull especially for methods such as \link{wsm}, which derives
@@ -12,10 +12,10 @@
 #'
 #' @param x weighted preference matrix - values in matrix used to descibe
 #'  strength of the relation.
-#' @param title title to be used for the graph. "Overal score of the variants"
+#' @param title title to be used for the graph. "Overall score of the variants"
 #'  by default
 #'
-#' @return stocked bar chart of criteria contributions to overal performance
+#' @return stacked bar chart of criteria contributions to overall performance
 #' of the alternative
 #'
 #' @references

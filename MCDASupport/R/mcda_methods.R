@@ -1,18 +1,18 @@
-#' COmpare ranks using MCDA methods
+#' Compare ranks using MCDA methods
 #' 
 #' @description
 #' helper function, which allows to compare results achieved using MCDA
-#'  mehrods provided as vector in methods parameter. 
+#'  methods provided as vector in methods parameter. 
 #' 
 #' #' @param pm performance matrix criteria in columns, alternatives in rows,
 #'  numeric values expressed
 #' @param w weights vector
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
 #'  default value
-#' @param methods specify MCDA methods, see list of supperted methods in
+#' @param methods specify MCDA methods, see list of supported methods in
 #'  \link{mcda_method}
 #' 
-#' @return dataframe with methods in rows and ranked alernatives in columns
+#' @return dataframe with methods in rows and ranked alternatives in columns
 #' 
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #'

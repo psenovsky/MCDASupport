@@ -47,7 +47,7 @@ rov <- R6Class(
     #'
     #' @param pm normalized performance matrix
     #' @param w vector of weights, its sum must be equal to 1
-    #' @param minmax minmax vector specifying optimalization direction for the
+    #' @param minmax minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -129,7 +129,7 @@ rov <- R6Class(
     },
 
     #' @description
-    #' summary of the ROV method resutls.
+    #' summary of the ROV method results.
     #'
     #' @return basic information on the model.
     summary = function() {

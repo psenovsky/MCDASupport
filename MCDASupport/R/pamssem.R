@@ -69,7 +69,7 @@
 #'  highest to lowest. This is the approach PAMSSEM II method uses for ranking.
 #'
 #' PAMSSEM I provides only partial ranking with following rules for proving that
-#'  Ai is preffered to Aj.
+#'  Ai is preferred to Aj.
 #'
 #' \mjsdeqn{A_j \;P\; A_j \;if\; \left\lbrace\begin{array}{l} A_i \;P^+\; A_j \;and\; A_i \;P^-\; A_j \cr A_i \;P^+\; A_j \;and\; A_i \;I^-\; A_j \cr A_i \;I^+\; A_j \;and\; A_i \;P^-\; A_j \end{array}\right.}
 #'
@@ -108,7 +108,7 @@ pamssem <- R6Class("pamssem",
     #' @field q vector of indifference thresholds
     q = NULL,
 
-    #' @field p vector of prefference thresholds
+    #' @field p vector of preference thresholds
     p = NULL,
 
     #' @field v vector of veto thresholds
@@ -139,7 +139,7 @@ pamssem <- R6Class("pamssem",
     #' @param type vector of the types of the critera used, either "C" -
     #'  cardinal, or "O" - ordinal.
     #' @param q vector of indifference thresholds
-    #' @param p vector of prefference thresholds
+    #' @param p vector of preference thresholds
     #' @param v vector of veto thresholds
     #'
     #' @examples
@@ -284,7 +284,7 @@ pamssem <- R6Class("pamssem",
     },
     
     #' @description
-    #' prepares summary of the PAMSSEM method resutls and outputs them
+    #' prepares summary of the PAMSSEM method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

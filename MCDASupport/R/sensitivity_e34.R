@@ -13,7 +13,7 @@
 #'  (q) and veto (v) thresholds.
 #'
 #' Since the thresholds (all of them) are specfied separately for each
-#'  criterion, their sensitivity needs to be also evaluated seprately.
+#'  criterion, their sensitivity needs to be also evaluated separately.
 #'  This is being realized in this function by generating separate
 #'  dataframe for each threshold (sens_p, sens_q, sens_v) with following
 #'  structure:

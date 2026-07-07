@@ -123,7 +123,7 @@ waspas <- R6Class("waspas",
     },
 
     #' @description
-    #' prepares summary of the WPM method resutls and outputs them
+    #' prepares summary of the WASPAS method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

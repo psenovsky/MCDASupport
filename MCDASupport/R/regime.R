@@ -25,7 +25,7 @@
 #'  rank then alternative 2, 0 if they are equal and +1 if alternative 1 has
 #'  better rank then alternative 2.
 #'
-#' Based on information provided by REGIME metrix guide index is constructed.
+#' Based on information provided by REGIME matrix guide index is constructed.
 #'  WE apply weights to criteria and sum across the criteria to derive
 #'  agregated comparison matrix - in REGIME method caled guiding index.
 #'
@@ -33,8 +33,8 @@
 #'  representing comparisons among the alternatives.
 #'
 #' Based on this information we can derive approximate order of the
-#'  alternatives. Basicaly alternatives which have been prefered more times are
-#'  better then these prefered lower number of times.
+#'  alternatives. Basically alternatives which have been preferred more times are
+#'  better than these preferred lower number of times.
 #'
 #' Positive guiding index indicates that alternative 1 is better then
 #'  alternative 2 (and vice versa).
@@ -187,7 +187,7 @@ regime <- R6Class("regime",
     },
 
     #' @description
-    #' prepares summary of the REGIME method resutls and outputs them
+    #' prepares summary of the REGIME method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

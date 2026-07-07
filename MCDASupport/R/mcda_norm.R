@@ -1,4 +1,4 @@
-#' Normalize values using using chosen method of normalization
+#' Normalize values using chosen method of normalization
 #'
 #' @description
 #' Performs normalization of the vector using one of supported normalization
@@ -15,7 +15,7 @@
 #'        toaverage \tab normalizing to average value \tab N \cr
 #'        tobest \tab normalizing to best value (AKA max normalization) \tab Y \cr
 #'        TzengHuang \tab Tzeng-Huang normalization \tab N \cr
-#'        vector \tab vertor normalization \tab Y \cr
+#'        vector \tab vector normalization \tab Y \cr
 #'        ZavadskasTurskis \tab Zavadskas-Turskis normalization \tab Y \cr
 #'        zscore \tab Z-score \tab N
 #'    }

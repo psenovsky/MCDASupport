@@ -166,7 +166,7 @@ qualiflex <- R6Class(
     },
 
     #' @description
-    #' prepares summary of the ORESTE method resutls and outputs them
+    #' prepares summary of the QUALIFLEX method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

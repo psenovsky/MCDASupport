@@ -31,7 +31,7 @@ ram <- R6Class(
     #' @field w vector of weights
     w = NULL,
 
-    #' @field minmax vector specifying optimalization direction for the
+    #' @field minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -46,7 +46,7 @@ ram <- R6Class(
     #'
     #' @param pm normalized performance matrix
     #' @param w weights vector
-    #' @param minmax minmax vector specifying optimalization direction for the
+    #' @param minmax minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -66,7 +66,7 @@ ram <- R6Class(
     },
 
     #' @description
-    #' computes the model bas of class properties. Usually we do not run the
+    #' computes the model based on class properties. Usually we do not run the
     #'  computation manually (it is run from class' constructor).
     compute = function() {
       c_max <- colSums(self$pm)
@@ -84,7 +84,7 @@ ram <- R6Class(
     },
 
     #' @description
-    #' summary of the RAM method resutls.
+    #' summary of the RAM method results.
     #' @return basic information on the model including ranking.
     summary = function() {
       nalt <- nrow(self$pm) #no. of alternatives

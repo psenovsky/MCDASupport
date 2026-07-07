@@ -1,7 +1,7 @@
 #' Rescale performance matrix
 #'
 #' @description
-#' Rescales performance matrix resulting in matrix wich all criteria in same
+#' Rescales performance matrix resulting in matrix which all criteria in same
 #'  scale. Only works with numeric values.
 #'
 #' @param m Performance matrix - criteria in columns and alternatives in rows.

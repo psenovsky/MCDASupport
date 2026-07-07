@@ -37,7 +37,7 @@ wpm <- R6Class("wpm",
 
     #' @description
     #' validates input parameter, runs the computation of the WPM model and
-    #'  returns WPM object with the imputs and resutls of the model.
+    #'  returns WPM object with the inputs and results of the model.
     #'
     #' WPM does not have any means of normalization, so it is up to the
     #'  analytic to provide the normalized performance matrix. This also
@@ -94,7 +94,7 @@ wpm <- R6Class("wpm",
     },
 
     #' @description
-    #' prepares summary of the WPM method resutls and outputs them
+    #' prepares summary of the WPM method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

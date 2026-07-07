@@ -15,7 +15,7 @@
 #'  threshold.
 #'
 #' Function is constructed similarly to \code{\link{plot.threshold}}, but
-#'  produces 3D graph. The altarnatives participation is indicated only by 0/1.
+#'  produces 3D graph. The alternatives participation is indicated only by 0/1.
 #'
 #' @param df dataframe with alternatives (0/1) and concordance, discordance
 #'  columns

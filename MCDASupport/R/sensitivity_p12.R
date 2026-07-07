@@ -5,7 +5,7 @@
 #' Function tests sensitivity of \link{promethee1} and \link{promethee2} models
 #'  to changes of thresholds.
 #'
-#' Computes sens_i (for indifference threshold), sens_p (for prefference
+#' Computes sens_i (for indifference threshold), sens_p (for preference
 #'  threshold) and sens_im (for intermediate treshold) dataframes in
 #'  structure:
 #'
@@ -28,7 +28,7 @@
 #'  and each of these has a different requirements on types of thresholds
 #'  it uses. For example level and linear functions use both preference and
 #'  indifference thresholds (but not intermediate). V-shape function uses
-#'  prefference threshold only, U-shape uses indifference threshold only.
+#'  preference threshold only, U-shape uses indifference threshold only.
 #'
 #' Gaussian function uses intermediate threshold only, but if preference
 #'  andindifference thresholds are provided, the sensitivity is being

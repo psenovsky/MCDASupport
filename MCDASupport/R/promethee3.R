@@ -4,7 +4,7 @@
 #' PROMETHEE stands for Preference ranking organization method for enrichment
 #'  evaluation. Promethee II method is intended for establishment of full
 #'  ranking of the alternatives, by evaluation of positive and negative
-#'  prefference flows in pairweise comparisons of the alternatives.
+#'  preference flows in pairwise comparisons of the alternatives.
 #'
 #' Difference between positive and negative flows forms net outranking flow.
 #'  PROMETHEE III function is usable for partial preorder, similarly to
@@ -34,15 +34,15 @@
 #' Partial preference is then  established based on comparing lower and upper
 #'  limits of the alternatives.
 #'
-#' If \mjseqn{x_{lim}(a) > y_{lim}(b)} then alternative is prefered to b: aPb.
+#' If \mjseqn{x_{lim}(a) > y_{lim}(b)} then alternative is preferred to b: aPb.
 #'  If \mjseqn{x_{lim}(a) == y_{lim}(b)} than we are clearly indifferent to the
-#'  alternatives: aIb. Otherwise alternative b is prefered to a.
+#'  alternatives: aIb. Otherwise alternative b is preferred to a.
 #'
 #' Method does not provide ranking.
 #'
 #' Limit comparison can be seen as an alternative implementation of thresholds
 #'  as the performance must exceed some limit for the alternative to be
-#'  considered prefered.
+#'  considered preferred.
 #'
 #' Note: the implementation of function is partially inspired by implementation
 #'  of PROMETHEE III portion of promethee123 package, thou this implementation
@@ -94,18 +94,18 @@ promethee3 <- R6Class("promethee3",
     #' @field p_threshold vector of proference thresholds
     p_threshold = NULL,
 
-    #' @field im_threshold vector containing intermetiate thresholds for
-    #'  criteria. only Gaussian type performance functions rewuire this type of
-    #'  threshold. If prefference and indifference thresholds are present, the
+    #' @field im_threshold vector containing intermediate thresholds for
+    #'  criteria. only Gaussian type performance functions require this type of
+    #'  threshold. If preference and indifference thresholds are present, the
     #'  PROMETHEE function will try to 'gues' intermediate threshold as value
     #'  right in the middle between these thresholds.
     im_threshold = NULL,
 
-    #' @field positiveFlow vector representing how the alternative is preffered
+    #' @field positiveFlow vector representing how the alternative is preferred
     #'  to other alternatives
     positiveFlow = NULL,
 
-    #' @field negativeFlow vector representing how altenative is outranked by
+    #' @field negativeFlow vector representing how alternative is outranked by
     #'  other alternatives
     negativeFlow = NULL,
 
@@ -135,10 +135,10 @@ promethee3 <- R6Class("promethee3",
     #'
     #' First it validates inpust, then it computes the model using PROMETHEE
     #'  III method. See class documentation for computational details of it.
-    #' 
+    #'
     #' @param pm Matrix or data frame containing the performance table. Each
     #'  row corresponds to an alternative, and each column to a criterion. only
-    #'  numeric values expercted. Rows and columns are expected to be named.
+    #'  numeric values expected. Rows and columns are expected to be named.
     #' @param pref_function vector, specifies type of function used to compute
     #'  preferences. Need to be set for each criterion. Possible values are:
     #'  'default', 'U-shape', 'V-shape', 'level', 'linear', 'Gaussian'. Choice
@@ -151,21 +151,21 @@ promethee3 <- R6Class("promethee3",
     #'  is usable in situation when all criteria are either benefit or cost
     #'  (are not mixed). If Criteria orientation is mixed, vector is required
     #'  to set criterion orientation right.
-    #' @param i_threshold vector containing indifference threshods for
+    #' @param i_threshold vector containing indifference thresholds for
     #'  criteria. Not all types of performance functions require it. The
     #'  parameter must be used if there is at least one criterion, for which it
     #'  is required. Values for all other criteria should be 0 (and will not be
     #'  used during computations). Only 'U-shape', 'level', 'linear' functions
     #'  need this threshold.
-    #' @param p_threshold vector containing prefference threshods for
+    #' @param p_threshold vector containing preference thresholds for
     #'  criteria. Not all types of performance functions require it. The
     #'  parameter must be used if there is at least one criterion, for which it
     #'  is required. Values for all other criteria should be 0 (and will not be
     #'  used during computations). Only 'V-shape', 'level', 'linear' functions
     #'  need this threshold.
-    #' @param im_threshold vector containing intermetiate thresholds for
-    #'  criteria. only Gaussian type performance functions rewuire this type of
-    #'  threshold. If prefference and indifference thresholds are present, the
+    #' @param im_threshold vector containing intermediate thresholds for
+    #'  criteria. only Gaussian type performance functions require this type of
+    #'  threshold. If preference and indifference thresholds are present, the
     #'  PROMETHEE function will try to 'gues' intermediate threshold as value
     #'  right in the middle between these thresholds.
     #'
@@ -189,7 +189,7 @@ promethee3 <- R6Class("promethee3",
     #' shape <- c('U-shape', 'V-shape', 'linear', 'level', 'default',
     #'  'Gaussian')
     #' p <- c(10, 0, 450, 50, 0, 0) #indifference threshold
-    #' q <- c(0, 30, 50, 10, 0, 0) #prefference threshold
+    #' q <- c(0, 30, 50, 10, 0, 0) #preference threshold
     #' s <- c(0,0,0,0,0,5) #intermediate threshold
     #' w <- c(0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1665)
     #' result <- promethee3$new(PM, shape, w, minmax, q, p, s)
@@ -274,7 +274,7 @@ promethee3 <- R6Class("promethee3",
     #' @description
     #' test sensitivity of the model to changes in the thresholds.
     #'
-    #' Provides sens_i (for indifference threshold), sens_p (for prefference
+    #' Provides sens_i (for indifference threshold), sens_p (for preference
     #'  threshold) and sens_im (for intermediate treshold) dataframes in
     #'  structure:
     #'
@@ -297,7 +297,7 @@ promethee3 <- R6Class("promethee3",
     #'  and each of these has a different requirements on types of thresholds
     #'  it uses. For example level and linear functions use both preference and
     #'  indifference thresholds (but not intermediate). V-shape function uses
-    #'  prefference threshold only, U-shape uses indifference threshold only.
+    #'  preference threshold only, U-shape uses indifference threshold only.
     #'
     #' Gaussian function uses intermediate threshold only, but if preference
     #'  andindifference thresholds are provided, the sensitivity is being

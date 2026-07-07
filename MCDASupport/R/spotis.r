@@ -151,7 +151,7 @@ spotis <- R6Class("spotis",
     },
 
     #' @description
-    #' prepares summary of the SPOTIS method resutls and outputs them
+    #' prepares summary of the SPOTIS method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm) # no. of alternatives

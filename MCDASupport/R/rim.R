@@ -64,7 +64,7 @@ rim <- R6Class(
     #'
     #' @param pm Matrix or data frame containing the performance table. Each
     #'  row corresponds to an alternative, and each column to a criterion. only
-    #'  numeric values expercted. Rows and columns are expected to be named.
+    #'  numeric values expected. Rows and columns are expected to be named.
     #' @param A numeric vector of lower ranges of criteria
     #' @param B numeric vector of upper ranges of the criteria
     #' @param C numeric vector of lower limit of reference ideal
@@ -140,7 +140,7 @@ rim <- R6Class(
     },
 
     #' @description
-    #' summary of the RIM method resutls.
+    #' summary of the RIM method results.
     #'
     #' @return basic information on the model.
     summary = function() {
