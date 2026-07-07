@@ -16,11 +16,11 @@
 #' step 1) [average] direct relationship matrix generation
 #'
 #' We start with formulating square matrix n:n \mjseqn{A_k} to state the
-#'  influence between the criteria. Dimentsion n nepresents number of criteria,
+#'  influence between the criteria. Dimension n represents number of criteria,
 #'  A is the matrix of relationships between the criteria and k is number of
 #'  experts we source the information from.
 #'
-#' Information from experts is usually gathered using questionaries/oppinions.
+#' Information from experts is usually gathered using questionnaires/opinions.
 #'
 #' In this matrix \mjseqn{a_{ij}(k)} is the influence degree of criterium
 #'  \mjseqn{E_i} on criterium \mjseqn{E_j} determined by
@@ -42,12 +42,12 @@
 #' \end{bmatrix}
 #' }
 #'
-#' If we have more experts, we will also have more than one oppinions and we
+#' If we have more experts, we will also have more than one opinion and we
 #'  will need to integrate these into single matrix Z.
 #'
 #' \mjsdeqn{Z = \frac{\sum_{k=1}^m A_k}{m}}
 #'
-#' step 2) normalizing of the direct realtion matrix
+#' step 2) normalizing of the direct relation matrix
 #'
 #' Next the average direct relation matrix needs to be normalized using:
 #'
@@ -61,7 +61,7 @@
 #'
 #' step 4) assessing the relevance and prominence
 #'
-#' We compute sumation of rows and columns:
+#' We compute summation of rows and columns:
 #'
 #' \mjsdeqn{D = [D_i]_{n x 1} = [\sum_{j=1}^n t_{ij}]_{n x 1}}
 #'
@@ -86,14 +86,14 @@
 #' \mjsdeqn{w_i = \frac{w_{ia}}{\sum_{i=1}^n w_{ia}}}
 #'
 #' @param relations list of matrixes with stated influences between the
-#'  criteria. Each matrix represents oppinion of single expert. Number of
-#'  criteria in the matrix must be same in all of these oppinions and in
+#'  criteria. Each matrix represents opinion of single expert. Number of
+#'  criteria in the matrix must be same in all of these opinions and in
 #'  same structure (order of criteria).
 #'
 #' @return
 #' returns list in following structure
 #' \itemize{
-#'   \item tabularRasults - with structure
+#'   \item tabularResults - with structure
 #'   \itemize{
 #'     \item criteria - criteria names
 #'     \item D - relevance - influence from

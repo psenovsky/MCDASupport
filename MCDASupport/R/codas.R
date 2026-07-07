@@ -16,21 +16,21 @@
 #'
 #' \mjsdeqn{ns_j = min_i r_{ij}}
 #'
-#' Next we compute Eucludean and taxicab distances of the alternatives to this
+#' Next we compute Euclidean and taxicab distances of the alternatives to this
 #'  negative-ideal solution.
 #'
 #' \mjsdeqn{E_i = \sqrt{\sum_{j=1}^m (r_{ij} - ns_j)^2}}
 #'
 #' \mjsdeqn{T_i = \sum_{j=1}^m | r_{ij} - ns_j |}
 #'
-#' Then we compute relative assesment matrix
+#' Then we compute relative assessment matrix
 #'
 #' \mjsdeqn{h_{ik} = (E_i - E_k) + \psi \times (T_i - T_k)}
 #'
-#' Where psi is 1 if difference of eucledian distances is greater, than set
-#'  threshold: |Ei - Ek| >= tau, otherwise the psi = 0
+#' Where psi is 1 if difference of Euclidean distances is greater than set
+#'  threshold: |Ei - Ek| >= tau, otherwise psi = 0
 #'
-#' Finaly we calculate assessment score, which is a measure that can be used
+#' Finally we calculate assessment score, which is a measure that can be used
 #'  directly to establish ranking of the alternatives. (Highest value 'best').
 #'
 #' \mjsdeqn{H_i = \sum_{k=1}^n h_{ik}}
@@ -59,13 +59,13 @@ codas <- R6Class(
     #' @field tau coefficient of determination
     tau = NULL,
 
-    #' @field score assesment score (best = highest)
+    #' @field score assessment score (best = highest)
     score = NULL,
 
-    #' @field score_sorted assesment score sorted from best to worst
+    #' @field score_sorted assessment score sorted from best to worst
     score_sorted = NULL,
 
-    #'@field result databrame with score and rank
+    #' @field result dataframe with score and rank
     result = NULL,
 
     #' @field minmax optimization direction vector for criteria. Either min or
@@ -122,7 +122,7 @@ codas <- R6Class(
 
     #' @description
     #' computes CODAS model based on parameters of the fields of the class.
-    #'  Usually run automatically as part of class inititation.
+    #'  Usually run automatically as part of class initialization.
     compute = function() {
       ncri <- ncol(self$pm_orig)
       nalt <- nrow(self$pm_orig)
@@ -154,7 +154,7 @@ codas <- R6Class(
     },
 
     #' @description
-    #' prepares summary of the CODAS method resutls and outputs them
+    #' prepares summary of the CODAS method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

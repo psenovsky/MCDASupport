@@ -16,7 +16,7 @@
 #'
 #' \mjsdeqn{PDA_{ij} = max(0; \frac{AV_j - x_{ij}}{AV_j})}
 #'
-#' Similarily we compute negative distance to the average performance. Formally
+#' Similarly we compute negative distance to the average performance. Formally
 #'  we switch the statements, so for benefit criteria (step 3)
 #'
 #' \mjsdeqn{NDA_{ij} = max(0; \frac{AV_j - x_{ij}}{AV_j})}
@@ -41,7 +41,7 @@
 #'
 #' step 7) compute average of NSPI and NSNI
 #'
-#' \mjsdeqn{ASI = \frac{NSPI + NSNO}{2}}
+#' \mjsdeqn{ASI = \frac{NSPI + NSNI}{2}}
 #'
 #' Value of ASI is directly usable for ranking of alternatives (largest value
 #'  is best).
@@ -88,7 +88,7 @@ edas <- R6Class("edas",
     #'  Can use single min/max if optimization direction of all criteria is
     #'  same.
     #'
-    #' @return instance of the class included computed model
+    #' @return instance of the class including computed model
     #'
     #' @examples
     #' #from https://www.youtube.com/watch?v=Kwq_ra6b6eU
@@ -127,8 +127,8 @@ edas <- R6Class("edas",
     },
 
     #' @description
-    #' Computed the EDAS using params provided in constructor. Usually run
-    #'  automatically by constructor.
+#' Computes the EDAS using params provided in constructor. Usually run
+#'  automatically by constructor.
     compute = function() {
       avj <- colMeans(self$pm)
       ncri <- ncol(self$pm)
@@ -159,7 +159,7 @@ edas <- R6Class("edas",
     },
 
     #' @description
-    #' prepares summary of the EDAS method resutls and outputs them
+    #' prepares summary of the EDAS method results and outputs them
     #'  to the console.
     summary = function() {
       cat(paste("Edas method results:\n\nResult table:\n"))

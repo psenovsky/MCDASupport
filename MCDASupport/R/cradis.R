@@ -5,7 +5,7 @@
 #'  and \link{topsis} methods.
 #'
 #' Similarly to ARAS method it starts with decision problem formulation using
-#'  performance metrix with n criteria in columns and m alternatives in rows
+#'  performance matrix with n criteria in columns and m alternatives in rows
 #'  (step 1). In step 2) The performance in criteria is then normalized using:
 #'
 #' \mjsdeqn{r_{ij} = \frac{x_{ij}}{x_{max_j}}}
@@ -18,15 +18,15 @@
 #'
 #' \mjsdeqn{v_{ij} = w_{j} r_{ij}}
 #'
-#' In step 4) determining ideal and antiideal solution of the problem as
-#'  miximal (ideal) and minimal (anti-ideal) values of criteria.
+#' In step 4) determining ideal and anti-ideal solution of the problem as
+#'  maximal (ideal) and minimal (anti-ideal) values of criteria.
 #'
 #' \mjsdeqn{t_{i} = max(v_{ij})}
 #'
 #' \mjsdeqn{t_{ai} = min(v_{ij})}
 #'
 #' In step 5) deviations from these is computed as difference between the
-#'  normalized weighted value and the ideal or antiideal solution:
+#'  normalized weighted value and the ideal or anti-ideal solution:
 #'
 #' \mjsdeqn{d^+ = t_i - v_{ij}}
 #'
@@ -45,7 +45,7 @@
 #'
 #' \mjsdeqn{K_i^- = \frac{s_i^-}{s_0^-}}
 #'
-#' Finaly (step 8) the ranking of the alternatives ise derived from the average
+#' Finally (step 8) the ranking of the alternatives is derived from the average
 #'  of utility functions.
 #'
 #' \mjsdeqn{Q_i = \frac{K_i^+ + K_i^-}{2}}
@@ -55,7 +55,7 @@
 #'  approach to the problem is closer to MARCOS.
 #'
 #' @references
-#' Puška, A., Stević, Ž., Panučar, D.: Evaluation and selection of healtcare
+#' Puška, A., Stević, Ž., Panučar, D.: Evaluation and selection of healthcare
 #'  waste incinerators using extended sustainability criteria and multicriteria
 #'  analysis methods. Environment, Development and Sustainability, vol. 24, pp.
 #'  11195-11225 (2022), DOI: 10.1007/s10668-021-01902-2
@@ -97,7 +97,7 @@ cradis <- R6Class("cradis",
     #'  columns)
     #' @param w weights vector
     #' @param minmax vector of optimization direction (min/max, max is default)
-    #' @return inicialized and computed model
+    #' @return initialized and computed model
     #'
     #' @examples
     #' # https://doi.org/10.18485/aeletters.2023.8.1.4
@@ -131,7 +131,7 @@ cradis <- R6Class("cradis",
     },
 
     #' @description
-    #' computes the model bas of class properties. Usually we do not run the
+    #' computes the model based on class properties. Usually we do not run the
     #'  computation manually (it is run from class' constructor).
     compute = function() {
       ncri <- ncol(self$pm)
@@ -177,7 +177,7 @@ cradis <- R6Class("cradis",
     },
 
     #' @description
-    #' summary of the CRADIS method resutls.
+    #' summary of the CRADIS method results.
     #' @return basic information on the model including ranking.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives

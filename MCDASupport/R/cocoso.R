@@ -1,7 +1,7 @@
 #' Combined Compromise solution
 #'
-#' #@description
-#' MCDA analysis method based on finding of compomise solution for \link{wsm}
+#' @description
+#' MCDA analysis method based on finding a compromise solution for \link{wsm}
 #'  and \link{wpm} models. The compromise is found in following manner.
 #'
 #' Analysis starts with formulation of performance matrix of alternatives
@@ -29,8 +29,8 @@
 #'
 #' \mjsdeqn{0 \le \lambda \le 1}
 #'
-#' Lambda in measure c serves as a weight for summary and product part of the
-#'  measure. When lambda = 1, then these two componets will have same impact on
+#' Lambda in measure c serves as a weight for sum and product part of the
+#'  measure. When lambda = 0.5, then these two components will have equal impact on
 #'  result.
 #'
 #' Lastly final ranking is established
@@ -78,9 +78,9 @@ cocoso <- R6Class("cocoso",
     #' @param minmax vector of optimization direction for criteria (min/max).
     #'  Can use single min/max if optimization direction of all criteria is
     #'  same.
-    #' @param lambda a constant in interval <0;1> to establish influence of
-    #'  weighted sum and weighted product on the result. Implicitly set to 0.5
-    #'  to represent equalt influence of both components
+#' @param lambda a constant in interval <0;1> to establish influence of
+#'  weighted sum and weighted product on the result. Implicitly set to 0.5
+#'  to represent equal influence of both components
     #'
     #' @return instance of the class including computed model
     #'
@@ -123,7 +123,7 @@ cocoso <- R6Class("cocoso",
 
     #' @description
     #' computes CoCoSo model based on parameters of the fields of the class.
-    #'  Usually run automatically as part of class inititation.
+    #'  Usually run automatically as part of class initialization.
     compute = function() {
       ncri <- ncol(self$pm_orig)
       self$pm <- self$pm_orig
@@ -152,7 +152,7 @@ cocoso <- R6Class("cocoso",
     },
 
     #' @description
-    #' prepares summary of the CoCoSo method resutls and outputs them
+    #' prepares summary of the CoCoSo method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

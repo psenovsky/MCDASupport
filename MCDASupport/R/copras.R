@@ -1,7 +1,7 @@
 #' Complex Proportional Assessment
 #'
 #' @description
-#' COPRAS is a approach philosophically comming from methods such as
+#' COPRAS is an approach philosophically coming from methods such as
 #'  \link{saw}, but it evaluates separately minimizing and maximizing criteria.
 #'  In case only maximized criteria are present, the method provides exactly
 #'  same results as SAW.
@@ -19,7 +19,7 @@
 #'
 #' \mjsdeqn{S_{-i} = \sum_{j \in l} y_{ij}}
 #'
-#' Where k is a set of benefical and l is set of cost criteria. Y is normalized
+#' Where k is a set of beneficial and l is set of cost criteria. Y is normalized
 #'  weighted value.
 #'
 #' Then we determine relative significance of the criteria using equation
@@ -74,10 +74,10 @@ copras <- R6Class("copras",
     #'  columns)
     #' @param w weights vector
     #' @param minmax vector of optimization direction (min/max, max is default)
-    #' @return inicialized and computed model
+    #' @return initialized and computed model
     #'
     #' @examples
-    #' # example from EHGHAN-MANSHADI, see references or
+    #' # example from DEHGHAN-MANSHADI, see references or
     #' # https://www.youtube.com/watch?v=364ghfEWz_k
     #' PM <- rbind(
     #'   c(75.5, 420, 74.2, 2.8, 21.4, 0.37, 0.16),
@@ -113,7 +113,7 @@ copras <- R6Class("copras",
     },
 
     #' @description
-    #' computes the model bas of class properties. Usually we do not run the
+    #' computes the model based on class properties. Usually we do not run the
     #'  computation manually (it is run from class' constructor).
     compute = function() {
       c_max <- colSums(self$pm)
@@ -136,7 +136,7 @@ copras <- R6Class("copras",
     },
 
     #' @description
-    #' summary of the COPRAS method resutls.
+    #' summary of the COPRAS method results.
     #' @return basic information on the model including ranking.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives
