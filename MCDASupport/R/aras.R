@@ -12,11 +12,11 @@
 #'
 #' step 1) Formulate DMM (Decision Making Matrix)
 #'
-' Package usually uses a different name for it, PM (Performance Matrix). The idea
+#' Package usually uses a different name for it, PM (Performance Matrix). The idea
 #'  is the same; we work with m alternatives in n criteria describing  performance
 #'  of these alternatives.
 #'
-' Performance of the i‑th alternative in criterion j is denoted as \mjseqn{x_{ij}}
+#' Performance of the i‑th alternative in criterion j is denoted as \mjseqn{x_{ij}}
 #'  and \mjseqn{x_{0j}} represents the optimal value of the j‑th criterion.
 #'
 #' Generally speaking if optimal value of j-th criterion is not known then for
@@ -52,7 +52,7 @@
 #'
 #' \mjsdeqn{S_i = \sum_{j=1}^n \hat{x}_{ij}}
 #'
-' Alternatives with larger \mjseqn{S_i} are considered better than those with
+#' Alternatives with larger \mjseqn{S_i} are considered better than those with
 #'  a lower value of it.
 #'
 #' Up to this point, the procedure is basically same as for \link{wsm} or
