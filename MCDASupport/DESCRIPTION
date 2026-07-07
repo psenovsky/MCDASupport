@@ -2,7 +2,7 @@ Package: MCDASupport
 Type: Package
 Title: Support functions for solving Multiple-criteria Decision-making Problems
 Version: 0.39
-Date: 2027-05-21
+Date: 2027-07-07
 Author: Pavel Šenovský pavel.senovsky@vsb.cz [aut, cre]
 Maintainer: Pavel Šenovský <pavel.senovsky@vsb.cz>
 Description: Complex package of method for multi-criteria decision making, derivation of the weights and normalization.

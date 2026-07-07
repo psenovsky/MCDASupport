@@ -1,5 +1,8 @@
-MCDASupport v0.39 (Release date: TBD)
+MCDASupport v0.39 (Release date: 2026-07-07)
 ===================
+
+* added install_dependencies function to easily install missing dependencies for correct functioning of the package
+* corrected huge amount of typos in roxygen documentation
 
 MCDASupport v0.38 (Release date: 2026-05-21)
 ===================
