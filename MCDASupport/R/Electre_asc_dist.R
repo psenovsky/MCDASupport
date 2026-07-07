@@ -1,11 +1,11 @@
-#' algorithm for ascending distilation
+#' algorithm for ascending distillation
 #'
 #' @description
 #' Algorithm to establish partial preorder by the means of ascending
-#'  distilation. Preorder is achieved by distilling alternatives using
-#'  progresively lower cut-off thresholds.
+#'  distillation. Preorder is achieved by distilling alternatives using
+#'  progressively lower cut-off thresholds.
 #'
-#' This aproach is complementary to descending distilation process which
+#' This approach is complementary to descending distillation process which
 #'  creates second pre-order.
 #'
 #' The algorithm is used in Electre III (\code{\link{electre3}}) and Electre IV

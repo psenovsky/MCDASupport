@@ -37,7 +37,7 @@
 #'  \mjseqn{q_k < D_k \le p_k} \mjseqn{PD = \frac{D_k - q_k}{p_k - q_k}},
 #'  otherwise PD = 1.
 #'
-#' Finaly in gaussian function PD = 0 for \mjseqn{D_k \le 0} otherwise
+#' Finally in gaussian function PD = 0 for \mjseqn{D_k \le 0} otherwise
 #'  \mjseqn{PD = 1 - e^{-\frac{D_k^2}{2s_k^2}}}.
 #'
 #' Where PD ... preference degree, q ... is indifference threshold, p ... is
@@ -67,7 +67,7 @@
 #'
 #' @param PM Matrix or data frame containing the performance table. Each row
 #'  corresponds to an alternative, and each column to a criterion. only numeric
-#'  values expercted. Rows and columns are expected to be named.
+#'  values expected. Rows and columns are expected to be named.
 #' @param preferenceFunction vector, specifies type of function used to compute
 #'  preferences. Need to be set for each criterion. Possible values are:
 #'  'default', 'U-shape', 'V-shape', 'level', 'linear', 'Gaussian'. Choice of
@@ -75,21 +75,21 @@
 #'  for computation. Each criterion can use different preference function.
 #' @param w vector containing the weights of the criteria. Values need to
 #'  \mjseqn{0 \le w_i \le 1, \sum w_i = 1}
-#' @param indifferenceTreshold vector containing indifference threshods for
+#' @param indifferenceTreshold vector containing indifference thresholds for
 #'  criteria. Not all types of performance functions require it. The parameter
 #'  must be used if there is at least one criterion, for which it is required.
 #'  Values for all other criteria should be 0 (and will not be used during
 #'  computations). Only 'U-shape', 'level', 'linear' functions need this
 #'  threshold.
-#' @param prefferenceThreshold vector containing prefference threshods for
+#' @param prefferenceThreshold vector containing preference thresholds for
 #'  criteria. Not all types of performance functions require it. The parameter
 #'  must be used if there is at least one criterion, for which it is required.
 #'  Values for all other criteria should be 0 (and will not be used during
 #'  computations). Only 'V-shape', 'level', 'linear' functions need this
 #'  threshold.
-#' @param intermediateThreshold vector containing intermetiate thresholds for
-#'  criteria. only Gaussian type performance functions rewuire this type of
-#'  threshold. If prefference and indifference thresholds are present, the
+#' @param intermediateThreshold vector containing intermediate thresholds for
+#'  criteria. only Gaussian type performance functions require this type of
+#'  threshold. If preference and indifference thresholds are present, the
 #'  PROMETHEE function will try to 'gues' intermediate threshold as value
 #'  right in the middle between these thresholds.
 #'
@@ -97,27 +97,27 @@
 #' The function returns a list structured as follows:
 #' \itemize{
 #'   \item positiveFlowCriteria - matrix of size no. alternatives x no. of
-#'  criteria representing how the alternative is preffered in criterium
+#'  criteria representing how the alternative is preferred in criterium
 #'  compared to other alternatives
 #'   \item negativeFlowCriteria - matrix of size no. alternatives x no. of
 #'  criteria representing how the alternative is outranked in criterium
 #'  compared to other alternatives
 #'   \item netFlowCriteria - matrix of size no. alternatives x no. of
-#'  criteria representing overal evaluation of the flows
+#'  criteria representing overall evaluation of the flows
 #'   \item weightedPositiveFlowCriteria - matrix of size no. alternatives x no.
-#'  of criteria representing how the alternative is preffered in criterium
+#'  of criteria representing how the alternative is preferred in criterium
 #'  compared to other alternatives with weights applied to them
 #'   \item weightedNegativeFlowCriteria - matrix of size no. alternatives x no.
 #'  of criteria representing how the alternative is outranked in criterium
 #'  compared to other alternatives with weights applied to them
 #'   \item weightedNetFlowCriteria - matrix of size no. alternatives x no. of
-#'  criteria representing overal evaluation of the flows (with weights applied
+#'  criteria representing overall evaluation of the flows (with weights applied
 #'  to them)
-#'   \item positiveFlow - vector representing how the alternative is preffered
+#'   \item positiveFlow - vector representing how the alternative is preferred
 #'  to other alternatives
-#'   \item negativeFlow vector representing how altenative is outranked by
+#'   \item negativeFlow vector representing how alternative is outranked by
 #'  other alternatives
-#'   \item netFlow - vector representing diferences between positive and
+#'   \item netFlow - vector representing differences between positive and
 #'  negative flows for the alternative across criteria
 #'   \item preferenceDegreeUnw - list of matrixes with unweighted preferences,
 #'  separate matrix for each criterion
@@ -152,7 +152,7 @@
 #' minmax <- 'max'
 #' shape <- c('U-shape', 'V-shape', 'linear', 'level', 'default', 'Gaussian')
 #' p <- c(10, 0, 450, 50, 0, 0) #indifference threshold
-#' q <- c(0, 30, 50, 10, 0, 0) #prefference threshold
+#' q <- c(0, 30, 50, 10, 0, 0) #preference threshold
 #' s <- c(0,0,0,0,0,5) #intermediate threshold
 #' w <- c(0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1665)
 #' result <- PROMETHEE(PM, shape, w, q, p, s)

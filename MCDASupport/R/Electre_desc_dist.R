@@ -1,11 +1,11 @@
-#' algrithm for descending distilation
+#' algorithm for descending distillation
 #'
 #' @description
 #' Algorithm to establish partial preorder by the means of descending
-#'  distilation. Preorder is achieved by distilling alternatives using
-#'  progresively lower cutoff thresholds.
+#'  distillation. Preorder is achieved by distilling alternatives using
+#'  progressively lower cutoff thresholds.
 #'
-#' This aproach is complementary to ascending distilation process
+#' This approach is complementary to ascending distillation process
 #'  \code{\link{Electre_asc_dist}} which creates second preorder.
 #'
 #' The algorithm is used in \code{\link{electre3}} and
