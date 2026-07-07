@@ -222,7 +222,7 @@ fuzzyvikor <- R6Class("fuzzyvikor",
     },
 
     #' @description
-    #' summary of the Fuzzy VIKOR method resutls.
+    #' summary of the Fuzzy VIKOR method results.
     #' @return basic information on the model including ranking.
     summary = function() {
       ncri <- nrow(self$w)

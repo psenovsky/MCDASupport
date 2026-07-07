@@ -216,7 +216,7 @@ fuzzytopsis <- R6Class("fuzzytopsis",
     },
 
     #' @description
-    #' summary of the Fuzzy TOPSIS resutls.
+    #' summary of the Fuzzy TOPSIS results.
     #'
     #' @return basic information on the model including ranking.
     summary = function() {

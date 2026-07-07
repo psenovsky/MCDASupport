@@ -79,11 +79,11 @@ sir <- R6Class("sir",
     #' @field p_threshold vector of proference thresholds
     p_threshold = NULL,
 
-    #' @field im_threshold vector containing intermetiate thresholds for
-    #'  criteria. only Gaussian type performance functions rewuire this type of
-    #'  threshold. If prefference and indifference thresholds are present, the
-    #'  PROMETHEE function will try to 'gues' intermediate threshold as value
-    #'  right in the middle between these thresholds.
+#' @field im_threshold vector containing intermediate thresholds for
+#'  criteria. only Gaussian type performance functions require this type of
+#'  threshold. If preference and indifference thresholds are present, the
+#'  PROMETHEE function will try to 'gues' intermediate threshold as value
+#'  right in the middle between these thresholds.
     im_threshold = NULL,
 
     #' @field SAW implicit TRUE, if set TRUE will aggregate S and I matrixes
@@ -105,7 +105,7 @@ sir <- R6Class("sir",
     rankIFlow = NULL,
 
     #' @field partialRanking matrix providing partial order of alternatives
-    #'  with P-prefered, I-indifferent and R-incomparable values
+    #'  with P-preferred, I-indifferent and R-incomparable values
     partialRanking = NULL,
 
     #' @field netFlow differencce between superiority and inferiority flows
@@ -123,7 +123,7 @@ sir <- R6Class("sir",
     #'
     #' @param pm Matrix or data frame containing the performance table. Each
     #'  row corresponds to an alternative, and each column to a criterion. only
-    #'  numeric values expercted. Rows and columns are expected to be named.
+    #'  numeric values expected. Rows and columns are expected to be named.
     #' @param w vector containing the weights of the criteria. Values need to
     #'  \mjseqn{0 \le w_i \le 1, \sum w_i = 1}
     #' @param d vector, specifies type of function used to compute preferences.
@@ -133,21 +133,21 @@ sir <- R6Class("sir",
     #'  computation. Each criterion can use different preference function.
     #' @param minmax value or vector of values 'min' or 'max' specifying
     #'  optimization direction for the criterium
-    #' @param i_threshold vector containing indifference threshods for
+    #' @param i_threshold vector containing indifference thresholds for
     #'  criteria. Not all types of performance functions require it. The
     #'  parameter must be used if there is at least one criterion, for which it
     #'  is required. Values for all other criteria should be 0 (and will not be
     #'  used during computations). Only 'U-shape', 'level', 'linear' functions
     #'  need this threshold.
-    #' @param p_threshold vector containing prefference threshods for criteria.
+    #' @param p_threshold vector containing preference thresholds for criteria.
     #'  Not all types of performance functions require it. The parameter must
     #'  be used if there is at least one criterion, for which it is required.
     #'  Values for all other criteria should be 0 (and will not be used during
     #'  computations). Only 'V-shape', 'level', 'linear' functions need this
     #'  threshold.
-    #' @param im_threshold vector containing intermetiate thresholds for
-    #'  criteria. only Gaussian type performance functions rewuire this type of
-    #'  threshold. If prefference and indifference thresholds are present, the
+#' @param im_threshold vector containing intermediate thresholds for
+#'  criteria. only Gaussian type performance functions require this type of
+    #'  threshold. If preference and indifference thresholds are present, the
     #'  PROMETHEE function will try to 'gues' intermediate threshold as value
     #'  right in the middle between these thresholds.
     #' @param SAW implicit TRUE, if set TRUE will aggregate S and I matrixes
@@ -317,7 +317,7 @@ sir <- R6Class("sir",
     },
 
     #' @description
-    #' summary of the SIR method resutls.
+    #' summary of the SIR method results.
     #'
     #' @return basic information on the model.
     summary = function() {
@@ -339,7 +339,7 @@ sir <- R6Class("sir",
     #' @description
     #' test sensitivity of the model to changes in the thresholds.
     #'
-    #' Provides sens_i (for indifference threshold), sens_p (for prefference
+    #' Provides sens_i (for indifference threshold), sens_p (for preference
     #'  threshold) and sens_im (for intermediate treshold) dataframes in
     #'  structure:
     #'
@@ -362,7 +362,7 @@ sir <- R6Class("sir",
     #'  and each of these has a different requirements on types of thresholds
     #'  it uses. For example level and linear functions use both preference and
     #'  indifference thresholds (but not intermediate). V-shape function uses
-    #'  prefference threshold only, U-shape uses indifference threshold only.
+    #'  preference threshold only, U-shape uses indifference threshold only.
     #'
     #' PROMETHEE function is being utilized only in SIR-TOPSIS, so if SIR-SAW
     #'  procedure is used the function only sneds an error message to terminal.
