@@ -154,7 +154,7 @@ Computed the MABAC using params provided in constructor. Usually run
 \if{html}{\out{<a id="method-mabac-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-mabac-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the MABAC method resutls and outputs them
+prepares summary of the MABAC method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{mabac$summary()}\if{html}{\out{</div>}}

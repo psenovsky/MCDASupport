@@ -54,7 +54,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{w}}{vector of weights}
 
-\item{\code{minmax}}{vector specifying optimalization direction for the
+\item{\code{minmax}}{vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -91,7 +91,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -116,7 +116,7 @@ performs computation of RAFSI model based on class properties. Usually
 \if{html}{\out{<a id="method-rafsi-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-rafsi-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the RAFSI method resutls and outputs them
+prepares summary of the RAFSI method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{rafsi$summary()}\if{html}{\out{</div>}}

@@ -22,7 +22,7 @@ the 'wsm' is default value.}
 class with computed decision problem
 }
 \description{
-Helper function for aplication of the various MCDA methods.
+Helper function for application of the various MCDA methods.
 
 The pasckage implements MCDA methods as R6 classes, which need to be
  initiated using class constructor, usually in form of name$new(parameters).

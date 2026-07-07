@@ -113,13 +113,13 @@ Alternatives in rows and criteria in columns}
 
 \item{\code{w}}{weight vector (sum of weights = 1)}
 
-\item{\code{u}}{overal utility of the alternatives}
+\item{\code{u}}{overall utility of the alternatives}
 
-\item{\code{us}}{overal utility of the alternatives for S-WIPS}
+\item{\code{us}}{overall utility of the alternatives for S-WIPS}
 
-\item{\code{u_sorted}}{overal sorted utility of the alternatives}
+\item{\code{u_sorted}}{overall sorted utility of the alternatives}
 
-\item{\code{us_sorted}}{overal sorted utility of the alternatives for S-WIPS}
+\item{\code{us_sorted}}{overall sorted utility of the alternatives for S-WIPS}
 
 \item{\code{minmax}}{vector of optimization directions (min/max). Can be
 single min or max value  if all optimization directions are same.}
@@ -204,7 +204,7 @@ computes WISP model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-wisp-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-wisp-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the WISP method resutls and outputs them
+prepares summary of the WISP method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{wisp$summary()}\if{html}{\out{</div>}}

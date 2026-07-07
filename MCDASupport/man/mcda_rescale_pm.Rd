@@ -15,7 +15,7 @@ numbers.}
 scaled performance matrix.
 }
 \description{
-Rescales performance matrix resulting in matrix wich all criteria in same
+Rescales performance matrix resulting in matrix which all criteria in same
  scale. Only works with numeric values.
 }
 \examples{

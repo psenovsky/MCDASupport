@@ -19,7 +19,7 @@ and for cost criteria
 
 \mjsdeqn{PDA_{ij} = max(0; \frac{AV_j - x_{ij}}{AV_j})}
 
-Similarily we compute negative distance to the average performance. Formally
+Similarly we compute negative distance to the average performance. Formally
  we switch the statements, so for benefit criteria (step 3)
 
 \mjsdeqn{NDA_{ij} = max(0; \frac{AV_j - x_{ij}}{AV_j})}
@@ -44,7 +44,7 @@ Computed values of the SPI and SNI are normalized against its maximal values
 
 step 7) compute average of NSPI and NSNI
 
-\mjsdeqn{ASI = \frac{NSPI + NSNO}{2}}
+\mjsdeqn{ASI = \frac{NSPI + NSNI}{2}}
 
 Value of ASI is directly usable for ranking of alternatives (largest value
  is best).
@@ -142,7 +142,7 @@ same.}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-instance of the class included computed model
+instance of the class including computed model
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
@@ -178,7 +178,7 @@ t <- edas$new(M, w, minmax)
 \if{html}{\out{<a id="method-edas-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-edas-compute}{}}}
 \subsection{Method \code{compute()}}{
-Computed the EDAS using params provided in constructor. Usually run
+Computes the EDAS using params provided in constructor. Usually run
  automatically by constructor.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{edas$compute()}\if{html}{\out{</div>}}
@@ -189,7 +189,7 @@ Computed the EDAS using params provided in constructor. Usually run
 \if{html}{\out{<a id="method-edas-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-edas-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the EDAS method resutls and outputs them
+prepares summary of the EDAS method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{edas$summary()}\if{html}{\out{</div>}}

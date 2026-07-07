@@ -168,7 +168,7 @@ computes MELCHIOR model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-melchior-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-melchior-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the MELCHIOR method resutls.
+summary of the MELCHIOR method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{melchior$summary()}\if{html}{\out{</div>}}
 }

@@ -99,7 +99,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -153,7 +153,7 @@ Manual re-computation si required only if the user changes class' fields
 \if{html}{\out{<a id="method-msim-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-msim-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the MSIM method resutls.
+summary of the MSIM method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{msim$summary()}\if{html}{\out{</div>}}
 }

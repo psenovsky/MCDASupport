@@ -88,7 +88,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -134,7 +134,7 @@ performs computation of extended AROMAN model based on class properties.
 \if{html}{\out{<a id="method-extended_aroman-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-extended_aroman-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the extended AROMAN method resutls.
+summary of the extended AROMAN method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{extended_aroman$summary()}\if{html}{\out{</div>}}
 }

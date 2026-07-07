@@ -2,7 +2,7 @@
 % Please edit documentation in R/util_pm_minmax.R
 \name{util_pm_minmax}
 \alias{util_pm_minmax}
-\title{Process performance metrix - reverts minimalized criteria in the matrix}
+\title{Process performance matrix - reverts minimalized criteria in the matrix}
 \usage{
 util_pm_minmax(PM, minmaxcriteria = "max")
 }
@@ -18,7 +18,7 @@ vector specifying either 'max' or 'min' for each criterion.}
 processed performance matrix with all criteria to be maximized
 }
 \description{
-Internal function the package uses to prepare performace matrix for
+Internal function the package uses to prepare performance matrix for
  computations. It processes the performance matrix and transfers scales of
  minimized criteria to maximized ones.
 }

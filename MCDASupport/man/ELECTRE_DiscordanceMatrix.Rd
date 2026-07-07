@@ -2,19 +2,19 @@
 % Please edit documentation in R/ELECTRE_DiscordanceMatrix.R
 \name{ELECTRE_DiscordanceMatrix}
 \alias{ELECTRE_DiscordanceMatrix}
-\title{Method used compute discordance matrix in Electre methods}
+\title{Method used to compute discordance matrix in Electre methods}
 \usage{
 ELECTRE_DiscordanceMatrix(pm)
 }
 \arguments{
 \item{pm}{matrix or data frame containing the performance table. Each row
 corresponds to an alternative, and each column to a criterion. only numeric
-values expercted. Rows and columns are expected to be named and criteria
-are expected to be maximized (you can use function util_prepare_minmax to
+values expected. Rows and columns are expected to be named and criteria
+are expected to be maximized (you can use function \code{\link{util_pm_minmax}} to
 do that)}
 }
 \value{
-computed discordancce matrix
+computed discordance matrix
 }
 \description{
 \loadmathjax
@@ -23,14 +23,14 @@ Internal method for computing discordance matrix for \code{\link{electre1}}
  approaches ELECTRE methods use to derive preference for the alternatives,
  the other being concordance matrix.
 
-Concordancce matrix (index) measures strength of the statement that
+Concordance matrix (index) measures strength of the statement that
  alternative a outranks alternative b, while discordance matrix (index)
  together with discordance threshold (exceeding this threshold) can prevent
  such outranking.
 
 Code is inspired by pyDecisions package.
 
- Computationally discoradce matrix D(a,b) is defined for:
+Computationally discordance matrix D(a,b) is defined for:
 
 \mjsdeqn{g_j(a) \ge g_j(b) \forall j: D(a,b) = 0}
 
@@ -44,7 +44,7 @@ where
 
 Where a, b ... are alternatives to be compared, \mjseqn{g_j(x)} ...
  performance of alternative x in criterium j and \mjseqn{\delta_j} is
- maximal difference of alternatives a and b preformance across the criteria.
+ maximal difference of alternatives a and b performance across the criteria.
 }
 \examples{
 PM <- cbind(
@@ -65,7 +65,7 @@ dm <- ELECTRE_DiscordanceMatrix(PMmax)
 }
 \references{
 Balamurali, M.: pyDecisions - A Python Library of management decision making
- techniques. Avilable on-line from
+techniques. Available on-line from
  \url{https://github.com/Valdecy/pyDecisions}
 
 Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:

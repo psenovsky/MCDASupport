@@ -17,7 +17,7 @@ Positive, negative and net flows are computed in same way as in PROMETHEE I,
 
 PROMETHEE II has very straighforward approach to computation of the ranks for
  alternatives. It takes net flow provided by PROMETHEE function and orders it
- decresingly. Alternatives with same values do have same rank, othervise we
+ decresingly. Alternatives with same values do have same rank, otherwise we
  get full order of alternatives.
 }
 \examples{
@@ -43,7 +43,7 @@ minmax <- 'max'
 shape <- c('U-shape', 'V-shape', 'linear', 'level', 'default',
            'Gaussian')
 p <- c(10, 0, 450, 50, 0, 0) #indifference threshold
-q <- c(0, 30, 50, 10, 0, 0) #prefference threshold
+q <- c(0, 30, 50, 10, 0, 0) #preference threshold
 s <- c(0,0,0,0,0,5) #intermediate threshold
 w <- c(0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1665)
 result <- promethee2$new(PM, shape, w, minmax, q, p, s)
@@ -81,16 +81,16 @@ function.}
 
 \item{\code{p_threshold}}{vector of proference thresholds}
 
-\item{\code{im_threshold}}{vector containing intermetiate thresholds for
-criteria. only Gaussian type performance functions rewuire this type of
-threshold. If prefference and indifference thresholds are present, the
+\item{\code{im_threshold}}{vector containing intermediate thresholds for
+criteria. only Gaussian type performance functions require this type of
+threshold. If preference and indifference thresholds are present, the
 PROMETHEE function will try to 'gues' intermediate threshold as value
 right in the middle between these thresholds.}
 
-\item{\code{positiveFlow}}{vector representing how the alternative is preffered
+\item{\code{positiveFlow}}{vector representing how the alternative is preferred
 to other alternatives}
 
-\item{\code{negativeFlow}}{vector representing how altenative is outranked by
+\item{\code{negativeFlow}}{vector representing how alternative is outranked by
 other alternatives}
 
 \item{\code{netFlow}}{positive - negative flow, forms an indicator PROMETHEE II
@@ -149,7 +149,7 @@ public constructor for the promethee2 class. Validates input parameters
 \describe{
 \item{\code{pm}}{Matrix or data frame containing the performance table. Each
 row corresponds to an alternative, and each column to a criterion.
-only numeric values expercted. Rows and columns are expected to be
+only numeric values expected. Rows and columns are expected to be
 named.}
 
 \item{\code{pref_function}}{vector, specifies type of function used to compute
@@ -167,23 +167,23 @@ is usable in situation when all criteria are either benefit or cost
 (are not mixed). If Criteria orientation is mixed, vector is required
 to set criterion orientation right.}
 
-\item{\code{i_threshold}}{vector containing indifference threshods for
+\item{\code{i_threshold}}{vector containing indifference thresholds for
 criteria. Not all types of performance functions require it. The
 parameter must be used if there is at least one criterion, for which it
 is required. Values for all other criteria should be 0 (and will not be
 used during computations). Only 'U-shape', 'level', 'linear' functions
 need this threshold.}
 
-\item{\code{p_threshold}}{vector containing prefference threshods for criteria.
+\item{\code{p_threshold}}{vector containing preference thresholds for criteria.
 Not all types of performance functions require it. The parameter must
 be used if there is at least one criterion, for which it is required.
 Values for all other criteria should be 0 (and will not be used during
 computations). Only 'V-shape', 'level', 'linear' functions need this
 threshold.}
 
-\item{\code{im_threshold}}{vector containing intermetiate thresholds for
-criteria. only Gaussian type performance functions rewuire this type of
-threshold. If prefference and indifference thresholds are present, the
+\item{\code{im_threshold}}{vector containing intermediate thresholds for
+criteria. only Gaussian type performance functions require this type of
+threshold. If preference and indifference thresholds are present, the
 PROMETHEE function will try to 'gues' intermediate threshold as value
 right in the middle between these thresholds.}
 }
@@ -208,7 +208,7 @@ minmax <- 'max'
 shape <- c('U-shape', 'V-shape', 'linear', 'level', 'default',
            'Gaussian')
 p <- c(10, 0, 450, 50, 0, 0) #indifference threshold
-q <- c(0, 30, 50, 10, 0, 0) #prefference threshold
+q <- c(0, 30, 50, 10, 0, 0) #preference threshold
 s <- c(0,0,0,0,0,5) #intermediate threshold
 w <- c(0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1665)
 result <- promethee2$new(PM, shape, w, minmax, q, p, s)
@@ -249,7 +249,7 @@ Creates summary for PROMETHEE II model and sends it to console.
 \subsection{Method \code{sensitivity()}}{
 test sensitivity of the model to changes in the thresholds.
 
-Provides sens_i (for indifference threshold), sens_p (for prefference
+Provides sens_i (for indifference threshold), sens_p (for preference
  threshold) and sens_im (for intermediate treshold) dataframes in
  structure:
 
@@ -272,7 +272,7 @@ Also note that PROMETHEE function is complex, because of existence of
  and each of these has a different requirements on types of thresholds
  it uses. For example level and linear functions use both preference and
  indifference thresholds (but not intermediate). V-shape function uses
- prefference threshold only, U-shape uses indifference threshold only.
+ preference threshold only, U-shape uses indifference threshold only.
 
 Gaussian function uses intermediate threshold only, but if preference
  andindifference thresholds are provided, the sensitivity is being

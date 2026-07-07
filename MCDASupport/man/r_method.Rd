@@ -15,7 +15,7 @@ For both weights are computed:
 where wj is the weight of the j-th alternative or criterium, rk is the rank
  assigned to k-th alternative or criterium.
 
-The resulting two sets of weights are aggregated basicaly using \link{wsm}
+The resulting two sets of weights are aggregated basically using \link{wsm}
  method, where criteria weights serve as weights and performance weights
  serve as pervormance measure.
 
@@ -92,7 +92,7 @@ performs computation of SECA model based on class properties. Usually
 \if{html}{\out{<a id="method-r_method-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-r_method-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the R method resutls and outputs them
+prepares summary of the R method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{r_method$summary()}\if{html}{\out{</div>}}

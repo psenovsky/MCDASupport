@@ -203,7 +203,7 @@ computes SMART model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-smart-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-smart-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the CODAS method resutls and outputs them
+prepares summary of the SMAR method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{smart$summary()}\if{html}{\out{</div>}}

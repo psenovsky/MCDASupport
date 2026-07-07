@@ -98,7 +98,7 @@ public constructor allowing the user to construct Borta count decision
 \describe{
 \item{\code{pm}}{Matrix or data frame containing the performance table. Each
 row corresponds to an alternative, and each column to a criterion. only
-numeric values expercted. Rows and columns are expected to be named.}
+numeric values expected. Rows and columns are expected to be named.}
 
 \item{\code{A}}{numeric vector of lower ranges of criteria}
 
@@ -153,7 +153,7 @@ Manual re-computation si required only if the user changes class' fields
 \if{html}{\out{<a id="method-rim-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-rim-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the RIM method resutls.
+summary of the RIM method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{rim$summary()}\if{html}{\out{</div>}}
 }

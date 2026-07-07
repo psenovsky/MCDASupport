@@ -5,16 +5,16 @@
 \title{Alternative Ranking Order Method Accounting for Two-Step Normalization}
 \description{
 The approach uses linear (tij) and vector (tij*) normalization of
- performance measures. Based of these averaged normalization is computed:
+ performance measures. Based on these averaged normalization is computed:
 
 \mjsdeqn{t_{ij}^{norm} = \frac{\beta t_{ij} + (1 - \beta)t_{ij}^*}{2}}
 
-Where bata is weighting factor in interval 0-1, 0.5 by default.
+Where beta is weighting factor in interval 0-1, 0.5 by default.
 
-To t_norm weights are appied (t^). Next we separately aggreates for cost
+To t_norm weights are applied (t^). Next we separately aggregate for cost
  criteria (Li) and benefit criteria (Ai).
 
-As last step final ranking Ri is computed:
+As the last step final ranking Ri is computed:
 
 \mjsdeqn{R_i = L_i^\lambda + A_i^{1 - \lambda}}
 
@@ -64,7 +64,7 @@ normalization (default = 0.5)}
 \item{\code{lambda}}{values 0-1, coefficient degree of the criteria type (0.5
 by default)}
 
-\item{\code{result}}{dataframe with cost (Li) and Bbenefit (Ai) normalized
+\item{\code{result}}{dataframe with cost (Li) and Benefit (Ai) normalized
 aggregated value, final result (Ri) and rank of alternatives.}
 }
 \if{html}{\out{</div>}}
@@ -83,7 +83,7 @@ aggregated value, final result (Ri) and rank of alternatives.}
 \if{latex}{\out{\hypertarget{method-aroman-new}{}}}
 \subsection{Method \code{new()}}{
 Public constructor for the class. Checks validity of input parameters
- and performs computation of of the model based on them.
+ and performs computation of the model based on them.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{aroman$new(pm, w, minmax = "max", beta = 0.5, lambda = 0.5)}\if{html}{\out{</div>}}
 }
@@ -95,8 +95,8 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
-criteria. Values max/min are expected. If all criteria are optimalized
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
+criteria. Values max/min are expected. If all criteria are optimized
 in same direction the vector can be replaced by single value. Max value
 is default.}
 
@@ -140,7 +140,7 @@ performs computation of AROMAN model based on class properties. Usually
 \if{html}{\out{<a id="method-aroman-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-aroman-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the AROMAN method resutls.
+summary of the AROMAN method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{aroman$summary()}\if{html}{\out{</div>}}
 }

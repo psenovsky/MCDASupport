@@ -24,7 +24,7 @@ next we compute performance variation value (PV) computation by comparing
 
 \mjsdeqn{PV = \sum_{j=1}^m (R_{ij} - mean(R_j))^2}
 
-We estimate overal performance
+We estimate overall performance
 
 \mjsdeqn{\Psi = 1 - PV_j}
 
@@ -32,7 +32,7 @@ Weight vector can be then computed as
 
 \mjsdeqn{w = \frac{\Psi}{\sum \Psi}}
 
-Overal performace selection index (PSI) can be computed using normal WSM
+Overall performance selection index (PSI) can be computed using normal WSM
  approach
 
 \mjsdeqn{PSI = \sum_{i = 1}^n R_{ij} \cdot w_i}
@@ -94,7 +94,7 @@ for all criteria is the same.}
 
 \item{\code{PSI}}{weighted sum percentages}
 
-\item{\code{scoreM}}{graph visualizing contribution of the critteria to overall
+\item{\code{scoreM}}{graph visualizing contribution of the criteria to overall
 PSI}
 
 \item{\code{result}}{dataframe with WSM output (and ranks)}
@@ -177,7 +177,7 @@ Computed the PSI using params provided in constructor. Usually run
 \if{html}{\out{<a id="method-psi-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-psi-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the PSI method resutls and outputs them
+prepares summary of the PSI method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{psi$summary()}\if{html}{\out{</div>}}

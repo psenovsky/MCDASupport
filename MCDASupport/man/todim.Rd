@@ -76,9 +76,9 @@ alternatives (in rows) in criteria (columns)}
 max. Can be substituted by single min or max if optimization direction
 is same for all criteria.}
 
-\item{\code{results}}{overall dominance degree altarnative (best = max)}
+\item{\code{results}}{overall dominance degree alternative (best = max)}
 
-\item{\code{results_sorted}}{by dominance degree altarnative (best = max)}
+\item{\code{results_sorted}}{by dominance degree alternative (best = max)}
 
 \item{\code{result}}{score and rank dataframe}
 }
@@ -160,7 +160,7 @@ computes TODIM model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-todim-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-todim-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the TODIM method resutls and outputs them
+prepares summary of the TODIM method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{todim$summary()}\if{html}{\out{</div>}}

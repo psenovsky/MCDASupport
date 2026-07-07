@@ -174,7 +174,7 @@ Manual re-computation si required only if the user changes class' fields
 \if{html}{\out{<a id="method-spotis-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-spotis-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the SPOTIS method resutls and outputs them
+prepares summary of the SPOTIS method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{spotis$summary()}\if{html}{\out{</div>}}

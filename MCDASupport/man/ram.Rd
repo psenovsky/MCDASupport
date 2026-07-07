@@ -34,7 +34,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{w}}{vector of weights}
 
-\item{\code{minmax}}{vector specifying optimalization direction for the
+\item{\code{minmax}}{vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -69,7 +69,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{weights vector}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -83,7 +83,7 @@ is default.}
 \if{html}{\out{<a id="method-ram-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-ram-compute}{}}}
 \subsection{Method \code{compute()}}{
-computes the model bas of class properties. Usually we do not run the
+computes the model based on class properties. Usually we do not run the
  computation manually (it is run from class' constructor).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ram$compute()}\if{html}{\out{</div>}}
@@ -94,7 +94,7 @@ computes the model bas of class properties. Usually we do not run the
 \if{html}{\out{<a id="method-ram-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-ram-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the RAM method resutls.
+summary of the RAM method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ram$summary()}\if{html}{\out{</div>}}
 }

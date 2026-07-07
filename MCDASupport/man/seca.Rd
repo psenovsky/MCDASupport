@@ -49,7 +49,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{score}}{to evaluate the results}
 
-\item{\code{minmax}}{vector specifying optimalization direction for the
+\item{\code{minmax}}{vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -86,7 +86,7 @@ Public constructor for the class. Checks validity of input parameters
 \describe{
 \item{\code{pm}}{normalized performance matrix}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -111,7 +111,7 @@ performs computation of SECA model based on class properties. Usually
 \if{html}{\out{<a id="method-seca-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-seca-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the SECA method resutls and outputs them
+prepares summary of the SECA method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{seca$summary()}\if{html}{\out{</div>}}

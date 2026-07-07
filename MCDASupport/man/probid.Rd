@@ -4,7 +4,7 @@
 \alias{probid}
 \title{Preference Ranking on the Basis of Ideal-Average Distance (WIP implementation)}
 \description{
-Proposed by Wng et al. (2021). The evaluation works on basis of comparison
+Proposed by Wang et al. (2021). The evaluation works on basis of comparison
  of the perfomance of the alternatives to range of reference solutions.
  For example TOPSIS works with single ideal and antiideal solution, PROBID
  works with tiered ideal solutions - forming m tiers of ideal solutions. (m
@@ -128,7 +128,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -167,7 +167,7 @@ performs computation of PROBID model based on class properties. Usually
 \if{html}{\out{<a id="method-probid-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-probid-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the PROBID count method resutls.
+summary of the PROBID count method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{probid$summary()}\if{html}{\out{</div>}}
 }

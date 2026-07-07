@@ -70,7 +70,7 @@ objectives}
 \item{\code{y_sorted}}{sorted normalized assessment of alternatives with
 respect to all objectives from best to worst.}
 
-\item{\code{minmax}}{vector specifying optimalization direction for the
+\item{\code{minmax}}{vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -106,7 +106,7 @@ columns)}
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -158,7 +158,7 @@ performs computation of MOORA model based on class properties. Usually
 \if{html}{\out{<a id="method-moora-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-moora-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the MOORA method resutls and outputs them
+prepares summary of the MOORA method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{moora$summary()}\if{html}{\out{</div>}}

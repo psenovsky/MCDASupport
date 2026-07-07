@@ -9,12 +9,12 @@ Decision making method derived from voting system developed by
  rank.
 
 On ballot last candidate gets 1 point, 2nd worse 2 points, ... Points for
- candidates are then aggregated across all balots, which gives us results
+ candidates are then aggregated across all ballots, which gives us results
  for the elections.
 
 In context of multi-criteria decision making the approach can be applied by
  assigning points based on ranking performance of the alternatives in the
- criteria and then suming the points for alternative across the criteria
+ criteria and then summing the points for alternative across the criteria
  leading to measure directly usable to rank the alternatives.
 }
 \examples{
@@ -41,7 +41,7 @@ Borda Count. Wikipedia. available from \url{https://en.wikipedia.org/wiki/Borda_
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }
-\keyword{Borta}
+\keyword{Borda}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
@@ -68,7 +68,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \if{html}{\out{<a id="method-borda-new"></a>}}
 \if{latex}{\out{\hypertarget{method-borda-new}{}}}
 \subsection{Method \code{new()}}{
-public constructor allowing the user to construct Borta count decision
+public constructor allowing the user to construct Borda count decision
  analysis problem and compute it.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{borda$new(pm, minmax = "max")}\if{html}{\out{</div>}}
@@ -79,10 +79,10 @@ public constructor allowing the user to construct Borta count decision
 \describe{
 \item{\code{pm}}{Matrix or data frame containing the performance table. Each
 row corresponds to an alternative, and each column to a criterion. only
-numeric values expercted. Rows and columns are expected to be named.}
+numeric values expected. Rows and columns are expected to be named.}
 
 \item{\code{minmax}}{value or vector of values 'min' or 'max' specifying
-optimization direction for the criterium}
+optimization direction for the criterion}
 }
 \if{html}{\out{</div>}}
 }
@@ -112,11 +112,11 @@ result <- borda$new(pm, minmax)
 \if{html}{\out{<a id="method-borda-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-borda-compute}{}}}
 \subsection{Method \code{compute()}}{
-Computes Borda model based on parametrs specified in constructor.
+Computes Borda model based on parameters specified in constructor.
  Normally this methods does not need to be run manually as constructor
  calls it automatically.
 
-Manual re-computation si required only if the user changes class' fields
+Manual re-computation is required only if the user changes class' fields
  without using the constructor.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{borda$compute()}\if{html}{\out{</div>}}
@@ -127,7 +127,7 @@ Manual re-computation si required only if the user changes class' fields
 \if{html}{\out{<a id="method-borda-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-borda-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the Borda count method resutls.
+summary of the Borda count method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{borda$summary()}\if{html}{\out{</div>}}
 }

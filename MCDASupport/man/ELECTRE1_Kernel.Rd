@@ -2,12 +2,12 @@
 % Please edit documentation in R/ELECTRE1_Kernel.R
 \name{ELECTRE1_Kernel}
 \alias{ELECTRE1_Kernel}
-\title{computes so called kernell of the decision for ELECTRE I, II and 1S methods}
+\title{computes so called kernel of the decision for ELECTRE I, II and 1S methods}
 \usage{
 ELECTRE1_Kernel(am)
 }
 \arguments{
-\item{am}{adjacancy matrix or credibility matrix (ELECTRE 1S)}
+\item{am}{adjacency matrix or credibility matrix (ELECTRE 1S)}
 }
 \value{
 list of:
@@ -15,12 +15,12 @@ list of:
   \item graph - graphical representation of domination of one alternative
  over another
   \item dominated - vector of alternatives identified as dominated
-  \item kernel - oposite to dominated vector. Consist for alternatives not
+  \item kernel - opposite to dominated vector. Consists of alternatives not
  dominated by other alternatives, forming kernel of the solution.
 }
 }
 \description{
-Computes kernell of the solution as the set of alternatives which are not
+Computes kernel of the solution as the set of alternatives which are not
  dominated by any other alternative. Other alternatives then for example can
  be excluded from decision making as they are clearly suboptimal.
 
@@ -28,12 +28,12 @@ The results are presented in graphical form as network diagram with flows
  representing domination relation and two vectors with alternatives in
  kernel and dominated alternatives.
 
-The function is beiung utilized for \link{electre1}, \link{electre2} and
+The function is being utilized for \link{electre1}, \link{electre2} and
  \link{electre1s} methods.
 }
 \references{
 Balamurali, M.: pyDecisions - A Python Library of management decision making
- techniques. Avilable on-line from
+techniques. Available on-line from
  \url{https://github.com/Valdecy/pyDecisions}
 
 Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:

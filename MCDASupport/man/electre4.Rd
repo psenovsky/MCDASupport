@@ -51,7 +51,7 @@ t <- electre4:new(PM, P, Q, V, minmaxcriteria)
 }
 \references{
 Balamurali, M.: pyDecisions - A Python Library of management decision making
- techniques. Avilable on-line from
+ techniques. Available on-line from
  \url{https://github.com/Valdecy/pyDecisions}
 
 Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
@@ -112,10 +112,10 @@ optimized in the same direction.}
 orders the alternatives from worst to best}
 
 \item{\code{rank_p}}{re-order matrix specifying identified relations between
-the alternatives - values are P+ (a prefered to b), P-
-(b prefered to a), I (indifferent), R (incomparable)}
+the alternatives - values are P+ (a preferred to b), P-
+(b preferred to a), I (indifferent), R (incomparable)}
 
-\item{\code{adjancancyMatrix}}{Adjancency Matrix of outranking relation between
+\item{\code{adjancancyMatrix}}{Adjacency Matrix of outranking relation between
 the alternatives allows to visualize results as network diagram}
 
 \item{\code{graph}}{processed adajncency matrix into network digram}
@@ -202,7 +202,7 @@ computes the ELECTRE IV problem. Usually doesn't need to be run manually
 \if{html}{\out{<a id="method-electre4-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-electre4-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the ELECTRE IV method resutls.
+summary of the ELECTRE IV method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electre4$summary()}\if{html}{\out{</div>}}
 }
@@ -219,7 +219,7 @@ sensitivity analysis for ELECTRE IV object is performed on values of
  preference (p), indefference (q) and veto (v) thresholds.
 
 Since the thresholds (all of them) are specfied separately for each
- criterion, their sensitivity needs to be also evaluated seprately.
+ criterion, their sensitivity needs to be also evaluated separately.
  This is being realized in this function by generating separate
  dataframe for each threshold (sens_p, sens_q, sens_v) with following
  structure:

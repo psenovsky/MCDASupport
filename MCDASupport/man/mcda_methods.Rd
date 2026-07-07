@@ -2,7 +2,7 @@
 % Please edit documentation in R/mcda_methods.R
 \name{mcda_methods}
 \alias{mcda_methods}
-\title{COmpare ranks using MCDA methods}
+\title{Compare ranks using MCDA methods}
 \usage{
 mcda_methods(pm, w, minmax = "max", methods = "wsm")
 }
@@ -12,15 +12,15 @@ mcda_methods(pm, w, minmax = "max", methods = "wsm")
 \item{minmax}{'min' or 'max' to specify cost or benefit criterion, max is
 default value}
 
-\item{methods}{specify MCDA methods, see list of supperted methods in
+\item{methods}{specify MCDA methods, see list of supported methods in
 \link{mcda_method}}
 }
 \value{
-dataframe with methods in rows and ranked alernatives in columns
+dataframe with methods in rows and ranked alternatives in columns
 }
 \description{
 helper function, which allows to compare results achieved using MCDA
- mehrods provided as vector in methods parameter. 
+ methods provided as vector in methods parameter. 
 
 #' @param pm performance matrix criteria in columns, alternatives in rows,
  numeric values expressed

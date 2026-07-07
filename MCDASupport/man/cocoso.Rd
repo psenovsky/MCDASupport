@@ -4,13 +4,7 @@
 \alias{cocoso}
 \title{Combined Compromise solution}
 \description{
-Combined Compromise solution
-
-Combined Compromise solution
-}
-\details{
-#@description
-MCDA analysis method based on finding of compomise solution for \link{wsm}
+MCDA analysis method based on finding a compromise solution for \link{wsm}
  and \link{wpm} models. The compromise is found in following manner.
 
 Analysis starts with formulation of performance matrix of alternatives
@@ -38,8 +32,8 @@ with
 
 \mjsdeqn{0 \le \lambda \le 1}
 
-Lambda in measure c serves as a weight for summary and product part of the
- measure. When lambda = 1, then these two componets will have same impact on
+Lambda in measure c serves as a weight for sum and product part of the
+ measure. When lambda = 0.5, then these two components will have equal impact on
  result.
 
 Lastly final ranking is established
@@ -136,7 +130,7 @@ same.}
 
 \item{\code{lambda}}{a constant in interval <0;1> to establish influence of
 weighted sum and weighted product on the result. Implicitly set to 0.5
-to represent equalt influence of both components}
+to represent equal influence of both components}
 }
 \if{html}{\out{</div>}}
 }
@@ -175,7 +169,7 @@ t <- cocoso$new(pm, w, minmax)
 \if{latex}{\out{\hypertarget{method-cocoso-compute}{}}}
 \subsection{Method \code{compute()}}{
 computes CoCoSo model based on parameters of the fields of the class.
- Usually run automatically as part of class inititation.
+ Usually run automatically as part of class initialization.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{cocoso$compute()}\if{html}{\out{</div>}}
 }
@@ -185,7 +179,7 @@ computes CoCoSo model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-cocoso-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-cocoso-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the CoCoSo method resutls and outputs them
+prepares summary of the CoCoSo method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{cocoso$summary()}\if{html}{\out{</div>}}

@@ -20,7 +20,7 @@ This implementation presents simplified version of the method using single
  variant allowing such computations.
 
 The procedure itself is as follows. First we compute Concordance matrix.
- Concordancce matrix (index) measures strength of the statement that
+Concordance matrix (index) measures strength of the statement that
  alternative a outranks alternative b.
 
 To compute concordance matrix, partial concordance matrix \mjseqn{c_j} of
@@ -43,24 +43,24 @@ Then we compute discordance matrixes \mjseqn{d_j} separately for each
 where
 
 PM ... performance of alternative in criterion, Q ... indifference
- threshold, P ... prefference threshold, V ... veto threshold, w ...
+ threshold, P ... preference threshold, V ... veto threshold, w ...
  weights.
 
-Based on discrodance matrixes \mjseqn{d_j} we compute credibility matrix
+Based on discordance matrixes \mjseqn{d_j} we compute credibility matrix
  \mjseqn{S}
 
 \mjsdeqn{S(a,b) = \left\lbrace\begin{array}{ll} C(a,b) & \;if\; d_j(a,b) \le C(a,b) \cr C(a,b) \cdot \prod_{\forall j \in J} \frac{1 - d_j(a,b)}{1 - C(a,b)} & \;otherwise\; \end{array}\right.}
 
 where J is set of criteria \mjseqn{j} for which \mjseqn{d_j(a,b) > C(a,b)}
 
-Finaly we may use the information to derive ranking of the alternatives.To
- do that we will perform descending rank distilation
- \code{\link{Electre_desc_dist}}, followed by ascending rank distilation
+Finally we may use the information to derive ranking of the alternatives.To
+ do that we will perform descending rank distillation
+ \code{\link{Electre_desc_dist}}, followed by ascending rank distillation
  \code{\link{Electre_asc_dist}}, then we agregate both into final rank
  \code{\link{finalRanking}}.
 
-Preorder for descending rank distilation is achieved by distilling
- alternatives from credibility matrix using progresively lower cutoff
+Preorder for descending rank distillation is achieved by distilling
+ alternatives from credibility matrix using progressively lower cutoff
  thresholds \mjseqn{\lambda}. first value of the \mjseqn{\lambda} is
  computed:
 
@@ -68,7 +68,7 @@ Preorder for descending rank distilation is achieved by distilling
 
 where A ... is set of alternatives.
 
-Ascending distilation works similarly, but going up from lowest values in
+Ascending distillation works similarly, but going up from lowest values in
  credibility matrix using progressively higher cutoff thresholds
  \mjseqn{\lambda}.
 
@@ -85,7 +85,7 @@ Suppose we compare alternatives a and b. We already have available its ranks
 If (\mjseqn{D_a < D_b} and at same time \mjseqn{A_a < A_b}) or
  (\mjseqn{D_a == D_b} and at same time \mjseqn{A_a < A_b})  or
   (\mjseqn{D_a < B_b} and at same time \mjseqn{A_a == A_b}) we can say that
- that a is prefered to b (aPb). In other words aPb if it is either preffered
+ that a is preferred to b (aPb). In other words aPb if it is either preferred
  in both preorders or when it is better ranked in one while being evaluated
  as equal in other.
 
@@ -131,7 +131,7 @@ t <- electre3$new(PM, w, P, Q, V, minmaxcriteria)
 }
 \references{
 Balamurali, M.: pyDecisions - A Python Library of management decision making
- techniques. Avilable on-line from
+ techniques. Available on-line from
  \url{https://github.com/Valdecy/pyDecisions}
 
 Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
@@ -195,7 +195,7 @@ min if all criteria are to be maximized or minimized. Implicitly set
 to max.}
 
 \item{\code{alpha}}{alpha and beta coefficients are used in downward and upward
-distilation procedure as wel as final ranking procerude to construct
+distillation procedure as well as final ranking procedure to construct
 orders. Both coef. are used iteratively change thresholds limiting
 evaluation of the outranking relations between the alternatives.}
 
@@ -210,8 +210,8 @@ orders the alternatives from the best to the worst.}
 orders the alternatives from worst to best.}
 
 \item{\code{rank_p}}{Pre-order matrix specifying identified relations between
-the alternatives - values are P+ (a prefered to b),
-P- (b prefered to a), I (indifferent), R (incomparable)}
+the alternatives - values are P+ (a preferred to b),
+P- (b preferred to a), I (indifferent), R (incomparable)}
 
 \item{\code{graph}}{processed adajncency matrix into network digram.}
 
@@ -235,7 +235,7 @@ the discomfort experienced in the choosing of alternative a above
 alternative b. In comparison with ELECTRE I or II methods discordance
 matrix for ELECTRE III is computed separately for every criterion.}
 
-\item{\code{adjancancyMatrix}}{Adjancency Matrix allows to visualize results as
+\item{\code{adjancancyMatrix}}{Adjacency Matrix allows to visualize results as
 network diagram}
 
 \item{\code{final_ranking}}{final order of the alternatives.}
@@ -283,7 +283,7 @@ min if all criteria are to be maximized or minimized. Implicitly set
 to max.}
 
 \item{\code{alpha}}{alpha and beta coefficients are used in downward and upward
-distilation procedure as wel as final ranking procerude to construct
+distillation procedure as well as final ranking procedure to construct
 orders. Both coef. are used iteratively change thresholds limiting
 evaluation of the outranking relations between the alternatives.}
 
@@ -331,7 +331,7 @@ computes the ELECTRE III problem. Usually doesn't need to be run manually
 \if{html}{\out{<a id="method-electre3-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-electre3-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the ELECTRE III method resutls.
+summary of the ELECTRE III method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electre3$summary()}\if{html}{\out{</div>}}
 }
@@ -348,7 +348,7 @@ sensitivity analysis for ELECTRE III object documentation) is performed
  on values of preference (p), indefference (q) and veto (v) thresholds.
 
 Since the thresholds (all of them) are specfied separately for each
- criterion, their sensitivity needs to be also evaluated seprately.
+ criterion, their sensitivity needs to be also evaluated separately.
  This is being realized in this function by generating separate
  dataframe for each threshold (sens_p, sens_q, sens_v) with following
  structure:

@@ -59,7 +59,7 @@ Technically the computation needs to be performed only on pairs of (a,b)
 Strong and weak dominances are used to then to form first and second total
  preorder. Both matrixes need to be simplified to remove loops from it first.
 
-These preorders aim to measure the haw much alternatives over-rank each
+These preorders aim to measure how much alternatives over-rank each
  other. The procedure is same for both orders. First we consolidate
  information on dominances by
 
@@ -113,7 +113,7 @@ t <- electre2$new(PM, w, minmaxcriteria)
 }
 \references{
 Balamurali, M.: pyDecisions - A Python Library of management decision
- making techniques. Avilable on-line from
+ making techniques. Available on-line from
  \url{https://github.com/Valdecy/pyDecisions}
 
 Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
@@ -164,7 +164,7 @@ ELECTRE II method implements the concotdance threshold as fuzzy
 triangle. Default calue 0.85.}
 
 \item{\code{d_minus}}{first of two parameters defining discordance threshold.
- Thershold is defined as range, where \mjsdeqn{0 \le d^- \le d^+ \le 1}
+ Threshold is defined as range, where \mjsdeqn{0 \le d^- \le d^+ \le 1}
 Default value 0.25.}
 
 \item{\code{d_plus}}{first of two parameters defining discordance threshold.
@@ -248,7 +248,7 @@ ELECTRE II method implements the concotdance threshold as fuzzy
 triangle. Default calue 0.85.}
 
 \item{\code{d_minus}}{first of two parameters defining discordance threshold.
- Thershold is defined as range, where \mjsdeqn{0 \le d^- \le d^+ \le 1}
+ Threshold is defined as range, where \mjsdeqn{0 \le d^- \le d^+ \le 1}
 Default value 0.25.}
 
 \item{\code{d_plus}}{first of two parameters defining discordance threshold.
@@ -293,7 +293,7 @@ computes the ELECTRE II problem. Usually doesn't need to be run manually
 \if{html}{\out{<a id="method-electre2-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-electre2-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the ELECTRE II method resutls.
+summary of the ELECTRE II method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electre2$summary()}\if{html}{\out{</div>}}
 }
@@ -324,7 +324,7 @@ interval}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-returns dataframe specifyin upper and lower limits of the solution's
+returns dataframe specifying upper and lower limits of the solution's
  sensitivity the thresholds. Limits values can be replaced by
  insens. if no limit has been identified.
 }

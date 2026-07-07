@@ -32,7 +32,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{w}}{vector of weights}
 
-\item{\code{minmax}}{vector specifying optimalization direction for the
+\item{\code{minmax}}{vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -74,7 +74,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -107,7 +107,7 @@ plot visualisation of the estimate with min and max as error estimates
 \if{html}{\out{<a id="method-mare-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-mare-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the MARE method resutls and outputs them
+prepares summary of the MARE method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{mare$summary()}\if{html}{\out{</div>}}

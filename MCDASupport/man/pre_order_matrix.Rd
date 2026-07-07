@@ -7,9 +7,9 @@
 pre_order_matrix(rank_D, rank_A, alt)
 }
 \arguments{
-\item{rank_D}{descending distilation ranking in the form of ordered dataframe}
+\item{rank_D}{descending distillation ranking in the form of ordered dataframe}
 
-\item{rank_A}{ascending distilation ranking in the form of ordered dataframe}
+\item{rank_A}{ascending distillation ranking in the form of ordered dataframe}
 
 \item{alt}{vector of alternatives names}
 }
@@ -17,13 +17,13 @@ pre_order_matrix(rank_D, rank_A, alt)
 pre-order matrix
 }
 \description{
-Function takes outputs of descending and ascending distilation pre-order and
+Function takes outputs of descending and ascending distillation pre-order and
  created pre-order matrix describing outranking relation between the
  alternatives.
 
 The relation can be P+ (a outranks b), P- (b outranks a), I (indifference)
  and R (incomparable). Information from preorder matrix can be utilized to
- create adjancancy matrix and construct final ranking.
+ create adjacency matrix and construct final ranking.
 
 This function is being utilized by \link{electre3} and \link{electre4}.
 }

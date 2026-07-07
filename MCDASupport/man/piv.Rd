@@ -106,7 +106,7 @@ Public constructor for TOPSIS object. Performas validation of input
 \describe{
 \item{\code{pm}}{Matrix or data frame containing the performance table. Each
 row corresponds to an alternative, and each column to a criterion.
-Only numeric values expercted. Rows and columns are expected to be
+Only numeric values expected. Rows and columns are expected to be
 named.}
 
 \item{\code{w}}{vector containing the weights of the criteria.}

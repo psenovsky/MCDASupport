@@ -25,11 +25,11 @@ Same approach is used for benefit criteria:
 
 \mjsdeqn{\overline{\overline{O_i}} = \overline{O_i} - min(\overline{O_i})}
 
-Finally overall performance ratings of competetive alternatives is computed:
+Finally overall performance ratings of competitive alternatives is computed:
 
 \mjsdeqn{P_i = \overline{\overline{I_i}} + \overline{\overline{O_i}} - min(\overline{\overline{I_i}} + \overline{\overline{O_i}})}
 
-The alternative with highest overal performance is best.
+The alternative with highest overall performance is best.
 }
 \examples{
 
@@ -99,7 +99,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -138,7 +138,7 @@ performs computation of OCRA model based on class properties. Usually
 \if{html}{\out{<a id="method-ocra-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-ocra-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the OCRA method resutls.
+summary of the OCRA method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ocra$summary()}\if{html}{\out{</div>}}
 }

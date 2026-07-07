@@ -8,7 +8,7 @@ Approach to ranking problem integrating parts of \link{aras}, \link{marcos}
  and \link{topsis} methods.
 
 Similarly to ARAS method it starts with decision problem formulation using
- performance metrix with n criteria in columns and m alternatives in rows
+ performance matrix with n criteria in columns and m alternatives in rows
  (step 1). In step 2) The performance in criteria is then normalized using:
 
 \mjsdeqn{r_{ij} = \frac{x_{ij}}{x_{max_j}}}
@@ -21,15 +21,15 @@ In step 3) the weights are applied on normalized matrix.
 
 \mjsdeqn{v_{ij} = w_{j} r_{ij}}
 
-In step 4) determining ideal and antiideal solution of the problem as
- miximal (ideal) and minimal (anti-ideal) values of criteria.
+In step 4) determining ideal and anti-ideal solution of the problem as
+ maximal (ideal) and minimal (anti-ideal) values of criteria.
 
 \mjsdeqn{t_{i} = max(v_{ij})}
 
 \mjsdeqn{t_{ai} = min(v_{ij})}
 
 In step 5) deviations from these is computed as difference between the
- normalized weighted value and the ideal or antiideal solution:
+ normalized weighted value and the ideal or anti-ideal solution:
 
 \mjsdeqn{d^+ = t_i - v_{ij}}
 
@@ -48,7 +48,7 @@ Then the utility function is constructed as a ratio between the optimum and
 
 \mjsdeqn{K_i^- = \frac{s_i^-}{s_0^-}}
 
-Finaly (step 8) the ranking of the alternatives ise derived from the average
+Finally (step 8) the ranking of the alternatives is derived from the average
  of utility functions.
 
 \mjsdeqn{Q_i = \frac{K_i^+ + K_i^-}{2}}
@@ -80,7 +80,7 @@ t <- cradis$new(pm = pm, w = w, minmax = "max")
 summary(t)
 }
 \references{
-Puška, A., Stević, Ž., Panučar, D.: Evaluation and selection of healtcare
+Puška, A., Stević, Ž., Panučar, D.: Evaluation and selection of healthcare
  waste incinerators using extended sustainability criteria and multicriteria
  analysis methods. Environment, Development and Sustainability, vol. 24, pp.
  11195-11225 (2022), DOI: 10.1007/s10668-021-01902-2
@@ -147,7 +147,7 @@ columns)}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-inicialized and computed model
+initialized and computed model
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
@@ -176,7 +176,7 @@ summary(t)
 \if{html}{\out{<a id="method-cradis-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-cradis-compute}{}}}
 \subsection{Method \code{compute()}}{
-computes the model bas of class properties. Usually we do not run the
+computes the model based on class properties. Usually we do not run the
  computation manually (it is run from class' constructor).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{cradis$compute()}\if{html}{\out{</div>}}
@@ -187,7 +187,7 @@ computes the model bas of class properties. Usually we do not run the
 \if{html}{\out{<a id="method-cradis-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-cradis-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the CRADIS method resutls.
+summary of the CRADIS method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{cradis$summary()}\if{html}{\out{</div>}}
 }

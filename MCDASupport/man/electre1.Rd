@@ -11,7 +11,7 @@ The acronym ELECTRE stands for: ELimination Et Choix Traduisant la REalite
 concept of concordance and discordance.
 
 ELECTRE I does not provide rank, but allows the user to identify so called
-kernel of the decision - the alternatives, which cannot be eleminated from
+kernel of the decision - the alternatives, which cannot be eliminated from
 decision making as obviously inferior, thus simplifying the decision
 problem. This is a core concept for variety of the methods in ELECTRE
 family, so much so, that the kernel computation procedure is also used
@@ -37,12 +37,12 @@ concordance threshold and D to discordance threshold
 \code{\link{ELECTRE1_Kernel}} function.
 }
 
-Concordancce matrix (index) measures strength of the statement that
+Concordance matrix (index) measures strength of the statement that
 alternative a outranks alternative b, while discordance matrix (index)
 together with discordance threshold (exceeding this threshold) can prevent
 such outranking.
 
-Concoradce matrix C(a,b) is defined as:
+Concordance matrix C(a,b) is defined as:
 
 \mjsdeqn{C(a,b) = \frac{1}{W} \sum_{\forall j: g_j(a) \ge g_j(b)}w_j}
 
@@ -50,7 +50,7 @@ where
 
 \mjsdeqn{W = \sum_{j=1}^{n}w_j}
 
-While discoradce matrix D(a,b) is defined for:
+While discordance matrix D(a,b) is defined for:
 
 \mjsdeqn{g_j(a) \ge g_j(b) \forall j: D(a,b) = 0}
 
@@ -63,30 +63,30 @@ where
 \mjsdeqn{\delta_j = \max_{j} g_j(a)-g_j(b)}
 
 Where a, b ... are alternatives to be compared, \mjseqn{g_j(x)} ...
-performance of alternative x in criterium j, C ... comcordance
+performance of alternative x in criterium j, C ... concordance
  matrix consisting of concordance indexes C(a,b), D ...
  discordance matrix consisting of discordance indexes D(a,b),
  \mjseqn{w_j} ... weight of criterium j and \mjseqn{\delta_j}
- is maximal difference of alternatives a and b preformance
+ is maximal difference of alternatives a and b performance
  across the criteria.
 
-Alternative a strongly outranks alternative b if and only in value of their
- concordance index is greater or equal to concordance threshold and at same
- time discordance index of this comparison is lower or equal do discordance
- index. In such case value in dominance matrix will be equal to 1 (aSb).
+Alternative a strongly outranks alternative b if and only if value of their
+ concordance index is greater or equal to concordance threshold and at the same
+ time discordance index of this comparison is lower or equal to the discordance
+ threshold. In such case value in dominance matrix will be equal to 1 (aSb).
  Otherwise the value will be 0.
 
 \mjsdeqn{Dom(a,b) = \left\lbrace\begin{array}{ll} 1 & iff \; C(a,b) \ge c_{thres} \; and \; D(a,b) \le d_{thres} \cr 0 & otherwise\end{array}\right.}
 
 Kernel K is defined as a subset of alternatives (nodes in graph) which are
- incomparable in terms of stron outranking (aSb), and the alternatives not
+ incomparable in terms of strong outranking (aSb), and the alternatives not
  contained in K are outranked by at least one alternative belonging to K.
  Kernel is being computed from dominance matrix. We compute sums of rows for
  the dominance matrix and select the alternatives, where this sum is equal
  to 0 as a basis for the kernel estimation. If there is no such alternative,
- that there is no clear kernel.
+ then there is no clear kernel.
 
-Othervise more throughtfull exploration of the dominance relation is needed.
+Otherwise more thorough exploration of the dominance relation is needed.
 
 Technically the function implements approach authored by M. Balamurali in
  pyDecisions (in Python) and reimplements it in R.
@@ -115,7 +115,7 @@ M <- electre1$new(PM, w, minmaxcriteria, concordance_threshold = 0.8,
 }
 \references{
 Balamurali, M.: pyDecisions - A Python Library of management decision making
- techniques. Avilable on-line from
+techniques. Available on-line from
  \url{https://github.com/Valdecy/pyDecisions}
 
 Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
@@ -131,13 +131,13 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \keyword{ELECTRE}
 \keyword{I}
 \keyword{concordance}
-\keyword{discordane}
+\keyword{discordance}
 \keyword{kernel}
 \keyword{matrix}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{pm_orig}}{original (unmodified) performace matrix}
+\item{\code{pm_orig}}{original (unmodified) performance matrix}
 
 \item{\code{pm}}{transformed performance matrix, all criteria will be maximized}
 
@@ -145,10 +145,10 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{minmaxcriteria}}{vector of direction of each of the criteria. "min"
 (resp."max") indicates that the criterion has to be minimized
-(maximized). Vector canbe replaced by single max or min value if all
-criteria are maximized ormimimized.}
+(maximized). Vector can be replaced by single max or min value if all
+criteria are maximized or minimized.}
 
-\item{\code{c_threshold}}{concordance theeshold (in interval <0; 1>)}
+\item{\code{c_threshold}}{concordance threshold (in interval <0; 1>)}
 
 \item{\code{d_threshold}}{discordance threshold (in interval <0; 1>)}
 
@@ -201,7 +201,7 @@ public constructor, creates electre1 object.
 
 \item{\code{minmaxcriteria}}{vector of direction of each of the criteria. "min"
 (resp."max")indicates that the criterion has to be minimized
-(maximized). Vector canbe replaced by single max or min value if all
+(maximized). Vector can be replaced by single max or min value if all
 criteria are maximized or minimized.}
 
 \item{\code{concordance_threshold}}{concordance threshold (in interval <0; 1>)}
@@ -248,7 +248,7 @@ computes the ELECTRE I problem. Usually doesn't need to be run manually
 \if{html}{\out{<a id="method-electre1-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-electre1-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the ELECTRE I resutls.
+summary of the ELECTRE I results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electre1$summary()}\if{html}{\out{</div>}}
 }
@@ -290,7 +290,7 @@ interval}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-returns dataframe specifyin upper and lower limits of the solution's
+returns dataframe specifying upper and lower limits of the solution's
  sensitivity for both thresholds. Limits values can be replaced by
  insens. if no limit has been identified.
 }

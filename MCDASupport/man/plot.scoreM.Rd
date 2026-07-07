@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.scoreM.R
 \name{plot.scoreM}
 \alias{plot.scoreM}
-\title{Function to plot contribution of the criteria to overal performance of the
+\title{Function to plot contribution of the criteria to overall performance of the
  alternatives.}
 \usage{
 \method{plot}{scoreM}(x, title = "Overal score of the variants")
@@ -11,17 +11,17 @@
 \item{x}{weighted preference matrix - values in matrix used to descibe
 strength of the relation.}
 
-\item{title}{title to be used for the graph. "Overal score of the variants"
+\item{title}{title to be used for the graph. "Overall score of the variants"
 by default}
 }
 \value{
-stocked bar chart of criteria contributions to overal performance
+stacked bar chart of criteria contributions to overall performance
 of the alternative
 }
 \description{
 Takes weighted preference matrix and uses it to plot stacked bar chart
  describing how the criteria (forming the stocks in graph) contribute to the
- overal score of the alternatives. Visualized in form of the ordered bar
+ overall score of the alternatives. Visualized in form of the ordered bar
  plot.
 
 This is usefull especially for methods such as \link{wsm}, which derives

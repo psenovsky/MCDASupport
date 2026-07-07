@@ -10,7 +10,7 @@ One of most well known application of grey theory. It defines situations
  problems. In fact, situations between these extremes, which contain partial
  information, are described as being grey. (from Wikipedia).
 
-Computationally the GRA expects performace matrix to be in numeric form.
+Computationally the GRA expects performance matrix to be in numeric form.
  Values of performance of the alternatives in criteria are normalized using
  min-max normalization.
 
@@ -91,7 +91,7 @@ relational coefficient). Sorted form best to worst.}
 
 \item{\code{grc}}{Grey relational coefficient}
 
-\item{\code{minmax}}{vector specifying optimalization direction for the
+\item{\code{minmax}}{vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -179,7 +179,7 @@ Computed the GRA using params provided in constructor. Usually run
 \if{html}{\out{<a id="method-gra-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-gra-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the GRA method resutls and outputs them
+prepares summary of the GRA method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{gra$summary()}\if{html}{\out{</div>}}

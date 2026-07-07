@@ -4,7 +4,7 @@
 \alias{copras}
 \title{Complex Proportional Assessment}
 \description{
-COPRAS is a approach philosophically comming from methods such as
+COPRAS is an approach philosophically coming from methods such as
  \link{saw}, but it evaluates separately minimizing and maximizing criteria.
  In case only maximized criteria are present, the method provides exactly
  same results as SAW.
@@ -22,7 +22,7 @@ Normalized matrix R is then multiplied by weight vector. Then the sum of
 
 \mjsdeqn{S_{-i} = \sum_{j \in l} y_{ij}}
 
-Where k is a set of benefical and l is set of cost criteria. Y is normalized
+Where k is a set of beneficial and l is set of cost criteria. Y is normalized
  weighted value.
 
 Then we determine relative significance of the criteria using equation
@@ -41,7 +41,7 @@ Value of Q is directly usable to derive ranking of the alternatives. We can
 ## Method `copras$new`
 ## ------------------------------------------------
 
-# example from EHGHAN-MANSHADI, see references or
+# example from DEHGHAN-MANSHADI, see references or
 # https://www.youtube.com/watch?v=364ghfEWz_k
 PM <- rbind(
   c(75.5, 420, 74.2, 2.8, 21.4, 0.37, 0.16),
@@ -127,11 +127,11 @@ columns)}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-inicialized and computed model
+initialized and computed model
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{# example from EHGHAN-MANSHADI, see references or
+\preformatted{# example from DEHGHAN-MANSHADI, see references or
 # https://www.youtube.com/watch?v=364ghfEWz_k
 PM <- rbind(
   c(75.5, 420, 74.2, 2.8, 21.4, 0.37, 0.16),
@@ -162,7 +162,7 @@ t <- copras$new(PM, w, minmax)
 \if{html}{\out{<a id="method-copras-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-copras-compute}{}}}
 \subsection{Method \code{compute()}}{
-computes the model bas of class properties. Usually we do not run the
+computes the model based on class properties. Usually we do not run the
  computation manually (it is run from class' constructor).
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{copras$compute()}\if{html}{\out{</div>}}
@@ -173,7 +173,7 @@ computes the model bas of class properties. Usually we do not run the
 \if{html}{\out{<a id="method-copras-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-copras-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the COPRAS method resutls.
+summary of the COPRAS method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{copras$summary()}\if{html}{\out{</div>}}
 }

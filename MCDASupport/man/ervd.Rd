@@ -4,11 +4,11 @@
 \alias{ervd}
 \title{Election Based on Relatived Value Distance}
 \description{
-A evolution of TOPSIS method to provide more stable results. The method
+An evolution of TOPSIS method to provide more stable results. The method
  introduces concept of reference points for the criteria the values below
  this point are considered losses, values over it gains.
 
-The procedure starts with vertor normalization of the performance matrix
+The procedure starts with vector normalization of the performance matrix
  (max). To the same scale the reference points are transformed:
 
 \mjsdeqn{\varphi_j = \frac{\mu_{ij}}{\sum_{j=1}^m d_{ij}}}
@@ -29,7 +29,7 @@ for \mjseqn{r_{ij} < \varphi_j}, otherwise
 
 \mjsdeqn{v_{ij} = -\lambda(r_{ij} - \varphi_j)^\alpha}
 
-This concept was introduced by Tvertsky and Kahneman, with
+This concept was introduced by Tversky and Kahneman, with
  \mjseqn{\lambda = 2.25} and \mjseqn{\alpha = 0.88} from the empirical
  studies. Generally \mjseqn{\lambda \in <2; 2.5>}.
 
@@ -41,7 +41,7 @@ Then ideal (A+ ... PIS - positive ideal solution) and antiideal (A- ... NIS
 
 \mjsdeqn{S_i^- = \sum_{j=1}^n w_j \cdot |v_{ij} - v_j^-|}
 
-Finaly relative closeness index for each cleseness of each alternative to
+Finaly relative closeness index for each closeness of each alternative to
  ideal solution. Last two steps are same as in TOPSIS:
 
 \mjsdeqn{\phi_i = \frac{S_i^-}{S_i^+ + S_i^-}}
@@ -64,7 +64,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{ref_points}}{reference points for the criteria}
 
-\item{\code{minmax}}{vector specifying optimalization direction for the
+\item{\code{minmax}}{vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -103,7 +103,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}

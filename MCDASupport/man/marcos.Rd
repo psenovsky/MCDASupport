@@ -225,7 +225,7 @@ t <- marcos$new(PM, w, minmax)
 \if{html}{\out{<a id="method-marcos-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-marcos-compute}{}}}
 \subsection{Method \code{compute()}}{
-computes MARCOS model based on input parameters. Usualy it is not
+computes MARCOS model based on input parameters. Usually it is not
  neccessary to run this function as it is run automaticaly by the
  class constructor
 \subsection{Usage}{
@@ -237,7 +237,7 @@ computes MARCOS model based on input parameters. Usualy it is not
 \if{html}{\out{<a id="method-marcos-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-marcos-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the MACROS method resutls.
+summary of the MARCOS method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{marcos$summary()}\if{html}{\out{</div>}}
 }

@@ -5,7 +5,7 @@
 \title{Multi-Attribute Ideal-Real Comparative Analysis}
 \description{
 MAIRCA evaluations is argued in sense of gaps between these ideal
- solutions and the real preformance of the alternatives. The better the
+ solutions and the real performance of the alternatives. The better the
  alternative is, the lower the gap should be.
 
 We start the process by formulating performance matrix PM as usual (criteria
@@ -115,7 +115,7 @@ public constructor allowing the user to construct Borta count decision
 \describe{
 \item{\code{pm}}{Matrix or data frame containing the performance table. Each
 row corresponds to an alternative, and each column to a criterion. only
-numeric values expercted. Rows and columns are expected to be named.}
+numeric values expected. Rows and columns are expected to be named.}
 
 \item{\code{w}}{weight vector}
 
@@ -166,7 +166,7 @@ Manual re-computation si required only if the user changes class' fields
 \if{html}{\out{<a id="method-mairca-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-mairca-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the MAIRCA count method resutls.
+summary of the MAIRCA count method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{mairca$summary()}\if{html}{\out{</div>}}
 }

@@ -134,8 +134,8 @@ into weights of the criteria}
 \if{html}{\out{<a id="method-ahpNode-plotTree"></a>}}
 \if{latex}{\out{\hypertarget{method-ahpNode-plotTree}{}}}
 \subsection{Method \code{plotTree()}}{
-plots the tree from this node downwar in the hierarchy. Call from root
- node of the hierarchy to plot whole tree
+plots the tree from this node downward in the hierarchy. Call from the root
+ node of the hierarchy to plot the entire tree
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ahpNode$plotTree()}\if{html}{\out{</div>}}
 }

@@ -72,7 +72,7 @@ Values of net flow are directly usable for ranking purposes ordered from
  highest to lowest. This is the approach PAMSSEM II method uses for ranking.
 
 PAMSSEM I provides only partial ranking with following rules for proving that
- Ai is preffered to Aj.
+ Ai is preferred to Aj.
 
 \mjsdeqn{A_j \;P\; A_j \;if\; \left\lbrace\begin{array}{l} A_i \;P^+\; A_j \;and\; A_i \;P^-\; A_j \cr A_i \;P^+\; A_j \;and\; A_i \;I^-\; A_j \cr A_i \;I^+\; A_j \;and\; A_i \;P^-\; A_j \end{array}\right.}
 
@@ -131,7 +131,7 @@ cardinal, or "O" - ordinal.}
 
 \item{\code{q}}{vector of indifference thresholds}
 
-\item{\code{p}}{vector of prefference thresholds}
+\item{\code{p}}{vector of preference thresholds}
 
 \item{\code{v}}{vector of veto thresholds}
 
@@ -181,7 +181,7 @@ cardinal, or "O" - ordinal.}
 
 \item{\code{q}}{vector of indifference thresholds}
 
-\item{\code{p}}{vector of prefference thresholds}
+\item{\code{p}}{vector of preference thresholds}
 
 \item{\code{v}}{vector of veto thresholds}
 }
@@ -227,7 +227,7 @@ computes ORESTE model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-pamssem-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-pamssem-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the PAMSSEM method resutls and outputs them
+prepares summary of the PAMSSEM method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{pamssem$summary()}\if{html}{\out{</div>}}

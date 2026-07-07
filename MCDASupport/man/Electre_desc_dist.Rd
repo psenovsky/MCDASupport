@@ -2,7 +2,7 @@
 % Please edit documentation in R/Electre_desc_dist.R
 \name{Electre_desc_dist}
 \alias{Electre_desc_dist}
-\title{algrithm for descending distilation}
+\title{algorithm for descending distillation}
 \usage{
 Electre_desc_dist(sm)
 }
@@ -14,10 +14,10 @@ list of alternatives in ranks from worst to best.
 }
 \description{
 Algorithm to establish partial preorder by the means of descending
- distilation. Preorder is achieved by distilling alternatives using
- progresively lower cutoff thresholds.
+ distillation. Preorder is achieved by distilling alternatives using
+ progressively lower cutoff thresholds.
 
-This aproach is complementary to ascending distilation process
+This approach is complementary to ascending distillation process
  \code{\link{Electre_asc_dist}} which creates second preorder.
 
 The algorithm is used in \code{\link{electre3}} and

@@ -15,7 +15,7 @@ The method itself is very interesting as it does not directly compare
  basically evaluating in which category the performance of the alternative
  in criterion is.
 
- These categories are then aggregated across the criteria to form rank using
+These categories are then aggregated across the criteria to form rank using
  "pessimistic" or "optimistic" agregation procedure. Results of these
  procedures is then used to form ranking.
 
@@ -28,7 +28,7 @@ The procedure itself works with alternatives a, and performance profiles
  between performance profile and preference or indifference thresholds for
  the criteria.
 
- \mjsdeqn{c_j(a,b_h) = \left\lbrace\begin{array}{ll} 1 & \;if\; PM_j(a) \ge PM_j(b_h) - Q_j \cr 0 & \;if\; PM_j(a) < PM_j(b_h) - P_j \cr \frac{PM_j(a) + P_j - PM_j(b_h)}{P_j - Q_j} & \;otherwise\;\end{array}\right.}
+\mjsdeqn{c_j(a,b_h) = \left\lbrace\begin{array}{ll} 1 & \;if\; PM_j(a) \ge PM_j(b_h) - Q_j \cr 0 & \;if\; PM_j(a) < PM_j(b_h) - P_j \cr \frac{PM_j(a) + P_j - PM_j(b_h)}{P_j - Q_j} & \;otherwise\;\end{array}\right.}
 
 Where P ... preference threshold, Q ... indifference threshold,
  \mjseqn{PM_j(a)} ... performance of alternative in criterium j,
@@ -39,8 +39,8 @@ Comprehensive concordance index is then computed by aggregating weighted
 
 \mjseqn{c(a, b_h) = \sum_{j \in J} w_j c_j(a, b_h)}
 
- Similarly discordance index for the criterie is derived from comparing
- alternative's performance against performace profiles with applied veto or
+Similarly discordance index for the criterie is derived from comparing
+ alternative's performance against performance profiles with applied veto or
  preference thresholds:
 
 \mjsdeqn{d_j(a,b_h) = \left\lbrace\begin{array}{ll} 1 & \;if\; PM_j(a) < PM_j(b_h) - V_j \cr 0 & \;if\; PM_j(a) \ge PM_j(b_h) - P_j \cr \frac{PM_j(b_h) - P_j - PM_j(b_h)}{V_j - P_j} & \;otherwise\;\end{array}\right.}
@@ -109,7 +109,7 @@ profiles <- cbind(c(-100,-50), c(-1000,-500),
 profiles_names <-c("b1","b2")
 # thresholds vector
 I <- c(15,80,1,0.5,1) # indifference threshold
-P <- c(40,350,3,3.5,5) # prefference threshold
+P <- c(40,350,3,3.5,5) # preference threshold
 V <- c(100,850,5,4.5,8) # veto threshold
 t<- electretri$new(PM,
                    profiles, profiles_names,
@@ -201,7 +201,7 @@ alternative over the profile aSbh across the criteria}
 \item{\code{overallConcordanceIndexInverse}}{same as overallConcordanceIndex,
 but describes bhSa instead, again across all criteria}
 
-\item{\code{discordanceIndex}}{discordance index is oposite to concordance
+\item{\code{discordanceIndex}}{discordance index is opposite to concordance
 index. It is a value (matrix of values) used to establish that a!Sbh
 (a does not dominate bh). Discordance index is being computed
 separately for each criterion.}
@@ -328,7 +328,7 @@ profiles <- cbind(c(-100,-50), c(-1000,-500),
 profiles_names <-c("b1","b2")
 # thresholds vector
 I <- c(15,80,1,0.5,1) # indifference threshold
-P <- c(40,350,3,3.5,5) # prefference threshold
+P <- c(40,350,3,3.5,5) # preference threshold
 V <- c(100,850,5,4.5,8) # veto threshold
 t<- electretri$new(PM,
                    profiles, profiles_names,
@@ -354,7 +354,7 @@ computes the ELECTRE TRI problem. Usually doesn't need to be run manually
 \if{html}{\out{<a id="method-electretri-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-electretri-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the ELECTRE TRI method resutls.
+summary of the ELECTRE TRI method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electretri$summary()}\if{html}{\out{</div>}}
 }
@@ -372,7 +372,7 @@ Sensitivity analysis for ELECTRE TRI object is performed on values of
  preference (p), indefference (q) and veto (v) thresholds.
 
 Since the thresholds (all of them) are specfied separately for each
- criterion, their sensitivity needs to be also evaluated seprately.
+ criterion, their sensitivity needs to be also evaluated separately.
  This is being realized in this function by generating separate
  dataframe for each threshold (sens_p, sens_q, sens_v) with following
  structure:

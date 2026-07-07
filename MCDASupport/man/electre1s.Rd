@@ -7,7 +7,7 @@
 \description{
 Method for supporting multicriteria decision making used to identify so
  called kernel of solution as set of alternatives which are not dominated
- by any other alternative. Dominated alternatives can be ommited from
+ by any other alternative. Dominated alternatives can be omitted from
  decision making as they clearly represent sub-optimal solution for the
  problem.
 
@@ -42,7 +42,7 @@ Based on partial concordance matrixes we compute concordence matrix
 where
 
 PM ... performance of alternative in criterion, Q ... indifference
- threshold, P ... prefference threshold, w ... weights.
+ threshold, P ... preference threshold, w ... weights.
 
 Discordance matrix \mjseqn{d} consist of discordance indexes which provide
  together with discordance threshold (exceeding this threshold) information
@@ -52,12 +52,12 @@ Discordance matrix \mjseqn{d} consist of discordance indexes which provide
 
 Where d ... discordance matrix, i ... variable used to iterate over
  alternatives, j,k ... variables use to iterate over criteria,
- \mjseqn{\lambda} ... cutoff criterium, V ... veto threshold, othervise
+ \mjseqn{\lambda} ... cutoff criterium, V ... veto threshold, otherwise
  same notation as in previous equations has been used.
 
 Next credibility matrix needs to be computed. Credibility matrix takes into
- account concordance and discordance indexes to evaluate haw credible it is
- that a over prerforms b (aSb).
+ account concordance and discordance indexes to evaluate how credible it is
+ that a over performs b (aSb).
 
 \mjsdeqn{cred(a,b) = \left\lbrace\begin{array}{ll} 1 & \;if\; C(a,b) \ge \lambda \; and \; d(a,b) = 0 \cr 0 & otherwise \end{array}\right.}
 
@@ -138,13 +138,13 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \keyword{III}
 \keyword{concordance}
 \keyword{credibility}
-\keyword{discordane}
+\keyword{discordance}
 \keyword{kernel}
 \keyword{matrix}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{pm_orig}}{original (unmodified) performace matrix}
+\item{\code{pm_orig}}{original (unmodified) performance matrix}
 
 \item{\code{pm}}{transformed performance matrix, all criteria will be maximized}
 
@@ -168,14 +168,14 @@ The default value is 0.5, but the value can be in interval <0.5;1>.}
 \item{\code{DiscordanceIndex}}{discordance index (list of discordance matrices
 separate for each criterium)}
 
-\item{\code{CredibilityIndex}}{credibility index (list seprate for each
+\item{\code{CredibilityIndex}}{credibility index (list separate for each
 criterium)}
 
 \item{\code{Kernel}}{kernel of the solution}
 
 \item{\code{Dominated}}{vector of alternatives identified as dominated}
 
-\item{\code{graph}}{netvork graph visualizing alternative overranking}
+\item{\code{graph}}{network graph visualizing alternative overranking}
 }
 \if{html}{\out{</div>}}
 }
@@ -213,7 +213,7 @@ public constructor, creates electre1s object.
 
 \item{\code{minmaxcriteria}}{vector of direction of each of the criteria. "min"
 (resp."max")indicates that the criterion has to be minimized
-(maximized). Vector canbe replaced by single max or min value if all
+(maximized). Vector can be replaced by single max or min value if all
 criteria are maximized or minimized.}
 
 \item{\code{lambda}}{lambda parameter defining concordance threshold. The
@@ -259,7 +259,7 @@ computes the ELECTRE IS problem. Usually doesn't need to be run manually
 \if{html}{\out{<a id="method-electre1s-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-electre1s-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the ELECTRE IS resutls.
+summary of the ELECTRE IS results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{electre1s$summary()}\if{html}{\out{</div>}}
 }
@@ -299,7 +299,7 @@ interval}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-returns dataframe specifyin upper and lower limits of the solution's
+returns dataframe specifying upper and lower limits of the solution's
  sensitivity the thresholds. Limits values can be replaced by
  insens. if no limit has been identified.
 }

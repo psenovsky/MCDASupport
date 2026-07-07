@@ -104,7 +104,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -143,7 +143,7 @@ performs computation of PROBID model based on class properties. Usually
 \if{html}{\out{<a id="method-sprobid-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-sprobid-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the sPROBID count method resutls.
+summary of the sPROBID count method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sprobid$summary()}\if{html}{\out{</div>}}
 }

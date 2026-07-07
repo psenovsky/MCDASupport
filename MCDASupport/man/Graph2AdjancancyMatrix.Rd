@@ -2,7 +2,7 @@
 % Please edit documentation in R/graph2AdjancancyMatrix.R
 \name{Graph2AdjancancyMatrix}
 \alias{Graph2AdjancancyMatrix}
-\title{Transforms graph (a->b format) to adjncancy matrix}
+\title{Transforms graph (a->b format) to adjacency matrix}
 \usage{
 Graph2AdjancancyMatrix(G, alt)
 }
@@ -12,15 +12,15 @@ Graph2AdjancancyMatrix(G, alt)
 \item{alt}{alternatives names}
 }
 \value{
-adjancancy matrix for the graph with 0/1 representing graph.
+adjacency matrix for the graph with 0/1 representing graph.
 }
 \description{
-Function transforms back graph specified by edges to adjancancy matrix, with
+Function transforms back graph specified by edges to adjacency matrix, with
  1 where edge exists and 0 where it does not.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 }
-\keyword{adjancancy}
+\keyword{adjacency}
 \keyword{graph}
 \keyword{matrix}

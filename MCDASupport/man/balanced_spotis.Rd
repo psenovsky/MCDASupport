@@ -4,14 +4,14 @@
 \alias{balanced_spotis}
 \title{Balanced Stable Preference Ordering Super Intelligence}
 \description{
-introduces Expected solution point (ESP) and alfa confidence coefficient
+introduces Expected solution point (ESP) and alpha confidence coefficient
  into the SPOTIS method.
 
 Uses distance d(Ai, S*) as in normal SPOTIS and d(Ai, S+), where S+ is ESP
- measured as best provided performance in the criterium.
+ measured as best provided performance in the criterion.
 
-Alpha then denotes confidence of decision maker to púrovided values. The
- coeficient is always in interval <0; 1>, balancing d(Ai, S*) and d(Ai, S+)
+Alpha then denotes confidence of decision maker to provided values. The
+ coefficient is always in interval <0; 1>, balancing d(Ai, S*) and d(Ai, S+)
  components:
 
 \mjsdeqn{P_i = \alpha \cdot d(A_i, S^+) + (1 - \alpha) \cdot d(A_i, S^*)}
@@ -65,7 +65,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 \item{\code{bounds}}{dataframe of bounds of criteria (criteria in rows with
 min and max columns)}
 
-\item{\code{alpha}}{confidence value for pm (in inteval <0; 1>)}
+\item{\code{alpha}}{confidence value for pm (in interval <0; 1>)}
 
 \item{\code{esp}}{Expected solution point as vector of best values of the
 criteria}
@@ -109,7 +109,7 @@ public constructor allowing the user to construct SPOTIS decision
 \item{\code{bounds}}{dataframe of bounds of criteria (criteria in rows with
 min and max columns)}
 
-\item{\code{alpha}}{confidence value for pm (in inteval <0; 1>)}
+\item{\code{alpha}}{confidence value for pm (in interval <0; 1>)}
 }
 \if{html}{\out{</div>}}
 }
@@ -147,11 +147,11 @@ result <- balanced_spotis$new(PM, w, minmax, bounds, alpha = 0.4)
 \if{html}{\out{<a id="method-balanced_spotis-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-balanced_spotis-compute}{}}}
 \subsection{Method \code{compute()}}{
-Computes Balanced SPOTIS model based on parametrs specified in constructor.
+Computes Balanced SPOTIS model based on parameters specified in constructor.
  Normally this methods does not need to be run manually as constructor
  calls it automatically.
 
-Manual re-computation si required only if the user changes class' fields
+Manual re-computation is required only if the user changes class' fields
  without using the constructor.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{balanced_spotis$compute()}\if{html}{\out{</div>}}
@@ -162,7 +162,7 @@ Manual re-computation si required only if the user changes class' fields
 \if{html}{\out{<a id="method-balanced_spotis-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-balanced_spotis-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the balanced SPOTIS method resutls and outputs them
+prepares summary of the balanced SPOTIS method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{balanced_spotis$summary()}\if{html}{\out{</div>}}

@@ -40,7 +40,7 @@ Look for missing dots for indication that the alternative is not
  threshold.
 
 Function is constructed similarly to \code{\link{plot.threshold}}, but
- produces 3D graph. The altarnatives participation is indicated only by 0/1.
+ produces 3D graph. The alternatives participation is indicated only by 0/1.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}

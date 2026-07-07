@@ -5,7 +5,7 @@
 \title{SAW (Simple Additive Weight) method}
 \description{
 SAW is a accronym for Simple Additive Weighting method. From
- implementation point of wiew it is basically \link{wsm} method, with some
+ implementation point of view it is basically \link{wsm} method, with some
  presumptions such as that the sum of weithts is equal to 1 and usage of
  specific normalization method.
 
@@ -15,7 +15,7 @@ WSM as implemented in the MCDA package presumes the performance matrix has
  from point of view of the result interpretation it makes sense if it is
  normalized.
 
-SAW processes decision problem in 3 basix steps:
+SAW processes decision problem in 3 basic steps:
 
 Step 1: prepare initial performance matrix (nust be numeric)
 
@@ -85,7 +85,7 @@ Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 
 \item{\code{w}}{vector of weights (there are no other limitations on weights)}
 
-\item{\code{minmax}}{vector specifying optimalization direction for the
+\item{\code{minmax}}{vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -128,7 +128,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, summ of weights = 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -177,7 +177,7 @@ performs computation of SAW model based on class properties. Usually
 \if{html}{\out{<a id="method-saw-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-saw-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the SAW method resutls and outputs them
+prepares summary of the SAW method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{saw$summary()}\if{html}{\out{</div>}}

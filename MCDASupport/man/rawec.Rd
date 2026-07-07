@@ -27,7 +27,7 @@ In step 3 deviations from criterion weight are computed:
 
 \mjsdeqn{v_{ij}^{'} =\sum_{j=1}^n w_j(1-n_{ij}^{'})}
 
-Finaly we calculate value of RAWEC Qi by:
+Finally we calculate value of RAWEC Qi by:
 
 \mjsdeqn{Q_i =\frac{v_{ij}^{'} - v_{ij}}{v_{ij}^{'} + v_{ij}}}
 
@@ -109,7 +109,7 @@ Public constructor for the class. Checks validity of input parameters
 
 \item{\code{w}}{vector of weights, its sum must be equal to 1}
 
-\item{\code{minmax}}{minmax vector specifying optimalization direction for the
+\item{\code{minmax}}{minmax vector specifying optimization direction for the
 criteria. Values max/min are expected. If all criteria are optimalized
 in same direction the vector can be replaced by single value. Max value
 is default.}
@@ -148,7 +148,7 @@ performs computation of RAWEC model based on class properties. Usually
 \if{html}{\out{<a id="method-rawec-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-rawec-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the RAWEC count method resutls.
+summary of the RAWEC count method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{rawec$summary()}\if{html}{\out{</div>}}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/mcda_norm.R
 \name{mcda_norm}
 \alias{mcda_norm}
-\title{Normalize values using using chosen method of normalization}
+\title{Normalize values using chosen method of normalization}
 \usage{
 mcda_norm(tonorm, minmax = "max", method = "minmax", min = NULL, max = NULL)
 }
@@ -39,7 +39,7 @@ Performs normalization of the vector using one of supported normalization
        toaverage \tab normalizing to average value \tab N \cr
        tobest \tab normalizing to best value (AKA max normalization) \tab Y \cr
        TzengHuang \tab Tzeng-Huang normalization \tab N \cr
-       vector \tab vertor normalization \tab Y \cr
+       vector \tab vector normalization \tab Y \cr
        ZavadskasTurskis \tab Zavadskas-Turskis normalization \tab Y \cr
        zscore \tab Z-score \tab N
    }

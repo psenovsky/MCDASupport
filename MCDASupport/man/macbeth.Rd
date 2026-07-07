@@ -32,7 +32,7 @@ where \mjseqn{r_{ij}} represents performance of i-th alternative in j-th
  for example be set to 0 and 100, which are default values for the parametrs
  in this implementation.
 
-Overal score is then computer by:
+Overall score is then computed by:
 
 \mjsdeqn{V_i = \sum_{j = 1}^n v(r_{ij}) \cdot w_j}
 
@@ -157,7 +157,7 @@ computes MACBETH model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-macbeth-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-macbeth-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the MACBETH method resutls and outputs them
+prepares summary of the MACBETH method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{macbeth$summary()}\if{html}{\out{</div>}}

@@ -147,7 +147,7 @@ computes MAUT model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-maut-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-maut-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the MAUT method resutls and outputs them
+prepares summary of the MAUT method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{maut$summary()}\if{html}{\out{</div>}}

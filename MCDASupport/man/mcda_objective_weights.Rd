@@ -182,7 +182,7 @@ for cost criteria
 
 \mjsdeqn{n_{ij} = \frac{x_{ij}}{max_k x_{kj}}}
 
-Then we compute overal performance of the alternatives
+Then we compute overall performance of the alternatives
  Si (step 3)
 
 \mjsdeqn{S_i = ln(1 + (\frac{1}{m} \sum_j |ln(n_{ij})|)}
@@ -241,7 +241,7 @@ Next we compute matrix of relative losses P
 Since the matrix A will always have identified maximums in its diagonal, the
  matrix P will always have zeros in its diagonal.
 
-Finaly we construct weight system matrix (F). We start with matrix P and
+Finally we construct weight system matrix (F). We start with matrix P and
  minus sum the columns in the diagonal. The diagonal of F will thus always
  have negative numbers and sum of the column in F = 0.
 
@@ -285,7 +285,7 @@ With m being number of alternatives. We follow with calculation of
 
 \mjsdeqn{p_j = \sum_{i=1}^m (r_{ij} - v_j)^2}
 
-Finaly we compute the weights:
+Finally we compute the weights:
 
 \mjsdeqn{w_j = \frac{p_j}{\sum_{j = 1}^n p_j}}
 }

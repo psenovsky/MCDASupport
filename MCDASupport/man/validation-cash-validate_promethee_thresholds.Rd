@@ -22,7 +22,7 @@ validates consistency of preference, indifference and intermediate
 }
 \examples{
 p <- c(10, 0, 450, 50, 0, 0) #indifference threshold
-q <- c(0, 30, 50, 10, 0, 0) #prefference threshold
+q <- c(0, 30, 50, 10, 0, 0) #preference threshold
 s <- c(0,0,0,0,0,5) #intermediate threshold
 shape <- c('U-shape', 'V-shape', 'linear', 'level', 'default', 'Gaussian')
 sj <- validation$validate_promethee_thresholds(p, q, s, shape, 6)

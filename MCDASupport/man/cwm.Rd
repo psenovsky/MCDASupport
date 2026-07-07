@@ -7,9 +7,9 @@
 cwm(w1, w2, alpha = 0.5)
 }
 \description{
-Approach derives weights from two sets of weights usualy one set is derived
- usually by objective weighting method such as EWM, COPRAS (and many other)
- and the other based on weighs derived from preferences of decision maker
+Approach derives weights from two sets of weights. Usually one set is derived
+ by objective weighting method such as EWM, COPRAS (and many other)
+ and the other based on weights derived from preferences of decision maker
  such as AHP, BWM and many other methods.
 
 It is claimed that the derived weights are more stable, robust, and reliable

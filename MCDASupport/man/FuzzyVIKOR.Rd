@@ -267,7 +267,7 @@ computes the Fuzzy VIKOR problem. Usually doesn't need to be run manually
 \if{html}{\out{<a id="method-fuzzyvikor-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-fuzzyvikor-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the Fuzzy VIKOR method resutls.
+summary of the Fuzzy VIKOR method results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{fuzzyvikor$summary()}\if{html}{\out{</div>}}
 }

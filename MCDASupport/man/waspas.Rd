@@ -120,7 +120,7 @@ Computed the WASPAS model based on params provided in fields of the
 \if{html}{\out{<a id="method-waspas-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-waspas-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the WPM method resutls and outputs them
+prepares summary of the WASPAS method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{waspas$summary()}\if{html}{\out{</div>}}

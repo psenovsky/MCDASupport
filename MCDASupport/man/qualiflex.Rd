@@ -157,7 +157,7 @@ computes ORESTE model based on parameters of the fields of the class.
 \if{html}{\out{<a id="method-qualiflex-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-qualiflex-summary}{}}}
 \subsection{Method \code{summary()}}{
-prepares summary of the ORESTE method resutls and outputs them
+prepares summary of the QUALIFLEX method results and outputs them
  to the console.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{qualiflex$summary()}\if{html}{\out{</div>}}

@@ -276,7 +276,7 @@ computes the FuzzyTOPSIS problem. Usually doesn't need to be run manually
 \if{html}{\out{<a id="method-fuzzytopsis-summary"></a>}}
 \if{latex}{\out{\hypertarget{method-fuzzytopsis-summary}{}}}
 \subsection{Method \code{summary()}}{
-summary of the Fuzzy TOPSIS resutls.
+summary of the Fuzzy TOPSIS results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{fuzzytopsis$summary()}\if{html}{\out{</div>}}
 }
