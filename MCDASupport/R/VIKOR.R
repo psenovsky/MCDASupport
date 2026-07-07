@@ -36,7 +36,7 @@
 #'
 #' Note that the v has in Qi connection to 1 - v (individual regret). By
 #'  specifying various values of v one can influence impact left or right term
-#'  of the equation has on overal result. \mjseqn{v \in (0,1)}, where v = 0.5
+#'  of the equation has on overall result. \mjseqn{v \in (0,1)}, where v = 0.5
 #'  means balance between both terms. If function's parameter v is not set the
 #'  procedure will approximate its value by:
 #'
@@ -108,7 +108,7 @@ vikor <- R6Class("vikor",
     #'
     #' @param pm Matrix or data frame containing the performance table. Each
     #'  row corresponds to an alternative, and each column to a criterion.
-    #'  Only numeric values expercted. Rows and columns are expected to be
+    #'  Only numeric values expected. Rows and columns are expected to be
     #'  named.
     #' @param w vector containing the weights of the criteria.
     #' @param minmax criteria MinMax Vector containing the preference direction
