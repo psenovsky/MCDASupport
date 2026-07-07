@@ -1,3 +1,5 @@
+# MCDASupport v0.40 (Release date: TBD)
+
 # MCDASupport v0.39 (Release date: 2026-07-07)
 
 * added install_dependencies function to easily install missing dependencies for correct functioning of the package
