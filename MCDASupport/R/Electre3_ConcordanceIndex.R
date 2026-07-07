@@ -7,7 +7,7 @@
 #'  matrix is one of two angles ELECTRE methods use to derive preference for
 #'  the alternatives, the other being Discordance matrix.
 #'
-#' Concordancce matrix (index) measures strength of the statement that
+#' Concordance matrix (index) measures strength of the statement that
 #'  alternative a outranks alternative b, while discordance matrix (index)
 #'  together with discordance threshold (exceeding this threshold) can prevent
 #'  such outranking.
@@ -27,22 +27,22 @@
 #' where
 #'
 #' PM ... performance of alternative in criterion, Q ... indifference
-#'  threshold, P ... prefference threshold, w ... weights.
+#'  threshold, P ... preference threshold, w ... weights.
 #'
 #' @param PM Matrix or data frame containing the performance table. Each row
 #'  corresponds to an alternative, and each column to a criterion. only numeric
-#'  values expercted. Rows and columns are expected to be named and criteria
+#'  values expected. Rows and columns are expected to be named and criteria
 #'  are expected to be maximized (you can use function util_prepare_minmax to
 #'  do that).
 #' @param P preference threshold vector
 #' @param Q indefference threshold
 #' @param w vector containing the weights of the criteria.
 #'
-#' @return Returns computed concordancce matrix.
+#' @return Returns computed concordance matrix.
 #'
 #' @references
 #' Balamurali, M.: pyDecisions - A Python Library of management decision making
-#'  techniques. Avilable on-line from
+#'  techniques. Available on-line from
 #'  \url{https://github.com/Valdecy/pyDecisions}
 #'
 #' Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:

@@ -7,14 +7,14 @@
 #'  Concordance matrix is one of two perspectives ELECTRE methods use to derive
 #'  preference for the alternatives, the other being Discordance matrix.
 #'
-#' Concordancce matrix (index) measures strength of the statement that
+#' Concordance matrix (index) measures strength of the statement that
 #'  alternative a outranks alternative b, while discordance matrix (index)
 #'  together with discordance threshold (exceeding this threshold) can prevent
 #'  such outranking.
 #'
 #' Code is inspired by pyDecisions package.
 #'
-#' Computationally concoradce matrix C(a,b) is defined as:
+#' Computationally concordance matrix C(a,b) is defined as:
 #'
 #' \mjsdeqn{C(a,b) = \frac{1}{W} \sum_{\forall j: g_j(a) \ge g_j(b)}w_j}
 #'
@@ -28,16 +28,16 @@
 #'
 #' @param pm matrix or data frame containing the performance table. Each row
 #'  corresponds to an alternative, and each column to a criterion. only numeric
-#'  values expercted. Rows and columns are expected to be named and criteria
+#'  values expected. Rows and columns are expected to be named and criteria
 #'  are expected to be maximized (you can use function
 #'  \code{\link{util_pm_minmax}} to do that)
 #' @param w vector containing the weights of the criteria
 #'
-#' @return computed concordancce matrix
+#' @return computed concordance matrix
 #'
 #' @references
 #' Balamurali, M.: pyDecisions - A Python Library of management decision making
-#'  techniques. Avilable on-line from
+#'  techniques. Available on-line from
 #'  \url{https://github.com/Valdecy/pyDecisions}
 #'
 #' Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
