@@ -21,7 +21,7 @@
 #'
 #' \mjsdeqn{PV = \sum_{j=1}^m (R_{ij} - mean(R_j))^2}
 #'
-#' We estimate overal performance
+#' We estimate overall performance
 #'
 #' \mjsdeqn{\Psi = 1 - PV_j}
 #'
@@ -29,7 +29,7 @@
 #'
 #' \mjsdeqn{w = \frac{\Psi}{\sum \Psi}}
 #'
-#' Overal performace selection index (PSI) can be computed using normal WSM
+#' Overall performance selection index (PSI) can be computed using normal WSM
 #'  approach
 #'
 #' \mjsdeqn{PSI = \sum_{i = 1}^n R_{ij} \cdot w_i}
@@ -64,7 +64,7 @@ psi <- R6Class("psi",
     #' @field PSI weighted sum percentages
     PSI = NULL,
 
-    #' @field scoreM graph visualizing contribution of the critteria to overall
+    #' @field scoreM graph visualizing contribution of the criteria to overall
     #'  PSI
     scoreM = NULL,
 
@@ -146,7 +146,7 @@ psi <- R6Class("psi",
     },
 
     #' @description
-    #' prepares summary of the PSI method resutls and outputs them
+    #' prepares summary of the PSI method results and outputs them
     #'  to the console.
     summary = function() {
       cat(paste("PSI method results:\n\nweights:\n"))
