@@ -1,7 +1,7 @@
-#' computes so called kernell of the decision for ELECTRE I, II and 1S methods
+#' computes so called kernel of the decision for ELECTRE I, II and 1S methods
 #'
 #' @description
-#' Computes kernell of the solution as the set of alternatives which are not
+#' Computes kernel of the solution as the set of alternatives which are not
 #'  dominated by any other alternative. Other alternatives then for example can
 #'  be excluded from decision making as they are clearly suboptimal.
 #'
@@ -9,10 +9,10 @@
 #'  representing domination relation and two vectors with alternatives in
 #'  kernel and dominated alternatives.
 #'
-#' The function is beiung utilized for \link{electre1}, \link{electre2} and
+#' The function is being utilized for \link{electre1}, \link{electre2} and
 #'  \link{electre1s} methods.
 #'
-#' @param am adjacancy matrix or credibility matrix (ELECTRE 1S)
+#' @param am adjacency matrix or credibility matrix (ELECTRE 1S)
 #'
 #' @return
 #' list of:
@@ -20,13 +20,13 @@
 #'   \item graph - graphical representation of domination of one alternative
 #'  over another
 #'   \item dominated - vector of alternatives identified as dominated
-#'   \item kernel - oposite to dominated vector. Consist for alternatives not
+#'   \item kernel - opposite to dominated vector. Consists of alternatives not
 #'  dominated by other alternatives, forming kernel of the solution.
 #' }
 #'
 #' @references
 #' Balamurali, M.: pyDecisions - A Python Library of management decision making
-#'  techniques. Avilable on-line from
+#' techniques. Available on-line from
 #'  \url{https://github.com/Valdecy/pyDecisions}
 #'
 #' Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
