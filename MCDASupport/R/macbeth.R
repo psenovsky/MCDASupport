@@ -29,7 +29,7 @@
 #'  for example be set to 0 and 100, which are default values for the parametrs
 #'  in this implementation.
 #'
-#' Overal score is then computer by:
+#' Overall score is then computed by:
 #'
 #' \mjsdeqn{V_i = \sum_{j = 1}^n v(r_{ij}) \cdot w_j}
 #'
@@ -139,7 +139,7 @@ macbeth <- R6Class("macbeth",
     },
 
     #' @description
-    #' prepares summary of the MACBETH method resutls and outputs them
+    #' prepares summary of the MACBETH method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

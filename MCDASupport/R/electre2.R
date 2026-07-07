@@ -56,7 +56,7 @@
 #' Strong and weak dominances are used to then to form first and second total
 #'  preorder. Both matrixes need to be simplified to remove loops from it first.
 #'
-#' These preorders aim to measure the haw much alternatives over-rank each
+#' These preorders aim to measure how much alternatives over-rank each
 #'  other. The procedure is same for both orders. First we consolidate
 #'  information on dominances by
 #'
@@ -89,7 +89,7 @@
 #'
 #' @references
 #' Balamurali, M.: pyDecisions - A Python Library of management decision
-#'  making techniques. Avilable on-line from
+#'  making techniques. Available on-line from
 #'  \url{https://github.com/Valdecy/pyDecisions}
 #'
 #' Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
@@ -142,7 +142,7 @@ electre2 <- R6Class("electre2",
     c_plus = 0.85,
 
     #' @field d_minus first of two parameters defining discordance threshold.
-    #'  Thershold is defined as range, where \mjsdeqn{0 \le d^- \le d^+ \le 1}
+    #'  Threshold is defined as range, where \mjsdeqn{0 \le d^- \le d^+ \le 1}
     #' Default value 0.25.
     d_minus = 0.25,
 
@@ -202,7 +202,7 @@ electre2 <- R6Class("electre2",
     #'  ELECTRE II method implements the concotdance threshold as fuzzy
     #'  triangle. Default calue 0.85.
     #' @param d_minus first of two parameters defining discordance threshold.
-    #'  Thershold is defined as range, where \mjsdeqn{0 \le d^- \le d^+ \le 1}
+    #'  Threshold is defined as range, where \mjsdeqn{0 \le d^- \le d^+ \le 1}
     #' Default value 0.25.
     #' @param d_plus first of two parameters defining discordance threshold.
     #'  Default value 0.5.
@@ -354,7 +354,7 @@ electre2 <- R6Class("electre2",
     },
 
     #' @description
-    #' summary of the ELECTRE II method resutls.
+    #' summary of the ELECTRE II method results.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives
       ncri <- ncol(self$pm)
@@ -382,7 +382,7 @@ electre2 <- R6Class("electre2",
     #'  interval
     #'
     #' @return
-    #' returns dataframe specifyin upper and lower limits of the solution's
+    #' returns dataframe specifying upper and lower limits of the solution's
     #'  sensitivity the thresholds. Limits values can be replaced by
     #'  insens. if no limit has been identified.
     sensitivity = function(step = 0.01) {

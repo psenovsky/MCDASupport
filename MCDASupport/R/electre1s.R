@@ -4,7 +4,7 @@
 #' @description
 #' Method for supporting multicriteria decision making used to identify so
 #'  called kernel of solution as set of alternatives which are not dominated
-#'  by any other alternative. Dominated alternatives can be ommited from
+#'  by any other alternative. Dominated alternatives can be omitted from
 #'  decision making as they clearly represent sub-optimal solution for the
 #'  problem.
 #'
@@ -39,7 +39,7 @@
 #' where
 #'
 #' PM ... performance of alternative in criterion, Q ... indifference
-#'  threshold, P ... prefference threshold, w ... weights.
+#'  threshold, P ... preference threshold, w ... weights.
 #'
 #' Discordance matrix \mjseqn{d} consist of discordance indexes which provide
 #'  together with discordance threshold (exceeding this threshold) information
@@ -49,12 +49,12 @@
 #'
 #' Where d ... discordance matrix, i ... variable used to iterate over
 #'  alternatives, j,k ... variables use to iterate over criteria,
-#'  \mjseqn{\lambda} ... cutoff criterium, V ... veto threshold, othervise
+#'  \mjseqn{\lambda} ... cutoff criterium, V ... veto threshold, otherwise
 #'  same notation as in previous equations has been used.
 #'
 #' Next credibility matrix needs to be computed. Credibility matrix takes into
-#'  account concordance and discordance indexes to evaluate haw credible it is
-#'  that a over prerforms b (aSb).
+#'  account concordance and discordance indexes to evaluate how credible it is
+#'  that a over performs b (aSb).
 #'
 #' \mjsdeqn{cred(a,b) = \left\lbrace\begin{array}{ll} 1 & \;if\; C(a,b) \ge \lambda \; and \; d(a,b) = 0 \cr 0 & otherwise \end{array}\right.}
 #'
@@ -89,12 +89,12 @@
 #' @keywords ELECTRE III
 #' @keywords ELECTRE 1S
 #' @keywords concordance matrix
-#' @keywords discordane matrix
+#' @keywords discordance matrix
 #' @keywords credibility matrix
 #' @keywords kernel
 electre1s <- R6Class("electre1s",
   public = list(
-    #' @field pm_orig original (unmodified) performace matrix
+    #' @field pm_orig original (unmodified) performance matrix
     pm_orig = NULL,
 
     #' @field pm transformed performance matrix, all criteria will be maximized
@@ -128,7 +128,7 @@ electre1s <- R6Class("electre1s",
     #'  separate for each criterium)
     DiscordanceIndex = NULL,
 
-    #' @field CredibilityIndex credibility index (list seprate for each
+    #' @field CredibilityIndex credibility index (list separate for each
     #'  criterium)
     CredibilityIndex = NULL,
 
@@ -138,7 +138,7 @@ electre1s <- R6Class("electre1s",
     #' @field Dominated vector of alternatives identified as dominated
     Dominated = NULL,
 
-    #' @field graph netvork graph visualizing alternative overranking
+    #' @field graph network graph visualizing alternative overranking
     graph = NULL,
 
     #' @description
@@ -151,7 +151,7 @@ electre1s <- R6Class("electre1s",
     #' @param v vector of veto thresholds
     #' @param minmaxcriteria vector of direction of each of the criteria. "min"
     #' (resp."max")indicates that the criterion has to be minimized
-    #' (maximized). Vector canbe replaced by single max or min value if all
+    #' (maximized). Vector can be replaced by single max or min value if all
     #' criteria are maximized or minimized.
     #' @param lambda lambda parameter defining concordance threshold. The
     #'  default value is 0.5, but the value can be in interval <0.5;1>.
@@ -258,7 +258,7 @@ electre1s <- R6Class("electre1s",
     },
 
     #' @description
-    #' summary of the ELECTRE IS resutls.
+    #' summary of the ELECTRE IS results.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives
       ncri <- ncol(self$pm)
@@ -297,7 +297,7 @@ electre1s <- R6Class("electre1s",
     #'  interval
     #'
     #' @return
-    #' returns dataframe specifyin upper and lower limits of the solution's
+    #' returns dataframe specifying upper and lower limits of the solution's
     #'  sensitivity the thresholds. Limits values can be replaced by
     #'  insens. if no limit has been identified.
     #'

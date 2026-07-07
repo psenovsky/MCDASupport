@@ -32,7 +32,7 @@ mare <- R6Class(
     #' @field w vector of weights
     w = NULL,
 
-    #' @field minmax vector specifying optimalization direction for the
+    #' @field minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -52,7 +52,7 @@ mare <- R6Class(
     #' @param pm_min minimal bounds for sample in pm
     #' @param pm_max maximal bounds for sample in pm
     #' @param w vector of weights, its sum must be equal to 1
-    #' @param minmax minmax vector specifying optimalization direction for the
+    #' @param minmax minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -155,7 +155,7 @@ mare <- R6Class(
     },
 
     #' @description
-    #' prepares summary of the MARE method resutls and outputs them
+    #' prepares summary of the MARE method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

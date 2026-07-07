@@ -123,7 +123,7 @@ maut <- R6Class("maut",
     },
 
     #' @description
-    #' prepares summary of the MAUT method resutls and outputs them
+    #' prepares summary of the MAUT method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

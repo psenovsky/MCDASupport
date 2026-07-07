@@ -17,7 +17,7 @@
 #'  variant allowing such computations.
 #'
 #' The procedure itself is as follows. First we compute Concordance matrix.
-#'  Concordancce matrix (index) measures strength of the statement that
+#' Concordance matrix (index) measures strength of the statement that
 #'  alternative a outranks alternative b.
 #'
 #' To compute concordance matrix, partial concordance matrix \mjseqn{c_j} of
@@ -40,24 +40,24 @@
 #' where
 #'
 #' PM ... performance of alternative in criterion, Q ... indifference
-#'  threshold, P ... prefference threshold, V ... veto threshold, w ...
+#'  threshold, P ... preference threshold, V ... veto threshold, w ...
 #'  weights.
 #'
-#' Based on discrodance matrixes \mjseqn{d_j} we compute credibility matrix
+#' Based on discordance matrixes \mjseqn{d_j} we compute credibility matrix
 #'  \mjseqn{S}
 #'
 #' \mjsdeqn{S(a,b) = \left\lbrace\begin{array}{ll} C(a,b) & \;if\; d_j(a,b) \le C(a,b) \cr C(a,b) \cdot \prod_{\forall j \in J} \frac{1 - d_j(a,b)}{1 - C(a,b)} & \;otherwise\; \end{array}\right.}
 #'
 #' where J is set of criteria \mjseqn{j} for which \mjseqn{d_j(a,b) > C(a,b)}
 #'
-#' Finaly we may use the information to derive ranking of the alternatives.To
-#'  do that we will perform descending rank distilation
-#'  \code{\link{Electre_desc_dist}}, followed by ascending rank distilation
+#' Finally we may use the information to derive ranking of the alternatives.To
+#'  do that we will perform descending rank distillation
+#'  \code{\link{Electre_desc_dist}}, followed by ascending rank distillation
 #'  \code{\link{Electre_asc_dist}}, then we agregate both into final rank
 #'  \code{\link{finalRanking}}.
 #'
-#' Preorder for descending rank distilation is achieved by distilling
-#'  alternatives from credibility matrix using progresively lower cutoff
+#' Preorder for descending rank distillation is achieved by distilling
+#'  alternatives from credibility matrix using progressively lower cutoff
 #'  thresholds \mjseqn{\lambda}. first value of the \mjseqn{\lambda} is
 #'  computed:
 #'
@@ -65,7 +65,7 @@
 #'
 #' where A ... is set of alternatives.
 #'
-#' Ascending distilation works similarly, but going up from lowest values in
+#' Ascending distillation works similarly, but going up from lowest values in
 #'  credibility matrix using progressively higher cutoff thresholds
 #'  \mjseqn{\lambda}.
 #'
@@ -82,7 +82,7 @@
 #' If (\mjseqn{D_a < D_b} and at same time \mjseqn{A_a < A_b}) or
 #'  (\mjseqn{D_a == D_b} and at same time \mjseqn{A_a < A_b})  or
 #'   (\mjseqn{D_a < B_b} and at same time \mjseqn{A_a == A_b}) we can say that
-#'  that a is prefered to b (aPb). In other words aPb if it is either preffered
+#'  that a is preferred to b (aPb). In other words aPb if it is either preferred
 #'  in both preorders or when it is better ranked in one while being evaluated
 #'  as equal in other.
 #'
@@ -106,7 +106,7 @@
 #'
 #' @references
 #' Balamurali, M.: pyDecisions - A Python Library of management decision making
-#'  techniques. Avilable on-line from
+#'  techniques. Available on-line from
 #'  \url{https://github.com/Valdecy/pyDecisions}
 #'
 #' Rogers, Martin and Myastre, Lucien-Yves. ELECTRE and Decision Support:
@@ -169,7 +169,7 @@ electre3 <- R6Class("electre3",
     minmaxcriteria = "max",
 
     #' @field alpha alpha and beta coefficients are used in downward and upward
-    #'  distilation procedure as wel as final ranking procerude to construct
+    #'  distillation procedure as well as final ranking procedure to construct
     #'  orders. Both coef. are used iteratively change thresholds limiting
     #'  evaluation of the outranking relations between the alternatives.
     alpha = 0.3,
@@ -188,8 +188,8 @@ electre3 <- R6Class("electre3",
     rank_a = NULL,
 
     #' @field rank_p Pre-order matrix specifying identified relations between
-    #'  the alternatives - values are P+ (a prefered to b),
-    #'  P- (b prefered to a), I (indifferent), R (incomparable)
+    #'  the alternatives - values are P+ (a preferred to b),
+    #'  P- (b preferred to a), I (indifferent), R (incomparable)
     rank_p = NULL,
 
     #' @field graph processed adajncency matrix into network digram.
@@ -219,7 +219,7 @@ electre3 <- R6Class("electre3",
     #'  matrix for ELECTRE III is computed separately for every criterion.
     DiscordanceMatrixCriteria = NULL,
 
-    #' @field adjancancyMatrix Adjancency Matrix allows to visualize results as
+    #' @field adjancancyMatrix Adjacency Matrix allows to visualize results as
     #'  network diagram
     adjancancyMatrix = NULL,
 
@@ -242,7 +242,7 @@ electre3 <- R6Class("electre3",
     #'  min if all criteria are to be maximized or minimized. Implicitly set
     #'  to max.
     #' @param alpha alpha and beta coefficients are used in downward and upward
-    #'  distilation procedure as wel as final ranking procerude to construct
+    #'  distillation procedure as well as final ranking procedure to construct
     #'  orders. Both coef. are used iteratively change thresholds limiting
     #'  evaluation of the outranking relations between the alternatives.
     #' @param beta see alpha. Preset values of alpha = 0.3 and beta = 0.15 are
@@ -378,7 +378,7 @@ electre3 <- R6Class("electre3",
     },
 
     #' @description
-    #' summary of the ELECTRE III method resutls.
+    #' summary of the ELECTRE III method results.
     #' @return basic information on the model including ranking.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives
@@ -397,7 +397,7 @@ electre3 <- R6Class("electre3",
     #'  on values of preference (p), indefference (q) and veto (v) thresholds.
     #'
     #' Since the thresholds (all of them) are specfied separately for each
-    #'  criterion, their sensitivity needs to be also evaluated seprately.
+    #'  criterion, their sensitivity needs to be also evaluated separately.
     #'  This is being realized in this function by generating separate
     #'  dataframe for each threshold (sens_p, sens_q, sens_v) with following
     #'  structure:

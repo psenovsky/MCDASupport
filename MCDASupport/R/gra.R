@@ -7,7 +7,7 @@
 #'  problems. In fact, situations between these extremes, which contain partial
 #'  information, are described as being grey. (from Wikipedia).
 #'
-#' Computationally the GRA expects performace matrix to be in numeric form.
+#' Computationally the GRA expects performance matrix to be in numeric form.
 #'  Values of performance of the alternatives in criteria are normalized using
 #'  min-max normalization.
 #'
@@ -65,7 +65,7 @@ gra <- R6Class("gra",
     #' @field grc Grey relational coefficient
     grc = NULL,
 
-    #' @field minmax vector specifying optimalization direction for the
+    #' @field minmax vector specifying optimization direction for the
     #'  criteria. Values max/min are expected. If all criteria are optimalized
     #'  in same direction the vector can be replaced by single value. Max value
     #'  is default.
@@ -144,7 +144,7 @@ gra <- R6Class("gra",
     },
 
     #' @description
-    #' prepares summary of the GRA method resutls and outputs them
+    #' prepares summary of the GRA method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)

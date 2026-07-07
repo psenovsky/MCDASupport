@@ -175,7 +175,7 @@ marcos <- R6Class("marcos",
     },
 
     #' @description
-    #' computes MARCOS model based on input parameters. Usualy it is not
+    #' computes MARCOS model based on input parameters. Usually it is not
     #'  neccessary to run this function as it is run automaticaly by the
     #'  class constructor
     compute = function() {
@@ -223,7 +223,7 @@ marcos <- R6Class("marcos",
     },
 
     #' @description
-    #' summary of the MACROS method resutls.
+    #' summary of the MARCOS method results.
     #' @return basic information on the model including ranking.
     summary = function() {
       nalt <- nrow(self$pm)

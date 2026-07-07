@@ -12,7 +12,7 @@
 #'  basically evaluating in which category the performance of the alternative
 #'  in criterion is.
 #'
-#' These categories are then aggregated across the criteria to form rank using
+#' These categories are then aggregated across the criteria to form rank using
 #'  "pessimistic" or "optimistic" agregation procedure. Results of these
 #'  procedures is then used to form ranking.
 #'
@@ -25,7 +25,7 @@
 #'  between performance profile and preference or indifference thresholds for
 #'  the criteria.
 #'
-#' \mjsdeqn{c_j(a,b_h) = \left\lbrace\begin{array}{ll} 1 & \;if\; PM_j(a) \ge PM_j(b_h) - Q_j \cr 0 & \;if\; PM_j(a) < PM_j(b_h) - P_j \cr \frac{PM_j(a) + P_j - PM_j(b_h)}{P_j - Q_j} & \;otherwise\;\end{array}\right.}
+#' \mjsdeqn{c_j(a,b_h) = \left\lbrace\begin{array}{ll} 1 & \;if\; PM_j(a) \ge PM_j(b_h) - Q_j \cr 0 & \;if\; PM_j(a) < PM_j(b_h) - P_j \cr \frac{PM_j(a) + P_j - PM_j(b_h)}{P_j - Q_j} & \;otherwise\;\end{array}\right.}
 #'
 #' Where P ... preference threshold, Q ... indifference threshold,
 #'  \mjseqn{PM_j(a)} ... performance of alternative in criterium j,
@@ -36,8 +36,8 @@
 #'
 #' \mjseqn{c(a, b_h) = \sum_{j \in J} w_j c_j(a, b_h)}
 #'
-#' Similarly discordance index for the criterie is derived from comparing
-#'  alternative's performance against performace profiles with applied veto or
+#' Similarly discordance index for the criterie is derived from comparing
+#'  alternative's performance against performance profiles with applied veto or
 #'  preference thresholds:
 #'
 #' \mjsdeqn{d_j(a,b_h) = \left\lbrace\begin{array}{ll} 1 & \;if\; PM_j(a) < PM_j(b_h) - V_j \cr 0 & \;if\; PM_j(a) \ge PM_j(b_h) - P_j \cr \frac{PM_j(b_h) - P_j - PM_j(b_h)}{V_j - P_j} & \;otherwise\;\end{array}\right.}
@@ -173,7 +173,7 @@ electretri <- R6Class("electretri",
     #'  but describes bhSa instead, again across all criteria
     overallConcordanceIndexInverse = NULL,
 
-    #' @field discordanceIndex discordance index is oposite to concordance
+    #' @field discordanceIndex discordance index is opposite to concordance
     #'  index. It is a value (matrix of values) used to establish that a!Sbh
     #'  (a does not dominate bh). Discordance index is being computed
     #'  separately for each criterion.
@@ -267,7 +267,7 @@ electretri <- R6Class("electretri",
     #' profiles_names <-c("b1","b2")
     #' # thresholds vector
     #' I <- c(15,80,1,0.5,1) # indifference threshold
-    #' P <- c(40,350,3,3.5,5) # prefference threshold
+    #' P <- c(40,350,3,3.5,5) # preference threshold
     #' V <- c(100,850,5,4.5,8) # veto threshold
     #' t<- electretri$new(PM,
     #'                    profiles, profiles_names,
@@ -294,7 +294,7 @@ electretri <- R6Class("electretri",
       if (!is.vector(profiles_names)) stop("profiles_names should be a vector")
       npr <- length(profiles_names) # number of profiles
       if (npr != nrow(profiles)) {
-        stop("Number of stated profile names must correspond to number 
+        stop("Number of stated profile names must correspond to number
               of rows in profile matrix")
       }
       if (!is.vector(w, mode = "numeric")) {
@@ -495,7 +495,7 @@ electretri <- R6Class("electretri",
     },
 
     #' @description
-    #' summary of the ELECTRE TRI method resutls.
+    #' summary of the ELECTRE TRI method results.
     #' @return basic information on the model including ranking.
     summary = function() {
       nalt <- nrow(self$pm)  #no. of alternatives
@@ -518,7 +518,7 @@ electretri <- R6Class("electretri",
     #'  preference (p), indefference (q) and veto (v) thresholds.
     #'
     #' Since the thresholds (all of them) are specfied separately for each
-    #'  criterion, their sensitivity needs to be also evaluated seprately.
+    #'  criterion, their sensitivity needs to be also evaluated separately.
     #'  This is being realized in this function by generating separate
     #'  dataframe for each threshold (sens_p, sens_q, sens_v) with following
     #'  structure:

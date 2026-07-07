@@ -228,7 +228,7 @@ evamix <- R6Class("evamix",
     },
 
     #' @description
-    #' prepares summary of the EVAMIX method resutls and outputs them
+    #' prepares summary of the EVAMIX method results and outputs them
     #'  to the console.
     summary = function() {
       nalt <- nrow(self$pm)
