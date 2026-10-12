@@ -15,6 +15,7 @@
 #'        GCW \tab Gini Coefficient Weighting \tab N \cr
 #'        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
 #'        CILOS \tab Criterion Impact LOSs \tab N \cr
+#'        FANMA \tab abr. of authors name \tab N \cr
 #'        IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
 #'        MPSI \tab M Preference Selection Index \tab N \cr
 #'    }
@@ -269,6 +270,15 @@
 #'
 #' \mjsdeqn{w_j = \frac{p_j}{\sum_{j = 1}^n p_j}}
 #'
+#' \bold{FANMA}
+#'
+#'FANMA is objective weight derivation method. First the values in performance
+#'  matrix are normalized using minmax method. Then the calculation of the sum
+#'  of squared distances from the ideal point (the ideal value after normalization
+#'  is 1)
+#'
+#' Then weights are derived based on normalized inversed summed squared distance.
+#'
 #' @param pm performance matrix
 #' @param method weight computation method
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
@@ -316,6 +326,11 @@
 #'  Conference (CCDC), Taiyuan, 2012, pp. 3889-3892,
 #'  doi: 10.1109/CCDC.2012.6244621.
 #'
+#' MA, Jian, FAN, Zhi-Ping, HUANG, Li-Hua. A subjective and objective integrated approach to
+#'  determine attribute weights. European Journal of Operational Research. 1999, vol. 112,
+#'  no. 2, pp. 397–404, available from: https://doi.org/10.1016/S0377-2217(98)00141-6,
+#'  ISSN 0377-2217.
+#'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #' @examples
 #' alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -349,6 +364,7 @@ mcda_objective_weights <- function(
     "GCW",
     "MEREC",
     "CILOS",
+    "FANMA",
     "IDOCRIW",
     "MPSI",
     "angle"
@@ -541,6 +557,26 @@ mcda_objective_weights <- function(
     }
   }
 
+  # FANMA
+  FANMA <- function(pm, minmax = "max") {
+    ncri <- ncol(pm)
+    ideal <- rep(1, times = ncri)
+    pm_norm <- pm
+    for (i in 1:ncri) { # normalize
+      pm_norm[, i] <- mcda_norm(pm[, i], method = "minmax", minmax[i])
+    }
+    sum_sq_dist <- numeric(ncri)
+    for (i in 1:ncri) {
+      sum_sq_dist[i] <- sum((1 - pm_norm[, i])^2)
+    }
+    inv_dist <- 1 / sum_sq_dist
+    weights <- inv_dist / sum(inv_dist)
+    if (!is.null(colnames(pm_norm))) {
+      names(weights) <- colnames(pm_norm)
+    }
+    return(weights)
+  }
+
   # IDOCRIW - Integrated Determination of Objective CRIteria Weights
   IDOCRIW <- function(pm, minmax) {
     ncri <- ncol(pm)
@@ -607,6 +643,7 @@ mcda_objective_weights <- function(
     "CRITIC" = CRITIC(pm, minmax), # Criterion Importance Through Intercriteria Correlation
     "EWM" = EWM(pm), # Entropy Weight Methor
     "GCW" = GCW(pm), # Gini Coefficient Weighting Method
+    "FANMA" = FANMA(pm, minmax), # FANMA
     "IDOCRIW" = IDOCRIW(pm, minmax), # Integrated Determination of Objective CRIteria Weights
     "MEREC" = MEREC(pm, minmax), # Method based on Removal Effects of Criteria
     "MPSI" = MPSI(pm, minmax), # M Preference Selection Index

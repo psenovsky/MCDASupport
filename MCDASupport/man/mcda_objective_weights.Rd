@@ -35,6 +35,7 @@ The function for criteria weights computation using various objective
        GCW \tab Gini Coefficient Weighting \tab N \cr
        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
        CILOS \tab Criterion Impact LOSs \tab N \cr
+       FANMA \tab abr. of authors name \tab N \cr
        IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
        MPSI \tab M Preference Selection Index \tab N \cr
    }
@@ -288,6 +289,15 @@ With m being number of alternatives. We follow with calculation of
 Finally we compute the weights:
 
 \mjsdeqn{w_j = \frac{p_j}{\sum_{j = 1}^n p_j}}
+
+\bold{FANMA}
+
+FANMA is objective weight derivation method. First the values in performance
+ matrix are normalized using minmax method. Then the calculation of the sum
+ of squared distances from the ideal point (the ideal value after normalization
+ is 1)
+
+Then weights are derived based on normalized inversed summed squared distance.
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -337,6 +347,11 @@ Dong Shuai, Zheng Zongzhun, Wang Yongji and Liu Lei, "A new angular method to
  determine the objective weights," 2012 24th Chinese Control and Decision
  Conference (CCDC), Taiyuan, 2012, pp. 3889-3892,
  doi: 10.1109/CCDC.2012.6244621.
+
+MA, Jian, FAN, Zhi-Ping, HUANG, Li-Hua. A subjective and objective integrated approach to
+ determine attribute weights. European Journal of Operational Research. 1999, vol. 112,
+ no. 2, pp. 397–404, available from: https://doi.org/10.1016/S0377-2217(98)00141-6,
+ ISSN 0377-2217.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
