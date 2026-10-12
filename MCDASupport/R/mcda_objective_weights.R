@@ -23,18 +23,18 @@
 #'  choose normalization method himself. All normalization methods from
 #'  mcda_norm can be used. If no normalization method is provided, the function
 #'  uses default one for the method, usually min-max normalization.
-#' 
+#'
 #' \bold{Angle or angular weighting}
-#' 
+#'
 #' Intersting method which bases the weights on the angle between the criterion
-#'  and referential point representing equal weights. The larger angle the 
+#'  and referential point representing equal weights. The larger angle the
 #'  criterium has ageinst this referential point the higher value of weight it
 #'  should have.
-#' 
+#'
 #' Mathematically:
-#' 
+#'
 #' \mjsdeqn{ u_{j}= arccos \frac{\sum_{i=1}^m b_{ij}}{\sqrt{\sum_{i=1}^m b_{ij}^2}}}
-#' 
+#'
 #' The weights are derived from uj using vector normalization.
 #'
 #' \bold{MW - Mean weighting Method}
@@ -121,7 +121,7 @@
 #' Derives weight coefficients of criteria based on correlations.
 #'
 #' Basis of the evaluation is correlation matrix R we compute using Pearson's
-#'  correlation coefficien. This information can be used to compute the
+#'  correlation coefficient. This information can be used to compute the
 #'  conflict created by the criterium with respect to other criteria:
 #'
 #' \mjsdeqn{\sum_{k=1}^m (1 - r_{jk})}
@@ -310,7 +310,7 @@
 #'  Hybrid MPSI–MARA Decision-Making Model for Support System Selection in an
 #'  Underground Mine. Systems 2022, 10, 248.
 #'  https://doi.org/10.3390/systems10060248
-#' 
+#'
 #' Dong Shuai, Zheng Zongzhun, Wang Yongji and Liu Lei, "A new angular method to
 #'  determine the objective weights," 2012 24th Chinese Control and Decision
 #'  Conference (CCDC), Taiyuan, 2012, pp. 3889-3892,
@@ -576,7 +576,7 @@ mcda_objective_weights <- function(
   angle <- function(pm, minmax) {
     m <- nrow(pm) # alternatives
     n <- ncol(pm) # criteria
-  
+
     b <- pm
     for (i in 1:n) {
       # linear normalization
@@ -589,7 +589,7 @@ mcda_objective_weights <- function(
       argument <- pmin(pmax(argument, -1), 1)
       return(acos(argument))
     })
-    
+
     if (sum(u) == 0) { # all angles are same
       w <- rep(1/n, n)
     } else {
