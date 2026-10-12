@@ -100,7 +100,7 @@ Normalize values using approach by Markovic (2010), see equation bellow.
 
 \bold{Min-max normalization}
 
-Min-max normalization (AKA \bold{max-min normalization}, or 
+Min-max normalization (AKA \bold{max-min normalization}, or
 \bold{Weitendorf normalization}) is one of most used normalization methods.
  It takes values in any scale and normalizes them into 0-1 scale.
 
@@ -133,7 +133,7 @@ Normalized values are computed by comparing the values to average.
 \bold{Normalize to best value AKA Max nomalization}
 
 Normalized values are computed by comparing the values to maximum. Results
- show how close the values are to this maximum. For benefit criteria it is 
+ show how close the values are to this maximum. For benefit criteria it is
  computes as:
 
 \mjsdeqn{z = \frac{x}{max(x)}}

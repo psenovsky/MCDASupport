@@ -76,7 +76,7 @@
 #'
 #' \bold{Min-max normalization}
 #'
-#' Min-max normalization (AKA \bold{max-min normalization}, or 
+#' Min-max normalization (AKA \bold{max-min normalization}, or
 #' \bold{Weitendorf normalization}) is one of most used normalization methods.
 #'  It takes values in any scale and normalizes them into 0-1 scale.
 #'
@@ -109,13 +109,13 @@
 #' \bold{Normalize to best value AKA Max nomalization}
 #'
 #' Normalized values are computed by comparing the values to maximum. Results
-#'  show how close the values are to this maximum. For benefit criteria it is 
+#'  show how close the values are to this maximum. For benefit criteria it is
 #'  computes as:
 #'
 #' \mjsdeqn{z = \frac{x}{max(x)}}
-#' 
+#'
 #' For cost criteria:
-#' 
+#'
 #' \mjsdeqn{z = \frac{min(x)}{x}}
 #'
 #' \bold{Normalize values using Tzeng and Huang approach}
@@ -164,7 +164,7 @@
 #'
 #' \mjsdeqn{z = \frac{x - \mu}{\sigma}}
 #'
-#' 
+#'
 #' @param tonorm vector of numeric values to be normalized
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
 #'  default value
@@ -200,7 +200,7 @@
 #'
 #' Zavadskas, E.K., Turskis, Z. (2008). A New Logarithmic Normalization Method
 #'  in Games Theory. Informatica, vol. 19, no. 2, pp. 303-314
-#' 
+#'
 #' Chakrakborty, S., Chatterjee, P. Das, P. P. Multi-Criteria Decision Making
 #'  Methods in Manufacturing Environments: Models and Applications. CRC Press,
 #'  Boca Raton, 2024, 450 p., ISBN: 978-1-00337-703-0
@@ -245,11 +245,11 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
                 "zscore")
   validation$validate_invalid_val(method, nmethods, "normalization method")
   if (!is.null(min) && min > min(tonorm)) {
-    stop("Value set in min parameter is larger then minimum in provided data 
+    stop("Value set in min parameter is larger then minimum in provided data
       to normalize")
   }
   if (!is.null(max) && max < max(tonorm)) {
-    stop("Value set in max parameter is smaller then maximum in provided data 
+    stop("Value set in max parameter is smaller then maximum in provided data
       to normalize")
   }
   if (is.integer(min)) print("test min")
@@ -384,25 +384,6 @@ mcda_norm <- function(tonorm, minmax = "max", method = "minmax",
   }
 
   # perform normalization
-  # result <- switch(
-  #   method,
-  #   "LaiHwang" = norm_lai_hwang(tonorm, minmax = minmax),
-  #   "linear aggregation" = norm_linear_aggreg(tonorm, minmax = minmax),
-  #   "sum" = norm_linear_aggreg(tonorm, minmax = minmax),
-  #   "logarithm" = norm_logarithm(tonorm, minmax = minmax),
-  #   "Markovic" = norm_markovic(tonorm),
-  #   "minmax" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
-  #   "maxmin" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
-  #   "Weitendorf" = norm_minmax(tonorm, minmax = minmax, min = min, max = max),
-  #   "nonlinear" = norm_nonlinear(tonorm, minmax = minmax),
-  #   "toaverage" = norm_toaverage(tonorm),
-  #   "tobest" = norm_tobest(tonorm, minmax = minmax),
-  #   "max" = norm_tobest(tonorm, minmax = minmax),
-  #   "TzengHuang" = norm_tzeng_huang(tonorm),
-  #   "vector" = norm_vector(tonorm, minmax),
-  #   "ZavadskasTurskis" = norm_zavadskas_turskis(tonorm, minmax = minmax),
-  #   "zscore" = norm_zscore(tonorm)
-  # )
   result <- switch(
     method,
     # Grouped aliases (Empty values fall through to the next defined expression)
