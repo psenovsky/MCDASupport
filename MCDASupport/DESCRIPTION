@@ -6,7 +6,7 @@ Date: 2027-07-07
 Author: Pavel Šenovský pavel.senovsky@vsb.cz [aut, cre]
 Maintainer: Pavel Šenovský <pavel.senovsky@vsb.cz>
 Description: Complex package of method for multi-criteria decision making, derivation of the weights and normalization.
-Depends: igraph, diagram, dplyr, tidyr, stats, graphics, plotly, visNetwork, R6, lpSolve, quadprog
+Depends: igraph, diagram, dplyr, tidyr, stats, graphics, plotly, visNetwork, R6, lpSolve, quadprog, nloptr
 License: GPL (>= 3)
 NeedsCompilation: no
 Encoding: UTF-8
