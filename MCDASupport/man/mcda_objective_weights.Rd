@@ -47,7 +47,7 @@ In normalization column of previous table Y means that the analyst can also
 \bold{Angle or angular weighting}
 
 Intersting method which bases the weights on the angle between the criterion
- and referential point representing equal weights. The larger angle the 
+ and referential point representing equal weights. The larger angle the
  criterium has ageinst this referential point the higher value of weight it
  should have.
 
@@ -141,7 +141,7 @@ and from it entropy weights which are returned as result of the function:
 Derives weight coefficients of criteria based on correlations.
 
 Basis of the evaluation is correlation matrix R we compute using Pearson's
- correlation coefficien. This information can be used to compute the
+ correlation coefficient. This information can be used to compute the
  conflict created by the criterium with respect to other criteria:
 
 \mjsdeqn{\sum_{k=1}^m (1 - r_{jk})}
