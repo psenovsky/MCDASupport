@@ -134,7 +134,12 @@ fucom <- function(phi) {
 
   # Extract results
   w_opt <- result$solution[1:n]
-  names(w_opt) <- paste0("C", 1:n)
+  if(!is.null(names(phi))) {
+    names(w_opt) <- names(phi)
+  } else {
+    names(w_opt) <- paste0("C", 1:n)
+  }
+
   dfc_val <- result$solution[n + 1]
 
   return(list(w = w_opt, DFC = dfc_val))
