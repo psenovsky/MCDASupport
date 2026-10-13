@@ -1,5 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 export(bwm)
+export(cobrac)
 export(cwm)
 export(dematel)
 export(fucom)
