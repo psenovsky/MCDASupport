@@ -298,6 +298,31 @@ FANMA is objective weight derivation method. First the values in performance
  is 1)
 
 Then weights are derived based on normalized inversed summed squared distance.
+
+\bold{Centroid - Centroidous Method for Weight Establishment}
+
+Method starts with performance matrix normalization:
+
+\mjsdeqn{x_{ij}' = \frac{x_{ij}}{\sum_{j=1}^m x_{ij}}}
+
+where x is performance of alternative in the criterium, n is number of
+ criteria and m is number of alternatives.
+
+Next centre of gravity is computed:
+
+\mjsdeqn{c_j = \frac{1}{n} \sum_{i=1}^n x_{ij}'}
+
+Next euclidean distance between normalized values and centre of gravity is
+ computed:
+
+\mjsdeqn{d_i = \sqrt{\sum_{j=1}^m (x_{ij}' - c_j)^2}}
+
+The guiding principle is, taht criteria closer to the centre better reflect
+ fundametal aspects of decision problem and thus shall have greater weight.
+
+\mjsdeqn{d_i' = \frac{\min_i(d_i)}{d_i}}
+
+\mjsdeqn{w_i = \frac{d_i'}{\sum_{i=1}^n d_i'}}
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")

@@ -279,6 +279,31 @@
 #'
 #' Then weights are derived based on normalized inversed summed squared distance.
 #'
+#' \bold{Centroid - Centroidous Method for Weight Establishment}
+#'
+#' Method starts with performance matrix normalization:
+#'
+#' \mjsdeqn{x_{ij}' = \frac{x_{ij}}{\sum_{j=1}^m x_{ij}}}
+#'
+#' where x is performance of alternative in the criterium, n is number of
+#'  criteria and m is number of alternatives.
+#'
+#' Next centre of gravity is computed:
+#'
+#'\mjsdeqn{c_j = \frac{1}{n} \sum_{i=1}^n x_{ij}'}
+#'
+#' Next euclidean distance between normalized values and centre of gravity is
+#'  computed:
+#'
+#' \mjsdeqn{d_i = \sqrt{\sum_{j=1}^m (x_{ij}' - c_j)^2}}
+#'
+#' The guiding principle is, taht criteria closer to the centre better reflect
+#'  fundametal aspects of decision problem and thus shall have greater weight.
+#'
+#' \mjsdeqn{d_i' = \frac{\min_i(d_i)}{d_i}}
+#'
+#' \mjsdeqn{w_i = \frac{d_i'}{\sum_{i=1}^n d_i'}}
+#'
 #' @param pm performance matrix
 #' @param method weight computation method
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
@@ -331,6 +356,9 @@
 #'  no. 2, pp. 397–404, available from: https://doi.org/10.1016/S0377-2217(98)00141-6,
 #'  ISSN 0377-2217.
 #'
+#' Vinogradova-Zinkevič I. Centroidous Method for Determining Objective Weights.
+#'  Mathematics. 2024; 12(14):2269. https://doi.org/10.3390/math12142269
+#'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #' @examples
 #' alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -356,18 +384,19 @@ mcda_objective_weights <- function(
   ncri <- ncol(pm)
   minmax <- validation$validate_minmax(minmax, ncri)
   nmethods <- c(
+    "angle",
+    "centroid",
+    "CILOS",
+    "CRITIC",
+    "EWM",
+    "FANMA",
+    "GCW",
+    "IDOCRIW",
+    "MEREC",
+    "MPSI",
     "MW",
     "SDW",
-    "SVW",
-    "EWM",
-    "CRITIC",
-    "GCW",
-    "MEREC",
-    "CILOS",
-    "FANMA",
-    "IDOCRIW",
-    "MPSI",
-    "angle"
+    "SVW"
   )
   validation$validate_invalid_val(
     method,
@@ -635,10 +664,24 @@ mcda_objective_weights <- function(
     return(w)
   }
 
+  centroid <- function(pm) {
+    ncri <- ncol(pm)
+    nalt <- nrow(pm)
+
+    pnorm <- sweep(pm, 2, colSums(pm), "/") # normalization
+    c <- rowMeans(pnorm) # centroid (centre of gravity)
+    d <- sqrt(colSums((pnorm - c)^2)) # euclidean distance
+    d2 <- min(d) / d # relative distance
+    w <- d2 / sum(d2)
+    names(w) <- colnames(pm)
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
     "angle" = angle(pm, minmax), # angular/angle weight derivation
+    "centroid" = centroid(pm), # centroid method for weights establishement
     "CILOS" = CILOS(pm, minmax), # Criterion Impact LOSs
     "CRITIC" = CRITIC(pm, minmax), # Criterion Importance Through Intercriteria Correlation
     "EWM" = EWM(pm), # Entropy Weight Methor
