@@ -131,7 +131,7 @@ t <- coraso$new(M, w)
 \if{html}{\out{<a id="method-coraso-compute"></a>}}
 \if{latex}{\out{\hypertarget{method-coraso-compute}{}}}
 \subsection{Method \code{compute()}}{
-performs computation of WSM model based on class properties. Usually
+performs computation of coraso model based on class properties. Usually
  is not run manually as constructor calls this method automatically.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{coraso$compute()}\if{html}{\out{</div>}}

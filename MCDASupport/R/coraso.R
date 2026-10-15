@@ -82,7 +82,7 @@ coraso <- R6Class("coraso",
     },
 
     #' @description
-    #' performs computation of WSM model based on class properties. Usually
+    #' performs computation of coraso model based on class properties. Usually
     #'  is not run manually as constructor calls this method automatically.
     compute = function() {
       ncri <- ncol(self$pm)
