@@ -68,7 +68,7 @@ in same direction the vector can be replaced by single value. Max value
 is default.}
 
 \item{\code{result}}{has weighted performance matrix with added columns
-to summ performance and extress this sum as a percentage of the best
+to summ performance and express this sum as a percentage of the best
 alternative}
 
 \item{\code{weighted_sum_prc}}{vector specifying how close the alternatives are

@@ -39,7 +39,7 @@ wsm <- R6Class("wsm",
     minmax = NULL,
 
     #' @field result has weighted performance matrix with added columns
-    #'  to summ performance and extress this sum as a percentage of the best
+    #'  to summ performance and express this sum as a percentage of the best
     #'  alternative
     result = NULL,
 
