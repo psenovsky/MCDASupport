@@ -377,6 +377,9 @@ MA, Jian, FAN, Zhi-Ping, HUANG, Li-Hua. A subjective and objective integrated ap
  determine attribute weights. European Journal of Operational Research. 1999, vol. 112,
  no. 2, pp. 397–404, available from: https://doi.org/10.1016/S0377-2217(98)00141-6,
  ISSN 0377-2217.
+
+Vinogradova-Zinkevič I. Centroidous Method for Determining Objective Weights.
+ Mathematics. 2024; 12(14):2269. https://doi.org/10.3390/math12142269
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
