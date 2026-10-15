@@ -331,7 +331,7 @@ The guiding principle is, taht criteria closer to the centre better reflect
 Computation starts by calculating symetry points of criteria as average of
  difference between maximum and minimum
 
-\mjsdeqn{S_j = \frac{a_{max_j} - a_{min_j}}{2}}
+\mjsdeqn{S_j = \frac{a_{max_j} + a_{min_j}}{2}}
 
 The calculated value is used to calculate absolute distance of performance
  in criteria to these symetry points.
@@ -412,6 +412,13 @@ SAH, S., Sardar, S., Das, D. Optimization of W-EDM process for superalloy by
  and CoCoFISo methods. International Journal on Interactive Design and
  Manufacturing (IJIDeM) (2026) 20: pp. 381–406,
  https://doi.org/10.1007/s12008-025-02397-1
+
+GLIGORIĆ, Zoran, GLIGORIĆ, Miloš, MILJANOVIĆ, Igor, LUTOVAC, Suzana,
+ MILUTINOVIĆ, Aleksandar. Assessing Criteria Weights by the Symmetry Point of
+ Criterion (Novel SPC Method)–Application in the Efficiency Evaluation of the
+ Mineral Deposit Multi-Criteria Partitioning Algorithm. CMES - Computer
+ Modeling in Engineering and Sciences. 2023, vol. 136, no. 1, pp. 955–979,
+ Available from: https://doi.org/10.32604/cmes.2023.025021, ISSN 1526-1492.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
