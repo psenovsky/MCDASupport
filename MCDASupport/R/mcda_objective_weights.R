@@ -7,17 +7,19 @@
 #' \tabular{llc}{
 #'        \bold{constant} \tab \bold{method} \tab \bold{normalization}\cr
 #'        angle \tab angle (or angular) weighting \tab N \cr
-#'        MW \tab Mean weighting method \tab N \cr
-#'        SDW \tab Standard Deviation Weighting method \tab Y \cr
-#'        SVW \tab Statistical Variance Weighting method \tab Y \cr
-#'        EWM \tab Entropy Weight Method \tab N \cr
+#'        centroid \tab Centroidous Method for Weight Establishment \tab N \cr
+#'        CILOS \tab Criterion Impact LOSs \tab N \cr
 #'        CRITIC \tab Criterion Importance Through Intercriteria Correlation \tab N \cr
 #'        GCW \tab Gini Coefficient Weighting \tab N \cr
-#'        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
-#'        CILOS \tab Criterion Impact LOSs \tab N \cr
+#'        EWM \tab Entropy Weight Method \tab N \cr
 #'        FANMA \tab abr. of authors name \tab N \cr
 #'        IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
+#'        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
 #'        MPSI \tab M Preference Selection Index \tab N \cr
+#'        MW \tab Mean weighting method \tab N \cr
+#'        SDW \tab Standard Deviation Weighting method \tab Y \cr
+#'        SPC \tab Symetry Point in Criteria \tab N \cr
+#'        SVW \tab Statistical Variance Weighting method \tab Y \cr
 #'    }
 #'
 #' In normalization column of previous table Y means that the analyst can also
@@ -304,6 +306,30 @@
 #'
 #' \mjsdeqn{w_i = \frac{d_i'}{\sum_{i=1}^n d_i'}}
 #'
+#' \bold{SPC - Symetry Point in Criteria}
+#'
+#' Computation starts by calculating symetry points of criteria as average of
+#'  difference between maximum and minimum
+#'
+#' \mjsdeqn{S_j = \frac{a_{max_j} + a_{min_j}}{2}}
+#'
+#' The calculated value is used to calculate absolute distance of performance
+#'  in criteria to these symetry points.
+#'
+#' \mjsdeqn{d_{ij} = | a_{ij} - S_j |}
+#'
+#' Then we compute moduli of symetry:
+#'
+#' \mjsdeqn{r_{ij} = \frac{\frac{\sum_{i=1}^k d_{ij}}{k}}{a_{ij}}}
+#'
+#' Modules of symetry of each crtirion are computed:
+#'
+#' \mjsdeqn{Q_j = \frac{\sum_{i=1}^k r_{ij}}{k}}
+#'
+#' where k is no. of alternatives. Normalizing Qj yells weights.
+#'
+#' \mjsdeqn{w_j = \frac{Q_j}{\sum_{j=1}^k Q_j}}
+#'
 #' @param pm performance matrix
 #' @param method weight computation method
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
@@ -359,6 +385,12 @@
 #' Vinogradova-Zinkevič I. Centroidous Method for Determining Objective Weights.
 #'  Mathematics. 2024; 12(14):2269. https://doi.org/10.3390/math12142269
 #'
+#' SAH, S., Sardar, S., Das, D. Optimization of W-EDM process for superalloy by
+#'  different objective weight integrated MCDM - a comparative study of CoCoSo
+#'  and CoCoFISo methods. International Journal on Interactive Design and
+#'  Manufacturing (IJIDeM) (2026) 20: pp. 381–406,
+#'  https://doi.org/10.1007/s12008-025-02397-1
+#'
 #' @author Pavel Šenovský \email{pavel.senovsky@vsb.cz}
 #' @examples
 #' alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -396,6 +428,7 @@ mcda_objective_weights <- function(
     "MPSI",
     "MW",
     "SDW",
+    "SPC",
     "SVW"
   )
   validation$validate_invalid_val(
@@ -677,6 +710,23 @@ mcda_objective_weights <- function(
     return(w)
   }
 
+  SPC <- function(pm) {
+    ncri <- ncol(pm)
+    nalt <- nrow(pm)
+    S <- rep(0, times = ncri)
+    D <- R <- pm
+    for (j in 1:ncri) {
+      S[j] <- (max(pm[, j]) + min(pm[, j])) / 2 # symetry points of criteria
+      D[, j] <- abs(pm[, j] - S[j])
+      R[, j] <- (sum(D[, j]) / nalt) / pm[, j]
+    }
+    # modulus of symetry of each criterium
+    Q <- colSums(R) / nalt
+    w <- Q / sum(Q)
+    names(w) <- colnames(pm)
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
@@ -692,6 +742,7 @@ mcda_objective_weights <- function(
     "MPSI" = MPSI(pm, minmax), # M Preference Selection Index
     "MW" = MW(pm), # Mean Weighting Method
     "SDW" = SDW(pm, minmax, norm), # Standard Deviation Weighting Method
+    "SPC" = SPC(pm), # Symetry Point in Criteria
     "SVW" = SVW(pm, minmax, norm) # Statistical Variace Weighting Method
   )
 }
