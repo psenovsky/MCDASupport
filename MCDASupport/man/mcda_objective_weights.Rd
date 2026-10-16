@@ -368,6 +368,24 @@ PV value is then normalized and used as weights.
 
 where m is number of alternative, n is number of criteria, SD is standard deviation,
  r are normalized values of performance matrix.
+
+\bold{LODECI - LOgarithmic DEcomposition of Criteria Importance}
+
+Somewhat similar to LOPCOW method, but with some changes. Uses to best
+ normalisation. Decomposition values of the normalized data are then computed:
+
+\mjsdeqn{DV_{ij} = \max | n_{ij} - d_{rj} |, r \ne i}
+
+Then Logarithmic Deviation Value is computed for each criterion:
+
+\mjsdeqn{LDV_j = ln(1 + \frac{\sum_{i=1}^m}{m})}
+
+where m is number of alternatives. KDV value is directly usable for
+ establishing weights:
+
+\mjsdeqn{w_j = \frac{LDV_j}{\sum_{j=1}^n LDV_j}}
+
+where n is number of criteria
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
@@ -438,6 +456,11 @@ GLIGORIĆ, Zoran, GLIGORIĆ, Miloš, MILJANOVIĆ, Igor, LUTOVAC, Suzana,
  Mineral Deposit Multi-Criteria Partitioning Algorithm. CMES - Computer
  Modeling in Engineering and Sciences. 2023, vol. 136, no. 1, pp. 955–979,
  Available from: https://doi.org/10.32604/cmes.2023.025021, ISSN 1526-1492.
+
+PALA, Osman. Assessment of the social progress on European Union by logarithmic
+ decomposition of criteria importance. Expert Systems with Applications. 2024,
+ vol. 238, article no. 121846, available from:
+ https://doi.org/10.1016/j.eswa.2023.121846, ISSN 0957-4174.
 }
 \author{
 Pavel Šenovský \email{pavel.senovsky@vsb.cz}
