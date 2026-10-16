@@ -1,4 +1,18 @@
-# MCDASupport v0.40 (Release date: TBD)
+# MCDASupport v0.40 (Release date: 2026-10-16)
+
+new methods:
+* FUCOM weight derivation method
+* FANMA objective weighting method
+* COBRAC method for weight derivation
+* ARTASI method
+* CORASO method
+* centroid objective weighting method
+* CoCoFISo method
+* SPC method
+* LOPCOW objective weighting method
+* LODECI objective weighting method
+
+some smaller corrections to the documentation
 
 # MCDASupport v0.39 (Release date: 2026-07-07)
 

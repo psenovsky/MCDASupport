@@ -8,12 +8,15 @@ implemented MCDA methods:
 
 - ARAS
 - AROMAN
+- ARTASI
 - Balanced SPOTIS (AKA B-SPOTIS)
 - Borda count method
+- CoCoFISo
 - CoCoSo
 - CODAS
 - Copeland's method
 - COPRAS
+- CORASO
 - CRADIS
 - EDAS
 - ELECTRE (variants I, II, III, IV, 1S and TRI)
@@ -80,19 +83,26 @@ For normalization, the package supports:
 For weight establishment the package supports:
 
 - BWM (Best-Worst Model)
+- COBRAC (Comparisson Between Related Criteria)
 - CWM (Combination Weight Model)
 - DEMATEL
+- FUCOM (Full Consistency method)
 - objective weighting methods:
   - angle weighting
+  - centroid method
   - CILOS (Criterion Impact LOSs)
   - CRITIC (Criterion Importance Through Intercriteria Correlation)
   - EWM (Entropy Weight Method)
+  - FANMA
   - GCW (Gini Coefficient Weighting Method) 
   - IDOCRIW (Integrated Determination of Objective CRIteria Weights)
+  - LODECI (LOgarithmic DEcomposition of Criteria Importance)
+  - LOPCOW (LOgarithmic Percentage Change-driven Objective Weighting)
   - MEREC (Methoc based on Removal Effects of Criteria)
   - MPSI (M Preference Selection Index)
   - MW (Mean Weighting)
   - SDW (Standard Deviation Weighting)
+  - SPC (Symetry Point in Criteria)
   - SVW (Statistical Variance Weighting)
 - pairwise comparison methods
   - binary pair-wise comparison
@@ -133,7 +143,9 @@ R packages MCDASupport depends on:
 - graphics,
 - igraph,
 - lpSolve
+- nloptr
 - plotly,
+- R6,
 - quadprog
 - stats,
 - tidyr,
@@ -194,10 +206,22 @@ See function's documentation for information on mathematics and theories methods
 
 ## Version History
 
-### MCDASupport v0.39 (Release date: 2026-07-07)
+### MCDASupport v0.40 (Release date: 2026-10-16)
 
-* added install_dependencies function to easily install missing dependencies for correct functioning of the package
-* corrected huge amount of typos in roxygen documentation
+new methods:
+
+* FUCOM weight derivation method
+* FANMA objective weighting method
+* COBRAC method for weight derivation
+* ARTASI method
+* CORASO method
+* centroid objective weighting method
+* CoCoFISo method
+* SPC method
+* LOPCOW objective weighting method
+* LODECI objective weighting method
+
+some smaller corrections to the documentation
 
 ### Full version history
 
