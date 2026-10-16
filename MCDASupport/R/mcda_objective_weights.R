@@ -14,6 +14,7 @@
 #'        EWM \tab Entropy Weight Method \tab N \cr
 #'        FANMA \tab abr. of authors name \tab N \cr
 #'        IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
+#'        LOPCOW \tab LOgarithmic Percentage Change-driven Objective Weighting \tab N \cr
 #'        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
 #'        MPSI \tab M Preference Selection Index \tab N \cr
 #'        MW \tab Mean weighting method \tab N \cr
@@ -330,6 +331,24 @@
 #'
 #' \mjsdeqn{w_j = \frac{Q_j}{\sum_{j=1}^k Q_j}}
 #'
+#' \bold{LOPCOW - LOgarithmic Percentage Change-driven Objective Weighting}
+#'
+#' Method first normalizes performance matric using:
+#'
+#' \mjsdeqn{n_{ij} = \frac{x_{ij}}{m + \sum_{j=1}^m x_{ij}^2}}
+#'
+#' Next the mean square value as a percentage of the standard deviations of each criterion
+#'  is calculated.
+#'
+#' \mjsdeqn{PV_{ij} = | \ln (\frac{\sqrt{\sum_{i=1}^m r_{ij}^2}}{m SD_j}) | \cdot 100}
+#'
+#' PV value is then normalized and used as weights.
+#'
+#' \mjsdeqn{w_j = \frac{PV_j}{\sum_{j=1}^n PV_j}}
+#'
+#' where m is number of alternative, n is number of criteria, SD is standard deviation,
+#'  r are normalized values of performance matrix.
+#'
 #' @param pm performance matrix
 #' @param method weight computation method
 #' @param minmax 'min' or 'max' to specify cost or benefit criterion, max is
@@ -431,6 +450,7 @@ mcda_objective_weights <- function(
     "FANMA",
     "GCW",
     "IDOCRIW",
+    "LOPCOW",
     "MEREC",
     "MPSI",
     "MW",
@@ -734,6 +754,21 @@ mcda_objective_weights <- function(
     return(w)
   }
 
+  LOPCOW <- function(pm, minmax) {
+    ncri <- ncol(pm)
+    nalt <- nrow(pm)
+    pnorm <- pm
+    st_dev <- PV <- rep(0, times = ncri)
+    for (j in 1:ncri) {
+      pnorm[, j] <- pm[, j] / (nalt + sum(pm[, j]^2))
+      st_dev[j] <- sd(pnorm[, j])
+      PV[j] <- abs(sqrt(sum(pnorm[, j]^2)) / (log(nalt / st_dev[j]))) * 100
+    }
+    w <- PV / sum(PV)
+    names(w) <- colnames(pm)
+    return(w)
+  }
+
   # perform weight computation based on selected method
   result <- switch(
     method,
@@ -745,6 +780,7 @@ mcda_objective_weights <- function(
     "GCW" = GCW(pm), # Gini Coefficient Weighting Method
     "FANMA" = FANMA(pm, minmax), # FANMA
     "IDOCRIW" = IDOCRIW(pm, minmax), # Integrated Determination of Objective CRIteria Weights
+    "LOPCOW" = LOPCOW(pm, minmax), # LOgarithmic Percentage Change-driven Objective Weighting
     "MEREC" = MEREC(pm, minmax), # Method based on Removal Effects of Criteria
     "MPSI" = MPSI(pm, minmax), # M Preference Selection Index
     "MW" = MW(pm), # Mean Weighting Method

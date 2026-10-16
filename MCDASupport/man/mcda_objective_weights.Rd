@@ -34,6 +34,7 @@ The function for criteria weights computation using various objective
        EWM \tab Entropy Weight Method \tab N \cr
        FANMA \tab abr. of authors name \tab N \cr
        IDOCRIW \tab Integrated Determination of Objective CRIteria Weights \tab N \cr
+       LOPCOW \tab LOgarithmic Percentage Change-driven Objective Weighting \tab N \cr
        MEREC \tab Method based on Removal Effects of Criteria \tab N \cr
        MPSI \tab M Preference Selection Index \tab N \cr
        MW \tab Mean weighting method \tab N \cr
@@ -349,6 +350,24 @@ Modules of symetry of each crtirion are computed:
 where k is no. of alternatives. Normalizing Qj yells weights.
 
 \mjsdeqn{w_j = \frac{Q_j}{\sum_{j=1}^k Q_j}}
+
+\bold{LOPCOW - LOgarithmic Percentage Change-driven Objective Weighting}
+
+Method first normalizes performance matric using:
+
+\mjsdeqn{n_{ij} = \frac{x_{ij}}{m + \sum_{j=1}^m x_{ij}^2}}
+
+Next the mean square value as a percentage of the standard deviations of each criterion
+ is calculated.
+
+\mjsdeqn{PV_{ij} = | \ln (\frac{\sqrt{\sum_{i=1}^m r_{ij}^2}}{m SD_j}) | \cdot 100}
+
+PV value is then normalized and used as weights.
+
+\mjsdeqn{w_j = \frac{PV_j}{\sum_{j=1}^n PV_j}}
+
+where m is number of alternative, n is number of criteria, SD is standard deviation,
+ r are normalized values of performance matrix.
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
